@@ -6,14 +6,21 @@ public abstract class Object
 {
     [Required]
     [RegularExpression(@"[A-Z0-9,._$#]")]
-    [MaxLength(200)]
+    [MaxLength(160)]
     string Name { get; set; }
+
     [Required]
-    [MaxLength(200)]
+    [MaxLength(256)]
     string Title { get; set; }
+
+    [Required]
+    [MaxLength(256)]
+    public string Folder { get; set; }
+
     [MaxLength(2000)]
     string? Description { get; set; }
 
     string VariableKey { get; set; }
+
     string VariableValue { get; set; }
 }
