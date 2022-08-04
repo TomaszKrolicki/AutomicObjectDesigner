@@ -9,9 +9,7 @@ public abstract class Object
     [MaxLength(160)]
     string Name { get; set; }
 
-    [Required]
-    [MaxLength(256)]
-    string Title { get; set; }
+     
 
     [Required]
     [MaxLength(256)]
