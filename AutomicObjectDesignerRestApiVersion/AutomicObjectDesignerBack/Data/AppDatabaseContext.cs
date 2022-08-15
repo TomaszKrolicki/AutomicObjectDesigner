@@ -11,6 +11,5 @@ namespace AutomicObjectDesignerBack.Data
         {
         }
         DbSet<User> Users { get; set; }
-        //DbSet<AutomicObject> AutomicObjects { get; set; }
     }
 }

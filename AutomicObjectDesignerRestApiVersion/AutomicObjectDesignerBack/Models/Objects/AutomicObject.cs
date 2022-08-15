@@ -6,6 +6,12 @@ namespace AutomicObjectDesigner.Models.Objects;
 [Keyless]
 public abstract class AutomicObject
 {
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    public int OwnderId { get; set; }
+
     [Required]
     [RegularExpression(@"[A-Z0-9,._$#]")]
     [MaxLength(160)]
