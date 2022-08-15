@@ -3,7 +3,7 @@ using AutomicObjectDesigner.Models.Registration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace AutomicObjectDesignerBack.Models
+namespace AutomicObjectDesignerBack.Data
 {
     public class AppDatabaseContext : DbContext
     {
@@ -11,6 +11,6 @@ namespace AutomicObjectDesignerBack.Models
         {
         }
         DbSet<User> Users { get; set; }
-        DbSet<AutomicObject> AutomicObjects { get; set; }
+        //DbSet<AutomicObject> AutomicObjects { get; set; }
     }
 }

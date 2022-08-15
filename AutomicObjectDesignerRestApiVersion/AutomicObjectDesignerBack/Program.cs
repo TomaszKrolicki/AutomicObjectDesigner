@@ -1,4 +1,4 @@
-using AutomicObjectDesignerBack.Models;
+using AutomicObjectDesignerBack.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
