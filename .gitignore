@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+#Cert-keys
+.env.development.local
+
 # User-specific files
 *.rsuser
 *.suo
