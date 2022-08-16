@@ -1,11 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\AutomicObjectDesigner",
     "\\AutomicObjectDesignerRestApiVersion",
-    "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront",
-    "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src",
-    "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src\\components"
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Migrations",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Models",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Models\\Registration"
   ],
-  "SelectedNode": "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src\\index.js",
+  "SelectedNode": "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Migrations\\20220815174940_initial.cs",
   "PreviewInSolutionExplorer": false
 }

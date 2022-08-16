@@ -5,45 +5,52 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/login.component'
 import SignUp from './components/register.component'
 
-export default function App() {
-    return (
-        <Router>
-          <div className="container-xl">
-            <nav className='text-center'>
-                <Link className="h1 text-black-50 text-center nav-item" to={'/sign-in'}>
-                  AutomicObjectDesigner
-                </Link>
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                      <Link className="nav-link" to={'/sign-in'}>
-                        Login
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to={'/sign-up'}>
-                        Sign up
-                      </Link>
-                    </li>
-                  </ul>
-              </div>
-            </nav>
-            <div className="auth-wrapper">
-              <div className="auth-inner">
-                <Routes>
-                  <Route exact path="/" element={<Login />} />
-                            <Route path="/sign-in" element={<Login />} />
-                            <Route path="/register" element={<SignUp />} />
-                </Routes>
-              </div>
-            </div>
+// export default function App() {
+//     return (
+//         <Router>
+//           <div className="container-xl">
+//             <nav className='text-center'>
+//                 <Link className="h1 text-black-50 text-center nav-item" to={'/sign-in'}>
+//                   AutomicObjectDesigner
+//                 </Link>
+//                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+//                   <ul className="navbar-nav ml-auto">
+//                     <li className="nav-item">
+//                       <Link className="nav-link" to={'/sign-in'}>
+//                         Login
+//                       </Link>
+//                     </li>
+//                     <li className="nav-item">
+//                       <Link className="nav-link" to={'/sign-up'}>
+//                         Sign up
+//                       </Link>
+//                     </li>
+//                   </ul>
+//               </div>
+//             </nav>
+//             <div className="auth-wrapper">
+//               <div className="auth-inner">
+//                 <Routes>
+//                   <Route exact path="/" element={<Login />} />
+//                             <Route path="/sign-in" element={<Login />} />
+//                             <Route path="/register" element={<SignUp />} />
+//                 </Routes>
+//               </div>
+//             </div>
+//           </div>
+//         </Router>
+//       )
+//     }
+
+
+    export default function App() {
+      return (
+          <div>
+            
           </div>
-        </Router>
-      )
-    }
-
-
-
+        )
+      }
+  
 
 // export default class App extends Component {
 //     static displayName = App.name;
