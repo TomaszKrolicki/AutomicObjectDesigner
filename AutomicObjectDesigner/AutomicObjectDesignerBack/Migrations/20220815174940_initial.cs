@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -128,7 +129,10 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     table.PrimaryKey("PK_WindowsSimple", x => x.Id);
                 });
+
+            
         }
+
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesigner.Models.Registration;
 
@@ -38,3 +39,4 @@ public class User
     public bool IsAdministrator { get; set; }
 
 }
+
