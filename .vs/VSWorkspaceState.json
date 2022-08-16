@@ -2,11 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\AutomicObjectDesignerRestApiVersion",
-    "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerBack",
     "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront",
     "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src",
     "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src\\components"
   ],
-  "SelectedNode": "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerBack\\AutomicObjectDesignerBack.csproj",
+  "SelectedNode": "\\AutomicObjectDesignerRestApiVersion\\AutomicObjectDesignerFront\\src\\index.js",
   "PreviewInSolutionExplorer": false
 }
