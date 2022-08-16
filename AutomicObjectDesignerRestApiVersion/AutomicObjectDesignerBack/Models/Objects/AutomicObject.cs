@@ -3,14 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesigner.Models.Objects;
 
-[Keyless]
 public abstract class AutomicObject
 {
     [Key]
     public int Id { get; set; }
 
     [Required]
-    public int OwnderId { get; set; }
+    public int OwnerId { get; set; }
 
     [Required]
     [RegularExpression(@"[A-Z0-9,._$#]")]

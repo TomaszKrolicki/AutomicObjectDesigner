@@ -9,9 +9,6 @@ namespace AutomicObjectDesignerBack.Controllers;
 
 public class LoginController : Controller
 {
-    SqlConnection conn = new SqlConnection(connectionString: "AutomicObjectDesignerConnection");
-    private SqlCommand cmd = null;
-    SqlDataAdapter adapter = null;
 
     [HttpPost]
     [Route("Login")]
