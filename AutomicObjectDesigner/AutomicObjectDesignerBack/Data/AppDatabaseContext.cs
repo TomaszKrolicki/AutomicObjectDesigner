@@ -17,8 +17,7 @@ namespace AutomicObjectDesignerBack.Data
         DbSet<SapSimple> SapSimple { get; set; }
         DbSet<SapVariantCopy> SapVariantCopy { get; set; }
         DbSet<WindowsSimple> WindowsSimple { get; set; }
-
-
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
