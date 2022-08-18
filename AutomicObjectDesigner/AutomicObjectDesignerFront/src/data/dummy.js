@@ -10,6 +10,12 @@ import { HiOutlineRefresh } from 'react-icons/hi';
 import { TiTick } from 'react-icons/ti';
 import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
+import { SiCommonworkflowlanguage } from 'react-icons/si';
+import { SiSap }from 'react-icons/si';
+import { SiLinux }from 'react-icons/si';
+import { RiFileTransferLine }from 'react-icons/ri';
+import { SiWindows }from 'react-icons/si';
+import { IoLogoDesignernews } from 'react-icons/io';
 import avatar from './avatar.jpg';
 import avatar2 from './avatar2.jpg';
 import avatar3 from './avatar3.png';
@@ -471,88 +477,72 @@ export const employeesGrid = [
 
 export const links = [
   {
-    title: 'Dashboard',
+    title: 'Main Page',
     links: [
       {
-        name: 'ecommerce',
-        icon: <FiShoppingBag />,
+        name: 'AutomicObjectDesigner',
+        icon: <IoLogoDesignernews />,
       },
     ],
   },
 
   {
-    title: 'Pages',
+    title: 'Create',
     links: [
       {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        name: 'SAPJobSimple',
+        icon: <SiSap />,
       },
       {
-        name: 'employees',
-        icon: <IoMdContacts />,
+        name: 'SAPJobMassen',
+        icon: <SiSap />,
       },
       {
-        name: 'customers',
-        icon: <RiContactsLine />,
+        name: 'SAPJobBWChain',
+        icon: <SiSap />,
+      },
+      {
+        name: 'WindowsGeneral',
+        icon: <SiWindows />,
+      },
+      {
+        name: 'UnixGeneral',
+        icon: <SiLinux />,
+      },
+      {
+        name: 'FileTransferOne',
+        icon: <RiFileTransferLine />,
+      },
+      {
+        name: 'FileTransferMany',
+        icon: <RiFileTransferLine />,
       },
     ],
   },
   {
-    title: 'Apps',
+    title: 'Workflows',
     links: [
       {
-        name: 'calendar',
-        icon: <AiOutlineCalendar />,
+        name: 'WorkflowSimple',
+        icon: <SiCommonworkflowlanguage />,
       },
       {
-        name: 'kanban',
-        icon: <BsKanban />,
+        name: 'WorkflowSync',
+        icon: <SiCommonworkflowlanguage />,
       },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
-      },
+
     ],
   },
   {
-    title: 'Charts',
+    title: 'Report',
     links: [
       {
-        name: 'line',
+        name: 'Contact',
         icon: <AiOutlineStock />,
       },
       {
-        name: 'area',
+        name: 'BugReport',
         icon: <AiOutlineAreaChart />,
-      },
-
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: 'pie',
-        icon: <FiPieChart />,
-      },
-      {
-        name: 'financial',
-        icon: <RiStockLine />,
-      },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
       },
     ],
   },
