@@ -8,6 +8,8 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import { Automicobjectdesigner, Filetransfermany, Filetransferone,
   Sapjobbw, Sapjobmassen, Sapjobsimple, Unixgeneral, Windowsgeneral } from './pages';
 
+import { useStateContext } from './contexts/ContextProvider';
+
 import './App.css';
 
 
@@ -16,7 +18,7 @@ import SignUp from './components/register.component';
 
 
     export default function App() {
-      const activeMenu = true;
+      const { activeMenu } = useStateContext();
       return (
           <div>
             <BrowserRouter>
