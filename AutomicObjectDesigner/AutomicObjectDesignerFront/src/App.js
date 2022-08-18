@@ -4,6 +4,10 @@ import { Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom';
 // import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
+import { Automicobjectdesigner, Filetransfermany, Filetransferone,
+  Sapjobbw, Sapjobmassen, Sapjobsimple, Unixgeneral, Windowsgeneral } from './pages';
+
 import './App.css';
 
 
@@ -12,7 +16,7 @@ import SignUp from './components/register.component';
 
 
     export default function App() {
-      const activeMenu = false;
+      const activeMenu = true;
       return (
           <div>
             <BrowserRouter>
@@ -34,38 +38,38 @@ import SignUp from './components/register.component';
                   <div className='w-72 fixe sidebar
                   dark:bg-secondary-dark-bg
                   bg-white'>
-                    Sidebar
+                    <Sidebar />
                   </div>
                 ) : (
                   <div className='w-0
                   dark:bg-secondary-dark-bg'>
-                    Sidebar
+                    <Sidebar />
                   </div>
                 )}
                 <div className={ `dark:bg-main-bg bg-main-bg 
-                min-h-screen w-full
+                min-h-screen w-f />}l{<
                   ${activeMenu ?
                   ' md:ml-72 ' : 'flex-2'}`
                 }>
                   <div className='fixed md:static
                   bg-main-bg dark:bg-main-dark-bg
                   navbar w-full'>
-                    Navbar
+                    <Navbar />
                   </div>
                 </div>
                 <Routes>
                   {/* Dashboard */}
-                  <Route path='/' element="Ecommerce" />
-                  <Route path='/ecommerce' 
-                  element="Ecommerce" />
+                  <Route path='/' element={<Automicobjectdesigner />} />
+                  <Route path='/automicobjectdesigner' 
+                  element={<Automicobjectdesigner />} />
                   {/* Pages */}
-                  <Route path='/sapjobsimple' element="SAPJobSimple" />
-                  <Route path='/sapjobmassen' element="SAPJobMassen" />
-                  <Route path='/sapjobbw ' element="SAPJobBW" />
-                  <Route path='/windowsgeneral' element="WindowsGeneral" />
-                  <Route path='/unixgeneral' element="UnixGeneral" />
-                  <Route path='/filetransferone ' element="FileTransferOne" />
-                  <Route path='/filetransfermany ' element="FileTransferMany" />
+                  <Route path='/sapjobsimple' element={<Sapjobsimple />} />
+                  <Route path='/sapjobmassen' element={<Sapjobmassen />} />
+                  <Route path='/sapjobbw ' element={<Sapjobbw />} />
+                  <Route path='/windowsgeneral' element={<Windowsgeneral />} />
+                  <Route path='/unixgeneral' element={<Unixgeneral />} />
+                  <Route path='/filetransferone ' element={<Filetransferone />} />
+                  <Route path='/filetransfermany ' element={<Filetransfermany />} />
                   {/* Apps */}
                   <Route path='/worksimple' element="Workflow" />
                   <Route path='/worksynch' element="Workflow" />
