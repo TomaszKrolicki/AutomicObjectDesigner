@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sapjobsimple = () => {
   return (
-    <div>Sapjobsimple</div>
+    <div></div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sapjobmassen = () => {
   return (
-    <div>Sapjobmassen</div>
+    <div></div>
   )
 }
 

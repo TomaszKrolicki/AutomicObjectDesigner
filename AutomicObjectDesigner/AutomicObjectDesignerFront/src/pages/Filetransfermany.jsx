@@ -2,7 +2,7 @@ import React from 'react'
 
 const Filetransfermany = () => {
   return (
-    <div>Filetransfermany</div>
+    <div></div>
   )
 }
 

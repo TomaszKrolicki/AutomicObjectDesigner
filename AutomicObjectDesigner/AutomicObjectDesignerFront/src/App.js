@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { useEffect } from 'react';
 import { Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom';
-// import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
@@ -48,10 +47,9 @@ import SignUp from './components/register.component';
                     <Sidebar />
                   </div>
                 )}
-                <div className={ `dark:bg-main-bg bg-main-bg 
-                min-h-screen w-f />}l{<
-                  ${activeMenu ?
-                  ' md:ml-72 ' : 'flex-2'}`
+                <div className={ activeMenu
+                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen w-full  '
+                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
                 }>
                   <div className='fixed md:static
                   bg-main-bg dark:bg-main-dark-bg
@@ -62,8 +60,7 @@ import SignUp from './components/register.component';
                 <Routes>
                   {/* Dashboard */}
                   <Route path='/' element={<Automicobjectdesigner />} />
-                  <Route path='/automicobjectdesigner' 
-                  element={<Automicobjectdesigner />} />
+                  <Route path='/automicobjectdesigner' element={<Automicobjectdesigner />} />
                   {/* Pages */}
                   <Route path='/sapjobsimple' element={<Sapjobsimple />} />
                   <Route path='/sapjobmassen' element={<Sapjobmassen />} />

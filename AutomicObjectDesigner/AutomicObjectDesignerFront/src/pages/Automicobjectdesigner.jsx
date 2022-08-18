@@ -1,8 +1,12 @@
 import React from 'react'
+import { Header } from '../components';
+import { useStateContext } from '../contexts/ContextProvider';
 
 const Automicobjectdesigner = () => {
   return (
-    <div>Automicobjectdesigner</div>
+    <div className="mt-24">
+
+    </div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Filetransferone = () => {
   return (
-    <div>Filetransferone</div>
+    <div></div>
   )
 }
 
