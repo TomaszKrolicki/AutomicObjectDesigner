@@ -2,9 +2,12 @@
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
+    [ApiController]
+    [Route(template:"api/")]
     public class SapSimpleController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Get()
         {
             return View();
             // pobranie danych uzytkownika + validacja
