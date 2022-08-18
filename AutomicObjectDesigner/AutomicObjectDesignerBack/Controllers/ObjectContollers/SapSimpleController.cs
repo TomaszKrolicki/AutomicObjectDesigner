@@ -1,16 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     [ApiController]
-    [Route(template:"api/")]
-    public class SapSimpleController : Controller
+    [Route("api/[controller]")]
+    public class SapSimpleController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        //GET https://localhost:7017/api/SapSimple
+        // pobranie danych uzytkownika + validacja
+        public IActionResult GetSapSimple()
         {
-            return View();
-            // pobranie danych uzytkownika + validacja
+            var SapSimple = DataService.Current.SapSimple;
+
+            return Ok(SapSimple);
+
+
         }
     }
 }

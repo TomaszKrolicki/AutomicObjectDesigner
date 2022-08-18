@@ -7,12 +7,32 @@ namespace AutomicObjectDesignerBack.Models.Objects
         //Entry sequence:
         // step 1
 
-        //public enum UnixServer { get; set; }
-        //public enum UnixLogin { get; set; }
+        public enum UnixServer
+        {
+            number,
+            number1,
+            number2
+        }
+        public enum UnixLogin
+        {
+            number,
+            number1,
+            number2
+        }
 
 
-        //public enum SapSid { get; set; }
-        //public enum SapClient { get; set; }
+        public enum SapSid
+        {
+            number,
+            number1,
+            number2
+        }
+        public enum SapClient
+        {
+            number,
+            number1,
+            number2
+        }
         public string? SapReport { get; set; }
 
         public bool RoutineJob { get; set; }
@@ -55,28 +75,28 @@ namespace AutomicObjectDesignerBack.Models.Objects
         //Fixed predefined fields:
 
         public string? Template { get; set; }
-        public string? PreProcess { get; set; }
-        public string? PostProcess { get; set; }
+        public string? PreProcess1 { get; set; }
+        public string? PostProcess1 { get; set; }
 
         //Calculated fields:
-        public string? Queue { get; set; }
+        public string? Queue1 { get; set; }
 
         // Multiline fields:
         public string? VariableKey { get; set; }
         public string? VariableValue { get; set; }
 
-        public string? Process { get; set; }
+        public string? Process2 { get; set; }
 
         public string? Docu { get; set; }
 
         //other fields
 
-        public string? Login { get; set; }
-        public string? Agent { get; set; }
-        public string Name { get; set; }
+        public string? Login1 { get; set; }
+        public string? Agent1 { get; set; }
+        public string Name1 { get; set; }
         public string Title { get; set; }
 
-        public string JobName { get; set; }
+        public string JobName1 { get; set; }
         public bool NeverDeleteJob { get; set; }
         public string? ArchiveKey1 { get; set; }
         public string? ArchiveKey2 { get; set; }
