@@ -12,8 +12,8 @@ import { useStateContext } from './contexts/ContextProvider';
 import './App.css';
 
 
-import Login from './components/login.component';
-import SignUp from './components/register.component';
+// import Login from './components/login.component';
+// import SignUp from './components/register.component';
 
 
     export default function App() {
@@ -57,6 +57,7 @@ import SignUp from './components/register.component';
                     <Navbar />
                   </div>
                 <div>
+                  {/* !!! odzielic routes jako kolejny compoments !!! */}
                 <Routes>
                   {/* Dashboard */}
                   <Route path='/' element={<Automicobjectdesigner />} />
