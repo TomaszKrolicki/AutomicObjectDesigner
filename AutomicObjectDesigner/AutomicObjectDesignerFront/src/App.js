@@ -56,7 +56,7 @@ import SignUp from './components/register.component';
                   navbar w-full'>
                     <Navbar />
                   </div>
-                </div>
+                <div>
                 <Routes>
                   {/* Dashboard */}
                   <Route path='/' element={<Automicobjectdesigner />} />
@@ -73,6 +73,8 @@ import SignUp from './components/register.component';
                   <Route path='/worksimple' element="Workflow" />
                   <Route path='/worksynch' element="Workflow" />
                 </Routes>
+                </div>
+              </div>
             </div>
             </BrowserRouter>
           </div>

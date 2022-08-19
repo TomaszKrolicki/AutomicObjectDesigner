@@ -6,3 +6,4 @@ export { default as Windowsgeneral } from './Windowsgeneral';
 export { default as Unixgeneral } from './Unixgeneral';
 export { default as Filetransferone } from './Filetransferone';
 export { default as Filetransfermany } from './Filetransfermany';
+export { default as Bugreport } from './Bugreport';

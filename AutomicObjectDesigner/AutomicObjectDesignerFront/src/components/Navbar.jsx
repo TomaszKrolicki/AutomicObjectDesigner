@@ -48,7 +48,7 @@ const Navbar = () => {
   
   return (
     <div className='flex justify-between p-2 
-    md:mx-6 relative'>
+    relative'>
       <NavButton title="Menu" customFunc={() =>
       setActiveMenu((prevActiveMenu) =>
       !prevActiveMenu)} color="blue" icon={<AiOutlineMenu />}/>
@@ -59,7 +59,8 @@ const Navbar = () => {
         <TooltipComponent content="Profile" position="BottomCenter">
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
            onClick={() => handleClick('userProfile')}>
-            <img src={avatar} className="rounded-full w-8 h-8"/>
+            <img 
+            src={avatar} className="rounded-full w-8 h-8"/>
             <p>
               <span className=' text-gray-400 text-14'>
                 Hi, 
