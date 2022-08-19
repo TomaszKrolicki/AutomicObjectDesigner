@@ -15,6 +15,7 @@ namespace AutomicObjectDesignerBack.Data
         DbSet<FileTransfer> FileTransfers { get; set; }
         DbSet<LinuxSimple> LinuxSimple { get; set; }
         DbSet<SapSimple> SapSimple { get; set; }
+
         DbSet<SapVariantCopy> SapVariantCopy { get; set; }
         DbSet<WindowsSimple> WindowsSimple { get; set; }
         
