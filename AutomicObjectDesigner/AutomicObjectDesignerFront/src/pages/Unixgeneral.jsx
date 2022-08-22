@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Unixgeneral = () => {
+const UnixGeneral = () => {
   return (
     <div></div>
   )
 }
 
-export default Unixgeneral;
+export default UnixGeneral;

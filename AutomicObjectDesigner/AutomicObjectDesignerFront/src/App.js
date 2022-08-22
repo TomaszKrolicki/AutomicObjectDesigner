@@ -12,10 +12,6 @@ import { useStateContext } from './contexts/ContextProvider';
 import './App.css';
 
 
-// import Login from './components/login.component';
-// import SignUp from './components/register.component';
-
-
     export default function App() {
       const { activeMenu } = useStateContext();
       return (
@@ -57,23 +53,7 @@ import './App.css';
                     <Navbar />
                   </div>
                 <div>
-                  {/* !!! odzielic routes jako kolejny compoments !!! */}
-                <Routes>
-                  {/* Dashboard */}
-                  <Route path='/' element={<Automicobjectdesigner />} />
-                  <Route path='/automicobjectdesigner' element={<Automicobjectdesigner />} />
-                  {/* Pages */}
-                  <Route path='/sapjobsimple' element={<Sapjobsimple />} />
-                  <Route path='/sapjobmassen' element={<Sapjobmassen />} />
-                  <Route path='/sapjobbw ' element={<Sapjobbw />} />
-                  <Route path='/windowsgeneral' element={<Windowsgeneral />} />
-                  <Route path='/unixgeneral' element={<Unixgeneral />} />
-                  <Route path='/filetransferone ' element={<Filetransferone />} />
-                  <Route path='/filetransfermany ' element={<Filetransfermany />} />
-                  {/* Apps */}
-                  <Route path='/worksimple' element="Workflow" />
-                  <Route path='/worksynch' element="Workflow" />
-                </Routes>
+                  <Routes />
                 </div>
               </div>
             </div>

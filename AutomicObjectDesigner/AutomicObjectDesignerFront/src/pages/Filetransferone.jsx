@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Filetransferone = () => {
+const FileTransferOne = () => {
   return (
     <div></div>
   )
 }
 
-export default Filetransferone;
+export default FileTransferOne;
