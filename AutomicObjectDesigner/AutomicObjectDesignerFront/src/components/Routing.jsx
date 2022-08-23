@@ -1,9 +1,9 @@
-import { Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
   SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from '../pages';
 import React from 'react'
 
-const Routes = () => {
+const Routing = () => {
   return (
     <div>
         <Routes>
@@ -26,4 +26,4 @@ const Routes = () => {
   )
 }
 
-export default Routes;
+export default Routing;
