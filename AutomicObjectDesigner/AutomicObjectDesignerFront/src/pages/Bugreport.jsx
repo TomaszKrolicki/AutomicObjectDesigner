@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Bugreport = () => {
+const BugReport = () => {
   return (
     <div>Bugreport</div>
   )
 }
 
-export default Bugreport
+export default BugReport;

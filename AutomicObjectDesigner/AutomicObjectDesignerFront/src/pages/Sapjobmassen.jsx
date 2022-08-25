@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Sapjobmassen = () => {
+const SapJobMassen = () => {
   return (
     <div></div>
   )
 }
 
-export default Sapjobmassen;
+export default SapJobMassen;

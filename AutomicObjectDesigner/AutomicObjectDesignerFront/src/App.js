@@ -3,38 +3,49 @@ import { useEffect } from 'react';
 import { Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Automicobjectdesigner, Filetransfermany, Filetransferone,
-  Sapjobbw, Sapjobmassen, Sapjobsimple, Unixgeneral, Windowsgeneral } from './pages';
+import { Navbar, Footer, Sidebar, ThemeSettings, Routing } from './components';
+import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
+  SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
 import './App.css';
 
 
-import Login from './components/login.component';
-import SignUp from './components/register.component';
-
-
     export default function App() {
-      const { activeMenu } = useStateContext();
+
+
+      const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem('colorMode');
+    const currentThemeMode = localStorage.getItem('themeMode');
+    if (currentThemeColor && currentThemeMode) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode);
+    }
+  }, []);
+
+
       return (
-          <div>
+      <div className={currentMode === 'Dark' ? 'dark' : ''}>
             <BrowserRouter>
             <div className='flex relative dark:bg-main-dark-bg'>
-              <div className='fixed right-4 bottom-4' style={{zIndex: '1000'}}>
-                <TooltipComponent content="Settings" position="Top">
-                  <button type='button'
-                  className='text-3xl p-3
-                  hover:drop-shadow-xl
-                  hover:bg-light-gray text-white
-                  '
-                  style={{background:'blue',
-                  borderRadius: '50%' }}>
-                    <FiSettings />
-                  </button>
-                </TooltipComponent>
-              </div>
+              <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
+              <TooltipComponent
+                content="Settings"
+                position="Top">
+              <button
+                type="button"
+                onClick={() => setThemeSettings(true)}
+                style={{ background: currentColor, borderRadius: '50%' }}
+                className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
+              >
+                <FiSettings />
+              </button>
+
+            </TooltipComponent>
+          </div>
                 {activeMenu ? (
                   <div className='w-72 fixe sidebar
                   dark:bg-secondary-dark-bg
@@ -57,22 +68,9 @@ import SignUp from './components/register.component';
                     <Navbar />
                   </div>
                 <div>
-                <Routes>
-                  {/* Dashboard */}
-                  <Route path='/' element={<Automicobjectdesigner />} />
-                  <Route path='/automicobjectdesigner' element={<Automicobjectdesigner />} />
-                  {/* Pages */}
-                  <Route path='/sapjobsimple' element={<Sapjobsimple />} />
-                  <Route path='/sapjobmassen' element={<Sapjobmassen />} />
-                  <Route path='/sapjobbw ' element={<Sapjobbw />} />
-                  <Route path='/windowsgeneral' element={<Windowsgeneral />} />
-                  <Route path='/unixgeneral' element={<Unixgeneral />} />
-                  <Route path='/filetransferone ' element={<Filetransferone />} />
-                  <Route path='/filetransfermany ' element={<Filetransfermany />} />
-                  {/* Apps */}
-                  <Route path='/worksimple' element="Workflow" />
-                  <Route path='/worksynch' element="Workflow" />
-                </Routes>
+                {themeSettings && (<ThemeSettings />)}
+                  {/* <SapJobSimple /> */}
+                  <Routing />
                 </div>
               </div>
             </div>
