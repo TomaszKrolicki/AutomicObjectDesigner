@@ -1,30 +1,44 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutomicObjectDesignerBack.Controllers;
 
 [ApiController]
+//[Route("api/WindowsSimple")]
+[Route("api/[controller]")]
 public class WindowsSimpleController : Controller
 {
-    [Route("/api/WindowsSimple")]
-    [HttpPost]
-    public IActionResult GetWindowsSimple(WindowsSimple windowsSimple)
+    //Get https://localhost:3000/api/WindowsSimple
+    [HttpGet]
+    public IActionResult GetWindowsSimple()
     {
-        windowsSimple.id = 1;
-        windowsSimple.ProcessName = "Process";
-        windowsSimple.NameSuffix = "Suffix";
-        windowsSimple.ObjectName = "sid1.client1#ZZZ#Process#WIN_Suffix.JOBS"
-        if (windowsSimple.ObjectName == "sid1.client1#ZZZ#Process#WIN_Suffix.JOBS")
+        var WindowsSimple = DataWindowsSimple.Current.WindowsSimpleData;
+
+        return Ok(WindowsSimple);
+    }
+    [HttpPost]
+    public IActionResult CreateWindowsSimple([FromBody] WindowsSimple windowsSimple)
+    {
+        var maxId = DataWindowsSimple.Current.WindowsSimpleData.Max(c => c.Id);
+
+        var createWindowsSimple = new WindowsSimple
         {
-            windowsSimple.Process = "";
-            windowsSimple.Docu = "";
-            windowsSimple.Title = "";
-            windowsSimple.Archive1 = "";
-            windowsSimple.Archive2 = "";
-            windowsSimple.InternalAccount = "account";
-            // SaveInDatabase(WindowsSimple)
-        }
-        return Ok(windowsSimple);
-        //Go to next website
+            Id = maxId + 1,
+            ProcessName = "",
+            NameSuffix = "",
+            ObjectName = "",
+            ProcessInfo = "",
+            Docu = "",
+            Title = "",
+            Archive1 = "",
+            Archive2 = "",
+            InternalAccount = "",
+            Floder = "",
+        };
+
+        DataWindowsSimple.Current.WindowsSimpleData.Add(createWindowsSimple);
+
+        return CreatedAtRoute("GetWindowsSimple", new { id = createWindowsSimple.Id }, createWindowsSimple);
     }
 }

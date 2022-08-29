@@ -36,5 +36,5 @@ public class WindowsSimple : Job
     [Required]
     [MaxLength(16)]
     public string? InternalAccount { get; set; }
-    public string? Folder { get; set; }
+    public string? Floder { get; set; }
 }
