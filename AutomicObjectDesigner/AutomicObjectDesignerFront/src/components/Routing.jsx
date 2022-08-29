@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
   SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from '../pages';
-import React from 'react'
+
+import React from 'react';
 
 const Routing = () => {
   return (

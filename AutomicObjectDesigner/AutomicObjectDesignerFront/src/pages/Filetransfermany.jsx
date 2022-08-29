@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Filetransfermany = () => {
+const FileTransferMany = () => {
   return (
     <div></div>
   )
 }
 
-export default Filetransfermany;
+export default FileTransferMany;
