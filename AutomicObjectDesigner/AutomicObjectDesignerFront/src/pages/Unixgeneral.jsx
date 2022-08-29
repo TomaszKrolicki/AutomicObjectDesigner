@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UnixGeneral = () => {
+export const UnixGeneral = () => {
   return (
     <div></div>
   )

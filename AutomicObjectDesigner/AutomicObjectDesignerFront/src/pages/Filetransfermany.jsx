@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FileTransferMany = () => {
+export const FileTransferMany = () => {
   return (
     <div></div>
   )

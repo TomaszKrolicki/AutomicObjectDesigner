@@ -1,6 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
-  SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from '../pages';
+import { AutomicObjectDesigner} from '../pages/AutomicObjectDesigner';
+import { FileTransferMany} from '../pages/FileTransferMany';
+import {FileTransferOne} from '../pages/FileTransferOne';
+import {SapJobBW} from '../pages/SapJobBW';
+import { SapJobMassen} from '../pages/SapJobMassen';
+import { SapJobSimple} from '../pages/SapJobSimple';
+import { UnixGeneral} from '../pages/UnixGeneral';
+import { WindowsGeneral} from '../pages/WindowsGeneral';
 
 import React from 'react';
 
