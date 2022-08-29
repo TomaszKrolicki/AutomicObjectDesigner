@@ -30,7 +30,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     MaxParallelTasks = 5,
                     OwnerId = 4,
                     Process = "Process",
-                    PorcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
+                    ProcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
                     PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI",
                     PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI",
 
@@ -51,7 +51,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     MaxParallelTasks = 6,
                     OwnerId = 5,
                     Process = "Process",
-                    PorcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
+                    ProcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
                     PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI",
                     PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI",
 
