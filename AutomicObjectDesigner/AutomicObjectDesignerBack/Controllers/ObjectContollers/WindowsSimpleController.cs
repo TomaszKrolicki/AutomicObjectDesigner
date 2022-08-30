@@ -1,19 +1,18 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
-using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Models.Objects.Temp;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutomicObjectDesignerBack.Controllers;
 
 [ApiController]
-//[Route("api/WindowsSimple")]
 [Route("api/[controller]")]
 public class WindowsSimpleController : Controller
 {
-    //Get https://localhost:3000/api/WindowsSimple
+    //Get https://localhost:7017/api/WindowsSimple
     [HttpGet]
     public IActionResult GetWindowsSimple()
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData;
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimple;
 
         return Ok(windowsSimple);
     }
@@ -22,7 +21,7 @@ public class WindowsSimpleController : Controller
     [HttpGet("{id}")]
     public IActionResult GetOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         return Ok(windowsSimple);
@@ -32,7 +31,7 @@ public class WindowsSimpleController : Controller
     [HttpPost]
     public IActionResult CreateWindowsSimple([FromBody] WindowsSimple windowsSimple)
     {
-        var maxId = DataWindowsSimple.Current.WindowsSimpleData.Max(c => c.Id);
+        var maxId = DataWindowsSimple.Current.WindowsSimple.Max(c => c.Id);
 
         var createWindowsSimple = new WindowsSimple
         {
@@ -49,7 +48,7 @@ public class WindowsSimpleController : Controller
             Floder = "",
         };
 
-        DataWindowsSimple.Current.WindowsSimpleData.Add(createWindowsSimple);
+        DataWindowsSimple.Current.WindowsSimple.Add(createWindowsSimple);
 
         return CreatedAtRoute("GetWindowsSimple", new { id = createWindowsSimple.Id }, createWindowsSimple);
     }
@@ -58,22 +57,22 @@ public class WindowsSimpleController : Controller
     [HttpPut]
     public IActionResult UpdateWindowsSimple([FromBody] WindowsSimple newWindowsSimple)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == newWindowsSimple.Id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == newWindowsSimple.Id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         windowsSimple.ProcessName = newWindowsSimple.ProcessName;
         //++
-        return Ok(DataWindowsSimple.Current.WindowsSimpleData);
+        return Ok(DataWindowsSimple.Current.WindowsSimple);
     }
 
 
     [HttpDelete("{id}")]
     public IActionResult DeleteOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
-        DataWindowsSimple.Current.WindowsSimpleData.Remove(windowsSimple);
-        return Ok(DataWindowsSimple.Current.WindowsSimpleData);
+        DataWindowsSimple.Current.WindowsSimple.Remove(windowsSimple);
+        return Ok(DataWindowsSimple.Current.WindowsSimple);
     }
 }

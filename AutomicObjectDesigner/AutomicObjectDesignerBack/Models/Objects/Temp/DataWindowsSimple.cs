@@ -1,15 +1,15 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 
-namespace AutomicObjectDesignerBack.Data
+namespace AutomicObjectDesignerBack.Models.Objects.Temp
 {
     public class DataWindowsSimple
     {
         public static DataWindowsSimple Current { get; } = new DataWindowsSimple();
-        public List<WindowsSimple> WindowsSimpleData { get; set; }
+        public List<WindowsSimple> WindowsSimple { get; set; }
 
         public DataWindowsSimple()
         {
-            WindowsSimpleData = new List<WindowsSimple>()
+            WindowsSimple = new List<WindowsSimple>()
             {
                 new WindowsSimple
                 {
