@@ -1,9 +1,9 @@
 export { AutomicObjectDesigner as AutomicObjectDesigner } from './AutomicObjectDesigner';
-export { default as SapJobSimple } from './SapJobSimple';
-export { default as SapJobMassen } from './SapJobMassen';
-export { default as SapJobBW } from './SapJobBW';
-export { default as WindowsGeneral } from './WindowsGeneral';
-export { default as UnixGeneral } from './UnixGeneral';
-export { default as FileTransferOne } from './FileTransferOne';
-export { default as FileTransferMany } from './FileTransferMany';
+export { SapJobSimple as SapJobSimple } from './SapJobSimple';
+export { SapJobMassen as SapJobMassen } from './SapJobMassen';
+export { SapJobBW as SapJobBW } from './SapJobBW';
+export { WindowsGeneral as WindowsGeneral } from './WindowsGeneral';
+export { UnixGeneral as UnixGeneral } from './UnixGeneral';
+export { FileTransferOne as FileTransferOne } from './FileTransferOne';
+export { FileTransferMany as FileTransferMany } from './FileTransferMany';
 export { BugReport as BugReport } from './BugReport';
