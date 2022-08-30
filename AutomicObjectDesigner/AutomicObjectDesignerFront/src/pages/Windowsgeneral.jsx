@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WindowsGeneral = () => {
+export const WindowsGeneral = () => {
   return (
     <div></div>
   )

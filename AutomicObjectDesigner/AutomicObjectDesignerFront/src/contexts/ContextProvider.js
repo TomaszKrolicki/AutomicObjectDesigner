@@ -25,7 +25,18 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem('colorMode', color);
   };
 
-  const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
+  const handleClick = (clicked) => setIsClicked( initialState.userProfile = reverseClick(initialState.userProfile));
+
+  function reverseClick(parameter) {
+    console.log("Reverse Click:")
+    console.log(parameter)
+    if(parameter === true){
+      return false
+    } else {
+      return true
+    }
+  }
+  
 
   return (
     <StateContext.Provider value={{ currentColor, currentMode, activeMenu, screenSize, setScreenSize, handleClick, isClicked, initialState, setIsClicked, setActiveMenu, setCurrentColor, setCurrentMode, setMode, setColor, themeSettings, setThemeSettings }}>

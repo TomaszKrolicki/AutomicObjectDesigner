@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SapJobBW = () => {
+export const SapJobBW = () => {
   return (
     <div></div>
   )
