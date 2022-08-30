@@ -13,10 +13,22 @@ public class WindowsSimpleController : Controller
     [HttpGet]
     public IActionResult GetWindowsSimple()
     {
-        var WindowsSimple = DataWindowsSimple.Current.WindowsSimpleData;
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData;
 
-        return Ok(WindowsSimple);
+        return Ok(windowsSimple);
     }
+
+
+    [HttpGet("{id}")]
+    public IActionResult GetOneWindowsSimple(int id)
+    {
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == id);
+        if (windowsSimple == null)
+            return BadRequest("WindowsSimple not found");
+        return Ok(windowsSimple);
+    }
+
+
     [HttpPost]
     public IActionResult CreateWindowsSimple([FromBody] WindowsSimple windowsSimple)
     {
@@ -40,5 +52,28 @@ public class WindowsSimpleController : Controller
         DataWindowsSimple.Current.WindowsSimpleData.Add(createWindowsSimple);
 
         return CreatedAtRoute("GetWindowsSimple", new { id = createWindowsSimple.Id }, createWindowsSimple);
+    }
+
+
+    [HttpPut]
+    public IActionResult UpdateWindowsSimple([FromBody] WindowsSimple newWindowsSimple)
+    {
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == newWindowsSimple.id);
+        if (windowsSimple == null)
+            return BadRequest("WindowsSimple not found");
+        windowsSimple.ProcessName = newWindowsSimple.ProcessName;
+        //++
+        return Ok(DataWindowsSimple.Current.WindowsSimpleData);
+    }
+
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteOneWindowsSimple(int id)
+    {
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == id);
+        if (windowsSimple == null)
+            return BadRequest("WindowsSimple not found");
+        DataWindowsSimple.Current.WindowsSimpleData.Remove(windowsSimple);
+        return Ok(DataWindowsSimple.Current.WindowsSimpleData);
     }
 }
