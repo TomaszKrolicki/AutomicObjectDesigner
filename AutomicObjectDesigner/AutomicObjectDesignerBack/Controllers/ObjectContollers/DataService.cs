@@ -9,11 +9,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class DataService
     {
         public static DataService Current { get; } = new DataService();
-        public List<SapSimple> SapSimple { get; set; }
+        public List<SapSimple> SapSimples { get; set; }
 
         public DataService()
         {
-            SapSimple = new List<SapSimple>()
+            SapSimples = new List<SapSimple>()
             {
                 new SapSimple
                 {
