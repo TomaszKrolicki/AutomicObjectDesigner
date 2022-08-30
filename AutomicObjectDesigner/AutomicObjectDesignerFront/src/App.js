@@ -1,111 +1,81 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-//import './bootstrap/sb-admin-2.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/login.component'
-import SignUp from './components/register.component'
+import { useEffect } from 'react';
+import { Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
+import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { Navbar, Footer, Sidebar, ThemeSettings, Routing } from './components';
+import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
+  SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from './pages';
 
-// export default function App() {
-//     return (
-//         <Router>
-//           <div className="container-xl">
-//             <nav className='text-center'>
-//                 <Link className="h1 text-black-50 text-center nav-item" to={'/sign-in'}>
-//                   AutomicObjectDesigner
-//                 </Link>
-//                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-//                   <ul className="navbar-nav ml-auto">
-//                     <li className="nav-item">
-//                       <Link className="nav-link" to={'/sign-in'}>
-//                         Login
-//                       </Link>
-//                     </li>
-//                     <li className="nav-item">
-//                       <Link className="nav-link" to={'/sign-up'}>
-//                         Sign up
-//                       </Link>
-//                     </li>
-//                   </ul>
-//               </div>
-//             </nav>
-//             <div className="auth-wrapper">
-//               <div className="auth-inner">
-//                 <Routes>
-//                   <Route exact path="/" element={<Login />} />
-//                             <Route path="/sign-in" element={<Login />} />
-//                             <Route path="/register" element={<SignUp />} />
-//                 </Routes>
-//               </div>
-//             </div>
-//           </div>
-//         </Router>
-//       )
-//     }
+import { useStateContext } from './contexts/ContextProvider';
+
+import './App.css';
 
 
     export default function App() {
+
+
+      const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem('colorMode');
+    const currentThemeMode = localStorage.getItem('themeMode');
+    if (currentThemeColor && currentThemeMode) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode);
+    }
+  }, []);
+
+
       return (
-          <div>
-            
+      <div className={currentMode === 'Dark' ? 'dark' : ''}>
+            <BrowserRouter>
+            <div className='flex relative dark:bg-main-dark-bg'>
+              <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
+              <TooltipComponent
+                content="Settings"
+                position="Top">
+              <button
+                type="button"
+                onClick={() => setThemeSettings(true)}
+                style={{ background: currentColor, borderRadius: '50%' }}
+                className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
+              >
+                <FiSettings />
+              </button>
+
+            </TooltipComponent>
+          </div>
+                {activeMenu ? (
+                  <div className='w-72 fixe sidebar
+                  dark:bg-secondary-dark-bg
+                  bg-white'>
+                    <Sidebar />
+                  </div>
+                ) : (
+                  <div className='w-0
+                  dark:bg-secondary-dark-bg'>
+                    <Sidebar />
+                  </div>
+                )}
+                <div className={ activeMenu
+                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen w-full  '
+                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
+                }>
+                  <div className='fixed md:static
+                  bg-main-bg dark:bg-main-dark-bg
+                  navbar w-full'>
+                    <Navbar />
+                  </div>
+                <div>
+                {themeSettings && (<ThemeSettings />)}
+                  {/* <SapJobSimple /> */}
+                  <Routing />
+                </div>
+              </div>
+            </div>
+            </BrowserRouter>
           </div>
         )
       }
   
-
-// export default class App extends Component {
-//     static displayName = App.name;
-
-//     constructor(props) {
-//         super(props);
-//         this.state = { forecasts: [], loading: true };
-//     }
-
-//     componentDidMount() {
-//         this.populateWeatherData();
-//     }
-
-//     static renderForecastsTable(forecasts) {
-//         return (
-//             <table className='table table-striped' aria-labelledby="tabelLabel">
-//                 <thead>
-//                     <tr>
-//                         <th>Date</th>
-//                         <th>Temp. (C)</th>
-//                         <th>Temp. (F)</th>
-//                         <th>Summary</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {forecasts.map(forecast =>
-//                         <tr key={forecast.date}>
-//                             <td>{forecast.date}</td>
-//                             <td>{forecast.temperatureC}</td>
-//                             <td>{forecast.temperatureF}</td>
-//                             <td>{forecast.summary}</td>
-//                         </tr>
-//                     )}
-//                 </tbody>
-//             </table>
-//         );
-//     }
-
-//     render() {
-//         let contents = this.state.loading
-//             ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-//             : App.renderForecastsTable(this.state.forecasts);
-
-//         return (
-//             <div>
-//                 <h1 id="tabelLabel" >Weather forecast</h1>
-//                 <p>This component demonstrates fetching data from the server.</p>
-//                 {contents}
-//             </div>
-//         );
-//     }
-
-//     async populateWeatherData() {
-//         const response = await fetch('weatherforecast');
-//         const data = await response.json();
-//         this.setState({ forecasts: data, loading: false });
-//     }
-// }

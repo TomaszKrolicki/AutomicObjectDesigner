@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220815174940_initial")]
-    partial class initial
+    [Migration("20220829105613_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,6 +107,9 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("DeleteSapJob")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Folder")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -131,8 +134,23 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Process")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProcessName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Queue")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RoutineJob")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SapJobName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapReport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapVariant")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -255,10 +273,14 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.Property<bool>("HasEmailConfirmed")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsAdministrator")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -277,7 +299,31 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "Johndoe@gmail.com",
+                            FirstName = "John",
+                            HasEmailConfirmed = true,
+                            IsAdministrator = true,
+                            LastName = "Doe",
+                            Password = "admin",
+                            UserName = "12345"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "evathe2@gmail.com",
+                            FirstName = "Eva",
+                            HasEmailConfirmed = true,
+                            IsAdministrator = false,
+                            LastName = "Doe",
+                            Password = "haslo",
+                            UserName = "34567"
+                        });
                 });
 #pragma warning restore 612, 618
         }

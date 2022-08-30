@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\AutomicObjectDesigner",
+    "\\AutomicObjectDesignerRestApiVersion",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Migrations",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Models",
+    "\\AutomicObjectDesigner\\AutomicObjectDesignerBack\\Models\\Registration"
+  ],
+  "SelectedNode": "\\AutomicObjectDesignerFront.sln",
+  "PreviewInSolutionExplorer": false
+}

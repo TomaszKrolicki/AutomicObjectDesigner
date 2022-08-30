@@ -105,6 +105,9 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("DeleteSapJob")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Folder")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -129,8 +132,23 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Process")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProcessName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Queue")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RoutineJob")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SapJobName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapReport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapVariant")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

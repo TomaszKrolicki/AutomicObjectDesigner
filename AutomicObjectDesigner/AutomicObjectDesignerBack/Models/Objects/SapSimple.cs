@@ -21,7 +21,7 @@ public class SapSimple : Job
 
     public string? SapVariant { get; set; }
     public bool RoutineJob { get; set; }
-    public string? PorcessName { get; set; }
+    public string? ProcessName { get; set; }
     public string? SapJobName { get; set; }
     public bool DeleteSapJob { get; set; }
 
