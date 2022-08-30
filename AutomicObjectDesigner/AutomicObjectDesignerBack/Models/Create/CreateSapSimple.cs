@@ -24,8 +24,10 @@ namespace AutomicObjectDesignerBack.Models.Create
             number1,
             number2
         }
+
+        //TODO: Need to fix max length
         [System.ComponentModel.DataAnnotations.Required]
-        [MaxLength(30)]
+        [MaxLength(42)]
 
         public string? SapReport { get; set; }
         [System.ComponentModel.DataAnnotations.Required]

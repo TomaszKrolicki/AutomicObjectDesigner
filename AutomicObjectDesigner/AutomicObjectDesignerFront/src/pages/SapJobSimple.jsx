@@ -22,6 +22,8 @@ export const SapJobSimple = () => {
         delete_sap_job: false
     }
     )
+
+
     function handleChange(event) {
       //console.log(event)
       const {name, value, type, checked} = event.target
@@ -40,10 +42,18 @@ export const SapJobSimple = () => {
           }
       })
     }
+    function handleSubmit(event) {
+      event.preventDefault()
+      console.log(formData)
+      fetch('https://localhost:7017/api/SapSimple', {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: formData
+    })}
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="SAP_SID" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
         <select onChange={handleChange} value={formData.SAP_SID} id="SAP_SID" name='SAP_SID' className={cssStyle}>
           <option>Option1</option>
@@ -78,5 +88,3 @@ export const SapJobSimple = () => {
     </div>
   )
 }
-
-export default SapJobSimple;

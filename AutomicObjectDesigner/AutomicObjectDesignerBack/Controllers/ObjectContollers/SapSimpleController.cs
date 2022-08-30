@@ -38,6 +38,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(sapSimple);
         }
 
+        //GET https://localhost:7017/api/SapSimple
         [HttpPost]
         public IActionResult CreateSapSimple([FromBody] CreateSapSimple createSapSimple)
         {
