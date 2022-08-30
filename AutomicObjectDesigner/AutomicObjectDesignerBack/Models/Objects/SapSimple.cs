@@ -4,7 +4,7 @@ public class SapSimple : Job
 {
     //Entry sequence:
     // step 1
-
+    
     public enum SapSid
     {
         number,
@@ -24,6 +24,8 @@ public class SapSimple : Job
     public string? ProcessName { get; set; }
     public string? SapJobName { get; set; }
     public bool DeleteSapJob { get; set; }
+
+
 
     //// step 2
 
