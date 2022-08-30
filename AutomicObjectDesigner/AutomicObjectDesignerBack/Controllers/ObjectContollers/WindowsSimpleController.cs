@@ -22,7 +22,7 @@ public class WindowsSimpleController : Controller
     [HttpGet("{id}")]
     public IActionResult GetOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         return Ok(windowsSimple);
@@ -58,7 +58,7 @@ public class WindowsSimpleController : Controller
     [HttpPut]
     public IActionResult UpdateWindowsSimple([FromBody] WindowsSimple newWindowsSimple)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == newWindowsSimple.id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == newWindowsSimple.Id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         windowsSimple.ProcessName = newWindowsSimple.ProcessName;
@@ -70,7 +70,7 @@ public class WindowsSimpleController : Controller
     [HttpDelete("{id}")]
     public IActionResult DeleteOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.id == id);
+        var windowsSimple = DataWindowsSimple.Current.WindowsSimpleData.Find(h => h.Id == id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         DataWindowsSimple.Current.WindowsSimpleData.Remove(windowsSimple);

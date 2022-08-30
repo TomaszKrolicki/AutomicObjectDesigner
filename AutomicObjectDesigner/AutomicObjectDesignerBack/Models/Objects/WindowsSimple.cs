@@ -4,7 +4,6 @@ namespace AutomicObjectDesigner.Models.Objects;
 
 public class WindowsSimple : Job
 {
-    public int id { get; set; }
     //Step 1:
     public enum EnumWinServer { server1, server2 ,server3 }
     public enum EnumWinLogin { login1, login2, login3 }
