@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class initial : Migration
+    public partial class AutomicObjectDesignDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,6 +50,12 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoutineJob = table.Column<bool>(type: "bit", nullable: false),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteSapJob = table.Column<bool>(type: "bit", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
@@ -90,7 +95,7 @@ namespace AutomicObjectDesignerBack.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -100,12 +105,12 @@ namespace AutomicObjectDesignerBack.Migrations
                     UserName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false)
+                    HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,9 +135,16 @@ namespace AutomicObjectDesignerBack.Migrations
                     table.PrimaryKey("PK_WindowsSimple", x => x.Id);
                 });
 
-            
-        }
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "IsAdministrator", "LastName", "Password", "UserName" },
+                values: new object[] { 1, "Johndoe@gmail.com", "John", true, true, "Doe", "admin", "12345" });
 
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "LastName", "Password", "UserName" },
+                values: new object[] { 2, "evathe2@gmail.com", "Eva", true, "Doe", "haslo", "34567" });
+        }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
@@ -149,7 +161,7 @@ namespace AutomicObjectDesignerBack.Migrations
                 name: "SapVariantCopy");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "WindowsSimple");
