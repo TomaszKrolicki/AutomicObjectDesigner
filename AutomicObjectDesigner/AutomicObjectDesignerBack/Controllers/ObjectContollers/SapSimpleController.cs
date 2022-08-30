@@ -22,7 +22,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return Ok(sapSimple);
 
-
         }
 
         [HttpGet("{id:int}", Name = "GetSapSimple")]
@@ -100,7 +99,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapSimple.MaxParallelTasks = updateSapSimpleDto.MaxParallelTasks;
             sapSimple.OwnerId = updateSapSimpleDto.OwnerId;
             sapSimple.Process = updateSapSimpleDto.Process;
-            sapSimple.ProcessName = updateSapSimpleDto.PorcessName;
+            sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
             sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
             sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
 
