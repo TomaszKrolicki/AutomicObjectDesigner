@@ -13,9 +13,6 @@ namespace AutomicObjectDesignerBack.Models.Create
         //Entry sequence:
         // step 1
 
-        public  SapClient SapClient { get; set; }
-        public SapSid SapSid { get; set; }
-
         //TODO: Need to fix max length
         [System.ComponentModel.DataAnnotations.Required]
         [MaxLength(42)]

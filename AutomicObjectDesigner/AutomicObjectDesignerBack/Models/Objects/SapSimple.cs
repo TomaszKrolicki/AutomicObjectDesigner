@@ -1,4 +1,6 @@
 ﻿using AutomicObjectDesignerBack.Models.Objects;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace AutomicObjectDesigner.Models.Objects;
 

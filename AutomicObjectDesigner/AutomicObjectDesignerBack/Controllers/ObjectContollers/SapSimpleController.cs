@@ -25,7 +25,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpGet("{id:int}", Name = "GetSapSimple")]
-        //GET https://localhost:7017/api/SapSimple/1
+        //GET https://localhost:7017/api/SapSimple/
         public IActionResult GetSapSimple(int id)
         {
             var sapSimple = DataService.Current.SapSimples.FirstOrDefault(c => c.Id == id);
@@ -52,6 +52,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             var sapSimple = new SapSimple
             {
                 Id = maxId + 1,
+                SapSid = createSapSimple.SapSid,
+                SapClient = createSapSimple.SapClient,
                 SapReport = createSapSimple.SapReport,
                 SapJobName = createSapSimple.SapJobName,
                 SapVariant = createSapSimple.SapVariant,

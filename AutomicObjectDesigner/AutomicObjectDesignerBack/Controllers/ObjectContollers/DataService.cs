@@ -17,7 +17,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             SapSimples = new List<SapSimple>()
             {
                 new SapSimple
-                {
+                {   
+
                     SapReport = "QSW.102#ZZZ#PAYMENT#MYREP_01$VAR_101.JOBS",
                     SapJobName = "NAME1_IN_SAP",
                     SapVariant = "SAP.JOB",
