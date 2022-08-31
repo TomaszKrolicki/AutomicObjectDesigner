@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Models.Objects;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -33,7 +34,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     ProcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
                     PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI",
                     PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI",
-
+                    SapSid = SapSid.Option1,
+                    SapClient = SapClient.Option2
                 },
                 new SapSimple
                 {
@@ -54,6 +56,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     ProcessName = "R3_ACTIVATE_REPORT REPORT=&SAP_REPORT#,VARIANT=&SAP_VARIANT#",
                     PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI",
                     PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI",
+                    SapSid = SapSid.Option1,
+                    SapClient = SapClient.Option2
 
                 }
             };

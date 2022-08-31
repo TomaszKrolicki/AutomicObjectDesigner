@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Models.Objects;
 using Microsoft.Build.Framework;
 
 
@@ -12,18 +13,8 @@ namespace AutomicObjectDesignerBack.Models.Create
         //Entry sequence:
         // step 1
 
-        public enum SapSid
-        {
-            number,
-            number1,
-            number2
-        }
-        public enum SapClient
-        {
-            number,
-            number1,
-            number2
-        }
+        public  SapClient SapClient { get; set; }
+        public SapSid SapSid { get; set; }
 
         //TODO: Need to fix max length
         [System.ComponentModel.DataAnnotations.Required]

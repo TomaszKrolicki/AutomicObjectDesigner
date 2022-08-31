@@ -1,22 +1,14 @@
-﻿namespace AutomicObjectDesigner.Models.Objects;
+﻿using AutomicObjectDesignerBack.Models.Objects;
+
+namespace AutomicObjectDesigner.Models.Objects;
 
 public class SapSimple : Job
 {
     //Entry sequence:
     // step 1
-    
-    public enum SapSid
-    {
-        number,
-        number1,
-        number2
-    }
-    public enum SapClient
-    {
-        number,
-        number1,
-        number2
-    }
+
+    public SapClient SapClient { get; set; }
+    public SapSid SapSid { get; set; }
     public string? SapReport { get; set; }
 
     public string? SapVariant { get; set; }
