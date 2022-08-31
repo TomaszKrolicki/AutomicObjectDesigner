@@ -22,8 +22,8 @@ public class WindowsSimpleController : Controller
     [HttpGet]
     public IActionResult GetWindowsSimple()
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimple;
-        //var windowsSimple = _Context.WindowsSimple.ToList();
+        //var windowsSimple = DataWindowsSimple.Current.WindowsSimple;
+        var windowsSimple = _Context.WindowsSimple.ToList();
 
         return Ok(windowsSimple);
     }
@@ -32,7 +32,7 @@ public class WindowsSimpleController : Controller
     [HttpGet("{id}")]
     public IActionResult GetOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == id);
+        var windowsSimple = _Context.WindowsSimple.Find(id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         return Ok(windowsSimple);
@@ -59,31 +59,42 @@ public class WindowsSimpleController : Controller
             Floder = "",
         };
 
-        DataWindowsSimple.Current.WindowsSimple.Add(createWindowsSimple);
+        _Context.WindowsSimple.Add(createWindowsSimple);
+        _Context.SaveChanges();
 
-        return CreatedAtRoute("GetWindowsSimple", new { id = createWindowsSimple.Id }, createWindowsSimple);
+        return Ok(_Context.WindowsSimple.ToList());
     }
 
 
     [HttpPut]
     public IActionResult UpdateWindowsSimple([FromBody] WindowsSimple newWindowsSimple)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == newWindowsSimple.Id);
-        if (windowsSimple == null)
+        var DBwindowsSimple = _Context.WindowsSimple.Find(newWindowsSimple.Id);
+        if (DBwindowsSimple == null)
             return BadRequest("WindowsSimple not found");
-        windowsSimple.ProcessName = newWindowsSimple.ProcessName;
-        //++
-        return Ok(DataWindowsSimple.Current.WindowsSimple);
+        DBwindowsSimple.ProcessName = newWindowsSimple.ProcessName;
+        DBwindowsSimple.NameSuffix = newWindowsSimple.NameSuffix;
+        DBwindowsSimple.ObjectName = newWindowsSimple.ObjectName;
+        DBwindowsSimple.ProcessInfo = newWindowsSimple.ProcessInfo;
+        DBwindowsSimple.Docu = newWindowsSimple.Docu;
+        DBwindowsSimple.Title = newWindowsSimple.Title;
+        DBwindowsSimple.Archive1 = newWindowsSimple.Archive1;
+        DBwindowsSimple.Archive2 = newWindowsSimple.Archive2;
+        DBwindowsSimple.InternalAccount = newWindowsSimple.InternalAccount;
+        DBwindowsSimple.Floder = newWindowsSimple.Floder;
+        _Context.SaveChanges();
+        return Ok(_Context.WindowsSimple.ToList());
     }
 
 
     [HttpDelete("{id}")]
     public IActionResult DeleteOneWindowsSimple(int id)
     {
-        var windowsSimple = DataWindowsSimple.Current.WindowsSimple.Find(h => h.Id == id);
-        if (windowsSimple == null)
+        var DBwindowsSimple = _Context.WindowsSimple.Find(id);
+        if (DBwindowsSimple == null)
             return BadRequest("WindowsSimple not found");
-        DataWindowsSimple.Current.WindowsSimple.Remove(windowsSimple);
-        return Ok(DataWindowsSimple.Current.WindowsSimple);
+        _Context.WindowsSimple.Remove(DBwindowsSimple);
+        _Context.SaveChanges();
+        return Ok(_Context.WindowsSimple.ToList());
     }
 }
