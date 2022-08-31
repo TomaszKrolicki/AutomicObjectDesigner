@@ -9,7 +9,7 @@ export const SapJobSimple = () => {
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
-
+//TODO: NEED TO UPDATE ENUMS
    const [formData, setFormData] = React.useState(
     {
         SAP_SID: "", 
@@ -27,7 +27,7 @@ export const SapJobSimple = () => {
         preProcess: null,
         postProcess: null,
         queue: null,
-        agent: null
+        agent: null,
     }
     )
 
