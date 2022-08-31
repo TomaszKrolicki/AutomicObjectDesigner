@@ -25,8 +25,9 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("http://example.com",
-                "http://www.contoso.com");
+            policy.WithOrigins("https://localhost:3000",
+                "https://localhost:3001", "https://localhost:7017"
+                ).AllowAnyHeader().AllowAnyMethod();
         });
 });
 

@@ -19,10 +19,17 @@ export const SapJobSimple = () => {
         routine_job: false,
         process_name: "",
         SAP_Job_name: "",
-        delete_sap_job: false
+        delete_sap_job: false,
+        folder: null,
+        active: null,
+        maxParallelTasks: null,
+        process: null,
+        preProcess: null,
+        postProcess: null,
+        queue: null,
+        agent: null
     }
     )
-
 
     function handleChange(event) {
       //console.log(event)
@@ -44,12 +51,17 @@ export const SapJobSimple = () => {
     }
     function handleSubmit(event) {
       event.preventDefault()
-      console.log(formData)
+      try {
+        console.log(formData)
       fetch('https://localhost:7017/api/SapSimple', {
         method: 'post',
         headers: {'Content-Type':'application/json'},
         body: formData
-    })}
+    })
+      } catch (error) {
+        console.log(error)
+      }
+      }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>

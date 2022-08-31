@@ -64,7 +64,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 MaxParallelTasks = createSapSimple.MaxParallelTasks,
                 OwnerId = createSapSimple.OwnerId,
                 Process = createSapSimple.Process,
-                ProcessName = createSapSimple.PorcessName,
+                ProcessName = createSapSimple.ProcessName,
                 PreProcess = createSapSimple.PreProcess,
                 PostProcess = createSapSimple.PostProcess
 
@@ -73,7 +73,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }
-
+        
         [HttpPut("{id}")]
         public IActionResult UpdateSapSimple(int id, [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
