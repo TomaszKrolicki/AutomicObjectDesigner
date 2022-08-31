@@ -2,6 +2,7 @@
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects.Temp;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers;
 
@@ -20,19 +21,16 @@ public class WindowsSimpleController : Controller
 
     //Get https://localhost:7017/api/WindowsSimple
     [HttpGet]
-    public IActionResult GetWindowsSimple()
+    public async Task<ActionResult<List<WindowsSimple>>> Get()
     {
-        //var windowsSimple = DataWindowsSimple.Current.WindowsSimple;
-        var windowsSimple = _Context.WindowsSimple.ToList();
-
-        return Ok(windowsSimple);
+        return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 
 
     [HttpGet("{id}")]
-    public IActionResult GetOneWindowsSimple(int id)
+    public async Task<ActionResult<WindowsSimple>> GetOneWindowsSimple(int id)
     {
-        var windowsSimple = _Context.WindowsSimple.Find(id);
+        var windowsSimple = await _Context.WindowsSimple.FindAsync(id);
         if (windowsSimple == null)
             return BadRequest("WindowsSimple not found");
         return Ok(windowsSimple);
@@ -40,36 +38,36 @@ public class WindowsSimpleController : Controller
 
 
     [HttpPost]
-    public IActionResult CreateWindowsSimple([FromBody] WindowsSimple windowsSimple)
+    public async Task<ActionResult<List<WindowsSimple>>> CreateWindowsSimple(WindowsSimple windowsSimple)
     {
-        var maxId = DataWindowsSimple.Current.WindowsSimple.Max(c => c.Id);
+        //var maxId = DataWindowsSimple.Current.WindowsSimple.Max(c => c.Id);
 
-        var createWindowsSimple = new WindowsSimple
-        {
-            Id = maxId + 1,
-            ProcessName = "",
-            NameSuffix = "",
-            ObjectName = "",
-            ProcessInfo = "",
-            Docu = "",
-            Title = "",
-            Archive1 = "",
-            Archive2 = "",
-            InternalAccount = "",
-            Floder = "",
-        };
+        //var createWindowsSimple = new WindowsSimple
+        //{
+        //    Id = maxId + 1,
+        //    ProcessName = "",
+        //    NameSuffix = "",
+        //    ObjectName = "",
+        //    ProcessInfo = "",
+        //    Docu = "",
+        //    Title = "",
+        //    Archive1 = "",
+        //    Archive2 = "",
+        //    InternalAccount = "",
+        //    Floder = "",
+        //};
 
-        _Context.WindowsSimple.Add(createWindowsSimple);
-        _Context.SaveChanges();
+        _Context.WindowsSimple.Add(windowsSimple);
+        await _Context.SaveChangesAsync();
 
-        return Ok(_Context.WindowsSimple.ToList());
+        return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 
 
     [HttpPut]
-    public IActionResult UpdateWindowsSimple([FromBody] WindowsSimple newWindowsSimple)
+    public async Task<ActionResult<List<WindowsSimple>>> UpdateWindowsSimple(WindowsSimple newWindowsSimple)
     {
-        var DBwindowsSimple = _Context.WindowsSimple.Find(newWindowsSimple.Id);
+        var DBwindowsSimple = await _Context.WindowsSimple.FindAsync(newWindowsSimple.Id);
         if (DBwindowsSimple == null)
             return BadRequest("WindowsSimple not found");
         DBwindowsSimple.ProcessName = newWindowsSimple.ProcessName;
@@ -82,19 +80,19 @@ public class WindowsSimpleController : Controller
         DBwindowsSimple.Archive2 = newWindowsSimple.Archive2;
         DBwindowsSimple.InternalAccount = newWindowsSimple.InternalAccount;
         DBwindowsSimple.Floder = newWindowsSimple.Floder;
-        _Context.SaveChanges();
-        return Ok(_Context.WindowsSimple.ToList());
+        await _Context.SaveChangesAsync();
+        return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteOneWindowsSimple(int id)
+    public async Task<ActionResult<List<WindowsSimple>>> DeleteOneWindowsSimple(int id)
     {
-        var DBwindowsSimple = _Context.WindowsSimple.Find(id);
+        var DBwindowsSimple = await _Context.WindowsSimple.FindAsync(id);
         if (DBwindowsSimple == null)
             return BadRequest("WindowsSimple not found");
         _Context.WindowsSimple.Remove(DBwindowsSimple);
-        _Context.SaveChanges();
-        return Ok(_Context.WindowsSimple.ToList());
+        await _Context.SaveChangesAsync();
+        return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 }
