@@ -1,6 +1,7 @@
 using AutomicObjectDesignerBack.Data;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +28,13 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("https://localhost:3000",
                 "https://localhost:3001", "https://localhost:7017"
-                ).AllowAnyHeader().AllowAnyMethod();
+                ).AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
         });
 });
+
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => 
+options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+    .AddNewtonsoftJson(options=>options.SerializerSettings.ContractResolver=new DefaultContractResolver());
 
 
 var app = builder.Build();
@@ -46,7 +51,7 @@ app.UseCors();
 app.UseHttpLogging();
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

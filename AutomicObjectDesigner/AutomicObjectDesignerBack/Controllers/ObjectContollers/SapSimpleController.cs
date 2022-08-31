@@ -2,11 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Models.Create;
+using AutomicObjectDesignerBack.Models.Objects;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using NuGet.Protocol;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -48,38 +55,61 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple
         [HttpPost]
-        public IActionResult CreateSapSimple([FromBody] SapSimple SapSimple)
+        public IActionResult CreateSapSimple([FromBody] JsonResult bodyElement)
         {
+
+            var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(bodyElement);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var maxId = DataService.Current.SapSimples.Max(c => c.Id);
-
             var sapSimple = new SapSimple
             {
-                Id = maxId + 1,
-                SapSid = SapSimple.SapSid,
-                SapClient = SapSimple.SapClient,
-                SapReport = SapSimple.SapReport,
-                SapJobName = SapSimple.SapJobName,
-                SapVariant = SapSimple.SapVariant,
-                Agent = SapSimple.Agent,
-                Active = SapSimple.Active,
-                DeleteSapJob = SapSimple.DeleteSapJob,
-                Folder = SapSimple.Folder,
-                Login = SapSimple.Login,
-                Queue = SapSimple.Queue,
-                MaxParallelTasks = SapSimple.MaxParallelTasks,
-                OwnerId = SapSimple.OwnerId,
-                Process = SapSimple.Process,
-                ProcessName = SapSimple.ProcessName,
-                PreProcess = SapSimple.PreProcess,
-                PostProcess = SapSimple.PostProcess
+                SapSid = bodyElement.Value.ToString(),
+                //SapSid = values["SapSid"],
+                SapClient = values["SapClient"],
+                SapReport = values["SapReport"],
+                SapJobName = values["SapJobName"],
+                SapVariant = values["SapVariant"],
+                Agent = values["Agent"],
+                Active = Convert.ToBoolean(values["Active"]),
+                DeleteSapJob = Convert.ToBoolean(values["DeleteSapJob"]),
+                Folder = values["Folder"],
+                Login = values["Login"],
+                Queue = values["Queue"],
+                MaxParallelTasks = Convert.ToInt16(values["MaxParallelTasks"]),
+                OwnerId = Convert.ToInt16(values["OwnerId"]),
+                Process = values["Process"],
+                ProcessName = values["ProcessName"],
+                PreProcess = values["PreProcess"],
+                PostProcess = values["PostProcess"]
             };
+
+            // var sapSimple = new SapSimple
+            // {
+            //     SapSid = values["SapSid"],
+            //     SapClient = values["SapClient"],
+            //     SapReport = values["SapReport"],
+            //     SapJobName = values["SapJobName"],
+            //     SapVariant = values["SapVariant"],
+            //     Agent = values["Agent"],
+            //     Active = Convert.ToBoolean(values["Active"]),
+            //     DeleteSapJob = Convert.ToBoolean(values["DeleteSapJob"]),
+            //     Folder = values["Folder"],
+            //     Login = values["Login"],
+            //     Queue = values["Queue"],
+            //     MaxParallelTasks = Convert.ToInt16(values["MaxParallelTasks"]),
+            //     OwnerId = Convert.ToInt16(values["OwnerId"]),
+            //     Process = values["Process"],
+            //     ProcessName = values["ProcessName"],
+            //     PreProcess = values["PreProcess"],
+            //     PostProcess = values["PostProcess"]
+            // };
             DataService.Current.SapSimples.Add(sapSimple);
 
+            
             _context.CreateSapSimple(sapSimple);
             _context.SaveChanges();
 

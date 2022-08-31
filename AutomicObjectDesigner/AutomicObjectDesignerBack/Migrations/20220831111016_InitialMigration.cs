@@ -15,7 +15,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,15 +29,15 @@ namespace AutomicObjectDesignerBack.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    MaxParallelTasks = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
                     Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,6 +50,8 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: false),
@@ -57,15 +59,15 @@ namespace AutomicObjectDesignerBack.Migrations
                     SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeleteSapJob = table.Column<bool>(type: "bit", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    MaxParallelTasks = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
                     Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,15 +81,15 @@ namespace AutomicObjectDesignerBack.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    MaxParallelTasks = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
                     Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -130,15 +132,15 @@ namespace AutomicObjectDesignerBack.Migrations
                     InternalAccount = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Floder = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    MaxParallelTasks = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
                     Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
