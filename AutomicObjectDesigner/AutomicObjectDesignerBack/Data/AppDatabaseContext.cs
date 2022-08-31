@@ -18,6 +18,12 @@ namespace AutomicObjectDesignerBack.Data
 
         DbSet<SapVariantCopy> SapVariantCopy { get; set; }
         DbSet<WindowsSimple> WindowsSimple { get; set; }
+
+        public async Task CreateSapSimple(SapSimple sapSimple)
+        {
+            SapSimple.AddAsync(sapSimple);
+
+        }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,4 @@
-﻿namespace AutomicObjectDesigner.Models.Objects;
+﻿namespace AutomicObjectDesignerBack.Models.Objects.Enum;
 
 public enum ObjectEnum
 {

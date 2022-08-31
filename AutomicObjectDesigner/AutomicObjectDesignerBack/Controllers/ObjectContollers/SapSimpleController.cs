@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Models.Create;
 
@@ -13,6 +14,13 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     [Route("api/[controller]")]
     public class SapSimpleController : ControllerBase
     {
+         public readonly AppDatabaseContext _context;
+
+         public SapSimpleController(AppDatabaseContext context)
+         {
+             _context = context;
+         }
+
         [HttpGet]
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
@@ -40,7 +48,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple
         [HttpPost]
-        public IActionResult CreateSapSimple([FromBody] CreateSapSimple createSapSimple)
+        public IActionResult CreateSapSimple([FromBody] SapSimple SapSimple)
         {
             if (!ModelState.IsValid)
             {
@@ -52,26 +60,28 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             var sapSimple = new SapSimple
             {
                 Id = maxId + 1,
-                SapSid = createSapSimple.SapSid,
-                SapClient = createSapSimple.SapClient,
-                SapReport = createSapSimple.SapReport,
-                SapJobName = createSapSimple.SapJobName,
-                SapVariant = createSapSimple.SapVariant,
-                Agent = createSapSimple.Agent,
-                Active = createSapSimple.Active,
-                DeleteSapJob = createSapSimple.DeleteSapJob,
-                Folder = createSapSimple.Folder,
-                Login = createSapSimple.Login,
-                Queue = createSapSimple.Queue,
-                MaxParallelTasks = createSapSimple.MaxParallelTasks,
-                OwnerId = createSapSimple.OwnerId,
-                Process = createSapSimple.Process,
-                ProcessName = createSapSimple.ProcessName,
-                PreProcess = createSapSimple.PreProcess,
-                PostProcess = createSapSimple.PostProcess
-
+                SapSid = SapSimple.SapSid,
+                SapClient = SapSimple.SapClient,
+                SapReport = SapSimple.SapReport,
+                SapJobName = SapSimple.SapJobName,
+                SapVariant = SapSimple.SapVariant,
+                Agent = SapSimple.Agent,
+                Active = SapSimple.Active,
+                DeleteSapJob = SapSimple.DeleteSapJob,
+                Folder = SapSimple.Folder,
+                Login = SapSimple.Login,
+                Queue = SapSimple.Queue,
+                MaxParallelTasks = SapSimple.MaxParallelTasks,
+                OwnerId = SapSimple.OwnerId,
+                Process = SapSimple.Process,
+                ProcessName = SapSimple.ProcessName,
+                PreProcess = SapSimple.PreProcess,
+                PostProcess = SapSimple.PostProcess
             };
             DataService.Current.SapSimples.Add(sapSimple);
+
+            _context.CreateSapSimple(sapSimple);
+            _context.SaveChanges();
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }

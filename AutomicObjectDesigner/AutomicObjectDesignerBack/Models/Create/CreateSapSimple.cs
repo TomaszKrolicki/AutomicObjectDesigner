@@ -25,8 +25,5 @@ namespace AutomicObjectDesignerBack.Models.Create
         public string? SapJobName { get; set; }
         public bool DeleteSapJob { get; set; }
 
-
-
-
     }
 }

@@ -9,8 +9,8 @@ public class SapSimple : Job
     //Entry sequence:
     // step 1
 
-    public SapClient SapClient { get; set; }
-    public SapSid SapSid { get; set; }
+    public string? SapClient { get; set; }
+    public string? SapSid { get; set; }
     public string? SapReport { get; set; }
 
     public string? SapVariant { get; set; }
