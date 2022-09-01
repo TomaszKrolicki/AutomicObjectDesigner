@@ -1,19 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using AutomicObjectDesigner.Models.Objects;
+﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Update;
-using AutomicObjectDesignerBack.Models.Create;
-using AutomicObjectDesignerBack.Models.Objects;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NuGet.Protocol;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -21,19 +10,19 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     [Route("api/[controller]")]
     public class SapSimpleController : ControllerBase
     {
-         public readonly AppDatabaseContext _context;
+        public readonly AppDatabaseContext _context;
 
-         public SapSimpleController(AppDatabaseContext context)
-         {
-             _context = context;
-         }
+        public SapSimpleController(AppDatabaseContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
-        public IActionResult GetSapSimple()
+        public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
         {
-            var sapSimple = DataService.Current.SapSimples;
+            var sapSimple = await _context.SapSimple.ToListAsync();
 
             return Ok(sapSimple);
 
@@ -41,9 +30,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         [HttpGet("{id:int}", Name = "GetSapSimple")]
         //GET https://localhost:7017/api/SapSimple/
-        public IActionResult GetSapSimple(int id)
+        public async Task<ActionResult<SapSimple>> GetSapSimple(int id)
         {
-            var sapSimple = DataService.Current.SapSimples.FirstOrDefault(c => c.Id == id);
+            var sapSimple = await _context.SapSimple.FindAsync(id);
 
             if (sapSimple == null)
             {
@@ -56,18 +45,16 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapSimple/create
         [HttpPost]
         [Route("create")]
-        public IActionResult CreateSapSimple([FromBody] SapSimple SapSimple)
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimple SapSimple)
         {
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            //var maxId = DataService.Current.SapSimples.Max(c => c.Id);
-            
+
             var sapSimple = new SapSimple
             {
-                //Id = maxId + 1,
                 SapSid = SapSimple.SapSid,
                 SapClient = SapSimple.SapClient,
                 SapReport = SapSimple.SapReport,
@@ -107,23 +94,20 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             //     PreProcess = values["PreProcess"],
             //     PostProcess = values["PostProcess"]
             // };
-            DataService.Current.SapSimples.Add(sapSimple);
-
-            
-            _context.CreateSapSimple(sapSimple);
-            _context.SaveChanges();
+            _context.SapSimple.Add(sapSimple);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }
-        
+
         [HttpPut("{id}")]
-        public IActionResult UpdateSapSimple(int id, [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple(int id, [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var sapSimple = DataService.Current.SapSimples.FirstOrDefault(c => c.Id == id);
+            var sapSimple = await _context.SapSimple.FindAsync(updateSapSimpleDto.Id);
 
             if (sapSimple == null)
             {
@@ -146,20 +130,24 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
             sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
 
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteSapSimple(int id)
+        public async Task<ActionResult<List<SapSimple>>> DeleteSapSimple(int id)
         {
-            var sapSimple = DataService.Current.SapSimples.FirstOrDefault(c => c.Id == id);
+            var sapSimple = await _context.SapSimple.FindAsync(id);
 
             if (sapSimple == null)
             {
                 return NotFound();
             }
 
-            DataService.Current.SapSimples.Remove(sapSimple);
+            _context.SapSimple.Remove(sapSimple);
+            await _context.SaveChangesAsync();
+
             return NoContent();
 
         }
