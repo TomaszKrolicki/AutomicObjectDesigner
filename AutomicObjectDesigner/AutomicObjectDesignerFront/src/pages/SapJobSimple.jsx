@@ -2,6 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import axios from 'axios';
 
 
 export const SapJobSimple = () => {
@@ -28,7 +29,6 @@ export const SapJobSimple = () => {
         PostProcess: null,
         Queue: null,
         Agent: null
-
     }
     )
 
@@ -50,19 +50,39 @@ export const SapJobSimple = () => {
           }
       })
     }
-    function handleSubmit(event) {
-      event.preventDefault()
-      try {
-        console.log(formData)
-      fetch('https://localhost:7017/api/SapSimple', {
-        method: 'post',
-        headers: {'Content-Type':'application/json'},
-        body: formData
-    })
-      } catch (error) {
-        console.log(error)
-      }
-      }
+
+    // function handleSubmit(event) {
+    //   event.preventDefault()
+    //   try {
+    //     console.log(formData)
+    //   axios.post("https://localhost:7017/api/SapSimple/create", {
+    //     title: "Hello World!",
+    //     body: "This is a new post."
+    //   })
+    //   .then((response) => {
+    //     setPost(response.data);
+    //   });
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    //   }
+
+    async function handleSubmit(event) {
+        event.preventDefault()
+        try {
+          console.log(formData)
+        await fetch('https://localhost:7017/api/SapSimple/create', {
+          method: 'post',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(formData)
+      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
+        } catch (error) {
+          console.log(error)
+        }
+        }
+
+    
+      
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>

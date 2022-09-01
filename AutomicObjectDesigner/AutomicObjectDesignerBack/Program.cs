@@ -1,7 +1,10 @@
+using System.Configuration;
 using AutomicObjectDesignerBack.Data;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
+using Serilog;
+using Serilog.Formatting.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,7 @@ builder.Services.AddHttpLogging(httpLogging =>
 {
     httpLogging.LoggingFields = HttpLoggingFields.All;
 });
+
 
 builder.Services.AddDbContext<AppDatabaseContext>(opt
     => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
@@ -32,9 +36,6 @@ builder.Services.AddCors(options =>
         });
 });
 
-builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => 
-options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-    .AddNewtonsoftJson(options=>options.SerializerSettings.ContractResolver=new DefaultContractResolver());
 
 
 var app = builder.Build();
