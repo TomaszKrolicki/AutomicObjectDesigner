@@ -19,19 +19,21 @@ public class SapSimple : Job
     public string? SapJobName { get; set; }
     public bool? DeleteSapJob { get; set; }
 
-    public string GetRoutineJob()
-    {
-        if (RoutineJob == true)
-            return "ZZZ";
-        return "E1E";
-    }
+    //public string GetRoutineJob()
+    //{
+    //    if (RoutineJob == true)
+    //        return "ZZZ";
+        
+    //    return "E1E";
+    //}
 
-    public string GetDeleteSapJob()
-    {
-        if (DeleteSapJob == true)
-            return "";
-        return "X";
-    }
+    //public string GetDeleteSapJob()
+    //{
+    //    if (DeleteSapJob == true)
+    //        return "";
+        
+    //    return "X";
+    //}
 
     //// step 2
 
