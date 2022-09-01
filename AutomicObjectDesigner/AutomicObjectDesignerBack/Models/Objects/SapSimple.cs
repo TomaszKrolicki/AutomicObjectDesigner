@@ -14,12 +14,24 @@ public class SapSimple : Job
     public string? SapReport { get; set; }
 
     public string? SapVariant { get; set; }
-    public string? RoutineJob { get; set; }
+    public bool? RoutineJob { get; set; }
     public string? ProcessName { get; set; }
     public string? SapJobName { get; set; }
-    public string? DeleteSapJob { get; set; }
+    public bool? DeleteSapJob { get; set; }
 
+    public string GetRoutineJob()
+    {
+        if (RoutineJob == true)
+            return "ZZZ";
+        return "E1E";
+    }
 
+    public string GetDeleteSapJob()
+    {
+        if (DeleteSapJob == true)
+            return "";
+        return "X";
+    }
 
     //// step 2
 

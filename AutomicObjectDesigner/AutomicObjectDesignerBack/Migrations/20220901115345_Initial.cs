@@ -4,7 +4,7 @@
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,10 +54,10 @@ namespace AutomicObjectDesignerBack.Migrations
                     SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoutineJob = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoutineJob = table.Column<bool>(type: "bit", nullable: true),
                     ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeleteSapJob = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteSapJob = table.Column<bool>(type: "bit", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),

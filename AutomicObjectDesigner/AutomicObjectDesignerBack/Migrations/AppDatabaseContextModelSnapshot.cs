@@ -100,8 +100,8 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Agent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DeleteSapJob")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("DeleteSapJob")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Folder")
                         .HasMaxLength(256)
@@ -131,8 +131,8 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Queue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoutineJob")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("RoutineJob")
+                        .HasColumnType("bit");
 
                     b.Property<string>("SapClient")
                         .HasColumnType("nvarchar(max)");
