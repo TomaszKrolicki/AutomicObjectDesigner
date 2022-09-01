@@ -2,7 +2,6 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import axios from 'axios';
 
 
 export const SapJobSimple = () => {
