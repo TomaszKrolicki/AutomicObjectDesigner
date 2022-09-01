@@ -7,6 +7,7 @@ import { SapJobMassen} from '../pages/SapJobMassen';
 import { SapJobSimple} from '../pages/SapJobSimple';
 import { UnixGeneral} from '../pages/UnixGeneral';
 import { WindowsGeneral} from '../pages/WindowsGeneral';
+import { SapJobSimpleStep2 } from '../pages/SapJobSimpleStep2';
 
 import React from 'react';
 
@@ -19,6 +20,7 @@ const Routing = () => {
                   <Route path='/automicobjectdesigner' element={<AutomicObjectDesigner />} />
                   {/* Pages */}
                   <Route path='/sapjobsimple' element={<SapJobSimple />} />
+                  <Route path='/sapjobsimplestep2' element={<SapJobSimpleStep2 />} />
                   <Route path='/sapjobmassen' element={<SapJobMassen />} />
                   <Route path='/sapjobbw ' element={<SapJobBW />} />
                   <Route path='/windowsgeneral' element={<WindowsGeneral />} />
