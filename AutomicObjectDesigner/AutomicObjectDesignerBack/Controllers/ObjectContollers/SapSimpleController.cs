@@ -55,10 +55,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple
         [HttpPost]
-        public IActionResult CreateSapSimple([FromBody] JsonResult bodyElement)
+        public IActionResult CreateSapSimple([FromBody] CreateSapSimple createSapSimple)
         {
-
-            var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(bodyElement);
 
             if (!ModelState.IsValid)
             {
@@ -67,24 +65,23 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             var sapSimple = new SapSimple
             {
-                SapSid = bodyElement.Value.ToString(),
-                //SapSid = values["SapSid"],
-                SapClient = values["SapClient"],
-                SapReport = values["SapReport"],
-                SapJobName = values["SapJobName"],
-                SapVariant = values["SapVariant"],
-                Agent = values["Agent"],
-                Active = Convert.ToBoolean(values["Active"]),
-                DeleteSapJob = Convert.ToBoolean(values["DeleteSapJob"]),
-                Folder = values["Folder"],
-                Login = values["Login"],
-                Queue = values["Queue"],
-                MaxParallelTasks = Convert.ToInt16(values["MaxParallelTasks"]),
-                OwnerId = Convert.ToInt16(values["OwnerId"]),
-                Process = values["Process"],
-                ProcessName = values["ProcessName"],
-                PreProcess = values["PreProcess"],
-                PostProcess = values["PostProcess"]
+                SapSid = createSapSimple.SapSid,
+                SapClient = createSapSimple.SapClient,
+                SapReport = createSapSimple.SapReport,
+                SapJobName = createSapSimple.SapJobName,
+                SapVariant = createSapSimple.SapVariant,
+                Agent = createSapSimple.Agent,
+                Active = createSapSimple.Active,
+                DeleteSapJob = createSapSimple.DeleteSapJob,
+                Folder = createSapSimple.Folder,
+                Login = createSapSimple.Login,
+                Queue = createSapSimple.Queue,
+                MaxParallelTasks = createSapSimple.MaxParallelTasks,
+                OwnerId = createSapSimple.OwnerId,
+                Process = createSapSimple.Process,
+                ProcessName = createSapSimple.ProcessName,
+                PreProcess = createSapSimple.PreProcess,
+                PostProcess = createSapSimple.PostProcess
             };
 
             // var sapSimple = new SapSimple
