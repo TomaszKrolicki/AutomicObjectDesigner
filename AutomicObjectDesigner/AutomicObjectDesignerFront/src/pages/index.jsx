@@ -7,3 +7,4 @@ export { UnixGeneral as UnixGeneral } from './UnixGeneral';
 export { FileTransferOne as FileTransferOne } from './FileTransferOne';
 export { FileTransferMany as FileTransferMany } from './FileTransferMany';
 export { BugReport as BugReport } from './BugReport';
+export { SapJobSimpleStep2 as SapJobSimpleStep2} from './SapJobSimpleStep2';
