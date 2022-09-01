@@ -89,17 +89,17 @@ export const SapJobSimple = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
               <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
-          <option value={"xdd"}>Option1</option>
-          <option value={"xdd"}>Option2</option>
-          <option value={"Xdd"}>Option3</option>
-          <option value={"sdd"}>Option4</option>
+          <option value={"Option1"}>Option1</option>
+          <option value={"Option2"}>Option2</option>
+          <option value={"Option3"}>Option3</option>
+          <option value={"Option4"}>Option4</option>
         </select>
         <label htmlFor="SapClient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">Select SAP Client</label>
               <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
-          <option value={133}>Option1</option>
-          <option value={1233}>Option2</option>
-          <option value={133}>Option3</option>
-          <option value={133}>Option4</option>
+              <option value={"Option1"}>Option1</option>
+          <option value={"Option2"}>Option2</option>
+          <option value={"Option3"}>Option3</option>
+          <option value={"Option4"}>Option4</option>
         </select>
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
               <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
