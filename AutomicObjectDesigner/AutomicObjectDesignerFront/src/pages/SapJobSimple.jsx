@@ -33,7 +33,7 @@ export const SapJobSimple = () => {
     )
 
     function handleChange(event) {
-      console.log(event)
+      // console.log(event)
       const {name, value, type, checked} = event.target
       // console.log(formData.SAP_SID)
       // console.log(formData.SAP_Client)
