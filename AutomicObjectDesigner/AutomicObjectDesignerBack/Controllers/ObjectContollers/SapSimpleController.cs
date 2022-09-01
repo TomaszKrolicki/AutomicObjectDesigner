@@ -63,9 +63,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
-
+            //var maxId = DataService.Current.SapSimples.Max(c => c.Id);
+            
             var sapSimple = new SapSimple
             {
+                //Id = maxId + 1,
                 SapSid = SapSimple.SapSid,
                 SapClient = SapSimple.SapClient,
                 SapReport = SapSimple.SapReport,
