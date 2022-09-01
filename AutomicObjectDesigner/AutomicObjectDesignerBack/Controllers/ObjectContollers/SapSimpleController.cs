@@ -67,7 +67,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             
             var sapSimple = new SapSimple
             {
-
                 SapSid = SapSimple.SapSid,
                 SapClient = SapSimple.SapClient,
                 SapReport = SapSimple.SapReport,
@@ -75,6 +74,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 SapVariant = SapSimple.SapVariant,
                 Agent = SapSimple.Agent,
                 Active = SapSimple.Active,
+                RoutineJob = SapSimple.RoutineJob,
                 DeleteSapJob = SapSimple.DeleteSapJob,
                 Folder = SapSimple.Folder,
                 Login = SapSimple.Login,
