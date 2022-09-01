@@ -62,6 +62,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 SapVariant = SapSimple.SapVariant,
                 Agent = SapSimple.Agent,
                 Active = SapSimple.Active,
+                RoutineJob = SapSimple.RoutineJob,
                 DeleteSapJob = SapSimple.DeleteSapJob,
                 Folder = SapSimple.Folder,
                 Login = SapSimple.Login,
