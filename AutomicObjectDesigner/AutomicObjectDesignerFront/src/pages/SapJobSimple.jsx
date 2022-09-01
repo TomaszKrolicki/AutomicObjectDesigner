@@ -35,14 +35,6 @@ export const SapJobSimple = () => {
     function handleChange(event) {
       // console.log(event)
       const {name, value, type, checked} = event.target
-      // console.log(formData.SAP_SID)
-      // console.log(formData.SAP_Client)
-      // console.log(formData.SAP_Report)
-      // console.log(formData.SAP_Variant)
-      // console.log(formData.routine_job)
-      // console.log(formData.process_name)
-      // console.log(formData.SAP_Job_name)
-      // console.log(formData.delete_sap_job)
       setFormData(prevFormData => {
           return {
               ...prevFormData,
@@ -50,22 +42,6 @@ export const SapJobSimple = () => {
           }
       })
     }
-
-    // function handleSubmit(event) {
-    //   event.preventDefault()
-    //   try {
-    //     console.log(formData)
-    //   axios.post("https://localhost:7017/api/SapSimple/create", {
-    //     title: "Hello World!",
-    //     body: "This is a new post."
-    //   })
-    //   .then((response) => {
-    //     setPost(response.data);
-    //   });
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    //   }
 
     async function handleSubmit(event) {
         event.preventDefault()
