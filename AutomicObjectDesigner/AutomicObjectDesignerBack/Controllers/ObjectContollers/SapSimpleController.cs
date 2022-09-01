@@ -87,26 +87,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 PostProcess = SapSimple.PostProcess
             };
 
-            // var sapSimple = new SapSimple
-            // {
-            //     SapSid = values["SapSid"],
-            //     SapClient = values["SapClient"],
-            //     SapReport = values["SapReport"],
-            //     SapJobName = values["SapJobName"],
-            //     SapVariant = values["SapVariant"],
-            //     Agent = values["Agent"],
-            //     Active = Convert.ToBoolean(values["Active"]),
-            //     DeleteSapJob = Convert.ToBoolean(values["DeleteSapJob"]),
-            //     Folder = values["Folder"],
-            //     Login = values["Login"],
-            //     Queue = values["Queue"],
-            //     MaxParallelTasks = Convert.ToInt16(values["MaxParallelTasks"]),
-            //     OwnerId = Convert.ToInt16(values["OwnerId"]),
-            //     Process = values["Process"],
-            //     ProcessName = values["ProcessName"],
-            //     PreProcess = values["PreProcess"],
-            //     PostProcess = values["PostProcess"]
-            // };
             DataService.Current.SapSimples.Add(sapSimple);
 
             
