@@ -4,7 +4,7 @@
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,35 @@ namespace AutomicObjectDesignerBack.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LinuxSimple", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SapJobBwChain",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Kette = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoutineJob = table.Column<bool>(type: "bit", nullable: false),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeleteSapJob = table.Column<bool>(type: "bit", nullable: false),
+                    OwnerId = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
+                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SapJobBwChain", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,6 +123,36 @@ namespace AutomicObjectDesignerBack.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SapVariantCopy", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnixGeneral",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UnixServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UnixLogin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoutineJob = table.Column<bool>(type: "bit", nullable: false),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameSuffix = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OwnerId = table.Column<int>(type: "int", nullable: false),
+                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: true),
+                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
+                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnixGeneral", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,10 +226,16 @@ namespace AutomicObjectDesignerBack.Migrations
                 name: "LinuxSimple");
 
             migrationBuilder.DropTable(
+                name: "SapJobBwChain");
+
+            migrationBuilder.DropTable(
                 name: "SapSimple");
 
             migrationBuilder.DropTable(
                 name: "SapVariantCopy");
+
+            migrationBuilder.DropTable(
+                name: "UnixGeneral");
 
             migrationBuilder.DropTable(
                 name: "User");

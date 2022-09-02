@@ -355,6 +355,139 @@ namespace AutomicObjectDesignerBack.Migrations
                             UserName = "34567"
                         });
                 });
+
+            modelBuilder.Entity("AutomicObjectDesignerBack.Models.Objects.SapJobBwChain", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Agent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DeleteSapJob")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Folder")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Kette")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaxParallelTasks")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Process")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProcessName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Queue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RoutineJob")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SapClient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapJobName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapSid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SapJobBwChain");
+                });
+
+            modelBuilder.Entity("AutomicObjectDesignerBack.Models.Objects.UnixGeneral", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Agent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Folder")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaxParallelTasks")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameSuffix")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Process")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProcessName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Queue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RoutineJob")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SapClient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapReport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapSid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UnixLogin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UnixServer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UnixGeneral");
+                });
 #pragma warning restore 612, 618
         }
     }
