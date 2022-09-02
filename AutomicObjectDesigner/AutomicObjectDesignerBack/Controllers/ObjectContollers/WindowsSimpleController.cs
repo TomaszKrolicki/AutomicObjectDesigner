@@ -1,6 +1,5 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
-using AutomicObjectDesignerBack.Models.Objects.Temp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

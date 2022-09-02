@@ -15,14 +15,14 @@ namespace AutomicObjectDesignerBack.Data
         public DbSet<User> Users { get; set; }
         public DbSet<FileTransfer> FileTransfers { get; set; }
         public DbSet<LinuxSimple> LinuxSimple { get; set; }
-        public DbSet<SapSimple> SapSimple { get; set; }
+        public DbSet<SapSimpleDetailDTO> SapSimple { get; set; }
         public DbSet<UnixGeneral> UnixGeneral { get; set; }
         public DbSet<SapJobBwChain> SapJobBwChains { get; set; }
 
         public DbSet<SapVariantCopy> SapVariantCopy { get; set; }
         public DbSet<WindowsSimple> WindowsSimple { get; set; }
 
-        public async Task CreateSapSimple(SapSimple sapSimple)
+        public async Task CreateSapSimple(SapSimpleDetailDTO sapSimple)
         {
             SapSimple.AddAsync(sapSimple);
 

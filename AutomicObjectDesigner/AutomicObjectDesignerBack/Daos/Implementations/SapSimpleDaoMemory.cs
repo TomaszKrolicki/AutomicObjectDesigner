@@ -5,12 +5,12 @@ namespace AutomicObjectDesignerBack.Daos.Implementations;
 public class SapSimpleDaoMemory : ISapSimpleDao
 {
     private static SapSimpleDaoMemory instance;
-    public SapSimple SapSimple = new();
+    public SapSimpleDetailDTO SapSimple = new();
     private SapSimpleDaoMemory()
     {
     }
 
-    public void Add(SapSimple item)
+    public void Add(SapSimpleDetailDTO item)
     {
         throw new NotImplementedException();
     }
@@ -20,12 +20,12 @@ public class SapSimpleDaoMemory : ISapSimpleDao
         throw new NotImplementedException();
     }
 
-    public SapSimple Get(int id)
+    public SapSimpleDetailDTO Get(int id)
     {
         throw new NotImplementedException();
     }
 
-    public IEnumerable<SapSimple> GetAll()
+    public IEnumerable<SapSimpleDetailDTO> GetAll()
     {
         throw new NotImplementedException();
     }

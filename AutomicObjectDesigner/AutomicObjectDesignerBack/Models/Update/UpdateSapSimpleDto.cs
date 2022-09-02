@@ -3,7 +3,7 @@ using AutomicObjectDesigner.Models.Objects;
 
 namespace AutomicObjectDesignerBack.Models.Update
 {
-    public class UpdateSapSimpleDto : SapSimple
+    public class UpdateSapSimpleDto : SapSimpleDetailDTO
     {
 
     }

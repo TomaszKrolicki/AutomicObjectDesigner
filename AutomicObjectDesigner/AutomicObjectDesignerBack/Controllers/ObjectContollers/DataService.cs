@@ -10,13 +10,13 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class DataService
     {
         public static DataService Current { get; } = new DataService();
-        public List<SapSimple> SapSimples { get; set; }
+        public List<SapSimpleDetailDTO> SapSimples { get; set; }
 
         public DataService()
         {
-            SapSimples = new List<SapSimple>()
+            SapSimples = new List<SapSimpleDetailDTO>()
             {
-                new SapSimple
+                new SapSimpleDetailDTO
                 {   
 
                     SapReport = "QSW.102#ZZZ#PAYMENT#MYREP_01$VAR_101.JOBS",
@@ -38,7 +38,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     SapSid = "Option3",
                     SapClient = "Option2"
                 },
-                new SapSimple
+                new SapSimpleDetailDTO
                 {
                     
                     SapReport = "QSW.102#ZZZ#PAYMENT#MYREP_01$VAR_101.JOBS",
