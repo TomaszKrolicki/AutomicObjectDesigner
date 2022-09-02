@@ -5,5 +5,3 @@ export const FileTransferMany = () => {
     <div></div>
   )
 }
-
-export default FileTransferMany;

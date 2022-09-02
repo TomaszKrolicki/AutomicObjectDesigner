@@ -498,7 +498,7 @@ export const links = [
         icon: <SiSap />,
       },
       {
-        name: 'SAPJobBWChain',
+        name: 'SAPJobBW',
         icon: <SiSap />,
       },
       {

@@ -47,9 +47,9 @@ export const SapJobSimpleStep2 = () => {
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
-      <div classname={cssStyle}>
-        Confirm object name:
-      </div>
+      <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">
+        Confirm data:
+      </p>
       <form onSubmit={handleSubmit}>
       <label htmlFor="SapJobName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">SAP Job Name</label>
         <input type="text" onChange={handleChange} value={formData.SapJobName} name='SapJobName' minLength="7" maxLength="7" id="SapJobName" className={cssStyle} required />

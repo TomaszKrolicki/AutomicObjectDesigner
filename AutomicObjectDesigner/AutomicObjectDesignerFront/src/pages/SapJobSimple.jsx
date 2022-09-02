@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, NavLink } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
@@ -54,6 +54,7 @@ export const SapJobSimple = () => {
         } catch (error) {
           console.log(error)
         }
+        window.location.href = '/SapJobSimpleStep2';
         }
 
     

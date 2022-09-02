@@ -4,8 +4,6 @@ import { Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { Navbar, Footer, Sidebar, ThemeSettings, Routing } from './components';
-import { AutomicObjectDesigner, FileTransferMany, FileTransferOne,
-  SapJobBW, SapJobMassen, SapJobSimple, UnixGeneral, WindowsGeneral } from './pages';
 
 import { useStateContext } from './contexts/ContextProvider';
 
