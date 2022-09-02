@@ -17,19 +17,18 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _context = context;
         }
 
-        [HttpGet]
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
+        [HttpGet]
         public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
         {
             var sapSimple = await _context.SapSimple.ToListAsync();
 
             return Ok(sapSimple);
-
         }
 
-        [HttpGet("{id:int}", Name = "GetSapSimple")]
         //GET https://localhost:7017/api/SapSimple/
+        [HttpGet("{id:int}", Name = "GetSapSimple")]
         public async Task<ActionResult<SapSimple>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
@@ -85,7 +84,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple(int id, [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
             if (!ModelState.IsValid)
             {
