@@ -7,7 +7,7 @@ using Microsoft.Build.Framework;
 
 namespace AutomicObjectDesignerBack.Models.Create
 {
-    public class CreateSapSimple : SapSimpleDetailDTO
+    public class CreateSapSimple : SapSimple
     {
 
     }

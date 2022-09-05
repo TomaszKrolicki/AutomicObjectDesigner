@@ -20,7 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
         [HttpGet]
-        public async Task<ActionResult<List<SapSimpleDetailDTO>>> GetSapSimple()
+        public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
         {
             var sapSimple = await _context.SapSimple.ToListAsync();
 
@@ -29,7 +29,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple/
         [HttpGet("{id:int}", Name = "GetSapSimple")]
-        public async Task<ActionResult<SapSimpleDetailDTO>> GetSapSimple(int id)
+        public async Task<ActionResult<SapSimple>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapSimple/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapSimpleDetailDTO>>> CreateSapSimple([FromBody] SapSimpleDetailDTO SapSimple)
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimple SapSimple)
         {
 
             if (!ModelState.IsValid)
@@ -52,7 +52,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapSimple = new SapSimpleDetailDTO
+            var sapSimple = new SapSimple
             {
                 SapSid = SapSimple.SapSid,
                 SapClient = SapSimple.SapClient,
@@ -84,7 +84,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<SapSimpleDetailDTO>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
             if (!ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapSimpleDetailDTO>>> DeleteSapSimple(int id)
+        public async Task<ActionResult<List<SapSimple>>> DeleteSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 

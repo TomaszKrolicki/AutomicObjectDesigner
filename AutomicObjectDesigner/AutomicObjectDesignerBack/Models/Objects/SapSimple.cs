@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace AutomicObjectDesigner.Models.Objects;
 
-public class SapSimpleDetailDTO : Job
+public class SapSimple : Job
 {
     //Entry sequence:
     // step 1
