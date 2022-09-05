@@ -5,5 +5,3 @@ export const FileTransferOne = () => {
     <div></div>
   )
 }
-
-export default FileTransferOne;

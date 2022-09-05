@@ -1,29 +1,39 @@
-﻿namespace AutomicObjectDesigner.Models.Objects;
+﻿using AutomicObjectDesignerBack.Models.Objects;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace AutomicObjectDesigner.Models.Objects;
 
 public class SapSimple : Job
 {
     //Entry sequence:
     // step 1
 
-    public enum SapSid
-    {
-        number,
-        number1,
-        number2
-    }
-    public enum SapClient
-    {
-        number,
-        number1,
-        number2
-    }
+    public string? SapClient { get; set; }
+    public string? SapSid { get; set; }
     public string? SapReport { get; set; }
 
     public string? SapVariant { get; set; }
-    public bool RoutineJob { get; set; }
+    public bool? RoutineJob { get; set; }
     public string? ProcessName { get; set; }
     public string? SapJobName { get; set; }
-    public bool DeleteSapJob { get; set; }
+    public bool? DeleteSapJob { get; set; }
+
+    //public string GetRoutineJob()
+    //{
+    //    if (RoutineJob == true)
+    //        return "ZZZ";
+        
+    //    return "E1E";
+    //}
+
+    //public string GetDeleteSapJob()
+    //{
+    //    if (DeleteSapJob == true)
+    //        return "";
+        
+    //    return "X";
+    //}
 
     //// step 2
 
