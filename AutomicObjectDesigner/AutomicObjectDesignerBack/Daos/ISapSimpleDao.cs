@@ -2,7 +2,7 @@ using AutomicObjectDesigner.Models.Objects;
 
 namespace AutomicObjectDesignerBack.Daos;
 
-public interface ISapSimpleDao : IDao<SapSimpleDetailDTO>
+public interface ISapSimpleDao : IDao<SapSimple>
 {
-    IEnumerable<SapSimpleDetailDTO> GetAll();
+    IEnumerable<SapSimple> GetAll();
 }
