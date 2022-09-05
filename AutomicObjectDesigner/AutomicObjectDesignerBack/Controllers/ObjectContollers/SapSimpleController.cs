@@ -20,7 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
         [HttpGet]
-        public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
+        public async Task<ActionResult<List<SapSimpleDTO>>> GetSapSimple()
         {
             var sapSimple = await _context.SapSimple.ToListAsync();
 
@@ -29,7 +29,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple/
         [HttpGet("{id:int}", Name = "GetSapSimple")]
-        public async Task<ActionResult<SapSimple>> GetSapSimple(int id)
+        public async Task<ActionResult<SapSimpleDTO>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapSimple/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimple SapSimple)
+        public async Task<ActionResult<List<SapSimpleDTO>>> CreateSapSimple([FromBody] SapSimpleDTO SapSimple)
         {
 
             if (!ModelState.IsValid)
@@ -59,22 +59,22 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 SapReport = SapSimple.SapReport,
                 SapJobName = SapSimple.SapJobName,
                 SapVariant = SapSimple.SapVariant,
-                Agent = SapSimple.Agent,
-                Active = SapSimple.Active,
+                //Agent = SapSimple.Agent,
+                //Active = SapSimple.Active,
                 RoutineJob = SapSimple.RoutineJob,
                 DeleteSapJob = SapSimple.DeleteSapJob,
-                Folder = SapSimple.Folder,
-                Login = SapSimple.Login,
-                Queue = SapSimple.Queue,
-                MaxParallelTasks = SapSimple.MaxParallelTasks,
-                OwnerId = SapSimple.OwnerId,
-                Process = SapSimple.Process,
+                //Folder = SapSimple.Folder,
+                //Login = SapSimple.Login,
+                //Queue = SapSimple.Queue,
+                //MaxParallelTasks = SapSimple.MaxParallelTasks,
+                //OwnerId = SapSimple.OwnerId,
+                //Process = SapSimple.Process,
                 ProcessName = SapSimple.ProcessName,
-                PreProcess = SapSimple.PreProcess,
-                PostProcess = SapSimple.PostProcess
+                //PreProcess = SapSimple.PreProcess,
+                //PostProcess = SapSimple.PostProcess
             };
 
-            DataService.Current.SapSimples.Add(sapSimple);
+            //DataService.Current.SapSimples.Add(sapSimple);
 
             
             _context.SapSimple.Add(sapSimple);
@@ -84,7 +84,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        public async Task<ActionResult<List<SapSimpleDTO>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
             if (!ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapSimple>>> DeleteSapSimple(int id)
+        public async Task<ActionResult<List<SapSimpleDTO>>> DeleteSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 
