@@ -1,6 +1,6 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
-using AutomicObjectDesignerBack.Models.Update;
+using AutomicObjectDesignerBack.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

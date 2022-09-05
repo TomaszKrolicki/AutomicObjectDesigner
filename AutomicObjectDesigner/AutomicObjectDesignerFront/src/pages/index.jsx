@@ -1,5 +1,5 @@
 export { AutomicObjectDesigner as AutomicObjectDesigner } from './AutomicObjectDesigner';
-export { SapJobSimple as SapJobSimple } from './SapJobSimple';
+export { SapJobSimpleStep1 as SapJobSimpleStep1 } from './SapJobSimpleStep1';
 export { SapJobMassen as SapJobMassen } from './SapJobMassen';
 export { SapJobBW as SapJobBW } from './SapJobBW';
 export { WindowsGeneral as WindowsGeneral } from './WindowsGeneral';
@@ -8,3 +8,5 @@ export { FileTransferOne as FileTransferOne } from './FileTransferOne';
 export { FileTransferMany as FileTransferMany } from './FileTransferMany';
 export { BugReport as BugReport } from './BugReport';
 export { SapJobSimpleStep2 as SapJobSimpleStep2} from './SapJobSimpleStep2';
+export { SapJobSimpleStep3 as SapJobSimpleStep3} from './SapJobSimpleStep3';
+export { SapJobSimpleStep3 as SapJobSimpleStep4} from './SapJobSimpleStep4';

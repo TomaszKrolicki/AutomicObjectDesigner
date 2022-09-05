@@ -4,7 +4,6 @@ using Newtonsoft.Json.Converters;
 
 namespace AutomicObjectDesigner.Models.Objects;
 
-// NEED TO ADD ALL THINGS HERE: NAME ETC.
 public class SapSimpleDTO
 {
     public string? SapClient { get; set; }
