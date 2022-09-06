@@ -21,7 +21,7 @@ public abstract class AutomicObject
     public string? Folder { get; set; }
 
     [MaxLength(2000)]
-    string? Description { get; set; }
+    string? Documentation { get; set; }
 
     string VariableKey { get; set; }
 

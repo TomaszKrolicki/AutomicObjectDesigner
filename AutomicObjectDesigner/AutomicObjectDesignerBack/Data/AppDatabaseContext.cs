@@ -25,19 +25,16 @@ namespace AutomicObjectDesignerBack.Data
         public async Task CreateSapSimple(SapSimple sapSimple)
         {
             SapSimple.AddAsync(sapSimple);
-
         }
 
         public async Task CreateUnixGeneral(UnixGeneral unixGeneral)
         {
             UnixGeneral.AddAsync(unixGeneral);
-
         }
 
         public async Task CreateSapJobBwChain(SapJobBwChain sapJobBwChain)
         {
             SapJobBwChains.AddAsync(sapJobBwChain);
-
         }
 
 
