@@ -7,6 +7,7 @@ using AutomicObjectDesigner.Models.Registration;
 
 namespace AutomicObjectDesignerBack.Data.Configurations;
 
+// Here you can add user on model creation - for example an Admin account.
 public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<User> builder)
