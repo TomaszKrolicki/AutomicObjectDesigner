@@ -12,10 +12,12 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class SapSimpleController : ControllerBase
     {
         public readonly AppDatabaseContext _context;
+        private readonly ILogger<SapSimpleController> _logger;
 
-        public SapSimpleController(AppDatabaseContext context)
+        public SapSimpleController(AppDatabaseContext context, ILogger<SapSimpleController> logger)
         {
-            _context = context;
+            this._context = context;
+            this._logger = logger;
         }
 
         //GET https://localhost:7017/api/SapSimple
@@ -23,6 +25,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet]
         public async Task<ActionResult<List<SapSimpleDTO>>> GetSapSimple()
         {
+            _logger.LogInformation("GetSapSimple called...");
+
             var sapSimple = await _context.SapSimple.ToListAsync();
 
             return Ok(sapSimple);
