@@ -26,11 +26,6 @@ public class SapSimpleRepositoryMemory : ISapSimpleRepository
         throw new NotImplementedException();
     }
 
-    IQueryable<SapSimple> IRepositoryBase<SapSimple>.Get(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     public IQueryable<SapSimple> FindbyCondition(Expression<Func<SapSimple, bool>> expression)
     {
         throw new NotImplementedException();

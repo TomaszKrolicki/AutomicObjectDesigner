@@ -490,31 +490,38 @@ export const links = [
     title: 'Create',
     links: [
       {
-        name: 'SAPJobSimple',
+            name: 'SAPJobSimple',
+            link: 'SapJobSimple/1',
         icon: <SiSap />,
       },
       {
-        name: 'SAPJobMassen',
+          name: 'SAPJobMassen',
+          link: 'SAPJobMassen/1',
         icon: <SiSap />,
       },
       {
-        name: 'SAPJobBW',
+          name: 'SAPJobBW',
+          link: 'SAPJobBW/1',
         icon: <SiSap />,
       },
       {
-        name: 'WindowsGeneral',
+          name: 'WindowsGeneral',
+          link: 'WindowsGeneral/1',
         icon: <SiWindows />,
       },
       {
-        name: 'UnixGeneral',
+          name: 'UnixGeneral',
+          link: 'UnixGeneral/1',
         icon: <SiLinux />,
       },
       {
-        name: 'FileTransferOne',
+          name: 'FileTransferOne',
+          link: 'FileTransferOne/1',
         icon: <RiFileTransferLine />,
       },
       {
-        name: 'FileTransferMany',
+          name: 'FileTransferMany',
+          link: 'FileTransferMany/1',
         icon: <RiFileTransferLine />,
       },
     ],
@@ -523,11 +530,13 @@ export const links = [
     title: 'Workflows',
     links: [
       {
-        name: 'WorkflowSimple',
+            name: 'WorkflowSimple',
+            link: 'WorkflowSimple',
         icon: <SiCommonworkflowlanguage />,
       },
       {
-        name: 'WorkflowSync',
+          name: 'WorkflowSync',
+          link: 'WorkflowSync',
         icon: <SiCommonworkflowlanguage />,
       },
 
@@ -537,11 +546,13 @@ export const links = [
     title: 'Report',
     links: [
       {
-        name: 'Contact',
+            name: 'Contact',
+            link: 'Contact',
         icon: <AiOutlineStock />,
       },
       {
-        name: 'BugReport',
+          name: 'BugReport',
+          link: 'BugReport',
         icon: <AiOutlineAreaChart />,
       },
     ],
