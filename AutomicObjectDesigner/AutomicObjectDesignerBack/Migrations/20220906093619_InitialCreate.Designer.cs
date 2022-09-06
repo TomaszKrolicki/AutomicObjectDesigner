@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220902064549_Initial")]
-    partial class Initial
+    [Migration("20220906093619_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -305,14 +305,10 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.Property<bool>("HasEmailConfirmed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsAdministrator")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -331,30 +327,19 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Email = "Johndoe@gmail.com",
-                            FirstName = "John",
+                            Id = 100,
+                            Email = "admin@gmail.com",
+                            FirstName = "Admin",
                             HasEmailConfirmed = true,
                             IsAdministrator = true,
-                            LastName = "Doe",
+                            LastName = "Admin",
                             Password = "admin",
-                            UserName = "12345"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "evathe2@gmail.com",
-                            FirstName = "Eva",
-                            HasEmailConfirmed = true,
-                            IsAdministrator = false,
-                            LastName = "Doe",
-                            Password = "haslo",
-                            UserName = "34567"
+                            UserName = "Admin"
                         });
                 });
 

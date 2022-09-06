@@ -4,7 +4,7 @@
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -156,7 +156,7 @@ namespace AutomicObjectDesignerBack.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -166,12 +166,12 @@ namespace AutomicObjectDesignerBack.Migrations
                     UserName = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                    HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,14 +207,9 @@ namespace AutomicObjectDesignerBack.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "User",
+                table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "IsAdministrator", "LastName", "Password", "UserName" },
-                values: new object[] { 1, "Johndoe@gmail.com", "John", true, true, "Doe", "admin", "12345" });
-
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "LastName", "Password", "UserName" },
-                values: new object[] { 2, "evathe2@gmail.com", "Eva", true, "Doe", "haslo", "34567" });
+                values: new object[] { 100, "admin@gmail.com", "Admin", true, true, "Admin", "admin", "Admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -238,7 +233,7 @@ namespace AutomicObjectDesignerBack.Migrations
                 name: "UnixGeneral");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "WindowsSimple");
