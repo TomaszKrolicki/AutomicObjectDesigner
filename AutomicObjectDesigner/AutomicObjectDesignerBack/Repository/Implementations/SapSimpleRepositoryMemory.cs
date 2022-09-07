@@ -26,7 +26,7 @@ public class SapSimpleRepositoryMemory : ISapSimpleRepository
         throw new NotImplementedException();
     }
 
-    public IQueryable<SapSimple> FindbyCondition(Expression<Func<SapSimple, bool>> expression)
+    public IQueryable<SapSimple> FindByCondition(Expression<Func<SapSimple, bool>> expression)
     {
         throw new NotImplementedException();
     }
@@ -42,6 +42,11 @@ public class SapSimpleRepositoryMemory : ISapSimpleRepository
     }
 
     public void Update(SapSimple entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Save()
     {
         throw new NotImplementedException();
     }

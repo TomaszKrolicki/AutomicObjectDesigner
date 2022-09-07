@@ -13,7 +13,7 @@ namespace AutomicObjectDesignerBack.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<FileTransfer> FileTransfers { get; set; }
         public DbSet<LinuxSimple> LinuxSimple { get; set; }
         public DbSet<SapSimple> SapSimple { get; set; }
