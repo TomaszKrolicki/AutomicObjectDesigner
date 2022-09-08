@@ -1,6 +1,7 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
+using AutomicObjectDesignerBack.Models.Objects.Dto;
 using AutomicObjectDesignerBack.Models.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet]
         //GET https://localhost:7017/api/SapJobBwChain
         // pobranie danych uzytkownika + validacja
-        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
+        public async Task<ActionResult<List<SapJobBWChainDto>>> GetSapJobBwChain()
         {
             var sapJobBwChain = await _context.SapJobBwChains.ToListAsync();
 
@@ -31,7 +32,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
         //GET https://localhost:7017/api/SapJobBwChain/
-        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
+        public async Task<ActionResult<SapJobBWChainDto>> GetSapJobBwChain(int id)
         {
             var sapJobBwChain = await _context.SapJobBwChains.FindAsync(id);
 
@@ -46,7 +47,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapJobBwChain/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain([FromBody] SapJobBwChain SapJobBwChain)
+        public async Task<ActionResult<List<SapJobBWChainDto>>> CreateSapJobBwChain([FromBody] SapJobBWChainDto SapJobBwChain)
         {
 
             if (!ModelState.IsValid)
@@ -58,28 +59,28 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 SapSid = SapJobBwChain.SapSid,
                 SapClient = SapJobBwChain.SapClient,
-                Kette = SapJobBwChain.Kette,
+                SapKette = SapJobBwChain.SapKette,
                 SapJobName = SapJobBwChain.SapJobName,
                 DeleteSapJob = SapJobBwChain.DeleteSapJob,
-                Agent = SapJobBwChain.Agent,
-                Active = SapJobBwChain.Active,
+                //Agent = SapJobBwChain.Agent,
+                //Active = SapJobBwChain.Active,
                 RoutineJob = SapJobBwChain.RoutineJob,
-                Folder = SapJobBwChain.Folder,
-                Login = SapJobBwChain.Login,
-                Queue = SapJobBwChain.Queue,
-                MaxParallelTasks = SapJobBwChain.MaxParallelTasks,
-                OwnerId = SapJobBwChain.OwnerId,
-                Process = SapJobBwChain.Process,
+                //Folder = SapJobBwChain.Folder,
+                //Login = SapJobBwChain.Login,
+                //Queue = SapJobBwChain.Queue,
+                //MaxParallelTasks = SapJobBwChain.MaxParallelTasks,
+                //OwnerId = SapJobBwChain.OwnerId,
+                //Process = SapJobBwChain.Process,
                 ProcessName = SapJobBwChain.ProcessName,
-                PreProcess = SapJobBwChain.PreProcess,
-                PostProcess = SapJobBwChain.PostProcess
+                //PreProcess = SapJobBwChain.PreProcess,
+                //PostProcess = SapJobBwChain.PostProcess
             };
 
 
 
 
-            _context.CreateSapJobBwChain(sapJobBwChain);
-            _context.SaveChanges();
+            _context.SapJobBwChain.Add(sapJobBwChain);
+            await _context.SaveChangesAsync();
 
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
@@ -87,7 +88,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
+        public async Task<ActionResult<List<SapJobBWChainDto>>> DeleteSapJobBwChain(int id)
         {
             var sapJobBwChain = await _context.SapJobBwChains.FindAsync(id);
 
