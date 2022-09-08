@@ -3,6 +3,7 @@ using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models;
 using AutomicObjectDesignerBack.Models.Update;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
@@ -33,6 +34,35 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         public async Task<ActionResult<SapSimpleDTO>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
+
+            if (sapSimple == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(sapSimple);
+        }
+
+        //GET https://localhost:7017/api/SapSimple/
+        [HttpGet("{id:int}", Name = "GetSapSimple/{int Step}/{int id}")]
+        public async Task<ActionResult<SapSimpleDTO>> GetSapSimple(int step, int id)
+        {
+            var sapSimple = await _context.SapSimple.FindAsync(id);
+            if  (step == 2)
+            {
+                var ObjectName =
+                    $"<{sapSimple.SapSid}>.<{sapSimple.SapClient}>#<{sapSimple.RoutineJob}>#<{sapSimple.ProcessName}>#<{sapSimple.SapReport}>" +
+                    $"$<{sapSimple.SapVariant}>.JOBS ";
+            }
+            else if (step == 3)
+            {
+                return Ok(sapSimple);
+            }
+            else if (step == 4)
+            {
+                return Ok(sapSimple);
+            }
+            return Ok(sapSimple);
 
             if (sapSimple == null)
             {
@@ -73,6 +103,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 ProcessName = SapSimple.ProcessName,
                 //PreProcess = SapSimple.PreProcess,
                 //PostProcess = SapSimple.PostProcess
+                SapReport1 = SapSimple.SapReport1,
+                SapVariant1 = SapSimple.SapVariant1,
+                ObjectName = SapSimple.ObjectName
+
             };
 
             //DataService.Current.SapSimples.Add(sapSimple);

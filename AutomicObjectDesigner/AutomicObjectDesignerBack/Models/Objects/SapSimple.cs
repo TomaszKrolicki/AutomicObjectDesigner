@@ -23,7 +23,7 @@ public class SapSimple : Job
     //{
     //    if (RoutineJob == true)
     //        return "ZZZ";
-        
+
     //    return "E1E";
     //}
 
@@ -31,15 +31,15 @@ public class SapSimple : Job
     //{
     //    if (DeleteSapJob == true)
     //        return "";
-        
+
     //    return "X";
     //}
 
     //// step 2
 
-    //public string? ObjectName { get; set; }
-    //public string? SapReport2 { get; set; }
-    //public string? SapVariant1 { get; set; }
+    public string? ObjectName { get; set; }
+    public string? SapReport1 { get; set; }
+    public string? SapVariant1 { get; set; }
 
     ////step 3
     //public string? Docu1 { get; set; }
