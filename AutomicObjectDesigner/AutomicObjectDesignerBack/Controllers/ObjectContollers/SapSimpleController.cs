@@ -13,11 +13,14 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class SapSimpleController : ControllerBase
     {
         public readonly AppDatabaseContext _context;
+        private readonly ISapSimpleRepository _sapSimpleRepository;
         private readonly ILogger<SapSimpleController> _logger;
 
-        public SapSimpleController(AppDatabaseContext context, ILogger<SapSimpleController> logger)
+
+        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository)
         {
-            this._context = context;
+            _context = context;
+            _sapSimpleRepository = sapSimpleRepository;
             this._logger = logger;
         }
 
@@ -26,9 +29,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet]
         public async Task<ActionResult<List<SapSimpleDTO>>> GetSapSimple()
         {
+            // var sapSimple = await _context.SapSimple.ToListAsync();
+            var sapSimple =  _sapSimpleRepository.GetAll();
             _logger.LogInformation("GetSapSimple called...");
 
-            var sapSimple = await _context.SapSimple.ToListAsync();
+            //var sapSimple = await _context.SapSimple.ToListAsync();
 
             return Ok(sapSimple);
         }

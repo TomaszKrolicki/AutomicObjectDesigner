@@ -1,5 +1,7 @@
 using System.Configuration;
 using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
@@ -26,6 +28,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDatabaseContext>(opt
     => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
+builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
 
 //CORS
 builder.Services.AddCors(options =>
