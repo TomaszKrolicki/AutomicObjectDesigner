@@ -24,7 +24,7 @@ builder.Services.AddHttpLogging(httpLogging =>
 builder.Services.AddDbContext<AppDatabaseContext>(opt
     => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
 
-//CORS
+//CORS 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
