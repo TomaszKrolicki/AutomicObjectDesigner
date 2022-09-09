@@ -4,6 +4,7 @@ using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,13 +14,12 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     [Route("api/[controller]")]
     public class SapJobBwChainController : ControllerBase
     {
-        public readonly AppDatabaseContext _context;
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
         private readonly ILogger<SapJobBwChainController> _logger;
 
-        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger)
+        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger, SapSimpleRepository repository)
         {
-            _context = context;
+            _sapJobBwChainRepository = repository;
             _logger = logger;
         }
 
@@ -60,11 +60,14 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 DeleteSapJob = SapJobBwChainStep1Dto.DeleteSapJob,
                 RoutineJob = SapJobBwChainStep1Dto.RoutineJob,
                 ProcessName = SapJobBwChainStep1Dto.ProcessName,
+                SapReport = Converter.TextReportConverter(SapJobBwChainStep1Dto.SapReport),
+                SapVariant = Converter.TextVariantConverter(SapJobBwChainStep1Dto.SapVariant),
                 Kette = Converter.TextKetteConverter(SapJobBwChainStep1Dto.Kette),
-                ObjectName = 
+                ObjectName = $"<{SapJobBwChainStep1Dto.SapSid}>.<{SapJobBwChainStep1Dto.SapClient}>#<{SapJobBwChainStep1Dto.RoutineJob}>#<{SapJobBwChainStep1Dto.ProcessName}>#<{SapJobBwChainStep1Dto.SapReport}>" +
+                             $"$<{SapJobBwChainStep1Dto.SapVariant}>.JOBS"
             };
 
-            
+
             _context.CreateSapJobBwChain(sapJobBwChain);
             _context.SaveChanges();
 
