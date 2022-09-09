@@ -37,14 +37,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //GET https://localhost:7017/api/SapJobBwChain/
         public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
         {
-            var sapJobBwChain = await _context.SapJobBwChains.FindAsync(id);
-
-            if (sapJobBwChain == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(sapJobBwChain);
+            throw new NotImplementedException();
         }
 
         //POST https://localhost:7017/api/SapJobBwChain/create
@@ -79,16 +72,12 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 PostProcess = SapJobBwChain.PostProcess
             };
 
-
-
-
+            
             _context.CreateSapJobBwChain(sapJobBwChain);
             _context.SaveChanges();
 
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
-
-        
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
