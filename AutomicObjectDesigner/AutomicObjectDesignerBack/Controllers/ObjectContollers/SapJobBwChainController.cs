@@ -17,7 +17,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
         private readonly ILogger<SapJobBwChainController> _logger;
 
-        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger, SapSimpleRepository repository)
+        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger, ISapJobBwChainRepository repository)
         {
             _sapJobBwChainRepository = repository;
             _logger = logger;
@@ -28,9 +28,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         // pobranie danych uzytkownika + validacja
         public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
         {
-            var sapJobBwChain = await _context.SapJobBwChains.ToListAsync();
-
-            return Ok(sapJobBwChain);
+            throw new NotImplementedException();
 
         }
 
@@ -68,8 +66,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             };
 
 
-            _context.CreateSapJobBwChain(sapJobBwChain);
-            _context.SaveChanges();
+            throw new NotImplementedException();
 
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
@@ -77,15 +74,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
         {
-            var sapJobBwChain = await _context.SapJobBwChains.FindAsync(id);
-
-            if (sapJobBwChain == null)
-            {
-                return NotFound();
-            }
-
-            _context.SapJobBwChain.Remove(sapJobBwChain);
-            await _context.SaveChangesAsync();
+            
+            throw new NotImplementedException();
 
             return NoContent();
 
