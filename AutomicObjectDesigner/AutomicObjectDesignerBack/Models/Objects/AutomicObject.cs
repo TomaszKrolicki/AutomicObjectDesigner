@@ -26,4 +26,7 @@ public abstract class AutomicObject
     string VariableKey { get; set; }
 
     string VariableValue { get; set; }
+
+    // lepiej stworzyc string z informacja gdzie jestesmy. Może byc enum > kroki
+    string BuildStatus { get; set; }
 }

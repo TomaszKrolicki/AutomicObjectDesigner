@@ -1,4 +1,5 @@
-﻿using AutomicObjectDesigner.Models.Objects;
+﻿using System.Security.AccessControl;
+using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models;
 using AutomicObjectDesignerBack.Models.Update;
@@ -22,7 +23,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
         [HttpGet]
-        public async Task<ActionResult<List<SapSimpleDTO>>> GetSapSimple()
+        public async Task<ActionResult<List<SapSimpleStep1Dto>>> GetSapSimple()
         {
             var sapSimple = await _context.SapSimple.ToListAsync();
 
@@ -31,7 +32,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //GET https://localhost:7017/api/SapSimple/
         [HttpGet("{id:int}", Name = "GetSapSimple")]
-        public async Task<ActionResult<SapSimpleDTO>> GetSapSimple(int id)
+        public async Task<ActionResult<SapSimpleStep1Dto>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 
@@ -43,39 +44,39 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(sapSimple);
         }
 
-        //GET https://localhost:7017/api/SapSimple/
-        [HttpGet("{id:int}", Name = "GetSapSimple/{int Step}/{int id}")]
-        public async Task<ActionResult<SapSimpleDTO>> GetSapSimple(int step, int id)
-        {
-            var sapSimple = await _context.SapSimple.FindAsync(id);
-            if  (step == 2)
-            {
-                var ObjectName =
-                    $"<{sapSimple.SapSid}>.<{sapSimple.SapClient}>#<{sapSimple.RoutineJob}>#<{sapSimple.ProcessName}>#<{sapSimple.SapReport}>" +
-                    $"$<{sapSimple.SapVariant}>.JOBS ";
-            }
-            else if (step == 3)
-            {
-                return Ok(sapSimple);
-            }
-            else if (step == 4)
-            {
-                return Ok(sapSimple);
-            }
-            return Ok(sapSimple);
+        ////GET https://localhost:7017/api/SapSimple/
+        //[HttpGet("{id:int}", Name = "GetSapSimple/{int Step}/{int id}")]
+        //public async Task<ActionResult<SapSimpleStep1Dto>> GetSapSimple(int step, int id)
+        //{
+        //    var sapSimple = await _context.SapSimple.FindAsync(id);
+        //    if  (step == 2)
+        //    {
+        //        var ObjectName =
+        //            $"<{sapSimple.SapSid}>.<{sapSimple.SapClient}>#<{sapSimple.RoutineJob}>#<{sapSimple.ProcessName}>#<{sapSimple.SapReport}>" +
+        //            $"$<{sapSimple.SapVariant}>.JOBS ";
+        //    }
+        //    else if (step == 3)
+        //    {
+        //        return Ok(sapSimple);
+        //    }
+        //    else if (step == 4)
+        //    {
+        //        return Ok(sapSimple);
+        //    }
+        //    return Ok(sapSimple);
 
-            if (sapSimple == null)
-            {
-                return NotFound();
-            }
+        //    if (sapSimple == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(sapSimple);
-        }
+        //    return Ok(sapSimple);
+        //}
 
         //POST https://localhost:7017/api/SapSimple/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapSimpleDTO>>> CreateSapSimple([FromBody] SapSimpleDTO SapSimple)
+        public async Task<ActionResult<List<SapSimpleStep1Dto>>> CreateSapSimple([FromBody] SapSimpleStep1Dto SapSimple)
         {
 
             if (!ModelState.IsValid)
@@ -104,10 +105,14 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 //PreProcess = SapSimple.PreProcess,
                 //PostProcess = SapSimple.PostProcess
                 SapReport1 = SapSimple.SapReport1,
+                
                 SapVariant1 = SapSimple.SapVariant1,
-                ObjectName = SapSimple.ObjectName
+                ObjectName = $"<{SapSimple.SapSid}>.<{SapSimple.SapClient}>#<{SapSimple.RoutineJob}>#<{SapSimple.ProcessName}>#<{SapSimple.SapReport}>" +
+                             $"$<{SapSimple.SapVariant}>.JOBS "
+
 
             };
+
 
             //DataService.Current.SapSimples.Add(sapSimple);
 
@@ -119,7 +124,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<SapSimpleDTO>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        public async Task<ActionResult<List<SapSimpleStep1Dto>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
         {
             if (!ModelState.IsValid)
             {
@@ -154,7 +159,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapSimpleDTO>>> DeleteSapSimple(int id)
+        public async Task<ActionResult<List<SapSimpleStep1Dto>>> DeleteSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
 
@@ -169,5 +174,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return NoContent();
 
         }
+        private
     }
 }
