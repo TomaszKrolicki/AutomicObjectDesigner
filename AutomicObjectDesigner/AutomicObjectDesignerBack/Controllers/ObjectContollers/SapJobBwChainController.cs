@@ -1,4 +1,5 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Models.Update;
@@ -43,7 +44,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapJobBwChain/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain([FromBody] SapJobBwChain SapJobBwChain)
+        public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain([FromBody] SapJobBwChainStep1Dto SapJobBwChainStep1Dto)
         {
 
             if (!ModelState.IsValid)
@@ -53,23 +54,14 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             var sapJobBwChain = new SapJobBwChain
             {
-                SapSid = SapJobBwChain.SapSid,
-                SapClient = SapJobBwChain.SapClient,
-                Kette = SapJobBwChain.Kette,
-                SapJobName = SapJobBwChain.SapJobName,
-                DeleteSapJob = SapJobBwChain.DeleteSapJob,
-                Agent = SapJobBwChain.Agent,
-                Active = SapJobBwChain.Active,
-                RoutineJob = SapJobBwChain.RoutineJob,
-                Folder = SapJobBwChain.Folder,
-                Login = SapJobBwChain.Login,
-                Queue = SapJobBwChain.Queue,
-                MaxParallelTasks = SapJobBwChain.MaxParallelTasks,
-                OwnerId = SapJobBwChain.OwnerId,
-                Process = SapJobBwChain.Process,
-                ProcessName = SapJobBwChain.ProcessName,
-                PreProcess = SapJobBwChain.PreProcess,
-                PostProcess = SapJobBwChain.PostProcess
+                SapSid = SapJobBwChainStep1Dto.SapSid,
+                SapClient = SapJobBwChainStep1Dto.SapClient,
+                SapJobName = SapJobBwChainStep1Dto.SapJobName,
+                DeleteSapJob = SapJobBwChainStep1Dto.DeleteSapJob,
+                RoutineJob = SapJobBwChainStep1Dto.RoutineJob,
+                ProcessName = SapJobBwChainStep1Dto.ProcessName,
+                Kette = Converter.TextKetteConverter(SapJobBwChainStep1Dto.Kette),
+                ObjectName = 
             };
 
             

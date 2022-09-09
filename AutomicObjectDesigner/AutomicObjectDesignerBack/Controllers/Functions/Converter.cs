@@ -5,8 +5,8 @@ namespace AutomicObjectDesignerBack.Controllers.Functions;
 
 public class Converter
 {
-
-    public string TextKetteConverter(string text)
+    public string text { get; set; }
+    public static string TextKetteConverter(string text)
     {
         Regex reg = new Regex("[!\"#$%&'()*+,./:;<=>?@^`{|}~]");
         text = reg.Replace(text, "-");
@@ -14,25 +14,33 @@ public class Converter
         return text;
     }
 
-    public string ConvertText(Regex reg, string text, string replacmentSign)
+    public static string ConvertText(Regex reg, string text, string replacmentSign)
     {
         text = reg.Replace(text, replacmentSign);
 
         return text;
     }
 
-    public string TextReportConverter(string text)
+    public static string TextReportConverter(string text)
     {
         Regex reg = new Regex("[!\"%&'()*+,./:;<=>?^`{|}~]");
         text = reg.Replace(text, "-");
 
         return text;
     }
-    public string TextVariantConverter(string text)
+    public static string TextVariantConverter(string text)
     {
         Regex reg = new Regex("[!\"#$%&'()*+_,./:;<=>?@^`{|}~]");
         text = reg.Replace(text, "-");
 
         return text;
+    }
+
+    //TODO: Need to check if this works
+    public static string DocumentationSplitNewLine(string text)
+    {
+        int maxLineLenght = 254;
+        return String.Concat(text.Select((c, i) => i > 0 && (i % maxLineLenght) == 0 ? c.ToString() + Environment.NewLine : c.ToString()));
+
     }
 }
