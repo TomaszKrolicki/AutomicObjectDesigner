@@ -6,11 +6,11 @@ namespace AutomicObjectDesignerBack.Repository;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
-    public AppDatabaseContext _databaseContext { get; set; }
+    public AppDatabaseContext _context { get; set; }
 
     public RepositoryBase(AppDatabaseContext databaseContext)
     {
-        _databaseContext = databaseContext;
+        _context = databaseContext;
     }
     public IQueryable<T> GetAll()
     {
