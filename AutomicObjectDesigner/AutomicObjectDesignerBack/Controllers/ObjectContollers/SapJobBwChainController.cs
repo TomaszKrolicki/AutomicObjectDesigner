@@ -2,6 +2,7 @@
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Models.Update;
+using AutomicObjectDesignerBack.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +13,13 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class SapJobBwChainController : ControllerBase
     {
         public readonly AppDatabaseContext _context;
+        private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
+        private readonly ILogger<SapJobBwChainController> _logger;
 
-        public SapJobBwChainController(AppDatabaseContext context)
+        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]

@@ -29,6 +29,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDatabaseContext>(opt
     => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
 builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
+builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
 
 //CORS
 builder.Services.AddCors(options =>

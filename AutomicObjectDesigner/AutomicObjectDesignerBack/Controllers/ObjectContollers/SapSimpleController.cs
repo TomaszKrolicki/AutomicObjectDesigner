@@ -17,7 +17,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         private readonly ILogger<SapSimpleController> _logger;
 
 
-        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository)
+        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository, ILogger<SapSimpleController> logger)
         {
             _context = context;
             _sapSimpleRepository = sapSimpleRepository;
