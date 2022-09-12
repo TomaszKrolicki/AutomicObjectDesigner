@@ -39,9 +39,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             throw new NotImplementedException();
         }
 
-        //POST https://localhost:7017/api/SapJobBwChain/create
+        //POST https://localhost:7017/api/SapJobBwChain/1
         [HttpPost]
-        [Route("create")]
+        [Route("1")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain([FromBody] SapJobBwChainStep1Dto SapJobBwChainStep1Dto)
         {
 
