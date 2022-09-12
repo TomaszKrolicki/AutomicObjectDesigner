@@ -16,13 +16,9 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string ObjectName { get; set; }
         public string SapReport { get; set; }
         public string SapVariant { get; set; }
-        //// step 2
-
-
-        //public string? Kette1 { get; set; }
 
         ////step 3
-        //public string? Docu1 { get; set; }
+        public string? Docu { get; set; }
 
         ////step 4
         //public string? Title1 { get; set; }
