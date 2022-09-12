@@ -3,6 +3,7 @@ using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models;
 using AutomicObjectDesignerBack.Models.Update;
+using AutomicObjectDesignerBack.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,15 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     public class SapSimpleController : ControllerBase
     {
         public readonly AppDatabaseContext _context;
+        private readonly ISapSimpleRepository _sapSimpleRepository;
+        private readonly ILogger<SapSimpleController> _logger;
 
-        public SapSimpleController(AppDatabaseContext context)
+
+        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository, ILogger<SapSimpleController> logger)
         {
             _context = context;
+            _sapSimpleRepository = sapSimpleRepository;
+            this._logger = logger;
         }
 
         //GET https://localhost:7017/api/SapSimple
@@ -25,7 +31,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet]
         public async Task<ActionResult<List<SapSimpleStep1Dto>>> GetSapSimple()
         {
-            var sapSimple = await _context.SapSimple.ToListAsync();
+            // var sapSimple = await _context.SapSimple.ToListAsync();
+            var sapSimple =  _sapSimpleRepository.GetAll();
+            _logger.LogInformation("GetSapSimple called...");
+
+            //var sapSimple = await _context.SapSimple.ToListAsync();
 
             return Ok(sapSimple);
         }
@@ -35,6 +45,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         public async Task<ActionResult<SapSimpleStep1Dto>> GetSapSimple(int id)
         {
             var sapSimple = await _context.SapSimple.FindAsync(id);
+            
 
             if (sapSimple == null)
             {
