@@ -139,9 +139,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             //DataService.Current.SapSimples.Add(sapSimple);
 
-            
-            _context.SapSimple.Add(sapSimple);
-            await _context.SaveChangesAsync();
+            _sapSimpleRepository.Create(sapSimple);
+            await _sapSimpleRepository.Save();
+            // _context.SapSimple.Add(sapSimple);
+            // await _context.SaveChangesAsync();
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }

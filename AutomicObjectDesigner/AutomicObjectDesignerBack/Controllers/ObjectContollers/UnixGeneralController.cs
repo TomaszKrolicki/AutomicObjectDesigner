@@ -86,8 +86,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<UnixGeneralDto>>> UpdateUnixGeneral([FromBody] UpdateUnixGeneral updateUnixGeneral)
+        public async Task<ActionResult<List<UnixGeneralDto>>> UpdateUnixGeneral([FromBody] UnixGeneral updateUnixGeneral)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -137,4 +138,5 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         }
     }
+
 }

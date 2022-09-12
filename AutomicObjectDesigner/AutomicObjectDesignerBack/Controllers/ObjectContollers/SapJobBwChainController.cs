@@ -24,22 +24,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _logger = logger;
         }
 
-        [HttpGet]
-        //GET https://localhost:7017/api/SapJobBwChain
-        // pobranie danych uzytkownika + validacja
-        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
-        {
-            throw new NotImplementedException();
-
-        }
-
-        [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
-        //GET https://localhost:7017/api/SapJobBwChain/
-        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         //POST https://localhost:7017/api/SapJobBwChain/1
         [HttpPost]
         [Route("1")]
@@ -65,9 +49,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 ObjectName = $"<{SapJobBwChainStep1Dto.SapSid}>.<{SapJobBwChainStep1Dto.SapClient}>#<{SapJobBwChainStep1Dto.RoutineJob}>#<{SapJobBwChainStep1Dto.ProcessName}>#<{SapJobBwChainStep1Dto.SapReport}>" +
                              $"$<{SapJobBwChainStep1Dto.SapVariant}>.JOBS"
             };
-
-
-            throw new NotImplementedException();
+            _sapJobBwChainRepository.Create(sapJobBwChain);
+            await _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
@@ -80,6 +63,17 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return NoContent();
 
+        }
+
+        //Get https://localhost:7017/api/SapJobBwChain/1
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
+        {
+            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
+
+            var SapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+
+            return Ok(SapJobBwChain);
         }
     }
 }

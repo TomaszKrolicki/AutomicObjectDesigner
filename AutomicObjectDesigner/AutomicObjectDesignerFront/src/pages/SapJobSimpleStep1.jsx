@@ -54,7 +54,7 @@ export const SapJobSimpleStep1 = () => {
         } catch (error) {
           console.log(error)
         }
-        window.location.href = '/SapJobSimpleStep2';
+        window.location.href = '/SapJobSimple/2';
         }
 
     

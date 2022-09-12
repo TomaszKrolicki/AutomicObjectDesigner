@@ -27,7 +27,9 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<AppDatabaseContext>(opt
-    => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
+    => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection"))
+        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+    .EnableSensitiveDataLogging()); ;
 builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
 builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
 
@@ -38,7 +40,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins("https://localhost:3000",
-                "https://localhost:3001", "https://localhost:7017"
+                "https://localhost:3001"
                 ).AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
         });
 });

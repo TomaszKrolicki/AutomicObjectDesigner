@@ -11,24 +11,18 @@ export const SapJobBWStep1 = () => {
     {
         SapSid: "", 
         SapClient: "", 
-        SapKette: "", 
+        Kette: "", 
         RoutineJob: false,
         ProcessName: "",
         SapJobName: "",
         DeleteSapJob: false,
-        Folder: null,
-        Active: null,
-        MaxParallelTasks: null,
-        Process: null,
-        PreProcess: null,
-        PostProcess: null,
-        Queue: null,
-        Agent: null
+        SapReport: "",
+        SapVariant: ""
     }
     )
 
     function handleChange(event) {
-      // console.log(event)
+      console.log(event)
       const {name, value, type, checked} = event.target
       setFormData(prevFormData => {
           return {
@@ -42,7 +36,7 @@ export const SapJobBWStep1 = () => {
         event.preventDefault()
         try {
           console.log(formData)
-        await fetch('https://localhost:7017/api/SapSimple/create', {
+        await fetch('https://localhost:7017/api/SapJobBwChain/1', {
           method: 'post',
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify(formData)
@@ -50,7 +44,7 @@ export const SapJobBWStep1 = () => {
         } catch (error) {
           console.log(error)
         }
-        window.location.href = '/SapJobSimpleStep2';
+        window.location.href = '/SAPJobBW/2';
         }
 
   return (
@@ -73,6 +67,11 @@ export const SapJobBWStep1 = () => {
         <label htmlFor="SapKette" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Kette</label>
               <textarea id="SapKette" onChange={handleChange} value={formData.SapKette} name='SapKette' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
         <div className="flex items-center mb-4">
+        <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
+              <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
+        <label htmlFor="SapVariant" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Variant</label>
+        <textarea id="SapVariant" onChange={handleChange} value={formData.SapVariant} name='SapVariant' rows="4" className={cssStyle} placeholder="SAP Variant..."></textarea>
+        
           <input id="RoutineJob" onChange={handleChange} value={formData.routine_job} name='RoutineJob' type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
           <label htmlFor="RoutineJob" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">Routine Job</label>
         </div>
