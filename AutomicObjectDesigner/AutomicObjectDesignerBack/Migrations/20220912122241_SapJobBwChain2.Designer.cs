@@ -4,6 +4,7 @@ using AutomicObjectDesignerBack.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    partial class AppDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220912122241_SapJobBwChain2")]
+    partial class SapJobBwChain2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,9 +104,6 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.Property<bool?>("DeleteSapJob")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Documentation")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
                         .HasMaxLength(256)

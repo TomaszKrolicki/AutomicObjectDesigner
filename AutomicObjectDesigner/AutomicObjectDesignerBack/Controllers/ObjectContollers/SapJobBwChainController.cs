@@ -2,6 +2,7 @@
 using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
+using AutomicObjectDesignerBack.Models.Objects.Dto;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Repository.Implementations;
@@ -23,25 +24,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _logger = logger;
         }
 
-        [HttpGet]
-        //GET https://localhost:7017/api/SapJobBwChain
-        // pobranie danych uzytkownika + validacja
-        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
-        {
-            throw new NotImplementedException();
-
-        }
-
-        [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
-        //GET https://localhost:7017/api/SapJobBwChain/
-        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        //POST https://localhost:7017/api/SapJobBwChain/create
+        //POST https://localhost:7017/api/SapJobBwChain/1
         [HttpPost]
-        [Route("create")]
+        [Route("1")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain([FromBody] SapJobBwChainStep1Dto SapJobBwChainStep1Dto)
         {
 
@@ -64,9 +49,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 ObjectName = $"<{SapJobBwChainStep1Dto.SapSid}>.<{SapJobBwChainStep1Dto.SapClient}>#<{SapJobBwChainStep1Dto.RoutineJob}>#<{SapJobBwChainStep1Dto.ProcessName}>#<{SapJobBwChainStep1Dto.SapReport}>" +
                              $"$<{SapJobBwChainStep1Dto.SapVariant}>.JOBS"
             };
-
-
-            throw new NotImplementedException();
+            _sapJobBwChainRepository.Create(sapJobBwChain);
+            await _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
@@ -74,11 +58,22 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
         {
-            
+
             throw new NotImplementedException();
 
             return NoContent();
 
+        }
+
+        //Get https://localhost:7017/api/SapJobBwChain/1
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
+        {
+            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
+
+            var SapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+
+            return Ok(SapJobBwChain);
         }
     }
 }
