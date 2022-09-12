@@ -29,7 +29,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //GET https://localhost:7017/api/SapSimple
         // pobranie danych uzytkownika + validacja
         [HttpGet]
-        public async Task<ActionResult<List<SapSimpleStep1Dto>>> GetSapSimple()
+        public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
         {
             // var sapSimple = await _context.SapSimple.ToListAsync();
             var sapSimple =  _sapSimpleRepository.GetAll();
@@ -39,6 +39,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return Ok(sapSimple);
         }
+
 
         //GET https://localhost:7017/api/SapSimple/
         [HttpGet("{id:int}", Name = "GetSapSimple")]
@@ -84,9 +85,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //    return Ok(sapSimple);
         //}
 
-        //POST https://localhost:7017/api/SapSimple/create
+        //POST https://localhost:7017/api/SapSimple/1
         [HttpPost]
-        [Route("create")]
+        [Route("1")]
         public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep1Dto SapSimpleStep1Dto)
         {
 
@@ -108,34 +109,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 $"$<{SapSimpleStep1Dto.SapVariant}>.JOBS ",
                 SapJobName = SapSimpleStep1Dto.SapJobName,
                 
-
-
-
-                //SapSid = SapSimple.SapSid,
-                //SapClient = SapSimple.SapClient,
-                //SapReport = SapSimple.SapReport,
-                //SapJobName = SapSimple.SapJobName,
-                //SapVariant = SapSimple.SapVariant,
-                ////Agent = SapSimple.Agent,
-                ////Active = SapSimple.Active,
-                //RoutineJob = SapSimple.RoutineJob,
-                //DeleteSapJob = SapSimple.DeleteSapJob,
-                ////Folder = SapSimple.Folder,
-                ////Login = SapSimple.Login,
-                ////Queue = SapSimple.Queue,
-                ////MaxParallelTasks = SapSimple.MaxParallelTasks,
-                ////OwnerId = SapSimple.OwnerId,
-                ////Process = SapSimple.Process,
-                //ProcessName = SapSimple.ProcessName,
-                ////PreProcess = SapSimple.PreProcess,
-                ////PostProcess = SapSimple.PostProcess
-                //SapReport1 = SapSimple.SapReport1,
-
-                //SapVariant1 = SapSimple.SapVariant1,
-                //ObjectName = $"<{SapSimple.SapSid}>.<{SapSimple.SapClient}>#<{SapSimple.RoutineJob}>#<{SapSimple.ProcessName}>#<{SapSimple.SapReport}>" +
-                //             $"$<{SapSimple.SapVariant}>.JOBS "
-
-
             };
 
 
@@ -148,27 +121,30 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }
-        ////POST https://localhost:7017/api/SapSimple/create
+        ////POST https://localhost:7017/api/SapSimple/2
         //[HttpPost]
-        //[Route("create")]
-        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto)
+        //[Route("2/{int:id}")]
+        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto,int id)
         //{
-
+             
         //    if (!ModelState.IsValid)
         //    {
         //        return BadRequest(ModelState);
         //    }
 
-        //    var sapSimple = new SapSimple
+        //    var sapSimple = new SapSimple()
+        //    //var sapSimple =  await _context.SapSimple.FindAsync()
         //    {
         //        ObjectName = SapSimpleStep2Dto.ObjectName,
         //        SapReport1 = SapSimpleStep2Dto.SapReport1,
-        //        SapVariant1 = SapSimpleStep2Dto.SapVariant1
-
+        //        SapVariant1 = SapSimpleStep2Dto.SapVariant1,
+        //        Id = id
         //    };
 
-        //    _context.SapSimple.Add(sapSimple);
-        //    await _context.SaveChangesAsync();
+        //    _sapSimpleRepository.Update(sapSimple);
+        //    _sapSimpleRepository.Save();
+        //    //_context.SapSimple.Add(sapSimple);
+        //    //await _context.SaveChangesAsync();
 
         //    return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         //}
