@@ -17,13 +17,21 @@ public class SapJobBwChainStep1Dto
 
 public class SapJobBwChainStep2Dto
 {
+    public string? ObjectName { get; set; }
+    public string? Kette { get; set; }
+    public string? SapReport { get; set; }
+    public string? SapVariant { get; set; }
 
 }
 public class SapJobBwChainStep3Dto
 {
-    public string Documentation { get; set; }
+    public string? Documentation { get; set; }
 }
 public class SapJobBwChainStep4Dto
 {
-
+    public string? Title { get; set; }
+    public string? Archive1 { get; set; }
+    public string? Archive2 { get; set; }
+    public string? InternalAccount { get; set; }
+    public string? Folder { get; set; }
 }
