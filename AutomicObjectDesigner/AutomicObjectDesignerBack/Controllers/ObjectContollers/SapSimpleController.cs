@@ -1,11 +1,11 @@
-﻿using System.Security.AccessControl;
-using AutomicObjectDesigner.Models.Objects;
+﻿using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
-using AutomicObjectDesignerBack.Models;
+using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
@@ -87,7 +87,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //POST https://localhost:7017/api/SapSimple/create
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<List<SapSimpleStep1Dto>>> CreateSapSimple([FromBody] SapSimpleStep1Dto SapSimple)
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep1Dto SapSimpleStep1Dto)
         {
 
             if (!ModelState.IsValid)
@@ -97,29 +97,41 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             var sapSimple = new SapSimple
             {
-                SapSid = SapSimple.SapSid,
-                SapClient = SapSimple.SapClient,
-                SapReport = SapSimple.SapReport,
-                SapJobName = SapSimple.SapJobName,
-                SapVariant = SapSimple.SapVariant,
-                //Agent = SapSimple.Agent,
-                //Active = SapSimple.Active,
-                RoutineJob = SapSimple.RoutineJob,
-                DeleteSapJob = SapSimple.DeleteSapJob,
-                //Folder = SapSimple.Folder,
-                //Login = SapSimple.Login,
-                //Queue = SapSimple.Queue,
-                //MaxParallelTasks = SapSimple.MaxParallelTasks,
-                //OwnerId = SapSimple.OwnerId,
-                //Process = SapSimple.Process,
-                ProcessName = SapSimple.ProcessName,
-                //PreProcess = SapSimple.PreProcess,
-                //PostProcess = SapSimple.PostProcess
-                SapReport1 = SapSimple.SapReport1,
-                
-                SapVariant1 = SapSimple.SapVariant1,
-                ObjectName = $"<{SapSimple.SapSid}>.<{SapSimple.SapClient}>#<{SapSimple.RoutineJob}>#<{SapSimple.ProcessName}>#<{SapSimple.SapReport}>" +
-                             $"$<{SapSimple.SapVariant}>.JOBS "
+                SapSid = SapSimpleStep1Dto.SapSid,
+                SapClient = SapSimpleStep1Dto.SapClient,
+                SapReport = Converter.TextReportConverter(SapSimpleStep1Dto.SapReport),
+                SapVariant = Converter.TextVariantConverter(SapSimpleStep1Dto.SapVariant),
+                RoutineJob = SapSimpleStep1Dto.RoutineJob,
+                DeleteSapJob = SapSimpleStep1Dto.DeleteSapJob,
+                ProcessName = SapSimpleStep1Dto.ProcessName,
+                ObjectName = $"<{SapSimpleStep1Dto.SapSid}>.<{SapSimpleStep1Dto.SapClient}>#<{SapSimpleStep1Dto.RoutineJob}>#<{SapSimpleStep1Dto.ProcessName}>#<{SapSimpleStep1Dto.SapReport}>" +
+                $"$<{SapSimpleStep1Dto.SapVariant}>.JOBS "
+
+
+
+                //SapSid = SapSimple.SapSid,
+                //SapClient = SapSimple.SapClient,
+                //SapReport = SapSimple.SapReport,
+                //SapJobName = SapSimple.SapJobName,
+                //SapVariant = SapSimple.SapVariant,
+                ////Agent = SapSimple.Agent,
+                ////Active = SapSimple.Active,
+                //RoutineJob = SapSimple.RoutineJob,
+                //DeleteSapJob = SapSimple.DeleteSapJob,
+                ////Folder = SapSimple.Folder,
+                ////Login = SapSimple.Login,
+                ////Queue = SapSimple.Queue,
+                ////MaxParallelTasks = SapSimple.MaxParallelTasks,
+                ////OwnerId = SapSimple.OwnerId,
+                ////Process = SapSimple.Process,
+                //ProcessName = SapSimple.ProcessName,
+                ////PreProcess = SapSimple.PreProcess,
+                ////PostProcess = SapSimple.PostProcess
+                //SapReport1 = SapSimple.SapReport1,
+
+                //SapVariant1 = SapSimple.SapVariant1,
+                //ObjectName = $"<{SapSimple.SapSid}>.<{SapSimple.SapClient}>#<{SapSimple.RoutineJob}>#<{SapSimple.ProcessName}>#<{SapSimple.SapReport}>" +
+                //             $"$<{SapSimple.SapVariant}>.JOBS "
 
 
             };
@@ -163,6 +175,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
             sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
             sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
+
 
             await _context.SaveChangesAsync();
 

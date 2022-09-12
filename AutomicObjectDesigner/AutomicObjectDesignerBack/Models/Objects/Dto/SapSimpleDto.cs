@@ -16,17 +16,17 @@ public class SapSimpleStep1Dto
     public bool DeleteSapJob { get; set; }
 }
 
-public class SapSimmpleStep2Dto
+public class SapSimpleStep2Dto
 {
 
 }
 
-public class SapSimmpleStep3Dto
+public class SapSimpleStep3Dto
 {
     public string Documentation { get; set; }
 }
 
-public class SapSimmpleStep4Dto
+public class SapSimpleStep4Dto
 {
 
 }
