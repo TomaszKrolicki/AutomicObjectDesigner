@@ -58,8 +58,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
         {
+            var sapObject = new SapJobBwChain(){Id = id};
 
-            throw new NotImplementedException();
+            _sapJobBwChainRepository.Delete(sapObject);
+
+            _sapJobBwChainRepository.Save();
 
             return NoContent();
 
