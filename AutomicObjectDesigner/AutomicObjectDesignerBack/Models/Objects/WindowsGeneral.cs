@@ -6,39 +6,15 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         //Entry sequence:
         // step 1
-
-        public enum WinServer
-        {
-            number,
-            number1,
-            number2
-        }
-        public enum WinLogin
-        {
-            number,
-            number1,
-            number2
-        }
-
-
-        public enum SapSid
-        {
-            number,
-            number1,
-            number2
-        }
-        public enum SapClient
-        {
-            number,
-            number1,
-            number2
-        }
+        public string WinServer { get; set; }
+        public string WinLogin { get; set; }
+        public string SapSid { get; set; }
+        public string SapClient { get; set; }
         public string? SapReport { get; set; }
-
         public bool RoutineJob { get; set; }
         public string? PorcessName { get; set; }
         public string? NameSuffix { get; set; }
-
+        public bool? DeleteSapJob { get; set; }
 
         // step 2
 

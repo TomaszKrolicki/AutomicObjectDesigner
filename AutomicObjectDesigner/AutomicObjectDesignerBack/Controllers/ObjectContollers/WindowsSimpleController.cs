@@ -1,5 +1,6 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Models.Objects.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,14 +21,14 @@ public class WindowsSimpleController : Controller
 
     //Get https://localhost:7017/api/WindowsSimple
     [HttpGet]
-    public async Task<ActionResult<List<WindowsSimple>>> Get()
+    public async Task<ActionResult<List<WindowsSimpleDto>>> Get()
     {
         return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<WindowsSimple>> GetOneWindowsSimple(int id)
+    public async Task<ActionResult<WindowsSimpleDto>> GetOneWindowsSimple(int id)
     {
         var windowsSimple = await _Context.WindowsSimple.FindAsync(id);
         if (windowsSimple == null)
@@ -37,24 +38,24 @@ public class WindowsSimpleController : Controller
 
 
     [HttpPost]
-    public async Task<ActionResult<List<WindowsSimple>>> CreateWindowsSimple(WindowsSimple windowsSimple)
+    public async Task<ActionResult<List<WindowsSimpleDto>>> CreateWindowsSimple(WindowsSimpleDto WindowsSimple)
     {
-        //var maxId = DataWindowsSimple.Current.WindowsSimple.Max(c => c.Id);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        //var createWindowsSimple = new WindowsSimple
-        //{
-        //    Id = maxId + 1,
-        //    ProcessName = "",
-        //    NameSuffix = "",
-        //    ObjectName = "",
-        //    ProcessInfo = "",
-        //    Docu = "",
-        //    Title = "",
-        //    Archive1 = "",
-        //    Archive2 = "",
-        //    InternalAccount = "",
-        //    Floder = "",
-        //};
+        var windowsSimple = new WindowsSimple
+        {
+            WinServer = WindowsSimple.WinServer,
+            WinLogin = WindowsSimple.WinLogin,
+            SapSid = WindowsSimple.SapSid,
+            SapClient = WindowsSimple.SapClient,
+            RoutineJob = WindowsSimple.RoutineJob,
+            ProcessName = WindowsSimple.ProcessName,
+            NameSuffix = WindowsSimple.NameSuffix,
+            DeleteSapJob = WindowsSimple.DeleteSapJob
+        };
 
         _Context.WindowsSimple.Add(windowsSimple);
         await _Context.SaveChangesAsync();
@@ -64,28 +65,35 @@ public class WindowsSimpleController : Controller
 
 
     [HttpPut]
-    public async Task<ActionResult<List<WindowsSimple>>> UpdateWindowsSimple(WindowsSimple newWindowsSimple)
+    public async Task<ActionResult<List<WindowsSimpleDto>>> UpdateWindowsSimple(WindowsSimple updateWindowsSimple)
     {
-        var DBwindowsSimple = await _Context.WindowsSimple.FindAsync(newWindowsSimple.Id);
-        if (DBwindowsSimple == null)
-            return BadRequest("WindowsSimple not found");
-        DBwindowsSimple.ProcessName = newWindowsSimple.ProcessName;
-        DBwindowsSimple.NameSuffix = newWindowsSimple.NameSuffix;
-        DBwindowsSimple.ObjectName = newWindowsSimple.ObjectName;
-        DBwindowsSimple.ProcessInfo = newWindowsSimple.ProcessInfo;
-        DBwindowsSimple.Docu = newWindowsSimple.Docu;
-        DBwindowsSimple.Title = newWindowsSimple.Title;
-        DBwindowsSimple.Archive1 = newWindowsSimple.Archive1;
-        DBwindowsSimple.Archive2 = newWindowsSimple.Archive2;
-        DBwindowsSimple.InternalAccount = newWindowsSimple.InternalAccount;
-        DBwindowsSimple.Floder = newWindowsSimple.Floder;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        var windowsSimple = await _Context.WindowsSimple.FindAsync(updateWindowsSimple.Id);
+
+        if (windowsSimple == null)
+        {
+            return NotFound();
+        }
+
+        windowsSimple.WinServer = updateWindowsSimple.WinServer;
+        windowsSimple.WinLogin = updateWindowsSimple.WinLogin;
+        windowsSimple.SapSid = updateWindowsSimple.SapSid;
+        windowsSimple.SapClient = updateWindowsSimple.SapClient;
+        windowsSimple.RoutineJob = updateWindowsSimple.RoutineJob;
+        windowsSimple.ProcessName = updateWindowsSimple.ProcessName;
+        windowsSimple.NameSuffix = updateWindowsSimple.NameSuffix;
+        windowsSimple.DeleteSapJob = updateWindowsSimple.DeleteSapJob;
+
         await _Context.SaveChangesAsync();
         return Ok(await _Context.WindowsSimple.ToListAsync());
     }
 
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<List<WindowsSimple>>> DeleteOneWindowsSimple(int id)
+    public async Task<ActionResult<List<WindowsSimpleDto>>> DeleteOneWindowsSimple(int id)
     {
         var DBwindowsSimple = await _Context.WindowsSimple.FindAsync(id);
         if (DBwindowsSimple == null)

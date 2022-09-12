@@ -2,6 +2,7 @@
 using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
+using AutomicObjectDesignerBack.Models.Objects.Dto;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Repository.Implementations;
@@ -26,15 +27,15 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet]
         //GET https://localhost:7017/api/SapJobBwChain
         // pobranie danych uzytkownika + validacja
-        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
+        public async Task<ActionResult<List<SapJobBWChainDto>>> GetSapJobBwChain()
         {
-            throw new NotImplementedException();
+            var sapJobBwChain = await _context.SapJobBwChains.ToListAsync();
 
         }
 
         [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
         //GET https://localhost:7017/api/SapJobBwChain/
-        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
+        public async Task<ActionResult<SapJobBWChainDto>> GetSapJobBwChain(int id)
         {
             throw new NotImplementedException();
         }
@@ -72,7 +73,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
+        public async Task<ActionResult<List<SapJobBWChainDto>>> DeleteSapJobBwChain(int id)
         {
             
             throw new NotImplementedException();
