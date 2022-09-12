@@ -18,6 +18,7 @@ public class SapSimple : Job
     public string ProcessName { get; set; }
     public string SapJobName { get; set; }
     public bool? DeleteSapJob { get; set; }
+    //public string ObjectName { get; set; }
 
     //public string GetRoutineJob()
     //{
@@ -43,8 +44,8 @@ public class SapSimple : Job
     public string SapReport1 { get; set; }
     public string SapVariant1 { get; set; }
 
-    ////step 3
-    //public string? Docu1 { get; set; }
+    //step 3
+    public string? Documentation { get; set; }
 
     ////step 4
     //public string? Title1 { get; set; }

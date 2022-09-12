@@ -4,7 +4,7 @@
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,13 +50,16 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Kette = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kette = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: false),
-                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeleteSapJob = table.Column<bool>(type: "bit", nullable: false),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
@@ -79,14 +82,15 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: true),
-                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeleteSapJob = table.Column<bool>(type: "bit", nullable: true),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
@@ -209,7 +213,7 @@ namespace AutomicObjectDesignerBack.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "IsAdministrator", "LastName", "Password", "UserName" },
-                values: new object[] { 100, "admin@gmail.com", "Admin", true, true, "Admin", "admin", "Admin" });
+                values: new object[] { 100, "admin@gmail.com", "Admin", true, true, "Admin", "Admin!11", "Admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
