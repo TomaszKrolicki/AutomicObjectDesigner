@@ -18,40 +18,16 @@ public class SapSimple : Job
     public string ProcessName { get; set; }
     public string SapJobName { get; set; }
     public bool? DeleteSapJob { get; set; }
-    //public string ObjectName { get; set; }
-
-    //public string GetRoutineJob()
-    //{
-    //    if (RoutineJob == true)
-    //        return "ZZZ";
-
-    //    return "E1E";
-    //}
-
-    //public string GetDeleteSapJob()
-    //{
-    //    if (DeleteSapJob == true)
-    //        return "";
-
-    //    return "X";
-    //}
-
-    //// step 2
-
-    //public string ObjectName => $"<{SapSid}>.<{SapClient}>#<{RoutineJob}>#<{ProcessName}>#<{SapReport}>" +
-    //                            $"$<{SapVariant}>.JOBS";
     public string ObjectName { get; set; }
-    public string SapReport1 { get; set; }
-    public string SapVariant1 { get; set; }
 
     //step 3
     public string? Documentation { get; set; }
 
     ////step 4
-    //public string? Title1 { get; set; }
-    //public string? Archive1 { get; set; }
-    //public string? Archive2 { get; set; }
-    //public string? InternalAccount1 { get; set; }
+    public string? Title1 { get; set; }
+    public string? Archive1 { get; set; }
+    public string? Archive2 { get; set; }
+    public string? InternalAccount1 { get; set; }
 
     ////outcome
     ////Fixed predefined fields:

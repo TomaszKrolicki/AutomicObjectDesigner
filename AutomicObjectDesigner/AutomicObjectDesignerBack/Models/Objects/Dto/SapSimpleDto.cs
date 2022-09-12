@@ -20,8 +20,8 @@ public class SapSimpleStep1Dto
 public class SapSimpleStep2Dto
 {
     public string ObjectName { get; set; }
-    public string SapReport1 { get; set; }
-    public string SapVariant1 { get; set; }
+    public string SapReport { get; set; }
+    public string SapVariant { get; set; }
 }
 
 public class SapSimpleStep3Dto
