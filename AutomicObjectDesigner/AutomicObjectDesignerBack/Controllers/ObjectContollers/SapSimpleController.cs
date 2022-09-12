@@ -198,6 +198,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return NoContent();
 
         }
-        private
+        
     }
 }
