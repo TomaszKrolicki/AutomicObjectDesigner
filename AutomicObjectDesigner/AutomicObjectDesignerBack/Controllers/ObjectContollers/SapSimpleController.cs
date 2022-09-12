@@ -104,8 +104,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 RoutineJob = SapSimpleStep1Dto.RoutineJob,
                 DeleteSapJob = SapSimpleStep1Dto.DeleteSapJob,
                 ProcessName = SapSimpleStep1Dto.ProcessName,
-                //ObjectName = $"<{SapSimpleStep1Dto.SapSid}>.<{SapSimpleStep1Dto.SapClient}>#<{SapSimpleStep1Dto.RoutineJob}>#<{SapSimpleStep1Dto.ProcessName}>#<{Converter.TextReportConverter(SapSimpleStep1Dto.SapReport)}>" +
-                //$"$<{SapSimpleStep1Dto.SapVariant}>.JOBS ",
+                ObjectName = $"<{SapSimpleStep1Dto.SapSid}>.<{SapSimpleStep1Dto.SapClient}>#<{SapSimpleStep1Dto.RoutineJob}>#<{SapSimpleStep1Dto.ProcessName}>#<{Converter.TextReportConverter(SapSimpleStep1Dto.SapReport)}>" +
+                $"$<{SapSimpleStep1Dto.SapVariant}>.JOBS ",
                 SapJobName = SapSimpleStep1Dto.SapJobName,
                 
 
@@ -147,52 +147,52 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }
-        //POST https://localhost:7017/api/SapSimple/create
-        [HttpPost]
-        [Route("create")]
-        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto)
-        {
+        ////POST https://localhost:7017/api/SapSimple/create
+        //[HttpPost]
+        //[Route("create")]
+        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto)
+        //{
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var sapSimple = new SapSimple
-            {
-                ObjectName = SapSimpleStep2Dto.ObjectName,
-                SapReport1 = SapSimpleStep2Dto.SapReport1,
-                SapVariant1 = SapSimpleStep2Dto.SapVariant1
+        //    var sapSimple = new SapSimple
+        //    {
+        //        ObjectName = SapSimpleStep2Dto.ObjectName,
+        //        SapReport1 = SapSimpleStep2Dto.SapReport1,
+        //        SapVariant1 = SapSimpleStep2Dto.SapVariant1
 
-            };
+        //    };
 
-            _context.SapSimple.Add(sapSimple);
-            await _context.SaveChangesAsync();
+        //    _context.SapSimple.Add(sapSimple);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
-        }
+        //    return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+        //}
 
-        //POST https://localhost:7017/api/SapSimple/create
-        [HttpPost]
-        [Route("create")]
-        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep3Dto SapSimpleStep3Dto)
-        {
+        ////POST https://localhost:7017/api/SapSimple/create
+        //[HttpPost]
+        //[Route("create")]
+        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep3Dto SapSimpleStep3Dto)
+        //{
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var sapSimple = new SapSimple
-            {
-                Documentation = SapSimpleStep3Dto.Documentation
-            };
+        //    var sapSimple = new SapSimple
+        //    {
+        //        Documentation = SapSimpleStep3Dto.Documentation
+        //    };
 
-            _context.SapSimple.Add(sapSimple);
-            await _context.SaveChangesAsync();
+        //    _context.SapSimple.Add(sapSimple);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
-        }
+        //    return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+        //}
 
 
 

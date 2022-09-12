@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220912080455_Initial")]
-    partial class Initial
+    [Migration("20220912122229_Initial0001")]
+    partial class Initial0001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,6 +105,9 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool?>("DeleteSapJob")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Documentation")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Folder")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -153,11 +156,19 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SapReport1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SapSid")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapVariant")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapVariant1")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
