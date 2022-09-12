@@ -14,30 +14,19 @@ public class SapSimpleStep1Dto
     public string ProcessName { get; set; }
     public string SapJobName { get; set; }
     public bool DeleteSapJob { get; set; }
-
-
-
 }
 
-public class SapSimpleStep2Dto : SapSimpleStep1Dto
-{
-
-    public string SapReport1 { get; set; }
-    public string SapVariant1 { get; set; }
-    public string ObjectName { get; set; }
-}
-
-public class SapSimpleStep3Dto
+public class SapSimmpleStep2Dto
 {
 
 }
 
-public class SapSimpleStep4Dto
+public class SapSimmpleStep3Dto
 {
-
+    public string Documentation { get; set; }
 }
 
-public class SapSimpleStep5Dto
+public class SapSimmpleStep4Dto
 {
 
 }
