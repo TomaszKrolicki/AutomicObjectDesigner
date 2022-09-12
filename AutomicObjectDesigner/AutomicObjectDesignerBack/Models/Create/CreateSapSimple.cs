@@ -9,6 +9,6 @@ namespace AutomicObjectDesignerBack.Models.Create
 {
     public class CreateSapSimple : SapSimple
     {
-
+        
     }
 }

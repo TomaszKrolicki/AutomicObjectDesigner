@@ -1,5 +1,7 @@
 using System.Configuration;
 using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
@@ -10,21 +12,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//// Add serilog
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddHttpLogging(httpLogging =>
-{
-    httpLogging.LoggingFields = HttpLoggingFields.All;
-});
-
 
 builder.Services.AddDbContext<AppDatabaseContext>(opt
     => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
+builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
+builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
 
-//CORS
+//CORS 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
@@ -46,10 +53,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+// CORS
 app.UseCors();
 
-app.UseHttpLogging();
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

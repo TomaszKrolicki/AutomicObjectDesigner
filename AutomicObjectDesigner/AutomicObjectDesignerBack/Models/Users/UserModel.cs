@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesigner.Models.Registration;
 
-public class User
+public class UserModel
 {
     [Key]
     public int Id { get; set; }
@@ -33,8 +33,6 @@ public class User
     [Required]
     [StringLength(32)]
     public string Password { get; set; }
-
-
     public bool HasEmailConfirmed { get; set; }
     public bool IsAdministrator { get; set; }
 

@@ -92,7 +92,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
-            var unixGeneral = await _context.UnixGeneral.FindAsync(updateUnixGeneral.Id);
+            //TODO:
+            var unixGeneral = await _context.UnixGeneral.FindAsync(updateUnixGeneral);
 
             if (unixGeneral == null)
             {
@@ -101,18 +102,18 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             unixGeneral.SapReport = updateUnixGeneral.SapReport;
             unixGeneral.UnixLogin = updateUnixGeneral.UnixLogin;
-            unixGeneral.UnixServer = updateUnixGeneral.UnixServer;
-            unixGeneral.Agent = updateUnixGeneral.Agent;
-            unixGeneral.Active = updateUnixGeneral.Active;
-            unixGeneral.Folder = updateUnixGeneral.Folder;
-            unixGeneral.Login = updateUnixGeneral.Login;
-            unixGeneral.Queue = updateUnixGeneral.Queue;
-            unixGeneral.MaxParallelTasks = updateUnixGeneral.MaxParallelTasks;
-            unixGeneral.OwnerId = updateUnixGeneral.OwnerId;
-            unixGeneral.Process = updateUnixGeneral.Process;
-            unixGeneral.ProcessName = updateUnixGeneral.ProcessName;
-            unixGeneral.PreProcess = updateUnixGeneral.PreProcess;
-            unixGeneral.PostProcess = updateUnixGeneral.PostProcess;
+            // unixGeneral.UnixServer = updateUnixGeneral.UnixServer;
+            // unixGeneral.Agent = updateUnixGeneral.Agent;
+            // unixGeneral.Active = updateUnixGeneral.Active;
+            // unixGeneral.Folder = updateUnixGeneral.Folder;
+            // unixGeneral.Login = updateUnixGeneral.Login;
+            // unixGeneral.Queue = updateUnixGeneral.Queue;
+            // unixGeneral.MaxParallelTasks = updateUnixGeneral.MaxParallelTasks;
+            // unixGeneral.OwnerId = updateUnixGeneral.OwnerId;
+            // unixGeneral.Process = updateUnixGeneral.Process;
+            // unixGeneral.ProcessName = updateUnixGeneral.ProcessName;
+            // unixGeneral.PreProcess = updateUnixGeneral.PreProcess;
+            // unixGeneral.PostProcess = updateUnixGeneral.PostProcess;
 
             await _context.SaveChangesAsync();
 

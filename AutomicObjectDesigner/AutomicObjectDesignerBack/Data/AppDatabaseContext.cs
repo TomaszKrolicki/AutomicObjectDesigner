@@ -1,5 +1,6 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesigner.Models.Registration;
+using AutomicObjectDesignerBack.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using AutomicObjectDesignerBack.Models.Objects;
@@ -12,7 +13,7 @@ namespace AutomicObjectDesignerBack.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
         public DbSet<FileTransfer> FileTransfers { get; set; }
         public DbSet<LinuxSimple> LinuxSimple { get; set; }
         public DbSet<SapSimple> SapSimple { get; set; }
@@ -25,80 +26,24 @@ namespace AutomicObjectDesignerBack.Data
         public async Task CreateSapSimple(SapSimple sapSimple)
         {
             SapSimple.AddAsync(sapSimple);
-
         }
 
         public async Task CreateUnixGeneral(UnixGeneral unixGeneral)
         {
             UnixGeneral.AddAsync(unixGeneral);
-
         }
 
         public async Task CreateSapJobBwChain(SapJobBwChain sapJobBwChain)
         {
             SapJobBwChains.AddAsync(sapJobBwChain);
-
         }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .ToTable("User");
-            modelBuilder.Entity<User>()
-                .Property(s => s.Id)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.FirstName)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.LastName)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.UserName)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.Email)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.Password)
-                .IsRequired(true);
-            modelBuilder.Entity<User>()
-                .Property(s => s.HasEmailConfirmed)
-                .IsRequired()
-                .HasDefaultValue(false);
-            modelBuilder.Entity<User>()
-                .Property(s => s.IsAdministrator)
-                .IsRequired()
-                .HasDefaultValue(false);
-
-            modelBuilder.Entity<User>()
-                .HasData(
-                    new User
-                    {
-                        Id = 1,
-                        FirstName = "John",
-                        LastName = "Doe",
-                        UserName = "12345",
-                        Email = "Johndoe@gmail.com",
-                        Password = "admin",
-                        HasEmailConfirmed = true,
-                        IsAdministrator = true
-
-                    },
-                    new User
-                    {
-                        Id = 2,
-                        FirstName = "Eva",
-                        LastName = "Doe",
-                        UserName = "34567",
-                        Email = "evathe2@gmail.com",
-                        Password = "haslo",
-                        HasEmailConfirmed = true,
-                        IsAdministrator = false
-
-                    }
-                );
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            
         }
         
 
