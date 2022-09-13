@@ -65,13 +65,12 @@ export const SapJobBWStep1 = () => {
           <option value={"Option4"}>Option4</option>
         </select>
         <label htmlFor="SapKette" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Kette</label>
-              <textarea id="SapKette" onChange={handleChange} value={formData.SapKette} name='SapKette' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
-        <div className="flex items-center mb-4">
+              <textarea id="SapKette" onChange={handleChange} value={formData.SapKette} name='SapKette' rows="3" className={cssStyle} placeholder="SAP Report..."></textarea>
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
-              <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
+              <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="3" className={cssStyle} placeholder="SAP Report..."></textarea>
         <label htmlFor="SapVariant" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Variant</label>
         <textarea id="SapVariant" onChange={handleChange} value={formData.SapVariant} name='SapVariant' rows="4" className={cssStyle} placeholder="SAP Variant..."></textarea>
-        
+        <div className="flex items-center mb-4">
           <input id="RoutineJob" onChange={handleChange} value={formData.routine_job} name='RoutineJob' type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
           <label htmlFor="RoutineJob" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">Routine Job</label>
         </div>
