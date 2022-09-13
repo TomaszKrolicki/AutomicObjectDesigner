@@ -121,33 +121,33 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
         }
-        ////POST https://localhost:7017/api/SapSimple/2
-        //[HttpPost]
-        //[Route("2/{int:id}")]
-        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto,int id)
-        //{
-             
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        //POST https://localhost:7017/api/SapSimple/2
+        [HttpPut]
+        [Route("2/{int:id}")]
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto, int id)
+        {
 
-        //    var sapSimple = new SapSimple()
-        //    //var sapSimple =  await _context.SapSimple.FindAsync()
-        //    {
-        //        ObjectName = SapSimpleStep2Dto.ObjectName,
-        //        SapReport1 = SapSimpleStep2Dto.SapReport1,
-        //        SapVariant1 = SapSimpleStep2Dto.SapVariant1,
-        //        Id = id
-        //    };
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    _sapSimpleRepository.Update(sapSimple);
-        //    _sapSimpleRepository.Save();
-        //    //_context.SapSimple.Add(sapSimple);
-        //    //await _context.SaveChangesAsync();
+            var sapSimple = new SapSimple()
+            //var sapSimple =  await _context.SapSimple.FindAsync()
+            {
+                ObjectName = SapSimpleStep2Dto.ObjectName,
+                SapReport = SapSimpleStep2Dto.SapReport,
+                SapVariant = SapSimpleStep2Dto.SapVariant,
+                Id = id
+            };
 
-        //    return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
-        //}
+            _sapSimpleRepository.Update(sapSimple);
+            _sapSimpleRepository.Save();
+            //_context.SapSimple.Add(sapSimple);
+            //await _context.SaveChangesAsync();
+
+            return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+        }
 
         ////POST https://localhost:7017/api/SapSimple/create
         //[HttpPost]
