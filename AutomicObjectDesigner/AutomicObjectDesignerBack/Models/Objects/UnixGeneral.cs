@@ -18,6 +18,7 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public bool RoutineJob { get; set; }
         public string? ProcessName { get; set; }
         public string? NameSuffix { get; set; }
+        public bool? DeleteSapJob { get; set; }
 
 
         //// step 2

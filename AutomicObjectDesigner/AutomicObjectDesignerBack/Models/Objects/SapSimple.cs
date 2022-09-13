@@ -9,21 +9,21 @@ public class SapSimple : Job
     //Entry sequence:
     // step 1
 
-    public string? SapClient { get; set; }
-    public string? SapSid { get; set; }
-    public string? SapReport { get; set; }
+    public string SapClient { get; set; }
+    public string SapSid { get; set; }
+    public string SapReport { get; set; }
 
-    public string? SapVariant { get; set; }
+    public string SapVariant { get; set; }
     public bool? RoutineJob { get; set; }
-    public string? ProcessName { get; set; }
-    public string? SapJobName { get; set; }
+    public string ProcessName { get; set; }
+    public string SapJobName { get; set; }
     public bool? DeleteSapJob { get; set; }
 
     //public string GetRoutineJob()
     //{
     //    if (RoutineJob == true)
     //        return "ZZZ";
-        
+
     //    return "E1E";
     //}
 
@@ -31,15 +31,17 @@ public class SapSimple : Job
     //{
     //    if (DeleteSapJob == true)
     //        return "";
-        
+
     //    return "X";
     //}
 
     //// step 2
 
-    //public string? ObjectName { get; set; }
-    //public string? SapReport2 { get; set; }
-    //public string? SapVariant1 { get; set; }
+    //public string ObjectName => $"<{SapSid}>.<{SapClient}>#<{RoutineJob}>#<{ProcessName}>#<{SapReport}>" +
+    //                            $"$<{SapVariant}>.JOBS";
+    public string ObjectName { get; set; }
+    public string SapReport1 { get; set; }
+    public string SapVariant1 { get; set; }
 
     ////step 3
     //public string? Docu1 { get; set; }

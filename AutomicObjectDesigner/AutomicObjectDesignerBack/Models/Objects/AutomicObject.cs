@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AutomicObjectDesigner.Models.Registration;
 using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesigner.Models.Objects;
@@ -11,6 +12,7 @@ public abstract class AutomicObject
     public int Id { get; set; }
 
     [Required]
+    [ForeignKey(nameof(UserModel.Id))]
     public int OwnerId { get; set; }
 
     [RegularExpression(@"[A-Z0-9,._$#]")]
@@ -26,4 +28,7 @@ public abstract class AutomicObject
     string VariableKey { get; set; }
 
     string VariableValue { get; set; }
+
+    // lepiej stworzyc string z informacja gdzie jestesmy. Może byc enum > kroki
+    string BuildStatus { get; set; }
 }

@@ -1,5 +1,7 @@
 using System.Configuration;
 using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
@@ -25,16 +27,20 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<AppDatabaseContext>(opt
-    => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection")));
+    => opt.UseSqlServer(builder.Configuration.GetConnectionString("AutomicObjectDesignerConnection"))
+        .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information)
+    .EnableSensitiveDataLogging()); ;
+builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
+builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
 
-//CORS
+//CORS 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
         policy =>
         {
             policy.WithOrigins("https://localhost:3000",
-                "https://localhost:3001", "https://localhost:7017"
+                "https://localhost:3001"
                 ).AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
         });
 });

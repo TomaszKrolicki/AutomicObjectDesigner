@@ -6,59 +6,42 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         // step 1
 
-        public string? SapClient { get; set; }
-        public string? SapSid { get; set; }
-        public string? Kette { get; set; }
+        public string SapClient { get; set; }
+        public string SapSid { get; set; }
+        public string Kette { get; set; }
         public bool RoutineJob { get; set; }
-        public string? ProcessName { get; set; }
-        public string? SapJobName { get; set; }
+        public string ProcessName { get; set; }
+        public string SapJobName { get; set; }
         public bool DeleteSapJob { get; set; }
-
-        //// step 2
-
-        //public string? ObjectName { get; set; }
-        //public string? Kette1 { get; set; }
+        public string ObjectName { get; set; }
+        public string SapReport { get; set; }
+        public string SapVariant { get; set; }
 
         ////step 3
-        //public string? Docu1 { get; set; }
+        public string? Docu { get; set; }
 
         ////step 4
-        //public string? Title1 { get; set; }
-        //public string? Archive1 { get; set; }
-        //public string? Archive2 { get; set; }
-        //public string? InternalAccount1 { get; set; }
+        public string? Title { get; set; }
+        public string? Archive1 { get; set; }
+        public string? Archive2 { get; set; }
+        public string? InternalAccount { get; set; }
+        public string? Folder { get; set; }
         //// <folder>
 
         ////outcome
         ////Fixed predefined fields:
 
-        //public string? Template { get; set; }
-        //public string? Process1 { get; set; }
-        //public string? PreProcess1 { get; set; }
-        //public string? PostProcess1 { get; set; }
+        public string Template = "JOBS.SAP_ABAP";
+        public string Process = "BW_ACTIVATE_CHAIN ID=&SAP_Kette#";
+        public string PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI\t";
+        public string PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI";
 
         ////Calculated fields:
-        //public string? Queue1 { get; set; }
-        //public string? Agent1 { get; set; }
-        //public string? Login1 { get; set; }
+        public string? Queue { get; set; }
+        public string? Agent { get; set; }
+        public string? Login { get; set; }
 
-        //// Multiline fields:
-        //public string? VariableKey { get; set; }
-        //public string? VariableValue { get; set; }
 
-        //public string? Docu { get; set; }
-
-        ////other fields
-
-        //public string Name { get; set; }
-        //public string Title { get; set; }
-
-        //public string JobName { get; set; }
-        //public bool NeverDeleteJob { get; set; }
-        //public string? ArchiveKey1 { get; set; }
-        //public string? ArchiveKey2 { get; set; }
-        //public string? InternalAccount { get; set; }
-        ////<folder>
 
     }
 }

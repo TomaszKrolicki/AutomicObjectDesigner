@@ -12,7 +12,7 @@ public class LoginController : Controller
 
     [HttpPost]
     [Route("Login")]
-    public string Login(User user)
+    public string Login(UserModel user)
     {
         return "";
     }
