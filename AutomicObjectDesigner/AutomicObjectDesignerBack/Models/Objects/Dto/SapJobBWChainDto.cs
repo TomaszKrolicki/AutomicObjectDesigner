@@ -11,7 +11,7 @@ public class SapJobBwChainStep1Dto
     public bool DeleteSapJob { get; set; }
     public string SapReport { get; set; }
 
-    public string SapVariant { get; set; }
+    public string? SapVariant { get; set; }
 }
 
 public class SapJobBwChainStep2Dto
