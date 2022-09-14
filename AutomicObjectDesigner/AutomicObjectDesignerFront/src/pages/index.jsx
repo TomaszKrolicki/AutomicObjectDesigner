@@ -11,8 +11,10 @@ export { UnixGeneral as UnixGeneral } from './UnixGeneral';
 export { FileTransferOne as FileTransferOne } from './FileTransferOne';
 export { FileTransferMany as FileTransferMany } from './FileTransferMany';
 export { BugReport as BugReport } from './BugReport';
-ś
+
 export { SapJobSimpleStep1 as SapJobSimpleStep1 } from './SapJobSimpleStep1';
 export { SapJobSimpleStep2 as SapJobSimpleStep2} from './SapJobSimpleStep2';
 export { SapJobSimpleStep3 as SapJobSimpleStep3} from './SapJobSimpleStep3';
 export { SapJobSimpleStep3 as SapJobSimpleStep4} from './SapJobSimpleStep4';
+
+export { NotFound as NotFound} from './NotFound';

@@ -25,9 +25,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _logger = logger;
         }
 
-        //POST https://localhost:7017/api/SapJobBwChain/1
-        [HttpPost(Name = "CreateSapJobBwChain/1")]
-        [Route("1")]
+        //POST https://localhost:7017/api/SapJobBwChain
+        [HttpPost(Name = "CreateSapJobBwChain/")]
+        [Route("")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain(
             [FromBody] SapJobBwChainStep1Dto SapJobBwChainStep1Dto)
         {
@@ -55,7 +55,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _sapJobBwChainRepository.Create(sapJobBwChain);
             await _sapJobBwChainRepository.Save();
 
-            return CreatedAtRoute("CreateSapJobBwChain/1", new { id = sapJobBwChain.Id }, sapJobBwChain);
+            return CreatedAtRoute(nameof(GetSapJobBwChain), new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
 
         [HttpDelete("{id}")]
@@ -72,7 +72,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         //Get https://localhost:7017/api/SapJobBwChain/1
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
         public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
         {
             _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");

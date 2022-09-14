@@ -1,5 +1,7 @@
+import { data } from 'autoprefixer';
 import React from 'react'
 import { Form, NavLink } from 'react-bootstrap';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const SapJobBWStep1 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -7,10 +9,11 @@ export const SapJobBWStep1 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
    
+
    const [formData, setFormData] = React.useState(
     {
-        SapSid: "", 
-        SapClient: "", 
+        SapSid: "Option2", 
+        SapClient: "Option2", 
         Kette: "", 
         RoutineJob: false,
         ProcessName: "",
@@ -32,20 +35,27 @@ export const SapJobBWStep1 = () => {
       })
     }
 
-    async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/SapJobBwChain/1', {
-          method: 'post',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
-        }
-        window.location.href = '/SAPJobBW/2';
-        }
+    let Navigate = useNavigate();
+  async function handleSubmit(event) {
+    event.preventDefault()
+    
+    try {
+      // console.log(formData)
+      await fetch('https://localhost:7017/api/SapJobBwChain', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      }).then((response) => {return response.json() }).then((data) => console.log(data)).catch((error) => { console.log("!ERROR! " + error) })
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+    const id = 38;
+    Navigate("/SAPJobBW/2", { state: id});
+    //window.location.href = '/SAPJobBW/2/';
+    //window.location.href =`/SAPJobBW/2/${id}`;
+    //TODO need a solution for passing id to the next page
+    // <Link to= state={/SAPJobBW/2/}></Link>
+  }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
