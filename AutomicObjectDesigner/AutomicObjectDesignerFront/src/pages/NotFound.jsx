@@ -8,7 +8,7 @@ export function NotFound (){
   useEffect(() => {
     setTimeout(() => {
       navigate("/")
-    }, 1500)
+    }, 1000)
   },[])
   return (
     <div> 
