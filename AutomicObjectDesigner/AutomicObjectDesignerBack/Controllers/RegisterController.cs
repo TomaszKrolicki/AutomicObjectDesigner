@@ -14,8 +14,8 @@ namespace AutomicObjectDesignerBack.Controllers;
 [ApiController]
 public class RegisterController : Controller
 {
-    SqlConnection conn = new SqlConnection(connectionString: "AutomicObjectDesignerConnection");
-    private SqlCommand cmd = null;
+    private readonly SqlConnection conn = new (connectionString: "AutomicObjectDesignerConnection");
+    private readonly SqlCommand cmd = null;
 
     //[HttpPost]
     //[Route("[controller]/Registration")
