@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
+    // https://localhost:7017/api/SapJobBwChain
+
     [ApiController]
     [Route("api/[controller]")]
     public class SapJobBwChainController : ControllerBase
@@ -25,9 +27,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _logger = logger;
         }
 
-        //POST https://localhost:7017/api/SapJobBwChain
-        [HttpPost(Name = "CreateSapJobBwChain/")]
-        [Route("")]
+        //POST https://localhost:7017/api/SapJobBwChain/step1
+        [HttpPost("step1", Name = "CreateSapJobBwChain_Step1")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChain(
             [FromBody] SapJobBwChainStep1Dto SapJobBwChainStep1Dto)
         {
@@ -55,10 +56,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _sapJobBwChainRepository.Create(sapJobBwChain);
             await _sapJobBwChainRepository.Save();
 
-            return CreatedAtRoute(nameof(GetSapJobBwChain), new { id = sapJobBwChain.Id }, sapJobBwChain);
+            return CreatedAtRoute("CreateSapJobBwChain_Step1", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
 
-        [HttpDelete("{id}", Name = "DeleteSapJobBwChain")]
+        // POST https://localhost:7017/api/SapJobBwChain/{id}
+        [HttpDelete("{id:int}", Name = "DeleteSapJobBwChain")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChainStep1(int id)
         {
             var sapObject = new SapJobBwChain() { Id = id };
@@ -70,8 +72,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return NoContent();
         }
 
-        //Get https://localhost:7017/api/SapJobBwChain/1
-        [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
+        //Get https://localhost:7017/api/SapJobBwChain/{id}
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
         {
             _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
@@ -81,8 +83,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(SapJobBwChain);
         }
 
-        [HttpPost(Name = "CreateSapJobBwChain/2")]
-        [Route("CreateSapJobBwChain/2")]
+        // https://localhost:7017/SapJobBwChain/step2
+        [HttpPost("step2", Name = "CreateSapJobBwChain_Step2")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep2(
             [FromBody] SapJobBwChainStep2Dto SapJobBwChainStep2Dto)
         {
@@ -90,10 +92,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
-        
+
             var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep2Dto.Id);
-        
-        
+
+
             var sapJob = new SapJobBwChainStep2Dto()
             {
                 SapReport = SapJobBwChainStep2Dto.SapReport,
@@ -101,17 +103,17 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Kette = SapJobBwChainStep2Dto.Kette,
                 ObjectName = SapJobBwChainStep2Dto.ObjectName
             };
-        
+
             throw new NotImplementedException();
             //_sapJobBwChainRepository.Update();
             //_sapJobBwChainRepository.Save();
-        
+
             //return CreatedAtRoute("CreateSapJobBwChain/2", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
-        
-        
-        [HttpPost(Name = "CreateSapJobBwChain/3")]
-        [Route("CreateSapJobBwChain/3")]
+
+
+        // https://localhost:7017/SapJobBwChain/step3
+        [HttpPost("step3", Name = "CreateSapJobBwChain_Step3")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep3(
             [FromBody] SapJobBwChainStep3Dto SapJobBwChainStep3Dto)
         {
@@ -119,24 +121,23 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
-        
+
             var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep3Dto.Id);
-        
-        
+
+
             var sapJob = new SapJobBwChainStep3Dto()
             {
                 Documentation = SapJobBwChainStep3Dto.Documentation
             };
-        
+
             throw new NotImplementedException();
             //_sapJobBwChainRepository.Update();
             //_sapJobBwChainRepository.Save();
-        
+
             //return CreatedAtRoute("CreateSapJobBwChain/3", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
-        
-        [HttpPost(Name = "CreateSapJobBwChain/4")]
-        [Route("CreateSapJobBwChain/4")]
+
+        [HttpPost("step4", Name = "CreateSapJobBwChain_Step4")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep4(
             [FromBody] SapJobBwChainStep4Dto SapJobBwChainStep4Dto)
         {
@@ -144,10 +145,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
-        
+
             var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep4Dto.Id);
-        
-        
+
+
             var sapJob = new SapJobBwChainStep4Dto()
             {
                 Archive1 = SapJobBwChainStep4Dto.Archive1,
@@ -156,11 +157,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 InternalAccount = SapJobBwChainStep4Dto.InternalAccount,
                 Title = SapJobBwChainStep4Dto.Title
             };
-        
+
             throw new NotImplementedException();
             //_sapJobBwChainRepository.Update();
             //_sapJobBwChainRepository.Save();
-        
+
             //return CreatedAtRoute("CreateSapJobBwChain/3", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
     }

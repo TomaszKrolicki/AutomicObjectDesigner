@@ -40,10 +40,10 @@ public class SapSimple : Job
     //public string ObjectName => $"<{SapSid}>.<{SapClient}>#<{RoutineJob}>#<{ProcessName}>#<{SapReport}>" +
     //                            $"$<{SapVariant}>.JOBS";
     public string ObjectName { get; set; }
-    public string SapReport1 { get; set; }
-    public string SapVariant1 { get; set; }
+    //public string SapReport1 { get; set; }
+    //public string SapVariant1 { get; set; }
 
-    ////step 3
+    //////step 3
     //public string? Docu1 { get; set; }
 
     ////step 4

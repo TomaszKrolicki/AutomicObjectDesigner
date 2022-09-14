@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220912155300_Initial")]
+    [Migration("20220914114330_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,7 +116,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ObjectName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerId")
@@ -132,7 +131,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProcessName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Queue")
@@ -142,31 +140,24 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SapClient")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapJobName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapReport")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapReport1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapVariant")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapVariant1")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -376,7 +367,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Kette")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
@@ -386,7 +376,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ObjectName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerId")
@@ -402,7 +391,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProcessName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Queue")
@@ -412,23 +400,18 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SapClient")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapJobName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapReport")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapVariant")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
