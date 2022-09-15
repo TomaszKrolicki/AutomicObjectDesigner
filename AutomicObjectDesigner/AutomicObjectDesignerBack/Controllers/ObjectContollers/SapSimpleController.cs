@@ -96,15 +96,21 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep2Dto.Id);
-            var sapJob = new SapSimpleStep2Dto()
-            {
-                SapReport = SapSimpleStep2Dto.SapReport,
-                SapVariant = SapSimpleStep2Dto.SapVariant,
-                ObjectName = SapSimpleStep2Dto.ObjectName
-            };
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep2Dto.Id).FirstOrDefault();
 
-            throw new NotImplementedException();
+            if (sapObject == null)
+            {
+                return NotFound();
+            }
+
+            sapObject.SapReport = SapSimpleStep2Dto.SapReport;
+            sapObject.SapVariant = SapSimpleStep2Dto.SapVariant;
+            sapObject.ObjectName = SapSimpleStep2Dto.ObjectName;
+
+            _sapSimpleRepository.Update(sapObject);
+            _sapSimpleRepository.Save();
+
+            return CreatedAtRoute("CreateSapSimple_Step2", new { id = sapObject.Id }, sapObject);
         }
 
         //POST https://localhost:7017/api/SapSimple/step3
@@ -118,13 +124,19 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep3Dto.Id);
-            var sapJob = new SapSimpleStep3Dto()
-            {
-                Documentation = SapSimpleStep3Dto.Documentation
-            };
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep3Dto.Id).FirstOrDefault();
 
-            throw new NotImplementedException();
+            if (sapObject == null)
+            {
+                return NotFound();
+            }
+
+            sapObject.Documentation = SapSimpleStep3Dto.Documentation;
+
+            _sapSimpleRepository.Update(sapObject);
+            _sapSimpleRepository.Save();
+
+            return CreatedAtRoute("CreateSapSimple_Step3", new { id = sapObject.Id }, sapObject);
         }
 
         //POST https://localhost:7017/api/SapSimple/step4
@@ -138,17 +150,23 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep4Dto.Id);
-            var sapJob = new SapSimpleStep4Dto()
-            {
-                Archive1 = SapSimpleStep4Dto.Archive1,
-                Archive2 = SapSimpleStep4Dto.Archive2,
-                Folder = SapSimpleStep4Dto.Folder,
-                InternalAccount = SapSimpleStep4Dto.InternalAccount,
-                Title = SapSimpleStep4Dto.Title
-            };
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep4Dto.Id).FirstOrDefault();
 
-            throw new NotImplementedException();
+            if (sapObject == null)
+            {
+                return NotFound();
+            }
+
+            sapObject.Archive1 = SapSimpleStep4Dto.Archive1;
+            sapObject.Archive2 = SapSimpleStep4Dto.Archive2;
+            sapObject.Folder = SapSimpleStep4Dto.Folder;
+            sapObject.InternalAccount = SapSimpleStep4Dto.InternalAccount;
+            sapObject.Title = SapSimpleStep4Dto.Title;
+
+            _sapSimpleRepository.Update(sapObject);
+            _sapSimpleRepository.Save();
+
+            return CreatedAtRoute("CreateSapSimple_Step4", new { id = sapObject.Id }, sapObject);
         }
 
         ////Put https://localhost:7017/api/SapSimple/{id}
