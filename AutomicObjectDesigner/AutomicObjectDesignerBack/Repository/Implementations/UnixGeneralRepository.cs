@@ -4,9 +4,9 @@ using AutomicObjectDesignerBack.Models.Objects;
 
 namespace AutomicObjectDesignerBack.Repository.Implementations;
 
-public class SapJobBwChainRepository : RepositoryBase<SapJobBwChain>, ISapJobBwChainRepository
+public class UnixGeneralRepository : RepositoryBase<UnixGeneral>, IUnixGeneralRepository
 {
-    public SapJobBwChainRepository(AppDatabaseContext databaseContext) : base(databaseContext)
+    public UnixGeneralRepository(AppDatabaseContext databaseContext) : base(databaseContext)
     {
 
     }

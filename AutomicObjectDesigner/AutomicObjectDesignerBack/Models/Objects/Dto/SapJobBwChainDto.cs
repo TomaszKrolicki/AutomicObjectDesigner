@@ -21,6 +21,7 @@ public class SapJobBwChainStep2Dto
     public string? SapReport { get; set; }
     public string? SapVariant { get; set; }
     public int? Id { get; set; }
+
 }
 public class SapJobBwChainStep3Dto
 {

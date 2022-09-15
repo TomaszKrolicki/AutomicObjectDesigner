@@ -34,8 +34,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Functions\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Logs\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
