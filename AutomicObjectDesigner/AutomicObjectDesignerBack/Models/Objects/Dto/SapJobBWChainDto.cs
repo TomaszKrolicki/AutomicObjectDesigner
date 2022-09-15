@@ -21,11 +21,13 @@ public class SapJobBwChainStep2Dto
     public string? Kette { get; set; }
     public string? SapReport { get; set; }
     public string? SapVariant { get; set; }
+    public int? Id { get; set; }
 
 }
 public class SapJobBwChainStep3Dto
 {
     public string? Documentation { get; set; }
+    public int? Id { get; set; }
 }
 public class SapJobBwChainStep4Dto
 {
@@ -34,4 +36,5 @@ public class SapJobBwChainStep4Dto
     public string? Archive2 { get; set; }
     public string? InternalAccount { get; set; }
     public string? Folder { get; set; }
+    public int? Id { get; set; }
 }
