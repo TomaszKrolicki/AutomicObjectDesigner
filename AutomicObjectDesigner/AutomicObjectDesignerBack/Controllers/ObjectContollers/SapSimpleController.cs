@@ -10,43 +10,41 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
+    // https://localhost:7017/api/SapSimple
     [ApiController]
     [Route("api/[controller]")]
     public class SapSimpleController : ControllerBase
     {
-        public readonly AppDatabaseContext _context;
         private readonly ISapSimpleRepository _sapSimpleRepository;
         private readonly ILogger<SapSimpleController> _logger;
 
 
-        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository, ILogger<SapSimpleController> logger)
+        public SapSimpleController(AppDatabaseContext context, ISapSimpleRepository sapSimpleRepository,
+            ILogger<SapSimpleController> logger)
         {
-            _context = context;
             _sapSimpleRepository = sapSimpleRepository;
-            this._logger = logger;
+            _logger = logger;
         }
 
         //GET https://localhost:7017/api/SapSimple
-        // pobranie danych uzytkownika + validacja
         [HttpGet]
         public async Task<ActionResult<List<SapSimple>>> GetSapSimple()
         {
-            // var sapSimple = await _context.SapSimple.ToListAsync();
-            var sapSimple =  _sapSimpleRepository.GetAll();
             _logger.LogInformation("GetSapSimple called...");
+            var sapSimple = _sapSimpleRepository.GetAll();
 
-            //var sapSimple = await _context.SapSimple.ToListAsync();
+
 
             return Ok(sapSimple);
         }
 
+        //GET https://localhost:7017/api/SapSimple/{id}
+        [HttpGet("{id:int}")]
 
-        //GET https://localhost:7017/api/SapSimple/
-        [HttpGet("{id:int}", Name = "GetSapSimple")]
-        public async Task<ActionResult<SapSimpleStep1Dto>> GetSapSimple(int id)
+        public async Task<ActionResult<SapSimple>> GetSapSimple(int id)
         {
-            var sapSimple = await _context.SapSimple.FindAsync(id);
-            
+            var sapSimple = _sapSimpleRepository.FindByCondition((x => x.Id == id));
+            _logger.LogInformation($"GetSapSimple called with parameter id = {id}");
 
             if (sapSimple == null)
             {
@@ -56,38 +54,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(sapSimple);
         }
 
-        ////GET https://localhost:7017/api/SapSimple/
-        //[HttpGet("{id:int}", Name = "GetSapSimple/{int Step}/{int id}")]
-        //public async Task<ActionResult<SapSimpleStep1Dto>> GetSapSimple(int step, int id)
-        //{
-        //    var sapSimple = await _context.SapSimple.FindAsync(id);
-        //    if  (step == 2)
-        //    {
-        //        var ObjectName =
-        //            $"<{sapSimple.SapSid}>.<{sapSimple.SapClient}>#<{sapSimple.RoutineJob}>#<{sapSimple.ProcessName}>#<{sapSimple.SapReport}>" +
-        //            $"$<{sapSimple.SapVariant}>.JOBS ";
-        //    }
-        //    else if (step == 3)
-        //    {
-        //        return Ok(sapSimple);
-        //    }
-        //    else if (step == 4)
-        //    {
-        //        return Ok(sapSimple);
-        //    }
-        //    return Ok(sapSimple);
-
-        //    if (sapSimple == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(sapSimple);
-        //}
-
-        //POST https://localhost:7017/api/SapSimple/1
-        [HttpPost]
-        [Route("1")]
+        //POST https://localhost:7017/api/SapSimple/step1
+        [HttpPost("step1", Name = "CreateSapSimple_Step1")]
+        
         public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep1Dto SapSimpleStep1Dto)
         {
 
@@ -100,31 +69,27 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 SapSid = SapSimpleStep1Dto.SapSid,
                 SapClient = SapSimpleStep1Dto.SapClient,
+                SapJobName = SapSimpleStep1Dto.SapJobName,
                 SapReport = Converter.TextReportConverter(SapSimpleStep1Dto.SapReport),
                 SapVariant = Converter.TextVariantConverter(SapSimpleStep1Dto.SapVariant),
                 RoutineJob = SapSimpleStep1Dto.RoutineJob,
                 DeleteSapJob = SapSimpleStep1Dto.DeleteSapJob,
                 ProcessName = SapSimpleStep1Dto.ProcessName,
-                ObjectName = $"<{SapSimpleStep1Dto.SapSid}>.<{SapSimpleStep1Dto.SapClient}>#<{SapSimpleStep1Dto.RoutineJob}>#<{SapSimpleStep1Dto.ProcessName}>#<{Converter.TextReportConverter(SapSimpleStep1Dto.SapReport)}>" +
-                $"$<{SapSimpleStep1Dto.SapVariant}>.JOBS ",
-                SapJobName = SapSimpleStep1Dto.SapJobName,
-                
+                ObjectName = $"<{SapSimpleStep1Dto.SapSid}>.<{SapSimpleStep1Dto.SapClient}>#<{SapSimpleStep1Dto.RoutineJob}>#<{SapSimpleStep1Dto.ProcessName}>#<{SapSimpleStep1Dto.SapReport}>" +
+                $"$<{SapSimpleStep1Dto.SapVariant}>.JOBS"
+
             };
-
-
-            //DataService.Current.SapSimples.Add(sapSimple);
 
             _sapSimpleRepository.Create(sapSimple);
             await _sapSimpleRepository.Save();
-            // _context.SapSimple.Add(sapSimple);
-            // await _context.SaveChangesAsync();
 
-            return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+            return CreatedAtRoute("CreateSapSimple_Step1", new { id = sapSimple.Id }, sapSimple);
         }
-        //POST https://localhost:7017/api/SapSimple/2
-        [HttpPut]
-        [Route("2/{int:id}")]
-        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto, int id)
+
+        //POST https://localhost:7017/api/SapSimple/step2
+        [HttpPost("step2", Name = "CreateSapSimple_Step2")]
+
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep2Dto SapSimpleStep2Dto)
         {
 
             if (!ModelState.IsValid)
@@ -132,95 +97,111 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapSimple = new SapSimple()
-            //var sapSimple =  await _context.SapSimple.FindAsync()
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep2Dto.Id);
+            var sapJob = new SapSimpleStep2Dto()
             {
-                ObjectName = SapSimpleStep2Dto.ObjectName,
                 SapReport = SapSimpleStep2Dto.SapReport,
                 SapVariant = SapSimpleStep2Dto.SapVariant,
-                Id = id
+                ObjectName = SapSimpleStep2Dto.ObjectName
             };
 
-            _sapSimpleRepository.Update(sapSimple);
-            _sapSimpleRepository.Save();
-            //_context.SapSimple.Add(sapSimple);
-            //await _context.SaveChangesAsync();
-
-            return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+            throw new NotImplementedException();
         }
 
-        ////POST https://localhost:7017/api/SapSimple/create
-        //[HttpPost]
-        //[Route("create")]
-        //public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep3Dto SapSimpleStep3Dto)
-        //{
+        //POST https://localhost:7017/api/SapSimple/step3
+        [HttpPost("step3", Name = "CreateSapSimple_Step3")]
 
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep3Dto SapSimpleStep3Dto)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep3Dto.Id);
+            var sapJob = new SapSimpleStep3Dto()
+            {
+                Documentation = SapSimpleStep3Dto.Documentation
+            };
+
+            throw new NotImplementedException();
+        }
+
+        //POST https://localhost:7017/api/SapSimple/step4
+        [HttpPost("step4", Name = "CreateSapSimple_Step4")]
+
+        public async Task<ActionResult<List<SapSimple>>> CreateSapSimple([FromBody] SapSimpleStep4Dto SapSimpleStep4Dto)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimpleStep4Dto.Id);
+            var sapJob = new SapSimpleStep4Dto()
+            {
+                Archive1 = SapSimpleStep4Dto.Archive1,
+                Archive2 = SapSimpleStep4Dto.Archive2,
+                Folder = SapSimpleStep4Dto.Folder,
+                InternalAccount = SapSimpleStep4Dto.InternalAccount,
+                Title = SapSimpleStep4Dto.Title
+            };
+
+            throw new NotImplementedException();
+        }
+
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<List<SapSimpleStep1Dto>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        //{
         //    if (!ModelState.IsValid)
         //    {
         //        return BadRequest(ModelState);
         //    }
+        //    var sapSimple = await _context.SapSimple.FindAsync(updateSapSimpleDto.Id);
 
-        //    var sapSimple = new SapSimple
+        //    if (sapSimple == null)
         //    {
-        //        Documentation = SapSimpleStep3Dto.Documentation
-        //    };
+        //        return NotFound();
+        //    }
 
-        //    _context.SapSimple.Add(sapSimple);
+        //    sapSimple.SapReport = updateSapSimpleDto.SapReport;
+        //    sapSimple.SapJobName = updateSapSimpleDto.SapJobName;
+        //    sapSimple.SapVariant = updateSapSimpleDto.SapVariant;
+        //    sapSimple.Agent = updateSapSimpleDto.Agent;
+        //    sapSimple.Active = updateSapSimpleDto.Active;
+        //    sapSimple.DeleteSapJob = updateSapSimpleDto.DeleteSapJob;
+        //    sapSimple.Folder = updateSapSimpleDto.Folder;
+        //    sapSimple.Login = updateSapSimpleDto.Login;
+        //    sapSimple.Queue = updateSapSimpleDto.Queue;
+        //    sapSimple.MaxParallelTasks = updateSapSimpleDto.MaxParallelTasks;
+        //    sapSimple.OwnerId = updateSapSimpleDto.OwnerId;
+        //    sapSimple.Process = updateSapSimpleDto.Process;
+        //    sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
+        //    sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
+        //    sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
+
+
         //    await _context.SaveChangesAsync();
 
-        //    return CreatedAtRoute("GetSapSimple", new { id = sapSimple.Id }, sapSimple);
+        //    return NoContent();
         //}
 
 
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<List<SapSimpleStep1Dto>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        // DELETE https://localhost:7017/api/SapSimple/{id}
+        [HttpDelete("{id:int}", Name = "DeleteSapSimple")]
+        public async Task<ActionResult<List<SapSimple>>> DeleteSapSimple(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var sapSimple = await _context.SapSimple.FindAsync(updateSapSimpleDto.Id);
+            var sapObject = new SapSimple() { Id = id };
 
-            if (sapSimple == null)
+            if (sapObject == null)
             {
                 return NotFound();
             }
 
-            sapSimple.SapReport = updateSapSimpleDto.SapReport;
-            sapSimple.SapJobName = updateSapSimpleDto.SapJobName;
-            sapSimple.SapVariant = updateSapSimpleDto.SapVariant;
-            sapSimple.Agent = updateSapSimpleDto.Agent;
-            sapSimple.Active = updateSapSimpleDto.Active;
-            sapSimple.DeleteSapJob = updateSapSimpleDto.DeleteSapJob;
-            sapSimple.Folder = updateSapSimpleDto.Folder;
-            sapSimple.Login = updateSapSimpleDto.Login;
-            sapSimple.Queue = updateSapSimpleDto.Queue;
-            sapSimple.MaxParallelTasks = updateSapSimpleDto.MaxParallelTasks;
-            sapSimple.OwnerId = updateSapSimpleDto.OwnerId;
-            sapSimple.Process = updateSapSimpleDto.Process;
-            sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
-            sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
-            sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
-
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapSimpleStep1Dto>>> DeleteSapSimple(int id)
-        {
-            var sapSimple = await _context.SapSimple.FindAsync(id);
-
-            if (sapSimple == null)
-            {
-                return NotFound();
-            }
-
-            _context.SapSimple.Remove(sapSimple);
-            await _context.SaveChangesAsync();
+            _sapSimpleRepository.Delete(sapObject);
+            _sapSimpleRepository.Save();
 
             return NoContent();
 

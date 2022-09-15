@@ -55,8 +55,9 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return CreatedAtRoute("GetSapJobBwChain", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChain(int id)
+        // Delete https://localhost:7017/api/SapJobBwChain/{id}
+        [HttpDelete("{id:int}", Name = "DeleteSapJobBwChain")]
+        public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChainStep1(int id)
         {
 
             throw new NotImplementedException();

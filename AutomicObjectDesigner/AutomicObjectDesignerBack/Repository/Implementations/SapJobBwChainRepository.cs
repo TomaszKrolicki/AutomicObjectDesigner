@@ -8,5 +8,6 @@ public class SapJobBwChainRepository : RepositoryBase<SapJobBwChain>, ISapJobBwC
 {
     public SapJobBwChainRepository(AppDatabaseContext databaseContext) : base(databaseContext)
     {
+
     }
 }

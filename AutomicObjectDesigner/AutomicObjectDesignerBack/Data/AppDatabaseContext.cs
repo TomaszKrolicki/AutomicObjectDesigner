@@ -19,8 +19,6 @@ namespace AutomicObjectDesignerBack.Data
         public DbSet<SapSimple> SapSimple { get; set; }
         public DbSet<UnixGeneral> UnixGeneral { get; set; }
         public DbSet<SapJobBwChain> SapJobBwChains { get; set; }
-
-        public DbSet<SapVariantCopy> SapVariantCopy { get; set; }
         public DbSet<WindowsSimple> WindowsSimple { get; set; }
 
         public async Task CreateSapSimple(SapSimple sapSimple)

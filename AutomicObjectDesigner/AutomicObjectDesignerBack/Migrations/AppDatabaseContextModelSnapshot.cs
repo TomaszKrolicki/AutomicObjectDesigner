@@ -100,6 +100,12 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Agent")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< Updated upstream
+=======
+                    b.Property<string>("Agent1")
+                        .HasColumnType("nvarchar(max)");
+
+>>>>>>> Stashed changes
                     b.Property<string>("Archive1")
                         .HasColumnType("nvarchar(max)");
 
@@ -113,13 +119,18 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InternalAccount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InternalAccount1")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login1")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MaxParallelTasks")
@@ -148,6 +159,9 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Queue")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Queue1")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool?>("RoutineJob")
                         .HasColumnType("bit");
 
@@ -160,7 +174,10 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapReport")
+<<<<<<< Updated upstream
                         .IsRequired()
+=======
+>>>>>>> Stashed changes
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
@@ -171,56 +188,16 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<< Updated upstream
                     b.Property<string>("Title1")
+=======
+                    b.Property<string>("Title")
+>>>>>>> Stashed changes
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("SapSimple");
-                });
-
-            modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.SapVariantCopy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Agent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaxParallelTasks")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Process")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Queue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SapVariantCopy");
                 });
 
             modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.WindowsSimple", b =>
