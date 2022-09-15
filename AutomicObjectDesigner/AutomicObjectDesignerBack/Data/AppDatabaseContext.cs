@@ -18,7 +18,7 @@ namespace AutomicObjectDesignerBack.Data
         public DbSet<SapSimple> SapSimple { get; set; }
         public DbSet<UnixGeneral> UnixGeneral { get; set; }
         public DbSet<SapJobBwChain> SapJobBwChains { get; set; }
-        public DbSet<WindowsSimple> WindowsSimple { get; set; }
+        public DbSet<WindowsGeneral> WindowsGeneral { get; set; }
 
         public async Task CreateSapSimple(SapSimple sapSimple)
         {
@@ -28,6 +28,11 @@ namespace AutomicObjectDesignerBack.Data
         public async Task CreateUnixGeneral(UnixGeneral unixGeneral)
         {
             UnixGeneral.AddAsync(unixGeneral);
+        }
+
+        public async Task CreateWindowsGeneral(WindowsGeneral windowsGeneral)
+        {
+            WindowsGeneral.AddAsync(windowsGeneral);
         }
 
         public async Task CreateSapJobBwChain(SapJobBwChain sapJobBwChain)

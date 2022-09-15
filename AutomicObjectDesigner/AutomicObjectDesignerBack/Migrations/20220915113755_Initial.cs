@@ -153,33 +153,38 @@ namespace AutomicObjectDesignerBack.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WindowsSimple",
+                name: "WindowsGeneral",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    WinServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WinLogin = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoutineJob = table.Column<bool>(type: "bit", nullable: true),
+                    WinServer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WinLogin = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoutineJob = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameSuffix = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeleteSapJob = table.Column<bool>(type: "bit", nullable: true),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Documentation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Archive1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Archive2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InternalAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Folder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
-                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WindowsSimple", x => x.Id);
+                    table.PrimaryKey("PK_WindowsGeneral", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -206,7 +211,7 @@ namespace AutomicObjectDesignerBack.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "WindowsSimple");
+                name: "WindowsGeneral");
         }
     }
 }

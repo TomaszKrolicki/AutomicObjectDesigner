@@ -2,7 +2,6 @@
 using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
-using AutomicObjectDesignerBack.Models.Objects.Dto;
 using AutomicObjectDesignerBack.Models.Update;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Repository.Implementations;

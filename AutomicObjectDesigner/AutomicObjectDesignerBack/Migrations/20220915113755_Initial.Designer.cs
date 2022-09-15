@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220915094242_Initial")]
+    [Migration("20220915113755_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,74 +143,6 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SapSimple");
-                });
-
-            modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.WindowsSimple", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Agent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("DeleteSapJob")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaxParallelTasks")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NameSuffix")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Process")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProcessName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Queue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("RoutineJob")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SapClient")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SapSid")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WinLogin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WinServer")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WindowsSimple");
                 });
 
             modelBuilder.Entity("AutomicObjectDesigner.Models.Registration.UserModel", b =>
@@ -455,6 +387,93 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UnixGeneral");
+                });
+
+            modelBuilder.Entity("AutomicObjectDesignerBack.Models.Objects.WindowsGeneral", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Agent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Archive1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Archive2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documentation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Folder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InternalAccount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MaxParallelTasks")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameSuffix")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ObjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Process")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProcessName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Queue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoutineJob")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapClient")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapSid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WinLogin")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WinServer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WindowsGeneral");
                 });
 #pragma warning restore 612, 618
         }

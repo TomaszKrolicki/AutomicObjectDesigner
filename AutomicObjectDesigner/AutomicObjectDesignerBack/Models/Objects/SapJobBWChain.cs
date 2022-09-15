@@ -33,15 +33,13 @@ namespace AutomicObjectDesignerBack.Models.Objects
 
         public string Template = "JOBS.SAP_ABAP";
         public string Process = "BW_ACTIVATE_CHAIN ID=&SAP_Kette#";
-        public string PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI\t";
+        public string PreProcess = ":INC XXX.XXX#ZZZ#SAP_PRE#GENERAL.JOBI";
         public string PostProcess = ":INC XXX.XXX#ZZZ#SAP_POST#GENERAL.JOBI";
 
         ////Calculated fields:
         public string? Queue { get; set; }
         public string? Agent { get; set; }
         public string? Login { get; set; }
-
-
 
     }
 }

@@ -19,7 +19,7 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string Process { get; set; }
 
         //step 4
-        public string Documentation { get; set; }
+        public string? Documentation { get; set; }
         //step 5
         public string? Title { get; set; }
         public string? Archive1 { get; set; }

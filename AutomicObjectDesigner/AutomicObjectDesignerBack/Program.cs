@@ -33,6 +33,7 @@ builder.Services.AddDbContext<AppDatabaseContext>(opt
 builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
 builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
 builder.Services.AddScoped<IUnixGeneralRepository, UnixGeneralRepository>();
+builder.Services.AddScoped<IWindowsGeneralRepository, WindowsGeneralRepository>();
 
 //CORS 
 builder.Services.AddCors(options =>

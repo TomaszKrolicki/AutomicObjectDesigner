@@ -152,14 +152,15 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             throw new NotImplementedException();
         }
 
+        ////Put https://localhost:7017/api/SapSimple/{id}
         //[HttpPut("{id}")]
-        //public async Task<ActionResult<List<SapSimpleStep1Dto>>> UpdateSapSimple( [FromBody] UpdateSapSimpleDto updateSapSimpleDto)
+        //public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple([FromBody] SapSimple SapSimple)
         //{
         //    if (!ModelState.IsValid)
         //    {
         //        return BadRequest(ModelState);
         //    }
-        //    var sapSimple = await _context.SapSimple.FindAsync(updateSapSimpleDto.Id);
+        //    var sapSimple = await _sapSimpleRepository.FindByCondition((x => x.Id == SapSimple.Id));
 
         //    if (sapSimple == null)
         //    {
