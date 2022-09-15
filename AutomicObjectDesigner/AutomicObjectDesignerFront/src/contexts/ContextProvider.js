@@ -10,7 +10,7 @@ const initialState = {
 export const ContextProvider = ({ children }) => {
   const [screenSize, setScreenSize] = useState(undefined);
   const [currentColor, setCurrentColor] = useState('#03C9D7');
-  const [currentMode, setCurrentMode] = useState('Light');
+  const [currentMode, setCurrentMode] = useState('Dark');
   const [themeSettings, setThemeSettings] = useState(false);
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
@@ -25,17 +25,18 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem('colorMode', color);
   };
 
-  const handleClick = (clicked) => setIsClicked( initialState.userProfile = reverseClick(initialState.userProfile));
+  const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
+  // const handleClick = (clicked) => setIsClicked( initialState.userProfile = reverseClick(initialState.userProfile));
 
-  function reverseClick(parameter) {
-    console.log("Reverse Click:")
-    console.log(parameter)
-    if(parameter === true){
-      return false
-    } else {
-      return true
-    }
-  }
+  // function reverseClick(parameter) {
+  //   console.log("Reverse Click:")
+  //   console.log(parameter)
+  //   if(parameter === true){
+  //     return false
+  //   } else {
+  //     return true
+  //   }
+  // }
   
 
   return (

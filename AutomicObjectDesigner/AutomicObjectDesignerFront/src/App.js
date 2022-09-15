@@ -45,7 +45,8 @@ import './App.css';
             </TooltipComponent>
           </div>
                 {activeMenu ? (
-                  <div className='w-72 fixe sidebar
+//                        <div className='w-72 fixed sidebar
+                          <div className='w-72 sidebar
                   dark:bg-secondary-dark-bg
                   bg-white'>
                     <Sidebar />

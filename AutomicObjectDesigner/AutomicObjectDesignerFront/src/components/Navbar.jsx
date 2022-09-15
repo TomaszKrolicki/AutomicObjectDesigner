@@ -12,7 +12,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
     <button
       type="button"
-      onClick={customFunc}
+      onClick={() => customFunc()}
       className={"relative text-xl rounded-full p-3 mx-2 hover:bg-light-gray dark:hover:light-gray dark:bg-gray-400"}
     >
       <span

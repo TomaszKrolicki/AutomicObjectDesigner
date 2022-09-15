@@ -27,22 +27,25 @@ export const SapJobBWStep2 = () => {
   //   json = await SapJobResponse.json();
   //   setData(json);}
 
-    useEffect(() => {
-      const fetchData = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // console.log("State in fetch data: " + state);
         const result = await fetch(
-          'https://localhost:7017/api/SapJobBwChain/'+state,
+          'https://localhost:7017/api/SapJobBwChain/' + state,
         );
-        data = await result.json();
+        const dat = await result.json();
         setData(result);
-      };
-      fetchData();
-      if(data!=null){
-        console.log("works");
-      } else {
-        console.log("doesnt work");
-      }
-      console.log("Hello kitty")
-    }, []);
+        if (dat != null) {
+          console.log("works");
+        } else {
+          console.log("doesnt work");
+        }
+        console.log("Hello kitty");
+      } catch (error) {
+        console.log("ERROR" + error);
+      };}
+      fetchData();}, []);
 
   const [formData, setFormData] = React.useState(
     {
