@@ -17,17 +17,19 @@ export const SapJobBWStep2 = () => {
   var SapReport = "";
   var SapVariant = "";
   var Kette = "";
-  ///const {id} = useParams();
-  const { id } = useLocation();
+  const { state } = useLocation();
+  const { id } = state;
 
+  console.log("TEN STATE ZOSTAL PRZEKAZANY NA STRONE 2: "+state);
+
+  const [post, setPost] = React.useState(null);
 
   useEffect(() => {
-      axios.get('https://localhost:7017/api/SapJobBwChain/${id}')
-      .then(res => {
-        console.log(res)
-      }).catch(error => {console.log(error)}) 
-  }, []);
+      const SapJobResponse = fetch('https://localhost:7017/api/SapJobBwChain/'+state)
+      //.then((response) => {return response.json()}).then(((data) => setPost(data))
+      //).catch(error => {console.log(error)}) 
 
+  }, []);
 
 
 
@@ -35,10 +37,10 @@ export const SapJobBWStep2 = () => {
     {
       /// SHOULD FETCH NAME FROM DB(OBJECT NAME BUILD FROM TEMPLATE:
       /// <SAP_SID>.<SAP_CLIENT># <Routine_job># <Process_name>#<SAP_Report>$< SAP_Variant >.JOBS):
-      SapJobName: SapJobName,
-      SapReport: SapReport,
-      SapVariant: SapVariant,
-      Kette: Kette,
+      SapJobName: post.SapJobName,
+      SapReport: post.SapReport,
+      SapVariant: post.SapVariant,
+      Kette: post.Kette,
       Id: id
     }
   )

@@ -20,7 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
         private readonly ILogger<SapJobBwChainController> _logger;
 
-        public SapJobBwChainController(AppDatabaseContext context, ILogger<SapJobBwChainController> logger,
+        public SapJobBwChainController(ILogger<SapJobBwChainController> logger,
             ISapJobBwChainRepository repository)
         {
             _sapJobBwChainRepository = repository;

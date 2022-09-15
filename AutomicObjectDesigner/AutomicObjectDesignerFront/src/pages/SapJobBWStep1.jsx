@@ -35,26 +35,30 @@ export const SapJobBWStep1 = () => {
       })
     }
 
+    const [post, setPost] = React.useState(null);
+
     let Navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault()
-    
     try {
       // console.log(formData)
-      await fetch('https://localhost:7017/api/SapJobBwChain', {
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step1', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
-      }).then((response) => {return response.json() }).then((data) => console.log(data)).catch((error) => { console.log("!ERROR! " + error) })
+      })//.then((response) => {return response.json() }).then((data) => setPost(data)).catch((error) => { console.log("!ERROR! " + error) })
+    data = await SapJobResponse.json();
+    setPost(data);
+    if(data!=null){
+      const id = data.id;
+      Navigate("/SAPJobBW/2", { state: id});
+    } else {
+      console.log("Id = null");
+    } 
     } catch (error) {
       console.log("ERROR" + error)
     }
-    const id = 38;
-    Navigate("/SAPJobBW/2", { state: id});
-    //window.location.href = '/SAPJobBW/2/';
-    //window.location.href =`/SAPJobBW/2/${id}`;
-    //TODO need a solution for passing id to the next page
-    // <Link to= state={/SAPJobBW/2/}></Link>
+    
   }
 
   return (
