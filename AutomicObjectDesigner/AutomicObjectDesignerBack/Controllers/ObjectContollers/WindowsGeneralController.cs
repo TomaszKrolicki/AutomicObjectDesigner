@@ -111,17 +111,16 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep2Dto.Id);
-            var windowsJob = new WindowsGeneralStep2Dto()
-            {
-                ObjectName = WindowsGeneralStep2Dto.ObjectName
-            };
+            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep2Dto.Id).FirstOrDefault();
 
-            throw new NotImplementedException();
-            //_windowsGeneralRepository.Update(windowsJob);
-            //_windowsGeneralRepository.Save();
+            windowsObject.ObjectName = WindowsGeneralStep2Dto.ObjectName;
+            
 
-            //return CreatedAtRoute("CreateWindowsGeneral_Step2", new { id = windowsJob.Id }, windowsJob);
+            //throw new NotImplementedException();
+            _windowsGeneralRepository.Update(windowsObject);
+            _windowsGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateWindowsGeneral_Step2", new { id = windowsObject.Id }, windowsObject);
         }
 
         //POST https://localhost:7017/api/WindowsGeneral/step3
@@ -135,13 +134,19 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep3Dto.Id);
-            var windowsJob = new WindowsGeneralStep3Dto()
-            {
-                Process = WindowsGeneralStep3Dto.Process
-            };
+            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep3Dto.Id).FirstOrDefault();
 
-            throw new NotImplementedException();
+            if (windowsObject == null)
+            {
+                return NotFound();
+            }
+
+            windowsObject.Process = WindowsGeneralStep3Dto.Process;
+
+            _windowsGeneralRepository.Update(windowsObject);
+            _windowsGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateWindowsGeneral_Step3", new { id = windowsObject.Id }, windowsObject);
         }
 
         //POST https://localhost:7017/api/WindowsGeneral/step4
@@ -155,13 +160,19 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep4Dto.Id);
-            var windowsJob = new WindowsGeneralStep4Dto()
+            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep4Dto.Id).FirstOrDefault();
+            if (windowsObject == null)
             {
-                Documentation = WindowsGeneralStep4Dto.Documentation
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
+            windowsObject.Documentation = WindowsGeneralStep4Dto.Documentation;
+            
+
+            _windowsGeneralRepository.Update(windowsObject);
+            _windowsGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateWindowsGeneral_Step4", new { id = windowsObject.Id }, windowsObject);
         }
 
         //POST https://localhost:7017/api/WindowsGeneral/step5
@@ -175,17 +186,26 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep5Dto.Id);
-            var windowsJob = new WindowsGeneralStep5Dto()
-            {
-                Archive1 = WindowsGeneralStep5Dto.Archive1,
-                Archive2 = WindowsGeneralStep5Dto.Archive2,
-                Folder = WindowsGeneralStep5Dto.Folder,
-                InternalAccount = WindowsGeneralStep5Dto.InternalAccount,
-                Title = WindowsGeneralStep5Dto.Title
-            };
 
-            throw new NotImplementedException();
+            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep5Dto.Id).FirstOrDefault();
+
+            if (windowsObject == null)
+            {
+                return NotFound();
+            }
+
+            windowsObject.Archive1 = WindowsGeneralStep5Dto.Archive1;
+            windowsObject.Archive2 = WindowsGeneralStep5Dto.Archive2;
+            windowsObject.Folder = WindowsGeneralStep5Dto.Folder;
+            windowsObject.InternalAccount = WindowsGeneralStep5Dto.InternalAccount;
+            windowsObject.Title = WindowsGeneralStep5Dto.Title;
+
+
+
+            _windowsGeneralRepository.Update(windowsObject);
+            _windowsGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateWindowsGeneral_Step5", new { id = windowsObject.Id }, windowsObject);
         }
 
         //[HttpPut("{id}")]
