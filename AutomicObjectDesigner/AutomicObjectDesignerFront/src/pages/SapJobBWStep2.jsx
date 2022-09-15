@@ -17,27 +17,32 @@ export const SapJobBWStep2 = () => {
   var SapReport = "";
   var SapVariant = "";
   var Kette = "";
-  const data =null;
   const { state } = useLocation();
   const { id } = state;
 
-  console.log("TEN STATE ZOSTAL PRZEKAZANY NA STRONE 2: "+state);
+  const [data, setData] = React.useState(null);
 
-  const [post, setPost] = React.useState(null);
+  // async function fetchObject(){
+  //   const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/'+state);
+  //   json = await SapJobResponse.json();
+  //   setData(json);}
 
-  useEffect(async () => {
-      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/'+state)
-      //.then((response) => {return response.json()}).then(((data) => setPost(data))
-      //).catch(error => {console.log(error)}) 
-      data = await SapJobResponse.json();
-      if(data!= null){
-        setPost(data);
-        console.log("This is: "+data.SapJobName);
+    useEffect(() => {
+      const fetchData = async () => {
+        const result = await fetch(
+          'https://localhost:7017/api/SapJobBwChain/'+state,
+        );
+        data = await result.json();
+        setData(result);
+      };
+      fetchData();
+      if(data!=null){
+        console.log("works");
+      } else {
+        console.log("doesnt work");
       }
-      
-  }, []);
-
-
+      console.log("Hello kitty")
+    }, []);
 
   const [formData, setFormData] = React.useState(
     {
