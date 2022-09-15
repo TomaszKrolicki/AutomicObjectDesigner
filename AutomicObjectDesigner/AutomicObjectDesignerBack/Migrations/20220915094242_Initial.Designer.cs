@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220912133009_Initial0001")]
-    partial class Initial0001
+    [Migration("20220915094242_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,50 +44,6 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.ToTable("FileTransfers");
                 });
 
-            modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.LinuxSimple", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Agent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaxParallelTasks")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Process")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Queue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LinuxSimple");
-                });
-
             modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.SapSimple", b =>
                 {
                     b.Property<int>("Id")
@@ -102,6 +58,15 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Agent")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Agent1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Archive1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Archive2")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool?>("DeleteSapJob")
                         .HasColumnType("bit");
 
@@ -109,10 +74,15 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InternalAccount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Login1")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MaxParallelTasks")
@@ -141,6 +111,9 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Queue")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Queue1")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool?>("RoutineJob")
                         .HasColumnType("bit");
 
@@ -156,10 +129,6 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SapReport1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SapSid")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -168,57 +137,12 @@ namespace AutomicObjectDesignerBack.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SapVariant1")
-                        .IsRequired()
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("SapSimple");
-                });
-
-            modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.SapVariantCopy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Agent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Login")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("MaxParallelTasks")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PostProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PreProcess")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Process")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Queue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SapVariantCopy");
                 });
 
             modelBuilder.Entity("AutomicObjectDesigner.Models.Objects.WindowsSimple", b =>
@@ -456,12 +380,21 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Agent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("DeleteSapJob")
-                        .HasColumnType("bit");
+                    b.Property<string>("Archive1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Archive2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documentation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InternalAccount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Login")
                         .HasColumnType("nvarchar(max)");
@@ -470,6 +403,11 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NameSuffix")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ObjectName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerId")
@@ -482,9 +420,11 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Process")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProcessName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Queue")
@@ -494,18 +434,22 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SapClient")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SapReport")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnixLogin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnixServer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

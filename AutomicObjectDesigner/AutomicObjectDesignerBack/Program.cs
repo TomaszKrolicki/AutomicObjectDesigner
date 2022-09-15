@@ -32,6 +32,7 @@ builder.Services.AddDbContext<AppDatabaseContext>(opt
     .EnableSensitiveDataLogging()); ;
 builder.Services.AddScoped<ISapSimpleRepository, SapSimpleRepository>();
 builder.Services.AddScoped<ISapJobBwChainRepository, SapJobBwChainRepository>();
+builder.Services.AddScoped<IUnixGeneralRepository, UnixGeneralRepository>();
 
 //CORS 
 builder.Services.AddCors(options =>

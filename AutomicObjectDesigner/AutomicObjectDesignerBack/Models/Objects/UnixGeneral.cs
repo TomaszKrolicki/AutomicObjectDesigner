@@ -6,8 +6,8 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         //Entry sequence:
         //step 1 and 2
-        public string LinuxServer { get; set; }
-        public string LinuxLogin { get; set; }
+        public string UnixServer { get; set; }
+        public string UnixLogin { get; set; }
         public string SapSid { get; set; }
         public string SapClient { get; set; }
         public bool RoutineJob { get; set; }
@@ -16,7 +16,7 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string ObjectName { get; set; }
 
         //step 3
-        //public string? Process { get; set; }
+        public string Process { get; set; }
 
         //step 4
         public string Documentation { get; set; }

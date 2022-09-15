@@ -23,43 +23,21 @@ namespace AutomicObjectDesignerBack.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "LinuxSimple",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Active = table.Column<bool>(type: "bit", nullable: true),
-                    MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
-                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LinuxSimple", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SapJobBwChain",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Kette = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Kette = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: false),
-                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeleteSapJob = table.Column<bool>(type: "bit", nullable: false),
-                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Docu = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Archive1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -87,15 +65,15 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: true),
-                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapJobName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DeleteSapJob = table.Column<bool>(type: "bit", nullable: true),
-                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Documentation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Archive1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -126,23 +104,27 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UnixServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UnixLogin = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UnixServer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UnixLogin = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: false),
-                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameSuffix = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeleteSapJob = table.Column<bool>(type: "bit", nullable: true),
+                    ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NameSuffix = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Process = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Documentation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Archive1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Archive2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InternalAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Folder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
-                    Folder = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     MaxParallelTasks = table.Column<int>(type: "int", nullable: true),
-                    Process = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostProcess = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Agent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -210,9 +192,6 @@ namespace AutomicObjectDesignerBack.Migrations
         {
             migrationBuilder.DropTable(
                 name: "FileTransfers");
-
-            migrationBuilder.DropTable(
-                name: "LinuxSimple");
 
             migrationBuilder.DropTable(
                 name: "SapJobBwChain");

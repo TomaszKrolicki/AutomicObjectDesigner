@@ -11,5 +11,3 @@ public class UnixGeneralRepository : RepositoryBase<UnixGeneral>, IUnixGeneralRe
 
     }
 }
-
-

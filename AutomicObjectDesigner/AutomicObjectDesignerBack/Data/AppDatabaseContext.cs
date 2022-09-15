@@ -15,7 +15,6 @@ namespace AutomicObjectDesignerBack.Data
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<FileTransfer> FileTransfers { get; set; }
-        public DbSet<LinuxSimple> LinuxSimple { get; set; }
         public DbSet<SapSimple> SapSimple { get; set; }
         public DbSet<UnixGeneral> UnixGeneral { get; set; }
         public DbSet<SapJobBwChain> SapJobBwChains { get; set; }
