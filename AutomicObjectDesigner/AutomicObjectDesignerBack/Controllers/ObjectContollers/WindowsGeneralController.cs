@@ -113,6 +113,11 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == WindowsGeneralStep2Dto.Id).FirstOrDefault();
 
+            if (windowsObject == null)
+            {
+                return NotFound();
+            }
+
             windowsObject.ObjectName = WindowsGeneralStep2Dto.ObjectName;
             
 
