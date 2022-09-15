@@ -18,7 +18,7 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string SapVariant { get; set; }
 
         ////step 3
-        public string? Docu { get; set; }
+        public string? Documentation { get; set; }
 
         ////step 4
         public string? Title { get; set; }

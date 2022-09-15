@@ -216,7 +216,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("DeleteSapJob")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Docu")
+                    b.Property<string>("Documentation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")

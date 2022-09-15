@@ -110,13 +110,18 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep2Dto.Id);
-            var unixJob = new UnixGeneralStep2Dto()
+            var unixObject = _unixGeneralRepository.FindByCondition(x=>x.Id ==UnixGeneralStep2Dto.Id).FirstOrDefault();
+            if (unixObject == null)
             {
-                ObjectName = UnixGeneralStep2Dto.ObjectName
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
+            unixObject.ObjectName = UnixGeneralStep2Dto.ObjectName;
+
+            _unixGeneralRepository.Update(unixObject);
+            _unixGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateUnixGeneral_Step2", new { id = unixObject.Id }, unixObject);
         }
 
         //POST https://localhost:7017/api/UnixGeneral/step3
@@ -130,13 +135,19 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep3Dto.Id);
-            var unixJob = new UnixGeneralStep3Dto()
+            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep3Dto.Id).FirstOrDefault();
+            
+            if (unixObject == null)
             {
-                Process = UnixGeneralStep3Dto.Process
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
+            unixObject.Process = UnixGeneralStep3Dto.Process;
+
+            _unixGeneralRepository.Update(unixObject);
+            _unixGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateUnixGeneral_Step3", new { id = unixObject.Id }, unixObject);
         }
 
         //POST https://localhost:7017/api/UnixGeneral/step4
@@ -150,13 +161,18 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep4Dto.Id);
-            var unixJob = new UnixGeneralStep4Dto()
+            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep4Dto.Id).FirstOrDefault();
+            if (unixObject == null)
             {
-                Documentation = UnixGeneralStep4Dto.Documentation
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
+            unixObject.Documentation = UnixGeneralStep4Dto.Documentation;
+
+            _unixGeneralRepository.Update(unixObject);
+            _unixGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateUnixGeneral_Step4", new { id = unixObject.Id }, unixObject);
         }
 
         //POST https://localhost:7017/api/UnixGeneral/step5
@@ -170,17 +186,22 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep5Dto.Id);
-            var unixJob = new UnixGeneralStep5Dto()
+            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == UnixGeneralStep5Dto.Id).FirstOrDefault();
+            if (unixObject == null)
             {
-                Archive1 = UnixGeneralStep5Dto.Archive1,
-                Archive2 = UnixGeneralStep5Dto.Archive2,
-                Folder = UnixGeneralStep5Dto.Folder,
-                InternalAccount = UnixGeneralStep5Dto.InternalAccount,
-                Title = UnixGeneralStep5Dto.Title
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
+            unixObject.Archive1 = UnixGeneralStep5Dto.Archive1;
+            unixObject.Archive2 = UnixGeneralStep5Dto.Archive2;
+            unixObject.Folder = UnixGeneralStep5Dto.Folder;
+            unixObject.InternalAccount = UnixGeneralStep5Dto.InternalAccount;
+            unixObject.Title = UnixGeneralStep5Dto.Title;
+
+            _unixGeneralRepository.Update(unixObject);
+            _unixGeneralRepository.Save();
+
+            return CreatedAtRoute("CreateUnixGeneral_Step5", new { id = unixObject.Id }, unixObject);
         }
 
         //[HttpPut("{id}")]

@@ -52,12 +52,12 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     $"$<{SapJobBwChainStep1Dto.SapVariant}>.JOBS"
             };
             _sapJobBwChainRepository.Create(sapJobBwChain);
-            await _sapJobBwChainRepository.Save();
+            _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("CreateSapJobBwChain_Step1", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
 
-        // POST https://localhost:7017/api/SapJobBwChain/{id}
+        // Delete https://localhost:7017/api/SapJobBwChain/{id}
         [HttpDelete("{id:int}", Name = "DeleteSapJobBwChain")]
         public async Task<ActionResult<List<SapJobBwChain>>> DeleteSapJobBwChainStep1(int id)
         {
@@ -68,6 +68,17 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _sapJobBwChainRepository.Save();
 
             return NoContent();
+        }
+
+
+        //Get https://localhost:7017/api/SapJobBwChain
+        [HttpGet]
+        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChain()
+        {
+            _logger.LogInformation("GetSapJobBwChain called...");
+            var sapJobBwChain = _sapJobBwChainRepository.GetAll();
+
+            return Ok(sapJobBwChain);
         }
 
         //Get https://localhost:7017/api/SapJobBwChain/{id}
@@ -91,22 +102,22 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep2Dto.Id);
+            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep2Dto.Id).FirstOrDefault();
 
-
-            var sapJob = new SapJobBwChainStep2Dto()
+            if (sapObject == null)
             {
-                SapReport = SapJobBwChainStep2Dto.SapReport,
-                SapVariant = SapJobBwChainStep2Dto.SapVariant,
-                Kette = SapJobBwChainStep2Dto.Kette,
-                ObjectName = SapJobBwChainStep2Dto.ObjectName
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
-            //_sapJobBwChainRepository.Update();
-            //_sapJobBwChainRepository.Save();
+            sapObject.SapReport = SapJobBwChainStep2Dto.SapReport;
+            sapObject.SapVariant = SapJobBwChainStep2Dto.SapVariant;
+            sapObject.Kette = SapJobBwChainStep2Dto.Kette;
+            sapObject.ObjectName = SapJobBwChainStep2Dto.ObjectName;
 
-            //return CreatedAtRoute("CreateSapJobBwChain/2", new { id = sapJobBwChain.Id }, sapJobBwChain);
+            _sapJobBwChainRepository.Update(sapObject);
+            _sapJobBwChainRepository.Save();
+
+            return CreatedAtRoute("CreateSapJobBwChain_Step2", new { id = sapObject.Id }, sapObject);
         }
 
 
@@ -120,19 +131,21 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 return BadRequest(ModelState);
             }
 
-            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep3Dto.Id);
+            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep3Dto.Id).FirstOrDefault();
 
-
-            var sapJob = new SapJobBwChainStep3Dto()
+            if (sapObject == null)
             {
-                Documentation = SapJobBwChainStep3Dto.Documentation
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
-            //_sapJobBwChainRepository.Update();
-            //_sapJobBwChainRepository.Save();
+            sapObject.Documentation = SapJobBwChainStep3Dto.Documentation;
+            
 
-            //return CreatedAtRoute("CreateSapJobBwChain/3", new { id = sapJobBwChain.Id }, sapJobBwChain);
+            _sapJobBwChainRepository.Update(sapObject);
+            _sapJobBwChainRepository.Save();
+
+            return CreatedAtRoute("CreateSapJobBwChain_Step3", new { id = sapObject.Id }, sapObject);
+            
         }
 
         [HttpPost("step4", Name = "CreateSapJobBwChain_Step4")]
@@ -143,24 +156,23 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return BadRequest(ModelState);
             }
+            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep4Dto.Id).FirstOrDefault();
 
-            var sapObject = _sapJobBwChainRepository.FindByCondition(x => x.Id == SapJobBwChainStep4Dto.Id);
-
-
-            var sapJob = new SapJobBwChainStep4Dto()
+            if (sapObject == null)
             {
-                Archive1 = SapJobBwChainStep4Dto.Archive1,
-                Archive2 = SapJobBwChainStep4Dto.Archive2,
-                Folder = SapJobBwChainStep4Dto.Folder,
-                InternalAccount = SapJobBwChainStep4Dto.InternalAccount,
-                Title = SapJobBwChainStep4Dto.Title
-            };
+                return NotFound();
+            }
 
-            throw new NotImplementedException();
-            //_sapJobBwChainRepository.Update();
-            //_sapJobBwChainRepository.Save();
+            sapObject.Archive1 = SapJobBwChainStep4Dto.Archive1;
+            sapObject.Archive2 = SapJobBwChainStep4Dto.Archive2;
+            sapObject.Folder = SapJobBwChainStep4Dto.Folder;
+            sapObject.InternalAccount = SapJobBwChainStep4Dto.InternalAccount;
+            sapObject.Title = SapJobBwChainStep4Dto.Title;
 
-            //return CreatedAtRoute("CreateSapJobBwChain/3", new { id = sapJobBwChain.Id }, sapJobBwChain);
+            _sapJobBwChainRepository.Update(sapObject);
+            _sapJobBwChainRepository.Save();
+
+            return CreatedAtRoute("CreateSapJobBwChain_Step4", new { id = sapObject.Id }, sapObject);
         }
     }
 }
