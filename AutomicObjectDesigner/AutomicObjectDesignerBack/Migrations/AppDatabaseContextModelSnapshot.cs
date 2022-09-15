@@ -122,13 +122,18 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("SapReport")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SapReport1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SapSid")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapVariant")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("SapVariant1")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -302,6 +307,7 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Documentation")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
@@ -317,9 +323,11 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NameSuffix")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ObjectName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OwnerId")
@@ -332,9 +340,11 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Process")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProcessName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Queue")
@@ -344,18 +354,22 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SapClient")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnixLogin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnixServer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -423,21 +437,26 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoutineJob")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapClient")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SapSid")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WinLogin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WinServer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
