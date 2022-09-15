@@ -18,11 +18,11 @@ namespace AutomicObjectDesignerBack.Controllers
     public class AuthorizationController : Controller
     {
         public IConfiguration Configuration { get; }
-        //private readonly IAuthorizationRepository _authorizationRepository;
+        //private readonly IAuthorizationRepository _AuthorizationRepository;
 
-        public AuthorizationController(AppDatabaseContext context, IConfiguration configuration/*, IAuthorizationRepository repository*/)
+        public AuthorizationController(IConfiguration configuration/*, IAuthorizationRepository repository*/)
         {
-            //_authorizationRepository = repository;
+            //_AuthorizationRepository = repository;
             Configuration = configuration;
         }
 
@@ -35,8 +35,8 @@ namespace AutomicObjectDesignerBack.Controllers
             user.UserName = request.UserName;
             user.Password = /*HashPassword(request);*/ request.Password;
 
-            //_authorizationRepository.Create(user);
-            //await _authorizationRepository.Save();
+            //_AuthorizationRepository.Create(user);
+            //await _AuthorizationRepository.Save();
             return Ok(user);
         }
 

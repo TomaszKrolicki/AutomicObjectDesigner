@@ -177,7 +177,7 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserModel");
 
                     b.HasData(
                         new

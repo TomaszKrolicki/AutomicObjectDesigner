@@ -13,12 +13,17 @@ namespace AutomicObjectDesignerBack.Data
         {
         }
 
-        public DbSet<UserModel> Users { get; set; }
+        public DbSet<UserModel> UserModel { get; set; }
         public DbSet<FileTransfer> FileTransfers { get; set; }
         public DbSet<SapSimple> SapSimple { get; set; }
         public DbSet<UnixGeneral> UnixGeneral { get; set; }
         public DbSet<SapJobBwChain> SapJobBwChains { get; set; }
         public DbSet<WindowsGeneral> WindowsGeneral { get; set; }
+
+        public async Task CreateUserModel(UserModel userModel)
+        {
+            UserModel.AddAsync(userModel);
+        }
 
         public async Task CreateSapSimple(SapSimple sapSimple)
         {
