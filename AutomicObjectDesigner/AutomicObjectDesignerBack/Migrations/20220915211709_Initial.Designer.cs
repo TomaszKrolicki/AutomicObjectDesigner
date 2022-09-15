@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220915120753_Initial")]
+    [Migration("20220915211709_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,7 +218,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("DeleteSapJob")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Docu")
+                    b.Property<string>("Documentation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")

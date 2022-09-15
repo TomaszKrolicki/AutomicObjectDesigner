@@ -38,7 +38,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapReport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SapVariant = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Docu = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Documentation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Archive1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Archive2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
