@@ -177,7 +177,7 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserModel");
 
                     b.HasData(
                         new
@@ -216,7 +216,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("DeleteSapJob")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Docu")
+                    b.Property<string>("Documentation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Folder")
