@@ -33,6 +33,8 @@ public class UserModel
     [Required]
     [StringLength(32)]
     public string Password { get; set; }
+    public byte[] PasswordHash { get; set; }
+    public byte[] PasswordSalt { get; set; }
     public bool HasEmailConfirmed { get; set; }
     public bool IsAdministrator { get; set; }
 

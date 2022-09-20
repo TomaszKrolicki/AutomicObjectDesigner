@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesigner.Models.Registration;
-// Install-Package BCrypt.Net-Next
+using System.Security.Cryptography;
 
 namespace AutomicObjectDesignerBack.Controllers
 {
@@ -26,30 +26,38 @@ namespace AutomicObjectDesignerBack.Controllers
             Configuration = configuration;
         }
 
-        public static UserModel user = new UserModel();
+        public static UserModel userTest = new UserModel();
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(UserLogin request)
+        public async Task<ActionResult<UserModel>> Register(UserModel request)
         {
+            HashPassword(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             //var user = new UserModel();
-            user.UserName = request.UserName;
-            user.Password = /*HashPassword(request);*/ request.Password;
+            userTest.UserName = request.UserName;
+            userTest.PasswordSalt = passwordSalt;
+            userTest.PasswordHash = passwordHash;
+            //...
 
             //_AuthorizationRepository.Create(user);
             //await _AuthorizationRepository.Save();
-            return Ok(user);
+            return Ok(userTest);
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLogin request)
         {
             //var user = _authorizationRepository.FindByCondition(x => x.UserName == request.UserName);
-            if (user == null)
+            if (userTest == null)
             {
                 return BadRequest("User not found");
             }
-            //request.Password = VerifyHashedPassword(user, request.Password);
-            string token = CreateToken(user);
+            var user = userTest;
+            if (!CheckPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("Wrong Password");
+            }
+
+            string token = CreateToken(userTest);
             return Ok(token);
         }
 
@@ -57,7 +65,8 @@ namespace AutomicObjectDesignerBack.Controllers
         {
             List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.UserName)
+            new Claim(ClaimTypes.Name, user.UserName),
+            new Claim(ClaimTypes.Email, user.Email)
         };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt:Key").Value));
@@ -73,21 +82,21 @@ namespace AutomicObjectDesignerBack.Controllers
 
             return jwt;
         }
-        //public string HashPassword(UserModel user)
-        //{
-        //    return BCrypt.Net.BCrypt.HashPassword(user.Password, 8);
-        //}
-        //public PasswordVerificationResult VerifyHashedPassword(
-        //  UserModel user, string providedPassword)
-        //{
-        //    var isValid = BCrypt.Net.BCrypt.Verify(providedPassword, user.Password);
-
-        //    if (isValid && BCrypt.Net.BCrypt.PasswordNeedsRehash(user.Password, 8))
-        //    {
-        //        return PasswordVerificationResult.SuccessRehashNeeded;
-        //    }
-
-        //    return isValid ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed;
-        //}
+        public void HashPassword(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+        public bool CheckPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
+        }
     }
 }
