@@ -13,62 +13,54 @@ export const SapJobBWStep2 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
-  var SapJobName = "";
-  var SapReport = "";
-  var SapVariant = "";
-  var Kette = "";
+
   const { state } = useLocation();
   const { id } = state;
 
-  const [data, setData] = React.useState(null);
-
-  // async function fetchObject(){
-  //   const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/'+state);
-  //   json = await SapJobResponse.json();
-  //   setData(json);}
-
-  useEffect(() => {
+  const [formData, setFormData] = React.useState(
+    {
+      Id: state,
+      ObjectName: "Loading data...",
+      SapReport: "Loading data...",
+      SapVariant: "Loading data...",
+      Kette: "Loading data..."
+    }
+  )
+  
+  useEffect( () => {
     const fetchData = async () => {
       try {
-        // console.log("State in fetch data: " + state);
         const result = await fetch(
           'https://localhost:7017/api/SapJobBwChain/' + state,
         );
         const dat = await result.json();
-        setData(result);
         if (dat != null) {
-          console.log("works");
+          setFormData(prev => ({
+            ...prev,
+            ObjectName: dat.objectName,
+            SapReport: dat.sapReport,
+            SapVariant: dat.sapVariant,
+            Kette: dat.kette
+          }))
         } else {
-          console.log("doesnt work");
+          console.warn("Data couldn't be fetched");
         }
-        console.log("Hello kitty");
       } catch (error) {
-        console.log("ERROR" + error);
+        console.error(error);
       };}
-      fetchData();}, []);
-
-  const [formData, setFormData] = React.useState(
-    {
-      /// SHOULD FETCH NAME FROM DB(OBJECT NAME BUILD FROM TEMPLATE:
-      /// <SAP_SID>.<SAP_CLIENT># <Routine_job># <Process_name>#<SAP_Report>$< SAP_Variant >.JOBS):
-      SapJobName: SapJobName,
-      SapReport: SapReport,
-      SapVariant: SapVariant,
-      Kette: Kette,
-    }
-  )
-
+      fetchData();
+    }, []);
 
   function handleChange(event) {
-    console.log(event)
-    const { name, value, type, checked } = event.target
+    console.log(event);
+    const { name, value, type, checked } = event.target;
     setFormData(prevFormData => {
       return {
         ...prevFormData,
         [name]: type === "checkbox" ? checked : value
       }
     })
-  }
+  };
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -90,8 +82,8 @@ export const SapJobBWStep2 = () => {
         Confirm data:
       </p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="SapJobBwName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">SAP Job Name</label>
-        <input type="text" onChange={handleChange} value={formData.SapJobName} name='SapJobName' minLength="7" maxLength="7" id="SapJobName" className={cssStyle} required />
+        <label htmlFor="ObjectName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">Object Name</label>
+        <input type="text" onChange={handleChange} value={formData.ObjectName} name='ObjectName' minLength="7" maxLength="7" id="ObjectName" className={cssStyle} required />
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
         <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
         <label htmlFor="SapVariant" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Variant</label>

@@ -52,9 +52,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                     $"$<{SapJobBwChainStep1Dto.SapVariant}>.JOBS"
             };
             _sapJobBwChainRepository.Create(sapJobBwChain);
-            _sapJobBwChainRepository.Save();
-
-            return CreatedAtRoute("CreateSapJobBwChain_Step1", new { id = sapJobBwChain.Id }, sapJobBwChain);
+            await _sapJobBwChainRepository.Save();
+            int id = sapJobBwChain.Id;
+            Console.WriteLine($"Id = {id}");
+            return CreatedAtRoute($"CreateSapJobBwChain_Step1", new { id = sapJobBwChain.Id }, sapJobBwChain);
         }
 
         // Delete https://localhost:7017/api/SapJobBwChain/{id}
@@ -82,14 +83,23 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         //Get https://localhost:7017/api/SapJobBwChain/{id}
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "GetSapJobBwChain")]
         public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChain(int id)
         {
             _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
 
-            var SapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
 
-            return Ok(SapJobBwChain);
+            SapJobBwChainStep2Dto sap = new SapJobBwChainStep2Dto
+            {
+                Id = id,
+                SapVariant = sapJobBwChain.FirstOrDefault().SapVariant,
+                SapReport = sapJobBwChain.FirstOrDefault().SapReport,
+                ObjectName = sapJobBwChain.FirstOrDefault().ObjectName,
+                Kette = sapJobBwChain.FirstOrDefault().Kette
+            };
+
+            return Ok(sap);
         }
 
         // https://localhost:7017/SapJobBwChain/step2
@@ -115,7 +125,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.ObjectName = SapJobBwChainStep2Dto.ObjectName;
 
             _sapJobBwChainRepository.Update(sapObject);
-            _sapJobBwChainRepository.Save();
+            await _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("CreateSapJobBwChain_Step2", new { id = sapObject.Id }, sapObject);
         }
@@ -142,7 +152,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             
 
             _sapJobBwChainRepository.Update(sapObject);
-            _sapJobBwChainRepository.Save();
+            await _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("CreateSapJobBwChain_Step3", new { id = sapObject.Id }, sapObject);
             
@@ -170,7 +180,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.Title = SapJobBwChainStep4Dto.Title;
 
             _sapJobBwChainRepository.Update(sapObject);
-            _sapJobBwChainRepository.Save();
+            await _sapJobBwChainRepository.Save();
 
             return CreatedAtRoute("CreateSapJobBwChain_Step4", new { id = sapObject.Id }, sapObject);
         }
