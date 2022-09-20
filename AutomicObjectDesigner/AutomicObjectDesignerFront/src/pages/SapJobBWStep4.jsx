@@ -1,4 +1,7 @@
 import React from 'react';
+import { data } from 'autoprefixer';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -10,8 +13,12 @@ export const SapJobBWStep4 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
+   const { state } = useLocation();
+   console.log("Id:"+  state);
+
    const [formData, setFormData] = React.useState(
     {
+      Id: state,
       Title: "",
       Archive1: "",
       Archive2: "",
@@ -31,19 +38,28 @@ export const SapJobBWStep4 = () => {
       })
     }
 
+    const [post, setPost] = React.useState(null);
+
+    let Navigate = useNavigate();
     async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/SapSimple/create', {
+      event.preventDefault()
+      try {
+        const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step4', {
           method: 'post',
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
+        })
+        data = await SapJobResponse.json();
+        setPost(data);
+        if (data != null) {
+          const id = data.id;
+          Navigate("/SAPJobBW/5", { state: id });
+        } else {
+          console.log("Id = null");
         }
-        }
+      } catch (error) {
+        console.log("ERROR" + error)
+      }};
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>

@@ -102,7 +102,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(sap);
         }
 
-        // https://localhost:7017/SapJobBwChain/step2
+        // https://localhost:7017/api/SapJobBwChain/step2
         [HttpPost("step2", Name = "CreateSapJobBwChain_Step2")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep2(
             [FromBody] SapJobBwChainStep2Dto SapJobBwChainStep2Dto)

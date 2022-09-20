@@ -1,8 +1,9 @@
 import React from 'react';
+import { data } from 'autoprefixer';
 import { Form } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
 
@@ -62,18 +63,29 @@ export const SapJobBWStep2 = () => {
     })
   };
 
+  const [post, setPost] = React.useState(null);
+
+  let Navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      console.log(formData)
-      await fetch('https://localhost:7017/api/SapJobBW/2', {
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step2', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
-      }).then((response) => { console.log(response) }).catch((error) => { console.log(error) })
+      })
+      data = await SapJobResponse.json();
+      setPost(data);
+      if (data != null) {
+        const id = data.id;
+        Navigate("/SAPJobBW/3", { state: id });
+      } else {
+        console.log("Id = null");
+      }
     } catch (error) {
-      console.log(error)
+      console.log("ERROR" + error)
     }
+
   }
 
   return (
@@ -83,7 +95,7 @@ export const SapJobBWStep2 = () => {
       </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="ObjectName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">Object Name</label>
-        <input type="text" onChange={handleChange} value={formData.ObjectName} name='ObjectName' minLength="7" maxLength="7" id="ObjectName" className={cssStyle} required />
+        <input type="text" onChange={handleChange} value={formData.ObjectName} name='ObjectName' id="ObjectName" className={cssStyle} required />
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
         <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
         <label htmlFor="SapVariant" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Variant</label>
