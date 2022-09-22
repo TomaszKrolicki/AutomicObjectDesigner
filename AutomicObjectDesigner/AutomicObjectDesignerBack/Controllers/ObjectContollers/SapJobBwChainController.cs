@@ -4,6 +4,7 @@ using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Repository.Implementations;
+using Fingers10.ExcelExport.ActionResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -90,6 +91,18 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
 
+            return Ok(sapJobBwChain);
+        }
+
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep2/{id}
+        [HttpGet("GetSapJobBwChainStep2/{id:int}", Name = "GetSapJobBwChainStep2")]
+        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChainStep2(int id)
+        {
+            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
+
+            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+
             SapJobBwChainStep2Dto sap = new SapJobBwChainStep2Dto
             {
                 Id = id,
@@ -100,6 +113,100 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             };
 
             return Ok(sap);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep5/{id}
+        [HttpGet("GetSapJobBwChainStep5/{id:int}", Name = "GetSapJobBwChainStep5")]
+        public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChainStep5(int id)
+        {
+            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
+
+            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+
+            SapJobBwChain sap = new SapJobBwChain
+            {
+                Id = id,
+                SapVariant = sapJobBwChain.FirstOrDefault().SapVariant,
+                SapReport = sapJobBwChain.FirstOrDefault().SapReport,
+                ObjectName = sapJobBwChain.FirstOrDefault().ObjectName,
+                Kette = sapJobBwChain.FirstOrDefault().Kette,
+                OwnerId = sapJobBwChain.FirstOrDefault().OwnerId,
+                Active = sapJobBwChain.FirstOrDefault().Active,
+                MaxParallelTasks = sapJobBwChain.FirstOrDefault().MaxParallelTasks,
+                Process = sapJobBwChain.FirstOrDefault().Process,
+                PreProcess = sapJobBwChain.FirstOrDefault().PreProcess,
+                PostProcess = sapJobBwChain.FirstOrDefault().PostProcess,
+                SapClient = sapJobBwChain.FirstOrDefault().SapClient,
+                SapSid = sapJobBwChain.FirstOrDefault().SapSid,
+                RoutineJob = sapJobBwChain.FirstOrDefault().RoutineJob,
+                ProcessName = sapJobBwChain.FirstOrDefault().ProcessName,
+                SapJobName = sapJobBwChain.FirstOrDefault().SapJobName,
+                DeleteSapJob = sapJobBwChain.FirstOrDefault().DeleteSapJob,
+                Documentation = sapJobBwChain.FirstOrDefault().Documentation,
+                Title = sapJobBwChain.FirstOrDefault().Title,
+                Archive1 = sapJobBwChain.FirstOrDefault().Archive1,
+                Archive2 = sapJobBwChain.FirstOrDefault().Archive2,
+                InternalAccount = sapJobBwChain.FirstOrDefault().InternalAccount,
+                Folder = sapJobBwChain.FirstOrDefault().Folder,
+                Queue = sapJobBwChain.FirstOrDefault().Queue,
+                Agent = sapJobBwChain.FirstOrDefault().Agent,
+                Login = sapJobBwChain.FirstOrDefault().Login
+            };
+
+            return Ok(sap);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/{id}
+        [HttpGet("DownloadExcelFile/{id:int}", Name = "DownloadExcelFile")]
+        public IActionResult DownloadExcelFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            };
+
+            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (sapJobBwChain == null)
+            {
+                return NotFound();
+            };
+
+
+            SapJobBwChain sap = new SapJobBwChain
+            {
+                Id = id,
+                SapVariant = sapJobBwChain.SapVariant,
+                SapReport = sapJobBwChain.SapReport,
+                ObjectName = sapJobBwChain.ObjectName,
+                Kette = sapJobBwChain.Kette,
+                OwnerId = sapJobBwChain.OwnerId,
+                Active = sapJobBwChain.Active,
+                MaxParallelTasks = sapJobBwChain.MaxParallelTasks,
+                Process = sapJobBwChain.Process,
+                PreProcess = sapJobBwChain.PreProcess,
+                PostProcess = sapJobBwChain.PostProcess,
+                SapClient = sapJobBwChain.SapClient,
+                SapSid = sapJobBwChain.SapSid,
+                RoutineJob = sapJobBwChain.RoutineJob,
+                ProcessName = sapJobBwChain.ProcessName,
+                SapJobName = sapJobBwChain.SapJobName,
+                DeleteSapJob = sapJobBwChain.DeleteSapJob,
+                Documentation = sapJobBwChain.Documentation,
+                Title = sapJobBwChain.Title,
+                Archive1 = sapJobBwChain.Archive1,
+                Archive2 = sapJobBwChain.Archive2,
+                InternalAccount = sapJobBwChain.InternalAccount,
+                Folder = sapJobBwChain.Folder,
+                Queue = sapJobBwChain.Queue,
+                Agent = sapJobBwChain.Agent,
+                Login = sapJobBwChain.Login
+            };
+            List<SapJobBwChain> saps= new List<SapJobBwChain>();
+            saps.Add(sap);
+
+            return new ExcelResult<SapJobBwChain>(saps, $"{id}_JOBS_SAP_JOB_BW_CHAIN", $"{id}_JOBS_SAP_JOB_BW_CHAIN_EX");
         }
 
         // https://localhost:7017/api/SapJobBwChain/step2

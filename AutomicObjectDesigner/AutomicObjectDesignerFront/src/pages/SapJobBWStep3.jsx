@@ -15,7 +15,7 @@ export const SapJobBWStep3 = () => {
 
    const { state } = useLocation();
 
-   console.log("Id:"+  state);
+   console.log("Id: "+  state);
 
    const [formData, setFormData] = React.useState(
     {

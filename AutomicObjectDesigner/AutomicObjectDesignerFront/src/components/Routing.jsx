@@ -22,6 +22,8 @@ import { SapJobSimpleStep2 } from '../pages/SapJobSimpleStep2';
 import { SapJobSimpleStep3 } from '../pages/SapJobSimpleStep3';
 import { SapJobSimpleStep4 } from '../pages/SapJobSimpleStep4';
 
+import { ExportSite } from '../pages/ExportSite';
+
 import { NotFound } from '../pages/NotFound';
 
 import React from 'react';
@@ -43,11 +45,8 @@ const Routing = () => {
         <Route path='/SapJobBW/2' element={<SapJobBWStep2 />} />
         <Route path='/SapJobBW/3' element={<SapJobBWStep3 />} />
         <Route path='/SapJobBW/4' element={<SapJobBWStep4 />} />
-      {/* Alternative solution: */}
-      {/* <Route path='/SapJobBW/2/:id' element={<SapJobBWStep2 />} />
-        <Route path='/SapJobBW/3/:id' element={<SapJobBWStep3 />} />
-        <Route path='/SapJobBW/4/:id' element={<SapJobBWStep4 />} /> */}
 
+        <Route path='/ExportSite' element={<ExportSite />} />
 
         <Route path='/sapjobmassen' element={<SapJobMassen />} />
 

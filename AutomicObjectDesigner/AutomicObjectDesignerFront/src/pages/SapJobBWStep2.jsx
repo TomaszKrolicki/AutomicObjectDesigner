@@ -32,7 +32,7 @@ export const SapJobBWStep2 = () => {
     const fetchData = async () => {
       try {
         const result = await fetch(
-          'https://localhost:7017/api/SapJobBwChain/' + state,
+          'https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep2/' + state,
         );
         const dat = await result.json();
         if (dat != null) {

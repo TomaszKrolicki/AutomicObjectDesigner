@@ -14,7 +14,8 @@ export const SapJobBWStep4 = () => {
    dark:focus:border-blue-500`;
 
    const { state } = useLocation();
-   console.log("Id:"+  state);
+   
+   console.log("Id: "+  state);
 
    const [formData, setFormData] = React.useState(
     {
@@ -53,7 +54,7 @@ export const SapJobBWStep4 = () => {
         setPost(data);
         if (data != null) {
           const id = data.id;
-          Navigate("/SAPJobBW/5", { state: id });
+          Navigate("/ExportSite", { state: id });
         } else {
           console.log("Id = null");
         }
