@@ -29,7 +29,9 @@ namespace AutomicObjectDesignerBack.Controllers
             user.UserName = request.UserName;
             user.PasswordSalt = passwordSalt;
             user.PasswordHash = passwordHash;
-            //...
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
 
             _AuthorizationRepository.Create(user);
             await _AuthorizationRepository.Save();
