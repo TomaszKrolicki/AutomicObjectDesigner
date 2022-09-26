@@ -1,4 +1,5 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
+using Fingers10.ExcelExport.Attributes;
 
 namespace AutomicObjectDesignerBack.Models.Objects
 {
@@ -6,8 +7,11 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         // step 1
 
+        //[IncludeInReport(Order = 1)]
         public string SapClient { get; set; }
+        //[IncludeInReport(Order = 2)]
         public string SapSid { get; set; }
+        //[IncludeInReport(Order = 3)]
         public string Kette { get; set; }
         public bool RoutineJob { get; set; }
         public string ProcessName { get; set; }

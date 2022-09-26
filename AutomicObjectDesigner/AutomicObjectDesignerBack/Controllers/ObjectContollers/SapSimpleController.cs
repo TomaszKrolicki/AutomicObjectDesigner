@@ -151,42 +151,45 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             throw new NotImplementedException();
         }
 
-        ////Put https://localhost:7017/api/SapSimple/{id}
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple([FromBody] SapSimple SapSimple)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var sapSimple = await _sapSimpleRepository.FindByCondition((x => x.Id == SapSimple.Id));
+        //Put https://localhost:7017/api/SapSimple/{id}
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple([FromBody] SapSimple SapSimple)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var sapObject = _sapSimpleRepository.FindByCondition(x => x.Id == SapSimple.Id).FirstOrDefault();
 
-        //    if (sapSimple == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (sapObject == null)
+            {
+                return NotFound();
+            }
 
-        //    sapSimple.SapReport = updateSapSimpleDto.SapReport;
-        //    sapSimple.SapJobName = updateSapSimpleDto.SapJobName;
-        //    sapSimple.SapVariant = updateSapSimpleDto.SapVariant;
-        //    sapSimple.Agent = updateSapSimpleDto.Agent;
-        //    sapSimple.Active = updateSapSimpleDto.Active;
-        //    sapSimple.DeleteSapJob = updateSapSimpleDto.DeleteSapJob;
-        //    sapSimple.Folder = updateSapSimpleDto.Folder;
-        //    sapSimple.Login = updateSapSimpleDto.Login;
-        //    sapSimple.Queue = updateSapSimpleDto.Queue;
-        //    sapSimple.MaxParallelTasks = updateSapSimpleDto.MaxParallelTasks;
-        //    sapSimple.OwnerId = updateSapSimpleDto.OwnerId;
-        //    sapSimple.Process = updateSapSimpleDto.Process;
-        //    sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
-        //    sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
-        //    sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
+            sapObject.SapReport = SapSimple.SapReport;
+            sapObject.SapJobName = SapSimple.SapJobName;
+            sapObject.SapVariant = SapSimple.SapVariant;
+            sapObject.Agent = SapSimple.Agent;
+            sapObject.Active = SapSimple.Active;
+            sapObject.DeleteSapJob = SapSimple.DeleteSapJob;
+            sapObject.Folder = SapSimple.Folder;
+            sapObject.Login = SapSimple.Login;
+            sapObject.Queue = SapSimple.Queue;
+            sapObject.MaxParallelTasks = SapSimple.MaxParallelTasks;
+            sapObject.OwnerId = SapSimple.OwnerId;
+            sapObject.Process = SapSimple.Process;
+            sapObject.ProcessName = SapSimple.ProcessName;
+            sapObject.PreProcess = SapSimple.PreProcess;
+            sapObject.PostProcess = SapSimple.PostProcess;
 
 
-        //    await _context.SaveChangesAsync();
+            _sapSimpleRepository.Update(sapObject);
+            _sapSimpleRepository.Save();
 
-        //    return NoContent();
-        //}
+            //return Ok(sapObject);
+            return NoContent();
+
+        }
 
 
         // DELETE https://localhost:7017/api/SapSimple/{id}
