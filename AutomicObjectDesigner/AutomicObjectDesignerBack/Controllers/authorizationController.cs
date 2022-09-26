@@ -1,54 +1,56 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using AutomicObjectDesigner.Models.Registration;
+using AutomicObjectDesignerBack.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using AutomicObjectDesignerBack.Repository;
-using AutomicObjectDesignerBack.Data;
-using AutomicObjectDesigner.Models.Registration;
-// Install-Package BCrypt.Net-Next
+using System.Security.Cryptography;
 
 namespace AutomicObjectDesignerBack.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorizationController : Controller
+    public class AuthorizationController : ControllerBase
     {
         public IConfiguration Configuration { get; }
-        //private readonly IAuthorizationRepository _AuthorizationRepository;
+        private readonly IAuthorizationRepository _AuthorizationRepository;
 
-        public AuthorizationController(IConfiguration configuration/*, IAuthorizationRepository repository*/)
+        public AuthorizationController(IConfiguration configuration, IAuthorizationRepository authorizationrepository)
         {
-            //_AuthorizationRepository = repository;
+            _AuthorizationRepository = authorizationrepository;
             Configuration = configuration;
         }
 
-        public static UserModel user = new UserModel();
-
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(UserLogin request)
+        public async Task<ActionResult<UserModel>> Register(UserRegister request)
         {
-            //var user = new UserModel();
+            HashPassword(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            var user = new UserModel();
             user.UserName = request.UserName;
-            user.Password = /*HashPassword(request);*/ request.Password;
+            user.PasswordSalt = passwordSalt;
+            user.PasswordHash = passwordHash;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
 
-            //_AuthorizationRepository.Create(user);
-            //await _AuthorizationRepository.Save();
+            _AuthorizationRepository.Create(user);
+            await _AuthorizationRepository.Save();
             return Ok(user);
         }
 
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLogin request)
         {
-            //var user = _authorizationRepository.FindByCondition(x => x.UserName == request.UserName);
+            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).FirstOrDefault();
             if (user == null)
             {
                 return BadRequest("User not found");
             }
-            //request.Password = VerifyHashedPassword(user, request.Password);
+            if (!CheckPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("Wrong Password");
+            }
+
             string token = CreateToken(user);
             return Ok(token);
         }
@@ -73,21 +75,21 @@ namespace AutomicObjectDesignerBack.Controllers
 
             return jwt;
         }
-        //public string HashPassword(UserModel user)
-        //{
-        //    return BCrypt.Net.BCrypt.HashPassword(user.Password, 8);
-        //}
-        //public PasswordVerificationResult VerifyHashedPassword(
-        //  UserModel user, string providedPassword)
-        //{
-        //    var isValid = BCrypt.Net.BCrypt.Verify(providedPassword, user.Password);
-
-        //    if (isValid && BCrypt.Net.BCrypt.PasswordNeedsRehash(user.Password, 8))
-        //    {
-        //        return PasswordVerificationResult.SuccessRehashNeeded;
-        //    }
-
-        //    return isValid ? PasswordVerificationResult.Success : PasswordVerificationResult.Failed;
-        //}
+        private void HashPassword(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+        private bool CheckPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
+        }
     }
 }
