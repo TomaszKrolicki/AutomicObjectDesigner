@@ -1,4 +1,5 @@
-﻿using AutomicObjectDesigner.Models.Objects;
+﻿using System.Text;
+using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
@@ -7,6 +8,7 @@ using AutomicObjectDesignerBack.Repository.Implementations;
 using Fingers10.ExcelExport.ActionResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -154,13 +156,15 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Login = sapJobBwChain.FirstOrDefault().Login
             };
 
+            
+
             return Ok(sap);
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/{id}
-        [HttpGet("DownloadExcelFile/{id:int}", Name = "DownloadExcelFile")]
-        public IActionResult DownloadExcelFile(int id)
+        //Get https://localhost:7017/api/SapJobBwChain/DownloadCsvFile/{id}
+        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile")]
+        public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -172,6 +176,87 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 return NotFound();
             };
+
+
+
+            string[] columnNames = new string[]
+            {
+                "Id", "SapVariant", "SapReport", "ObjectName", "Kette", "OwnerId", "Active", "MaxParallelTasks",
+                "Process", "PreProcess", "PostProcess", "SapClient",
+                "SapSid", "RoutineJob", "ProcessName", "SapJobName", "DeleteSapJob", "Documentation", "Title",
+                "Archive1", "Archive2", "InternalAccount",
+                "Folder", "Queue", "Agent", "Login"
+            };
+            var saps = _sapJobBwChainRepository.FindByCondition((h => h.Id == id));
+            string csv = String.Empty;
+
+            foreach (string columnName in columnNames)
+            {
+                csv += columnName + ',';
+            }
+
+            csv += "\r\n";
+
+            foreach (var sap in saps)
+            {
+                csv += '"' + sap.Id.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.SapVariant.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapReport.Replace(",", ";") + "\",";
+                csv += '"' + sap.ObjectName.Replace(",", ";") + "\",";
+                csv += '"' + sap.Kette.Replace(",", ";") + "\",";
+                csv += '"' + sap.OwnerId.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Active.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.MaxParallelTasks.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Process.Replace(",", ";") + "\",";
+                csv += '"' + sap.PreProcess.Replace(",", ";") + "\",";
+                csv += '"' + sap.PostProcess.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapClient.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapSid.Replace(",", ";") + "\",";
+                csv += '"' + sap.RoutineJob.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.ProcessName.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapJobName.Replace(",", ";") + "\",";
+                csv += '"' + sap.DeleteSapJob.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Documentation.Replace(",", ";") + "\",";
+                csv += '"' + sap.Title.Replace(",", ";") + "\",";
+                csv += '"' + sap.Archive1.Replace(",", ";") + "\",";
+                csv += '"' + sap.Archive2.Replace(",", ";") + "\",";
+                csv += '"' + sap.InternalAccount.Replace(",", ";") + "\",";
+                csv += '"' + sap.Folder.Replace(",", ";") + "\",";
+                csv += '"' + sap.Queue?.Replace(",", ";") + "\",";
+                csv += '"' + sap.Agent?.Replace(",", ";") + "\",";
+                csv += '"' + sap.Login?.Replace(",", ";") + "\",";
+
+                csv += "\r\n";
+
+            }
+
+            byte[] bytes = Encoding.ASCII.GetBytes(csv);
+            return File(bytes, "text/csv", "sap.csv");
+            //return new ExcelResult<SapJobBwChain>(saps, $"{id}_JOBS_SAP_JOB_BW_CHAIN", $"{id}_JOBS_SAP_JOB_BW_CHAIN_EX");
+        }
+
+
+
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/{id}
+        [HttpGet("DownloadExcelFile/{id:int}", Name = "DownloadExcelFile")]
+        public IActionResult DownloadExcelFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            ;
+
+            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (sapJobBwChain == null)
+            {
+                return NotFound();
+            }
+
+            ;
 
 
             SapJobBwChain sap = new SapJobBwChain
@@ -203,16 +288,16 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Agent = sapJobBwChain.Agent,
                 Login = sapJobBwChain.Login
             };
-            List<SapJobBwChain> saps= new List<SapJobBwChain>();
+            List<SapJobBwChain> saps = new List<SapJobBwChain>();
             saps.Add(sap);
 
-            return new ExcelResult<SapJobBwChain>(saps, $"{id}_JOBS_SAP_JOB_BW_CHAIN", $"{id}_JOBS_SAP_JOB_BW_CHAIN_EX");
+            return new ExcelResult<SapJobBwChain>(saps, $"{id}_JOBS_SAP_JOB_BW_CHAIN",
+                $"{id}_JOBS_SAP_JOB_BW_CHAIN_EX");
         }
 
         // https://localhost:7017/api/SapJobBwChain/step2
         [HttpPost("step2", Name = "CreateSapJobBwChain_Step2")]
-        public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep2(
-            [FromBody] SapJobBwChainStep2Dto SapJobBwChainStep2Dto)
+        public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep2([FromBody] SapJobBwChainStep2Dto SapJobBwChainStep2Dto)
         {
             if (!ModelState.IsValid)
             {
