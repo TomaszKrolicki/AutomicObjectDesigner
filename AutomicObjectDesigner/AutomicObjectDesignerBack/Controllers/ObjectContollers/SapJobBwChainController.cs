@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -291,7 +292,63 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         }
 
+        //// Function returns required Data ready for modification after all steps were finished.
+        ////Get https://localhost:7017/api/SapJobBwChain/DownloadXmlFile/{id}
+        //[HttpGet("DownloadXmlFile/{id:int}", Name = "DownloadXmlFile")]
+        //public IActionResult DownloadXmlFile(int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    };
 
+        //    var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+        //    if (sapJobBwChain == null)
+        //    {
+        //        return NotFound();
+        //    };
+
+        //    SapJobBwChain sapXml = new SapJobBwChain
+        //    {
+        //        Id = id,
+        //        SapVariant = sapJobBwChain.SapVariant,
+        //        SapReport = sapJobBwChain.SapReport,
+        //        ObjectName = sapJobBwChain.ObjectName,
+        //        Kette = sapJobBwChain.Kette,
+        //        OwnerId = sapJobBwChain.OwnerId,
+        //        Active = sapJobBwChain.Active,
+        //        MaxParallelTasks = sapJobBwChain.MaxParallelTasks,
+        //        Process = sapJobBwChain.Process,
+        //        PreProcess = sapJobBwChain.PreProcess,
+        //        PostProcess = sapJobBwChain.PostProcess,
+        //        SapClient = sapJobBwChain.SapClient,
+        //        SapSid = sapJobBwChain.SapSid,
+        //        RoutineJob = sapJobBwChain.RoutineJob,
+        //        ProcessName = sapJobBwChain.ProcessName,
+        //        SapJobName = sapJobBwChain.SapJobName,
+        //        DeleteSapJob = sapJobBwChain.DeleteSapJob,
+        //        Documentation = sapJobBwChain.Documentation,
+        //        Title = sapJobBwChain.Title,
+        //        Archive1 = sapJobBwChain.Archive1,
+        //        Archive2 = sapJobBwChain.Archive2,
+        //        InternalAccount = sapJobBwChain.InternalAccount,
+        //        Folder = sapJobBwChain.Folder,
+        //        Queue = sapJobBwChain.Queue,
+        //        Agent = sapJobBwChain.Agent,
+        //        Login = sapJobBwChain.Login
+        //    };
+
+        //    var serializer = new XmlSerializer(typeof(SapJobBwChain));
+        //    using (var writer = new StreamWriter("sap.xml"))
+        //    {
+        //        serializer.Serialize(writer, sapXml);
+        //    }
+
+            
+        //    byte[] bytes = Encoding.ASCII.GetBytes(serializer);
+        //    return File(bytes, "application/xml", "sap.xml");
+
+        //}
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/{id}
         [HttpGet("DownloadExcelFile/{id:int}", Name = "DownloadExcelFile")]
