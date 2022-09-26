@@ -16,6 +16,11 @@ import { UnixGeneralStep3 } from '../pages/UnixGeneralStep3';
 import { UnixGeneralStep4 } from '../pages/UnixGeneralStep4';
 
 import { WindowsGeneralStep1 } from '../pages/WindowsGeneralStep1';
+import { WindowsGeneralStep2 } from '../pages/WindowsGeneralStep2';
+import { WindowsGeneralStep3 } from '../pages/WindowsGeneralStep3';
+import { WindowsGeneralStep4 } from '../pages/WindowsGeneralStep4';
+import { WindowsGeneralStep5 } from '../pages/WindowsGeneralStep5';
+import { WindowsGeneralStep6 } from '../pages/WindowsGeneralStep6';
 
 import { SapJobSimpleStep1 } from '../pages/SapJobSimpleStep1';
 import { SapJobSimpleStep2 } from '../pages/SapJobSimpleStep2';
@@ -51,6 +56,11 @@ const Routing = () => {
         <Route path='/sapjobmassen' element={<SapJobMassen />} />
 
         <Route path='/windowsGeneral/1' element={<WindowsGeneralStep1 />} />
+        <Route path='/windowsGeneral/2' element={<WindowsGeneralStep2 />} />
+        <Route path='/windowsGeneral/3' element={<WindowsGeneralStep3 />} />
+        <Route path='/windowsGeneral/4' element={<WindowsGeneralStep4 />} />
+        <Route path='/windowsGeneral/5' element={<WindowsGeneralStep5 />} />
+        <Route path='/windowsGeneral/6' element={<WindowsGeneralStep6 />} />
 
         <Route path='/unixGeneral/1' element={<UnixGeneralStep1 />} />
         <Route path='/unixGeneral/2' element={<UnixGeneralStep2 />} />
