@@ -16,7 +16,7 @@ export const SapJobBWStep4 = () => {
    const { state } = useLocation();
    
    console.log("Id: "+  state);
-
+const jobType = "SapJobBwChain/GetSapJobBwChainStep5/";
    const [formData, setFormData] = React.useState(
     {
       Id: state,
@@ -54,7 +54,7 @@ export const SapJobBWStep4 = () => {
         setPost(data);
         if (data != null) {
           const id = data.id;
-          Navigate("/ExportSite", { state: id });
+          Navigate("/ExportSite", { state: {num: id, type: jobType} });
         } else {
           console.log("Id = null");
         }

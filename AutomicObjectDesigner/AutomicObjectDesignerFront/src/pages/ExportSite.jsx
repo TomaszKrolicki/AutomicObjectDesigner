@@ -1,6 +1,6 @@
 import React from 'react';
 import { data } from 'autoprefixer';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useParams, useNavigate, BrowserRouter as Router, } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
@@ -10,20 +10,21 @@ export const ExportSite = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
-  const { id } = useLocation();
+  const { state } = useLocation();
+  console.log(state.type);
   //  const { state } = 1;
-  console.log("Export site - Id: " + state);
+  //console.log("Export site - Id: " + state);
 
-
+  const url = 'https://localhost:7017/api/' + state.type + state.num;
+  console.log("Fetching url: " + url)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(
-          'https://localhost:7017/api/SapJobBwChain/' + id,
-        );
+        const result = await fetch(url);
         const dat = await result.json();
         if (dat != null) {
-
+          console.log(dat);
+          document.getElementById("object").innerText = JSON.stringify(dat);
         } else {
           console.warn("Data couldn't be fetched");
         }
@@ -50,11 +51,21 @@ export const ExportSite = () => {
   return (
     <div className='md:px-4 py-2.5 container w-800'>
       <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">
-        This is a message
+        This is the object with your paramaters:
       </p>
-        <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
-         focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
-          dark:focus:ring-blue-800">Export</button>
+      <div className='mp-2 font-blackcolumns-2 dark:text-gray-300' id='object'>
+      </div>
+      <div className='my-10'>
+      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
+      dark:focus:ring-blue-800">Export XML</button>
+      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      focus:ring-blue-300 font-medium rounded-lg mx-4 text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
+      dark:focus:ring-blue-800">Export JSON</button>
+      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
+      dark:focus:ring-blue-800">Export CSV</button>
+      </div>
     </div>
   )
 }

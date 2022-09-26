@@ -1,12 +1,7 @@
-﻿using AutomicObjectDesigner.Models.Objects;
-using AutomicObjectDesignerBack.Controllers.Functions;
-using AutomicObjectDesignerBack.Data;
+﻿using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
-//using AutomicObjectDesignerBack.Models.Objects.Dto;
 using AutomicObjectDesignerBack.Repository;
-using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -119,7 +114,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             }
 
             windowsObject.ObjectName = WindowsGeneralStep2Dto.ObjectName;
-            
+
 
             //throw new NotImplementedException();
             _windowsGeneralRepository.Update(windowsObject);
@@ -172,7 +167,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             }
 
             windowsObject.Documentation = WindowsGeneralStep4Dto.Documentation;
-            
+
 
             _windowsGeneralRepository.Update(windowsObject);
             _windowsGeneralRepository.Save();

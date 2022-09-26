@@ -14,6 +14,10 @@ namespace AutomicObjectDesignerBack.Migrations
     [DbContext(typeof(AppDatabaseContext))]
     [Migration("20220926075220_Initial")]
     partial class Initial
+========
+    [Migration("20220926054122_SeedInitialData")]
+    partial class SeedInitialData
+>>>>>>>> AuthController:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220926054122_SeedInitialData.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -147,12 +151,10 @@ namespace AutomicObjectDesignerBack.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -163,17 +165,16 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -190,7 +191,6 @@ namespace AutomicObjectDesignerBack.Migrations
                             HasEmailConfirmed = true,
                             IsAdministrator = true,
                             LastName = "Admin",
-                            Password = "Admin!11",
                             UserName = "Admin"
                         });
                 });
