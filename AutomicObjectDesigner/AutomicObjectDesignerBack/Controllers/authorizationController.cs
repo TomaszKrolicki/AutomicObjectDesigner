@@ -10,14 +10,14 @@ namespace AutomicObjectDesignerBack.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorizationController : Controller
+    public class AuthorizationController : ControllerBase
     {
         public IConfiguration Configuration { get; }
         private readonly IAuthorizationRepository _AuthorizationRepository;
 
-        public AuthorizationController(IConfiguration configuration, IAuthorizationRepository repository)
+        public AuthorizationController(IConfiguration configuration, IAuthorizationRepository authorizationrepository)
         {
-            _AuthorizationRepository = repository;
+            _AuthorizationRepository = authorizationrepository;
             Configuration = configuration;
         }
 
@@ -49,7 +49,7 @@ namespace AutomicObjectDesignerBack.Controllers
                 return BadRequest("Wrong Password");
             }
 
-            //string token = CreateToken(user);
+            string token = CreateToken(user);
             return Ok(token);
         }
 
