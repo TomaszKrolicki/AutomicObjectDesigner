@@ -39,7 +39,7 @@ namespace AutomicObjectDesignerBack.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLogin request)
         {
-            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName);
+            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).FirstOrDefault();
             if (user == null)
             {
                 return BadRequest("User not found");
