@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220926075220_Initial")]
+    [Migration("20220926095402_Initial")]
     partial class Initial
-========
-    [Migration("20220926054122_SeedInitialData")]
-    partial class SeedInitialData
->>>>>>>> AuthController:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220926054122_SeedInitialData.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
