@@ -24,6 +24,10 @@ namespace AutomicObjectDesignerBack.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserModel>> Register(UserRegister request)
         {
+            if (_AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).First() != null)
+            {
+                return BadRequest("User exist");
+            }
             HashPassword(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var user = new UserModel();
             user.UserName = request.UserName;
@@ -41,7 +45,7 @@ namespace AutomicObjectDesignerBack.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login(UserLogin request)
         {
-            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).FirstOrDefault();
+            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).First();
             if (user == null)
             {
                 return BadRequest("User not found");
