@@ -57,8 +57,7 @@ namespace AutomicObjectDesignerBack.Controllers
         {
             List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.UserName),
-            new Claim(ClaimTypes.Email, user.Email)
+            new Claim(ClaimTypes.Name, user.UserName)
         };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt:Key").Value));
