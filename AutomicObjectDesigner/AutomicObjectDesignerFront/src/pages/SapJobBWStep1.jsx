@@ -1,7 +1,6 @@
 import { data } from 'autoprefixer';
 import React from 'react'
-import { Form, NavLink } from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const SapJobBWStep1 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -35,20 +34,19 @@ export const SapJobBWStep1 = () => {
     })
   }
 
-  const [post, setPost] = React.useState(null);
+  // const [post, setPost] = React.useState(null);
 
   let Navigate = useNavigate();
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      // console.log(formData)
       const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step1', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
-      })//.then((response) => {return response.json() }).then((data) => setPost(data)).catch((error) => { console.log("!ERROR! " + error) })
+      })
       data = await SapJobResponse.json();
-      setPost(data);
+      // setPost(data);
       if (data != null) {
         const id = data.id;
         Navigate("/SAPJobBW/2", { state: id });
@@ -58,7 +56,6 @@ export const SapJobBWStep1 = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
-
   }
 
   return (

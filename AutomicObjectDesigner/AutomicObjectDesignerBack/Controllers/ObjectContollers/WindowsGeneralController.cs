@@ -5,6 +5,7 @@ using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
+using AutomicObjectDesigner.Models.Objects;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -31,7 +32,24 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             var windowsGeneral = _windowsGeneralRepository.GetAll();
 
             return Ok(windowsGeneral);
+        }
 
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep2/{id}
+        [HttpGet("GetWindowsGeneralStep2/{id:int}", Name = "GetWindowsGeneralStep2")]
+        public async Task<ActionResult<WindowsGeneral>> GetSapJobBwChainStep2(int id)
+        {
+            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
+
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+
+            WindowsGeneralStep2Dto win = new WindowsGeneralStep2Dto()
+            {
+                Id = id,
+                ObjectName = windowsGeneral.ObjectName
+            };
+
+            return Ok(win);
         }
 
         //GET https://localhost:7017/api/WindowsGeneral/{id}
@@ -82,12 +100,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             {
                 WinLogin = WindowsGeneralStep1Dto.WinLogin,
                 WinServer = WindowsGeneralStep1Dto.WinServer,
-                SapSid = WindowsGeneralStep1Dto.SapSid,
-                SapClient = WindowsGeneralStep1Dto.SapClient,
                 RoutineJob = WindowsGeneralStep1Dto.RoutineJob,
                 ProcessName = WindowsGeneralStep1Dto.ProcessName,
                 NameSuffix = WindowsGeneralStep1Dto.NameSuffix,
-                ObjectName = $"<{WindowsGeneralStep1Dto.SapSid}>.<{WindowsGeneralStep1Dto.SapClient}>#<{WindowsGeneralStep1Dto.RoutineJob}>" +
+                ObjectName = $"<>.<>#<{WindowsGeneralStep1Dto.RoutineJob}>" +
                              $"#<{WindowsGeneralStep1Dto.ProcessName}>#WIN_<{WindowsGeneralStep1Dto.NameSuffix}>.JOBS"
 
             };
@@ -233,8 +249,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Process = windowsGeneral.FirstOrDefault().Process,
                 PreProcess = windowsGeneral.FirstOrDefault().PreProcess,
                 PostProcess = windowsGeneral.FirstOrDefault().PostProcess,
-                SapClient = windowsGeneral.FirstOrDefault().SapClient,
-                SapSid = windowsGeneral.FirstOrDefault().SapSid,
                 RoutineJob = windowsGeneral.FirstOrDefault().RoutineJob,
                 ProcessName = windowsGeneral.FirstOrDefault().ProcessName,
                 Documentation = windowsGeneral.FirstOrDefault().Documentation,
@@ -269,12 +283,10 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             };
 
 
-
             string[] columnNames = new string[]
             {
                 "Id", "WinServer", "WinLogin", "ObjectName", "OwnerId", "Active", "NameSuffix", "MaxParallelTasks",
-                "Process", "PreProcess", "PostProcess", "SapClient",
-                "SapSid", "RoutineJob", "ProcessName", "Documentation", "Title",
+                "Process", "PreProcess", "PostProcess", "RoutineJob", "ProcessName", "Documentation", "Title",
                 "Archive1", "Archive2", "InternalAccount",
                 "Folder", "Queue", "Agent", "Login"
             };
@@ -301,8 +313,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 csv += '"' + win.Process.Replace(",", ";") + "\",";
                 csv += '"' + win.PreProcess.Replace(",", ";") + "\",";
                 csv += '"' + win.PostProcess.Replace(",", ";") + "\",";
-                csv += '"' + win.SapClient.Replace(",", ";") + "\",";
-                csv += '"' + win.SapSid.Replace(",", ";") + "\",";
                 csv += '"' + win.RoutineJob.ToString().Replace(",", ";") + "\",";
                 csv += '"' + win.ProcessName.Replace(",", ";") + "\",";
                 csv += '"' + win.Documentation.Replace(",", ";") + "\",";
@@ -353,8 +363,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Process = windowsGeneral.Process,
                 PreProcess = windowsGeneral.PreProcess,
                 PostProcess = windowsGeneral.PostProcess,
-                SapClient = windowsGeneral.SapClient,
-                SapSid = windowsGeneral.SapSid,
                 RoutineJob = windowsGeneral.RoutineJob,
                 ProcessName = windowsGeneral.ProcessName,
                 Documentation = windowsGeneral.Documentation,

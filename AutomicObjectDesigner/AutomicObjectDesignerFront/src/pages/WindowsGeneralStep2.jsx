@@ -1,11 +1,8 @@
 import React from 'react';
 import { data } from 'autoprefixer';
 import { Form } from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import axios from 'axios';
 
 
 export const WindowsGeneralStep2 = () => {
@@ -16,7 +13,7 @@ export const WindowsGeneralStep2 = () => {
 
 
   const { state } = useLocation();
-  const { id } = state;
+
 
   const [formData, setFormData] = React.useState(
     {
@@ -29,7 +26,7 @@ export const WindowsGeneralStep2 = () => {
     const fetchData = async () => {
       try {
         const result = await fetch(
-          'https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep2/' + state,
+          'https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep2/' + state,
         );
         const dat = await result.json();
         if (dat != null) {
@@ -63,23 +60,22 @@ export const WindowsGeneralStep2 = () => {
   async function handleSubmit(event) {
     event.preventDefault()
     try {
-      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step2', {
+      const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step2', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      data = await SapJobResponse.json();
+      data = await WindowsGeneralResponse.json();
       setPost(data);
       if (data != null) {
         const id = data.id;
-        Navigate("/SAPJobBW/3", { state: id });
+        Navigate("/WindowsGeneral/3", { state: id });
       } else {
         console.log("Id = null");
       }
     } catch (error) {
       console.log("ERROR" + error)
     }
-
   }
 
   return (

@@ -8,8 +8,6 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         public string WinServer { get; set; }
         public string WinLogin { get; set; }
-        public string SapSid { get; set; }
-        public string SapClient { get; set; }
         public string RoutineJob { get; set; }
         public string? ProcessName { get; set; }
         public string? NameSuffix { get; set; }

@@ -1,11 +1,7 @@
 import React from 'react';
 import { data } from 'autoprefixer';
-import { Form } from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import axios from 'axios';
 
 
 export const SapJobBWStep2 = () => {
@@ -13,7 +9,6 @@ export const SapJobBWStep2 = () => {
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
-
 
   const { state } = useLocation();
   const { id } = state;
