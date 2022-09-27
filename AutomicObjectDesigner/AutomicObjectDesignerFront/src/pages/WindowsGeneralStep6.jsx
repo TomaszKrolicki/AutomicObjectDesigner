@@ -12,11 +12,16 @@ export const WindowsGeneralStep6 = () => {
 
    const [formData, setFormData] = React.useState(
     {
-      Title: "",
-      Archive1: "",
-      Archive2: "",
-      Folder: "/IMPORT/E1E/user ID",
-      InternalAccount: "",
+      VariableKey1: "",
+      VariableValue1: "",
+      VariableKey2: "",
+      VariableValue2: "",
+      VariableKey3: "",
+      VariableValue3: "",
+      VariableKey4: "",
+      VariableValue4: "",
+      VariableKey5: "",
+      VariableValue5: ""
     }
     )
 
@@ -48,23 +53,18 @@ export const WindowsGeneralStep6 = () => {
   return (
     <div className='md:px-4 py-2.5 container w-800'>
       <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">
+      Add form for Variable key and Variable Value(optional)
       </p>
+      <div id="container"/>
       <form onSubmit={handleSubmit}>
-      <label htmlFor="Title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-        <input type="text" onChange={handleChange} value={formData.Title} name='Title' maxLength="200" id="Title" placeholder='Max 200 characters.' className={cssStyle} required />
-
-        <label htmlFor="Archive1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Archive Key 1</label>
-        <input type="text" onChange={handleChange} value={formData.Archive1} name='Archive1' maxLength="60" id="Archive1" placeholder='Max 60 characters.' className={cssStyle} required />
-
-        <label htmlFor="Archive2" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Archive Key 2</label>
-        <input type="text" onChange={handleChange} value={formData.Archive2} name='Archive2' maxLength="20" id="Archive2" placeholder='Max 20 characters.' className={cssStyle} required />
-
-        <label htmlFor="InternalAccount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Internal account</label>
-        <input type="text" onChange={handleChange} value={formData.InternalAccount} name='InternalAccount' maxLength="16" id="InternalAccount" placeholder='Max 16 characters.' className={cssStyle} required />
-
-        <label htmlFor="Folder" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Folder</label>
-        <input type="text" onChange={handleChange} value={formData.Folder} name='Folder' maxLength="160" id="Folder" placeholder='/IMPORT/E1E/user ID' className={cssStyle} required />
-
+      {/* <label htmlFor="VariableKey1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Variable key</label>
+        <input type="text" onChange={handleChange} value={formData.VariableKey1} name='VariableKey1' maxLength="200" id="VariableKey1" placeholder='Variable Key' className={cssStyle} required />
+        <label htmlFor="VariableValue1" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Variable value</label>
+        <input type="text" onChange={handleChange} value={formData.VariableValue1} name='VariableValue1' maxLength="200" id="VariableValue1" placeholder='VariableValue1' className={cssStyle} required /> */}
+        {/* <button type='button' onClick={addField} className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+         focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
+          dark:focus:ring-blue-800">Add form</button> */}
+        
         <button type="submit" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
          focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
           dark:focus:ring-blue-800">Submit</button>
