@@ -14,15 +14,7 @@ export const WindowsGeneralStep1 = () => {
         SapClient: "",
         RoutineJob: false,
         ProcessName: "",
-        NameSuffix: "",
-        Folder: null,
-        Active: null,
-        MaxParallelTasks: null,
-        Process: null,
-        PreProcess: null,
-        PostProcess: null,
-        Queue: null,
-        Agent: null
+        NameSuffix: ""
     }
     )
 

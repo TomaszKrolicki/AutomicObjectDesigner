@@ -1,7 +1,10 @@
 ﻿using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Repository;
+using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -206,6 +209,171 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step5", new { id = windowsObject.Id }, windowsObject);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep5/{id}
+        [HttpGet("GetWindowsGeneralStep5/{id:int}", Name = "GetWindowsGeneralStep5")]
+        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep5(int id)
+        {
+            _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");
+
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id));
+
+            WindowsGeneral windows = new WindowsGeneral
+            {
+                Id = id,
+                WinServer = windowsGeneral.FirstOrDefault().WinServer,
+                WinLogin = windowsGeneral.FirstOrDefault().WinLogin,
+                ObjectName = windowsGeneral.FirstOrDefault().ObjectName,
+                OwnerId = windowsGeneral.FirstOrDefault().OwnerId,
+                Active = windowsGeneral.FirstOrDefault().Active,
+                NameSuffix = windowsGeneral.FirstOrDefault().NameSuffix,
+                MaxParallelTasks = windowsGeneral.FirstOrDefault().MaxParallelTasks,
+                Process = windowsGeneral.FirstOrDefault().Process,
+                PreProcess = windowsGeneral.FirstOrDefault().PreProcess,
+                PostProcess = windowsGeneral.FirstOrDefault().PostProcess,
+                SapClient = windowsGeneral.FirstOrDefault().SapClient,
+                SapSid = windowsGeneral.FirstOrDefault().SapSid,
+                RoutineJob = windowsGeneral.FirstOrDefault().RoutineJob,
+                ProcessName = windowsGeneral.FirstOrDefault().ProcessName,
+                Documentation = windowsGeneral.FirstOrDefault().Documentation,
+                Title = windowsGeneral.FirstOrDefault().Title,
+                Archive1 = windowsGeneral.FirstOrDefault().Archive1,
+                Archive2 = windowsGeneral.FirstOrDefault().Archive2,
+                InternalAccount = windowsGeneral.FirstOrDefault().InternalAccount,
+                Folder = windowsGeneral.FirstOrDefault().Folder,
+                Queue = windowsGeneral.FirstOrDefault().Queue,
+                Agent = windowsGeneral.FirstOrDefault().Agent,
+                Login = windowsGeneral.FirstOrDefault().Login
+
+            };
+
+            return Ok(windows);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/WindowsGeneral/DownloadCsvFile/{id}
+        [HttpGet("DownloadWindowsGeneralCsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile")]
+        public IActionResult DownloadCsvFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            };
+
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (windowsGeneral == null)
+            {
+                return NotFound();
+            };
+
+
+
+            string[] columnNames = new string[]
+            {
+                "Id", "WinServer", "WinLogin", "ObjectName", "OwnerId", "Active", "NameSuffix", "MaxParallelTasks",
+                "Process", "PreProcess", "PostProcess", "SapClient",
+                "SapSid", "RoutineJob", "ProcessName", "Documentation", "Title",
+                "Archive1", "Archive2", "InternalAccount",
+                "Folder", "Queue", "Agent", "Login"
+            };
+            var wins = _windowsGeneralRepository.FindByCondition((h => h.Id == id));
+            string csv = String.Empty;
+
+            foreach (string columnName in columnNames)
+            {
+                csv += columnName + ',';
+            }
+
+            csv += "\r\n";
+
+            foreach (var win in wins)
+            {
+                csv += '"' + win.Id.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.WinServer.Replace(",", ";") + "\",";
+                csv += '"' + win.WinLogin.Replace(",", ";") + "\",";
+                csv += '"' + win.ObjectName.Replace(",", ";") + "\",";
+                csv += '"' + win.OwnerId.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.Active.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.NameSuffix.Replace(",", ";") + "\",";
+                csv += '"' + win.MaxParallelTasks.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.Process.Replace(",", ";") + "\",";
+                csv += '"' + win.PreProcess.Replace(",", ";") + "\",";
+                csv += '"' + win.PostProcess.Replace(",", ";") + "\",";
+                csv += '"' + win.SapClient.Replace(",", ";") + "\",";
+                csv += '"' + win.SapSid.Replace(",", ";") + "\",";
+                csv += '"' + win.RoutineJob.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.ProcessName.Replace(",", ";") + "\",";
+                csv += '"' + win.Documentation.Replace(",", ";") + "\",";
+                csv += '"' + win.Title.Replace(",", ";") + "\",";
+                csv += '"' + win.Archive1.Replace(",", ";") + "\",";
+                csv += '"' + win.Archive2.Replace(",", ";") + "\",";
+                csv += '"' + win.InternalAccount.Replace(",", ";") + "\",";
+                csv += '"' + win.Folder.Replace(",", ";") + "\",";
+                csv += '"' + win.Queue?.Replace(",", ";") + "\",";
+                csv += '"' + win.Agent?.Replace(",", ";") + "\",";
+                csv += '"' + win.Login?.Replace(",", ";") + "\",";
+
+                csv += "\r\n";
+
+            }
+
+            byte[] bytes = Encoding.ASCII.GetBytes(csv);
+            return File(bytes, "text/csv", "win.csv");
+
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/WindowsGeneral/DownloadJsonFile/{id}
+        [HttpGet("DownloadWindowsGeneralJsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile")]
+        public IActionResult DownloadJsonFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            };
+
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (windowsGeneral == null)
+            {
+                return NotFound();
+            };
+
+            WindowsGeneral winJson = new WindowsGeneral
+            {
+                Id = id,
+                WinServer = windowsGeneral.WinServer,
+                WinLogin = windowsGeneral.WinLogin,
+                ObjectName = windowsGeneral.ObjectName,
+                OwnerId = windowsGeneral.OwnerId,
+                Active = windowsGeneral.Active,
+                NameSuffix = windowsGeneral.NameSuffix,
+                MaxParallelTasks = windowsGeneral.MaxParallelTasks,
+                Process = windowsGeneral.Process,
+                PreProcess = windowsGeneral.PreProcess,
+                PostProcess = windowsGeneral.PostProcess,
+                SapClient = windowsGeneral.SapClient,
+                SapSid = windowsGeneral.SapSid,
+                RoutineJob = windowsGeneral.RoutineJob,
+                ProcessName = windowsGeneral.ProcessName,
+                Documentation = windowsGeneral.Documentation,
+                Title = windowsGeneral.Title,
+                Archive1 = windowsGeneral.Archive1,
+                Archive2 = windowsGeneral.Archive2,
+                InternalAccount = windowsGeneral.InternalAccount,
+                Folder = windowsGeneral.Folder,
+                Queue = windowsGeneral.Queue,
+                Agent = windowsGeneral.Agent,
+                Login = windowsGeneral.Login
+            };
+
+            string fileName = "win.json";
+            string jsonString = JsonSerializer.Serialize(windowsGeneral, new JsonSerializerOptions { WriteIndented = true });
+
+            byte[] bytes = Encoding.ASCII.GetBytes(jsonString);
+            return File(bytes, "application/json", "win.json");
+
         }
 
         //[HttpPut("{id}")]

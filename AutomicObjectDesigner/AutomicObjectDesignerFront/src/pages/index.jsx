@@ -7,6 +7,11 @@ export { SapJobBWStep3 as SapJobBWStep3 } from './SapJobBWStep3';
 export { SapJobBWStep4 as SapJobBWStep4 } from './SapJobBWStep4';
 
 export { WindowsGeneralStep1 as WindowsGeneralStep1 } from './WindowsGeneralStep1';
+export { WindowsGeneralStep2 as WindowsGeneralStep2 } from './WindowsGeneralStep2';
+export { WindowsGeneralStep3 as WindowsGeneralStep3 } from './WindowsGeneralStep3';
+export { WindowsGeneralStep4 as WindowsGeneralStep4 } from './WindowsGeneralStep4';
+export { WindowsGeneralStep5 as WindowsGeneralStep5 } from './WindowsGeneralStep5';
+export { WindowsGeneralStep6 as WindowsGeneralStep6 } from './WindowsGeneralStep6';
 
 export { UnixGeneralStep1 as UnixGeneralStep1 } from './UnixGeneralStep1';
 export { UnixGeneralStep2 as UnixGeneralStep2 } from './UnixGeneralStep2';

@@ -1,11 +1,17 @@
-﻿using AutomicObjectDesigner.Models.Objects;
+﻿using System.Text;
+using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Controllers.Functions;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Repository;
 using AutomicObjectDesignerBack.Repository.Implementations;
+using Fingers10.ExcelExport.ActionResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -167,6 +173,173 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step4", new { id = sapObject.Id }, sapObject);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapSimple/GetSimpleStep5/{id}
+        [HttpGet("GetSapSimpleStep5/{id:int}", Name = "GetSapSimpleStep5")]
+        public async Task<ActionResult<SapSimple>> GetSapSimpleStep5(int id)
+        {
+            _logger.LogInformation($"GetSapSimple called with parameter id = {id}");
+
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.Id == id));
+
+            SapSimple sap = new SapSimple
+            {
+                Id = id,
+                SapVariant = sapSimple.FirstOrDefault().SapVariant,
+                SapReport = sapSimple.FirstOrDefault().SapReport,
+                ObjectName = sapSimple.FirstOrDefault().ObjectName,
+                OwnerId = sapSimple.FirstOrDefault().OwnerId,
+                Active = sapSimple.FirstOrDefault().Active,
+                MaxParallelTasks = sapSimple.FirstOrDefault().MaxParallelTasks,
+                Process = sapSimple.FirstOrDefault().Process,
+                PreProcess = sapSimple.FirstOrDefault().PreProcess,
+                PostProcess = sapSimple.FirstOrDefault().PostProcess,
+                SapClient = sapSimple.FirstOrDefault().SapClient,
+                SapSid = sapSimple.FirstOrDefault().SapSid,
+                RoutineJob = sapSimple.FirstOrDefault().RoutineJob,
+                ProcessName = sapSimple.FirstOrDefault().ProcessName,
+                SapJobName = sapSimple.FirstOrDefault().SapJobName,
+                DeleteSapJob = sapSimple.FirstOrDefault().DeleteSapJob,
+                Documentation = sapSimple.FirstOrDefault().Documentation,
+                Title = sapSimple.FirstOrDefault().Title,
+                Archive1 = sapSimple.FirstOrDefault().Archive1,
+                Archive2 = sapSimple.FirstOrDefault().Archive2,
+                InternalAccount = sapSimple.FirstOrDefault().InternalAccount,
+                Folder = sapSimple.FirstOrDefault().Folder,
+                Queue = sapSimple.FirstOrDefault().Queue,
+                Agent = sapSimple.FirstOrDefault().Agent,
+                Login = sapSimple.FirstOrDefault().Login
+            };
+
+            return Ok(sap);
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapSimple/DownloadCsvFile/{id}
+        [HttpGet("DownloadSapSimpleCsvFile/{id:int}", Name = "DownloadSapSimpleCsvFile")]
+        public IActionResult DownloadCsvFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            };
+
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (sapSimple == null)
+            {
+                return NotFound();
+            };
+
+
+
+            string[] columnNames = new string[]
+            {
+                "Id", "SapVariant", "SapReport", "ObjectName", "OwnerId", "Active", "MaxParallelTasks",
+                "Process", "PreProcess", "PostProcess", "SapClient",
+                "SapSid", "RoutineJob", "ProcessName", "SapJobName", "DeleteSapJob", "Documentation", "Title",
+                "Archive1", "Archive2", "InternalAccount",
+                "Folder", "Queue", "Agent", "Login"
+            };
+            var saps = _sapSimpleRepository.FindByCondition((h => h.Id == id));
+            string csv = String.Empty;
+
+            foreach (string columnName in columnNames)
+            {
+                csv += columnName + ',';
+            }
+
+            csv += "\r\n";
+
+            foreach (var sap in saps)
+            {
+                csv += '"' + sap.Id.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.SapVariant.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapReport.Replace(",", ";") + "\",";
+                csv += '"' + sap.ObjectName.Replace(",", ";") + "\",";
+                csv += '"' + sap.OwnerId.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Active.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.MaxParallelTasks.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Process.Replace(",", ";") + "\",";
+                csv += '"' + sap.PreProcess.Replace(",", ";") + "\",";
+                csv += '"' + sap.PostProcess.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapClient.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapSid.Replace(",", ";") + "\",";
+                csv += '"' + sap.RoutineJob.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.ProcessName.Replace(",", ";") + "\",";
+                csv += '"' + sap.SapJobName.Replace(",", ";") + "\",";
+                csv += '"' + sap.DeleteSapJob.ToString().Replace(",", ";") + "\",";
+                csv += '"' + sap.Documentation.Replace(",", ";") + "\",";
+                csv += '"' + sap.Title.Replace(",", ";") + "\",";
+                csv += '"' + sap.Archive1.Replace(",", ";") + "\",";
+                csv += '"' + sap.Archive2.Replace(",", ";") + "\",";
+                csv += '"' + sap.InternalAccount.Replace(",", ";") + "\",";
+                csv += '"' + sap.Folder.Replace(",", ";") + "\",";
+                csv += '"' + sap.Queue?.Replace(",", ";") + "\",";
+                csv += '"' + sap.Agent?.Replace(",", ";") + "\",";
+                csv += '"' + sap.Login?.Replace(",", ";") + "\",";
+
+                csv += "\r\n";
+
+            }
+
+            byte[] bytes = Encoding.ASCII.GetBytes(csv);
+            return File(bytes, "text/csv", "sap.csv");
+
+        }
+
+        // Function returns required Data ready for modification after all steps were finished.
+        //Get https://localhost:7017/api/SapSimple/DownloadJsonFile/{id}
+        [HttpGet("DownloadSapSimpleJsonFile/{id:int}", Name = "DownloadSapSimpleJsonFile")]
+        public IActionResult DownloadJsonFile(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            };
+
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
+            if (sapSimple == null)
+            {
+                return NotFound();
+            };
+
+            SapSimple sapJson = new SapSimple
+            {
+                Id = id,
+                SapVariant = sapSimple.SapVariant,
+                SapReport = sapSimple.SapReport,
+                ObjectName = sapSimple.ObjectName,
+                OwnerId = sapSimple.OwnerId,
+                Active = sapSimple.Active,
+                MaxParallelTasks = sapSimple.MaxParallelTasks,
+                Process = sapSimple.Process,
+                PreProcess = sapSimple.PreProcess,
+                PostProcess = sapSimple.PostProcess,
+                SapClient = sapSimple.SapClient,
+                SapSid = sapSimple.SapSid,
+                RoutineJob = sapSimple.RoutineJob,
+                ProcessName = sapSimple.ProcessName,
+                SapJobName = sapSimple.SapJobName,
+                DeleteSapJob = sapSimple.DeleteSapJob,
+                Documentation = sapSimple.Documentation,
+                Title = sapSimple.Title,
+                Archive1 = sapSimple.Archive1,
+                Archive2 = sapSimple.Archive2,
+                InternalAccount = sapSimple.InternalAccount,
+                Folder = sapSimple.Folder,
+                Queue = sapSimple.Queue,
+                Agent = sapSimple.Agent,
+                Login = sapSimple.Login
+            };
+
+            string fileName = "sap.json";
+            string jsonString = JsonSerializer.Serialize(sapJson, new JsonSerializerOptions { WriteIndented = true });
+
+            byte[] bytes = Encoding.ASCII.GetBytes(jsonString);
+            return File(bytes, "application/json", "sap.json");
+
         }
 
         ////Put https://localhost:7017/api/SapSimple/{id}
