@@ -15,11 +15,11 @@ export const WindowsGeneralStep5 = () => {
    const [formData, setFormData] = React.useState(
     {
       Id : state,
-      Title: "",
-      Archive1: "",
-      Archive2: "",
-      Folder: "/IMPORT/E1E/user ID",
-      InternalAccount: ""
+      Title: "asd",
+      Archive1: "asd",
+      Archive2: "asd",
+      InternalAccount: "asd",
+      Folder: "/IMPORT/E1E/user ID"
     }
     )
 
@@ -35,10 +35,11 @@ export const WindowsGeneralStep5 = () => {
     }
 
     let Navigate = useNavigate();
+
     async function handleSubmit(event) {
       event.preventDefault()
       try {
-        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step6', {
+        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step5', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -47,7 +48,7 @@ export const WindowsGeneralStep5 = () => {
         // setPost(data);
         if (data != null) {
           const id = data.id;
-          Navigate("/ExportSite", { state: {num: id, type: jobType} });
+          Navigate("/WindowsGeneral/6", { state: {num: id, type: jobType} });
         } else {
           console.log("Id = null");
         }

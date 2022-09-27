@@ -16,7 +16,7 @@ export const WindowsGeneralStep3 = () => {
    const [formData, setFormData] = React.useState(
     {
         Id : state,
-        Process: ""
+        Process: "asd"
     }
     )
 
