@@ -45,10 +45,10 @@ export const SapJobBWStep1 = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      data = await SapJobResponse.json();
+      data.prop = await SapJobResponse.json();
       // setPost(data);
-      if (data != null) {
-        const id = data.id;
+      if (data.prop != null) {
+        const id = data.prop.id;
         Navigate("/SAPJobBW/2", { state: id });
       } else {
         console.log("Id = null");

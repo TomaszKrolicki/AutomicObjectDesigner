@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { data } from 'autoprefixer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export const WindowsGeneralStep5 = () => {
@@ -12,6 +11,7 @@ export const WindowsGeneralStep5 = () => {
    const { state } = useLocation();
 
    console.log("Id: "+  state);
+   const jobType = "WindowsGeneral/WindowsGeneralStep5/";
    const [formData, setFormData] = React.useState(
     {
       Id : state,
@@ -44,7 +44,7 @@ export const WindowsGeneralStep5 = () => {
           body: JSON.stringify(formData)
         })
         data = await WindowsGeneralResponse.json();
-        setPost(data);
+        // setPost(data);
         if (data != null) {
           const id = data.id;
           Navigate("/ExportSite", { state: {num: id, type: jobType} });

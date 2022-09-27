@@ -31,19 +31,25 @@ export const WindowsGeneralStep1 = () => {
 
     // const [post, setPost] = React.useState(null);
 
+    
+    
+    
+    
+    
     let Navigate = useNavigate();
     async function handleSubmit(event) {
       event.preventDefault()
       try {
-        const SapJobResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step1', {
+        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step1', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
-        data = await SapJobResponse.json();
+        data.prop = await WindowsGeneralResponse.json();
         // setPost(data);
-        if (data != null) {
-          const id = data.id;
+        if (data.prop != null) {
+          const id = data.prop.id;
+          console.log(id);
           Navigate("/WindowsGeneral/2", { state: id });
         } else {
           console.log("Id = null");

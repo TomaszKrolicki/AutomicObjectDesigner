@@ -8,7 +8,7 @@ namespace AutomicObjectDesignerBack.Models.Objects
         // step 1 and 2
         public string WinServer { get; set; }
         public string WinLogin { get; set; }
-        public string RoutineJob { get; set; }
+        public bool RoutineJob { get; set; }
         public string? ProcessName { get; set; }
         public string? NameSuffix { get; set; }
         public string? ObjectName { get; set; }
