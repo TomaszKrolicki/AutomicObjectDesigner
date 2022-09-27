@@ -20,9 +20,9 @@ export const SapJobBWStep3 = () => {
    const [formData, setFormData] = React.useState(
     {
         Id: state,
-        Documentation: "",
+        Documentation: ""
     }
-    );
+    )
 
     function handleChange(event) {
       console.log(event)

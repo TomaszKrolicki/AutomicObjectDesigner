@@ -9,14 +9,17 @@ export const WindowsGeneralStep5 = () => {
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
+   const { state } = useLocation();
 
+   console.log("Id: "+  state);
    const [formData, setFormData] = React.useState(
     {
+      Id : state,
       Title: "",
       Archive1: "",
       Archive2: "",
       Folder: "/IMPORT/E1E/user ID",
-      InternalAccount: "",
+      InternalAccount: ""
     }
     )
 
@@ -31,19 +34,27 @@ export const WindowsGeneralStep5 = () => {
       })
     }
 
+    let Navigate = useNavigate();
     async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/SapSimple/create', {
+      event.preventDefault()
+      try {
+        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step5', {
           method: 'post',
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
+        })
+        data = await WindowsGeneralResponse.json();
+        setPost(data);
+        if (data != null) {
+          const id = data.id;
+          Navigate("/ExportSite", { state: {num: id, type: jobType} });
+        } else {
+          console.log("Id = null");
         }
-        }
+      } catch (error) {
+        console.log("ERROR" + error)
+      }
+    }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
