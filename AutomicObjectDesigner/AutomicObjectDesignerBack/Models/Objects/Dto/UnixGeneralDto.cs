@@ -19,17 +19,17 @@ namespace AutomicObjectDesignerBack.Models.Objects
 
     public class UnixGeneralStep2Dto
     {
-        public string ObjectName { get; set; }
+        public string? ObjectName { get; set; }
         public int? Id { get; set; }
     }
     public class UnixGeneralStep3Dto
     {
-        public string Process { get; set; }
+        public string? Process { get; set; }
         public int? Id { get; set; }
     }
     public class UnixGeneralStep4Dto
     {
-        public string Documentation { get; set; }
+        public string? Documentation { get; set; }
         public int? Id { get; set; }
     }
     public class UnixGeneralStep5Dto

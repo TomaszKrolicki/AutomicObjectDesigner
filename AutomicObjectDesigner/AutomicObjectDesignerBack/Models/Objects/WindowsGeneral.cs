@@ -46,8 +46,8 @@ namespace AutomicObjectDesignerBack.Models.Objects
         //Fixed predefined fields:
 
         public string Template = "JOBS.WIN";
-        public string PreProcess1 = ":INC XXX.XXX#ZZZ#WIN_PRE#GENERAL.JOBI";
-        public string PostProcess1 = ":INC XXX.XXX#ZZZ#WIN_POST#GENERAL.JOBI";
+        public string PreProcess = ":INC XXX.XXX#ZZZ#WIN_PRE#GENERAL.JOBI";
+        public string PostProcess = ":INC XXX.XXX#ZZZ#WIN_POST#GENERAL.JOBI";
 
         //Calculated fields:
         public string? Queue { get; set; }

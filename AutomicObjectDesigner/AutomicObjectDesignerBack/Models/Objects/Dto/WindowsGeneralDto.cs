@@ -16,19 +16,19 @@ namespace AutomicObjectDesignerBack.Models.Objects
 
     public class WindowsGeneralStep2Dto
     {
-        public string ObjectName { get; set; }
+        public string? ObjectName { get; set; }
         public int? Id { get; set; }
     }
 
     public class WindowsGeneralStep3Dto
     {
-        public string Process { get; set; }
+        public string? Process { get; set; }
         public int? Id { get; set; }
     }
 
     public class WindowsGeneralStep4Dto
     {
-        public string Documentation { get; set; }
+        public string? Documentation { get; set; }
         public int? Id { get; set; }
     }
 

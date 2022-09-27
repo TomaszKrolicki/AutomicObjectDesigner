@@ -122,7 +122,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             unixObject.ObjectName = UnixGeneralStep2Dto.ObjectName;
 
             _unixGeneralRepository.Update(unixObject);
-            _unixGeneralRepository.Save();
+            await _unixGeneralRepository.Save();
 
             return CreatedAtRoute("CreateUnixGeneral_Step2", new { id = unixObject.Id }, unixObject);
         }
@@ -148,7 +148,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             unixObject.Process = UnixGeneralStep3Dto.Process;
 
             _unixGeneralRepository.Update(unixObject);
-            _unixGeneralRepository.Save();
+            await _unixGeneralRepository.Save();
 
             return CreatedAtRoute("CreateUnixGeneral_Step3", new { id = unixObject.Id }, unixObject);
         }
@@ -173,7 +173,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             unixObject.Documentation = UnixGeneralStep4Dto.Documentation;
 
             _unixGeneralRepository.Update(unixObject);
-            _unixGeneralRepository.Save();
+            await _unixGeneralRepository.Save();
 
             return CreatedAtRoute("CreateUnixGeneral_Step4", new { id = unixObject.Id }, unixObject);
         }
@@ -202,15 +202,15 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             unixObject.Title = UnixGeneralStep5Dto.Title;
 
             _unixGeneralRepository.Update(unixObject);
-            _unixGeneralRepository.Save();
+            await _unixGeneralRepository.Save();
 
             return CreatedAtRoute("CreateUnixGeneral_Step5", new { id = unixObject.Id }, unixObject);
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep5/{id}
-        [HttpGet("GetUnixGeneralStep5/{id:int}", Name = "GetUnixGeneralStep5")]
-        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep5(int id)
+        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep6/{id}
+        [HttpGet("GetUnixGeneralStep6/{id:int}", Name = "GetUnixGeneralStep6")]
+        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep6(int id)
         {
             _logger.LogInformation($"GetUnixGeneral called with parameter id = {id}");
 
@@ -242,6 +242,25 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Queue = unixGeneral.FirstOrDefault().Queue,
                 Agent = unixGeneral.FirstOrDefault().Agent,
                 Login = unixGeneral.FirstOrDefault().Login
+
+            };
+
+            return Ok(unix);
+        }
+
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep2/{id}
+        [HttpGet("GetUnixGeneralStep2/{id:int}", Name = "GetUnixGeneralStep2")]
+        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep2(int id)
+        {
+            _logger.LogInformation($"GetUnixGeneral called with parameter id = {id}");
+
+            var unixGeneral = _unixGeneralRepository.FindByCondition((h => h.Id == id));
+            UnixGeneralStep2Dto unix = new UnixGeneralStep2Dto
+
+            {
+                Id = id,
+                ObjectName = unixGeneral.FirstOrDefault().ObjectName,
 
             };
 

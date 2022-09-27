@@ -114,7 +114,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.ObjectName = SapSimpleStep2Dto.ObjectName;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step2", new { id = sapObject.Id }, sapObject);
         }
@@ -140,7 +140,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.Documentation = SapSimpleStep3Dto.Documentation;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step3", new { id = sapObject.Id }, sapObject);
         }
@@ -170,7 +170,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.Title = SapSimpleStep4Dto.Title;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step4", new { id = sapObject.Id }, sapObject);
         }
@@ -211,6 +211,27 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Queue = sapSimple.FirstOrDefault().Queue,
                 Agent = sapSimple.FirstOrDefault().Agent,
                 Login = sapSimple.FirstOrDefault().Login
+            };
+
+            return Ok(sap);
+        }
+
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/SapSimple/GetSapSimpleStep2/{id}
+        [HttpGet("GetSapSimpleStep2/{id:int}", Name = "GetSapSimpleStep2")]
+        public async Task<ActionResult<SapSimple>> GetSapSimpleStep2(int id)
+        {
+            _logger.LogInformation($"GetSapSimple called with parameter id = {id}");
+
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.Id == id));
+            SapSimpleStep2Dto sap = new SapSimpleStep2Dto
+
+            {
+                Id = id,
+                SapVariant = sapSimple.FirstOrDefault().SapVariant,
+                SapReport = sapSimple.FirstOrDefault().SapReport,
+                ObjectName = sapSimple.FirstOrDefault().ObjectName,
+                
             };
 
             return Ok(sap);
