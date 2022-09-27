@@ -39,7 +39,7 @@ export const WindowsGeneralStep2 = () => {
         }
       } catch (error) {
         console.error(error);
-      };}
+      }}
       fetchData();
     }, []);
 
@@ -52,7 +52,7 @@ export const WindowsGeneralStep2 = () => {
         [name]: type === "checkbox" ? checked : value
       }
     })
-  };
+  }
 
   const [post, setPost] = React.useState(null);
 

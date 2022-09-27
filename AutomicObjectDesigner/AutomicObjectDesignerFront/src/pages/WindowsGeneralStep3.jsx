@@ -6,8 +6,14 @@ export const WindowsGeneralStep3 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
    //TODO: ALL
+
+   const { state } = useLocation();
+
+   console.log("Id: "+  state);
+
    const [formData, setFormData] = React.useState(
     {
+        Id : state,
         Process: ""
     }
     )
@@ -23,20 +29,28 @@ export const WindowsGeneralStep3 = () => {
       })
     }
 
+    let Navigate = useNavigate();
     async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/WindowsGeneral/1', {
+      event.preventDefault()
+      try {
+        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step3', {
           method: 'post',
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
+        })
+        data = await WindowsGeneralResponse.json();
+        setPost(data);
+        if (data != null) {
+          const id = data.id;
+          Navigate("/WindowsGeneral/4", { state: id });
+        } else {
+          console.log("Id = null");
         }
-        window.location.href = '/SapJobSimpleStep2';
-        }
+      } catch (error) {
+        console.log("ERROR" + error)
+      }
+  
+    }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
