@@ -216,6 +216,27 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(sap);
         }
 
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/SapSimple/GetSapSimpleStep2/{id}
+        [HttpGet("GetSapSimpleStep2/{id:int}", Name = "GetSapSimpleStep2")]
+        public async Task<ActionResult<SapSimple>> GetSapSimpleStep2(int id)
+        {
+            _logger.LogInformation($"GetSapSimple called with parameter id = {id}");
+
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.Id == id));
+            SapSimpleStep2Dto sap = new SapSimpleStep2Dto
+
+            {
+                Id = id,
+                SapVariant = sapSimple.FirstOrDefault().SapVariant,
+                SapReport = sapSimple.FirstOrDefault().SapReport,
+                ObjectName = sapSimple.FirstOrDefault().ObjectName,
+                
+            };
+
+            return Ok(sap);
+        }
+
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapSimple/DownloadCsvFile/{id}
         [HttpGet("DownloadSapSimpleCsvFile/{id:int}", Name = "DownloadSapSimpleCsvFile")]

@@ -211,6 +211,25 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return CreatedAtRoute("CreateWindowsGeneral_Step5", new { id = windowsObject.Id }, windowsObject);
         }
 
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep2/{id}
+        [HttpGet("GetWindowsGeneralStep2/{id:int}", Name = "GetWindowsGeneralStep2")]
+        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep2(int id)
+        {
+            _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");
+
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id));
+            WindowsGeneralStep2Dto windows = new WindowsGeneralStep2Dto
+
+            {
+                Id = id,
+                ObjectName = windowsGeneral.FirstOrDefault().ObjectName,
+
+            };
+
+            return Ok(windows);
+        }
+
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep5/{id}
         [HttpGet("GetWindowsGeneralStep5/{id:int}", Name = "GetWindowsGeneralStep5")]

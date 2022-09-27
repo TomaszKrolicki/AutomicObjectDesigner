@@ -349,63 +349,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         //    return File(bytes, "application/xml", "sap.xml");
 
         //}
-        // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/{id}
-        [HttpGet("DownloadExcelFile/{id:int}", Name = "DownloadExcelFile")]
-        public IActionResult DownloadExcelFile(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            ;
-
-            var sapJobBwChain = _sapJobBwChainRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
-            if (sapJobBwChain == null)
-            {
-                return NotFound();
-            }
-
-            ;
-
-
-            SapJobBwChain sap = new SapJobBwChain
-            {
-                Id = id,
-                SapVariant = sapJobBwChain.SapVariant,
-                SapReport = sapJobBwChain.SapReport,
-                ObjectName = sapJobBwChain.ObjectName,
-                Kette = sapJobBwChain.Kette,
-                OwnerId = sapJobBwChain.OwnerId,
-                Active = sapJobBwChain.Active,
-                MaxParallelTasks = sapJobBwChain.MaxParallelTasks,
-                Process = sapJobBwChain.Process,
-                PreProcess = sapJobBwChain.PreProcess,
-                PostProcess = sapJobBwChain.PostProcess,
-                SapClient = sapJobBwChain.SapClient,
-                SapSid = sapJobBwChain.SapSid,
-                RoutineJob = sapJobBwChain.RoutineJob,
-                ProcessName = sapJobBwChain.ProcessName,
-                SapJobName = sapJobBwChain.SapJobName,
-                DeleteSapJob = sapJobBwChain.DeleteSapJob,
-                Documentation = sapJobBwChain.Documentation,
-                Title = sapJobBwChain.Title,
-                Archive1 = sapJobBwChain.Archive1,
-                Archive2 = sapJobBwChain.Archive2,
-                InternalAccount = sapJobBwChain.InternalAccount,
-                Folder = sapJobBwChain.Folder,
-                Queue = sapJobBwChain.Queue,
-                Agent = sapJobBwChain.Agent,
-                Login = sapJobBwChain.Login
-            };
-            List<SapJobBwChain> saps = new List<SapJobBwChain>();
-            saps.Add(sap);
-
-            return new ExcelResult<SapJobBwChain>(saps, $"{id}_JOBS_SAP_JOB_BW_CHAIN",
-                $"{id}_JOBS_SAP_JOB_BW_CHAIN_EX");
-        }
-
+        
         // https://localhost:7017/api/SapJobBwChain/step2
         [HttpPost("step2", Name = "CreateSapJobBwChain_Step2")]
         public async Task<ActionResult<List<SapJobBwChain>>> CreateSapJobBwChainStep2([FromBody] SapJobBwChainStep2Dto SapJobBwChainStep2Dto)

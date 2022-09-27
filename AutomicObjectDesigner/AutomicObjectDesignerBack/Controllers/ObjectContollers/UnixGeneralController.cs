@@ -248,6 +248,25 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(unix);
         }
 
+        // Function returns required Data ready for modification after step 1 was filled.
+        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep2/{id}
+        [HttpGet("GetUnixGeneralStep2/{id:int}", Name = "GetUnixGeneralStep2")]
+        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep2(int id)
+        {
+            _logger.LogInformation($"GetUnixGeneral called with parameter id = {id}");
+
+            var unixGeneral = _unixGeneralRepository.FindByCondition((h => h.Id == id));
+            UnixGeneralStep2Dto unix = new UnixGeneralStep2Dto
+
+            {
+                Id = id,
+                ObjectName = unixGeneral.FirstOrDefault().ObjectName,
+
+            };
+
+            return Ok(unix);
+        }
+
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/UnixGeneral/DownloadCsvFile/{id}
         [HttpGet("DownloadUnixGeneralCsvFile/{id:int}", Name = "DownloadUnixGeneralCsvFile")]
