@@ -38,7 +38,7 @@ export const WindowsGeneralStep5 = () => {
     async function handleSubmit(event) {
       event.preventDefault()
       try {
-        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step5', {
+        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step6', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
