@@ -114,7 +114,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.ObjectName = SapSimpleStep2Dto.ObjectName;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step2", new { id = sapObject.Id }, sapObject);
         }
@@ -140,7 +140,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.Documentation = SapSimpleStep3Dto.Documentation;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step3", new { id = sapObject.Id }, sapObject);
         }
@@ -170,7 +170,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             sapObject.Title = SapSimpleStep4Dto.Title;
 
             _sapSimpleRepository.Update(sapObject);
-            _sapSimpleRepository.Save();
+            await _sapSimpleRepository.Save();
 
             return CreatedAtRoute("CreateSapSimple_Step4", new { id = sapObject.Id }, sapObject);
         }

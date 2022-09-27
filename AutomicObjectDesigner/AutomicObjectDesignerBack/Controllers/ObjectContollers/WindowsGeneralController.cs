@@ -62,7 +62,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             }
 
             _windowsGeneralRepository.Delete(winObject);
-            _windowsGeneralRepository.Save();
+            await _windowsGeneralRepository.Save();
 
             return NoContent();
 
@@ -121,7 +121,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             //throw new NotImplementedException();
             _windowsGeneralRepository.Update(windowsObject);
-            _windowsGeneralRepository.Save();
+            await _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step2", new { id = windowsObject.Id }, windowsObject);
         }
@@ -147,7 +147,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             windowsObject.Process = WindowsGeneralStep3Dto.Process;
 
             _windowsGeneralRepository.Update(windowsObject);
-            _windowsGeneralRepository.Save();
+            await _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step3", new { id = windowsObject.Id }, windowsObject);
         }
@@ -173,7 +173,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
 
             _windowsGeneralRepository.Update(windowsObject);
-            _windowsGeneralRepository.Save();
+            await _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step4", new { id = windowsObject.Id }, windowsObject);
         }
@@ -206,7 +206,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
 
             _windowsGeneralRepository.Update(windowsObject);
-            _windowsGeneralRepository.Save();
+            await _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step5", new { id = windowsObject.Id }, windowsObject);
         }
@@ -232,8 +232,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep5/{id}
-        [HttpGet("GetWindowsGeneralStep5/{id:int}", Name = "GetWindowsGeneralStep5")]
-        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep5(int id)
+        [HttpGet("GetWindowsGeneralStep6/{id:int}", Name = "GetWindowsGeneralStep6")]
+        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep6(int id)
         {
             _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");
 
