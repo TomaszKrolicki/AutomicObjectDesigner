@@ -34,23 +34,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return Ok(windowsGeneral);
         }
 
-        // Function returns required Data ready for modification after step 1 was filled.
-        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep2/{id}
-        [HttpGet("GetWindowsGeneralStep2/{id:int}", Name = "GetWindowsGeneralStep2")]
-        public async Task<ActionResult<WindowsGeneral>> GetSapJobBwChainStep2(int id)
-        {
-            _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
-
-            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
-
-            WindowsGeneralStep2Dto win = new WindowsGeneralStep2Dto()
-            {
-                Id = id,
-                ObjectName = windowsGeneral.ObjectName
-            };
-
-            return Ok(win);
-        }
 
         //GET https://localhost:7017/api/WindowsGeneral/{id}
         [HttpGet("{id:int}")]
