@@ -246,57 +246,51 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep6/{id}
-        [HttpGet("GetWindowsGeneralStep6/{id:int}", Name = "GetWindowsGeneralStep6")]
-        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep6(int id)
+        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep7/{id}
+        [HttpGet("GetWindowsGeneralStep7/{id:int}", Name = "GetWindowsGeneralStep7")]
+        public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep7(int id)
         {
-            _logger.LogInformation($"GetWindowsGeneralStep6 called with parameter id = {id}");
-            if (id == null)
-            {
-                return BadRequest();
-            }
+            _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");
 
-            var windowsGen = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
 
-            if (windowsGen == null)
-            {
-                return BadRequest();
-            }
+            var windowsGen = _windowsGeneralRepository.FindByCondition((h => h.Id == id));
+
+
 
             WindowsGeneral win = new WindowsGeneral
             {
                 Id = id,
-                ObjectName = windowsGen.ObjectName,
-                OwnerId = windowsGen.OwnerId,
-                Active = windowsGen.Active,
-                MaxParallelTasks = windowsGen.MaxParallelTasks,
-                Process = windowsGen.Process,
-                PreProcess = windowsGen.PreProcess,
-                PostProcess = windowsGen.PostProcess,
-                RoutineJob = windowsGen.RoutineJob,
-                ProcessName = windowsGen.ProcessName,
-                Documentation = windowsGen.Documentation,
-                Title = windowsGen.Title,
-                Archive1 = windowsGen.Archive1,
-                Archive2 = windowsGen.Archive2,
-                InternalAccount = windowsGen.InternalAccount,
-                Folder = windowsGen.Folder,
-                Queue = windowsGen.Queue,
-                Agent = windowsGen.Agent,
-                Login = windowsGen.Login,
-                WinLogin = windowsGen.WinLogin,
-                WinServer = windowsGen.WinServer,
-                NameSuffix = windowsGen.NameSuffix,
-                VariableKey1 = windowsGen.VariableKey1,
-                VariableKey2 = windowsGen.VariableKey2,
-                VariableKey3 = windowsGen.VariableKey3,
-                VariableKey4 = windowsGen.VariableKey4,
-                VariableKey5 = windowsGen.VariableKey5,
-                VariableValue1 = windowsGen.VariableValue1,
-                VariableValue2 = windowsGen.VariableValue2,
-                VariableValue3 = windowsGen.VariableValue3,
-                VariableValue4 = windowsGen.VariableValue4,
-                VariableValue5 = windowsGen.VariableValue5
+                ObjectName = windowsGen.FirstOrDefault().ObjectName,
+                OwnerId = windowsGen.FirstOrDefault().OwnerId,
+                Active = windowsGen.FirstOrDefault().Active,
+                MaxParallelTasks = windowsGen.FirstOrDefault().MaxParallelTasks,
+                Process = windowsGen.FirstOrDefault().Process,
+                PreProcess = windowsGen.FirstOrDefault().PreProcess,
+                PostProcess = windowsGen.FirstOrDefault().PostProcess,
+                RoutineJob = windowsGen.FirstOrDefault().RoutineJob,
+                ProcessName = windowsGen.FirstOrDefault().ProcessName,
+                Documentation = windowsGen.FirstOrDefault().Documentation,
+                Title = windowsGen.FirstOrDefault().Title,
+                Archive1 = windowsGen.FirstOrDefault().Archive1,
+                Archive2 = windowsGen.FirstOrDefault().Archive2,
+                InternalAccount = windowsGen.FirstOrDefault().InternalAccount,
+                Folder = windowsGen.FirstOrDefault().Folder,
+                Queue = windowsGen.FirstOrDefault().Queue,
+                Agent = windowsGen.FirstOrDefault().Agent,
+                Login = windowsGen.FirstOrDefault().Login,
+                WinLogin = windowsGen.FirstOrDefault().WinLogin,
+                WinServer = windowsGen.FirstOrDefault().WinServer,
+                NameSuffix = windowsGen.FirstOrDefault().NameSuffix,
+                VariableKey1 = windowsGen.FirstOrDefault().VariableKey1,
+                VariableKey2 = windowsGen.FirstOrDefault().VariableKey2,
+                VariableKey3 = windowsGen.FirstOrDefault().VariableKey3,
+                VariableKey4 = windowsGen.FirstOrDefault().VariableKey4,
+                VariableKey5 = windowsGen.FirstOrDefault().VariableKey5,
+                VariableValue1 = windowsGen.FirstOrDefault().VariableValue1,
+                VariableValue2 = windowsGen.FirstOrDefault().VariableValue2,
+                VariableValue3 = windowsGen.FirstOrDefault().VariableValue3,
+                VariableValue4 = windowsGen.FirstOrDefault().VariableValue4,
+                VariableValue5 = windowsGen.FirstOrDefault().VariableValue5
             };
 
             return Ok(win);
