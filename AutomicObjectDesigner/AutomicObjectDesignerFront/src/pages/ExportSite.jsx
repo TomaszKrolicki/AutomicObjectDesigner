@@ -29,7 +29,7 @@ export const ExportSite = () => {
           console.warn("Data couldn't be fetched");
         }
       } catch (error) {
-        console.error(error);
+        console.error(error)
       };
     }
     fetchData();

@@ -1,4 +1,6 @@
 import React from 'react'
+import { data } from 'autoprefixer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const WindowsGeneralStep3 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -14,7 +16,7 @@ export const WindowsGeneralStep3 = () => {
    const [formData, setFormData] = React.useState(
     {
         Id : state,
-        Process: ""
+        Process: "asd"
     }
     )
 
@@ -39,7 +41,7 @@ export const WindowsGeneralStep3 = () => {
           body: JSON.stringify(formData)
         })
         data = await WindowsGeneralResponse.json();
-        setPost(data);
+        // setPost(data);
         if (data != null) {
           const id = data.id;
           Navigate("/WindowsGeneral/4", { state: id });

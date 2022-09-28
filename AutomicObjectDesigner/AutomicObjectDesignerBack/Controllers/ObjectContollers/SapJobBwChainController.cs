@@ -158,9 +158,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Agent = sapJobBwChain.FirstOrDefault().Agent,
                 Login = sapJobBwChain.FirstOrDefault().Login
             };
-
-            
-
             return Ok(sap);
         }
 

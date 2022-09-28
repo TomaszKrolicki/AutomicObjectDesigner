@@ -1,6 +1,5 @@
 import React from 'react';
 import { data } from 'autoprefixer';
-import { Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -13,8 +12,9 @@ export const WindowsGeneralStep2 = () => {
 
 
   const { state } = useLocation();
-
-
+  const { id } = state;
+  console.log(state);
+  
   const [formData, setFormData] = React.useState(
     {
       Id: state,
@@ -54,7 +54,7 @@ export const WindowsGeneralStep2 = () => {
     })
   }
 
-  const [post, setPost] = React.useState(null);
+  // const [post, setPost] = React.useState(null);
 
   let Navigate = useNavigate();
   async function handleSubmit(event) {
@@ -66,7 +66,7 @@ export const WindowsGeneralStep2 = () => {
         body: JSON.stringify(formData)
       })
       data = await WindowsGeneralResponse.json();
-      setPost(data);
+      // setPost(data);
       if (data != null) {
         const id = data.id;
         Navigate("/WindowsGeneral/3", { state: id });

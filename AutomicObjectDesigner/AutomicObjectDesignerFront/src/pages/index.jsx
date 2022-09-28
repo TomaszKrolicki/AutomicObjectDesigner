@@ -29,4 +29,7 @@ export { SapJobSimpleStep4 as SapJobSimpleStep4} from './SapJobSimpleStep4';
 
 export { NotFound as NotFound} from './NotFound';
 
+export { Register as Register} from './Register';
+export { Login as Login} from './Login';
+
 export { ExportSite as ExportSite} from './ExportSite';

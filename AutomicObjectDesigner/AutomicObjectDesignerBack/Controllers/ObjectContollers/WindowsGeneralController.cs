@@ -234,38 +234,46 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         [HttpGet("GetWindowsGeneralStep6/{id:int}", Name = "GetWindowsGeneralStep6")]
         public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep6(int id)
         {
-            _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");
+            _logger.LogInformation($"GetWindowsGeneralStep6 called with parameter id = {id}");
+            if (id == null)
+            {
+                return BadRequest();
+            }
 
-            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.Id == id));
+            var windowsGen = _windowsGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
 
-            WindowsGeneral windows = new WindowsGeneral
+            if (windowsGen == null)
+            {
+                return BadRequest();
+            }
+
+            WindowsGeneral win = new WindowsGeneral
             {
                 Id = id,
-                WinServer = windowsGeneral.FirstOrDefault().WinServer,
-                WinLogin = windowsGeneral.FirstOrDefault().WinLogin,
-                ObjectName = windowsGeneral.FirstOrDefault().ObjectName,
-                OwnerId = windowsGeneral.FirstOrDefault().OwnerId,
-                Active = windowsGeneral.FirstOrDefault().Active,
-                NameSuffix = windowsGeneral.FirstOrDefault().NameSuffix,
-                MaxParallelTasks = windowsGeneral.FirstOrDefault().MaxParallelTasks,
-                Process = windowsGeneral.FirstOrDefault().Process,
-                PreProcess = windowsGeneral.FirstOrDefault().PreProcess,
-                PostProcess = windowsGeneral.FirstOrDefault().PostProcess,
-                RoutineJob = windowsGeneral.FirstOrDefault().RoutineJob,
-                ProcessName = windowsGeneral.FirstOrDefault().ProcessName,
-                Documentation = windowsGeneral.FirstOrDefault().Documentation,
-                Title = windowsGeneral.FirstOrDefault().Title,
-                Archive1 = windowsGeneral.FirstOrDefault().Archive1,
-                Archive2 = windowsGeneral.FirstOrDefault().Archive2,
-                InternalAccount = windowsGeneral.FirstOrDefault().InternalAccount,
-                Folder = windowsGeneral.FirstOrDefault().Folder,
-                Queue = windowsGeneral.FirstOrDefault().Queue,
-                Agent = windowsGeneral.FirstOrDefault().Agent,
-                Login = windowsGeneral.FirstOrDefault().Login
-
+                ObjectName = windowsGen.ObjectName,
+                OwnerId = windowsGen.OwnerId,
+                Active = windowsGen.Active,
+                MaxParallelTasks = windowsGen.MaxParallelTasks,
+                Process = windowsGen.Process,
+                PreProcess = windowsGen.PreProcess,
+                PostProcess = windowsGen.PostProcess,
+                RoutineJob = windowsGen.RoutineJob,
+                ProcessName = windowsGen.ProcessName,
+                Documentation = windowsGen.Documentation,
+                Title = windowsGen.Title,
+                Archive1 = windowsGen.Archive1,
+                Archive2 = windowsGen.Archive2,
+                InternalAccount = windowsGen.InternalAccount,
+                Folder = windowsGen.Folder,
+                Queue = windowsGen.Queue,
+                Agent = windowsGen.Agent,
+                Login = windowsGen.Login,
+                WinLogin = windowsGen.WinLogin,
+                WinServer = windowsGen.WinServer,
+                NameSuffix = windowsGen.NameSuffix
             };
 
-            return Ok(windows);
+            return Ok(win);
         }
 
         // Function returns required Data ready for modification after all steps were finished.

@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { data } from 'autoprefixer';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const WindowsGeneralStep4 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -13,7 +15,7 @@ export const WindowsGeneralStep4 = () => {
    const [formData, setFormData] = React.useState(
     {
         Id: state,
-        Documentation: ""
+        Documentation: "asd"
     }
     )
 

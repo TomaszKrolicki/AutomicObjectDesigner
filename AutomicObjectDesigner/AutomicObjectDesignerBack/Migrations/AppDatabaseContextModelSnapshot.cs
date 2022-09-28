@@ -168,6 +168,9 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
@@ -418,8 +421,8 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Queue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoutineJob")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("RoutineJob")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
