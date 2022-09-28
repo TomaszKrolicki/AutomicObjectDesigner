@@ -27,6 +27,9 @@ import { SapJobSimpleStep2 } from '../pages/SapJobSimpleStep2';
 import { SapJobSimpleStep3 } from '../pages/SapJobSimpleStep3';
 import { SapJobSimpleStep4 } from '../pages/SapJobSimpleStep4';
 
+import { Register } from '../pages/Register';
+import { Login } from '../pages/Login'
+
 import { ExportSite } from '../pages/ExportSite';
 
 import { NotFound } from '../pages/NotFound';
@@ -41,6 +44,9 @@ const Routing = () => {
         <Route path='/' element={<AutomicObjectDesigner />} />
         <Route path='/automicobjectdesigner' element={<AutomicObjectDesigner />} />
         {/* Pages */}
+        <Route path='/Register' element={<Register />} />
+        <Route path='/Login' element={<Login />} />
+
         <Route path='/sapjobsimple/1' element={<SapJobSimpleStep1 />} />
         <Route path='/sapjobsimple/2/' element={<SapJobSimpleStep2 />} />
         <Route path='/sapjobsimple/3/' element={<SapJobSimpleStep3 />} />

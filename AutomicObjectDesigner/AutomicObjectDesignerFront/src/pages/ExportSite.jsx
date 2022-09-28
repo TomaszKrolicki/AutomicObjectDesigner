@@ -39,9 +39,31 @@ export const ExportSite = () => {
   const [post, setPost] = React.useState(null);
 
   // let Navigate = useNavigate();
-  async function handleClick() {
+  async function handleClickCsv() {
+    console.log("csv.click")
     try {
-      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadExcelFile/' + id, {})
+      console.log("csv.click2")
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadCsvFile/' + state.num);
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+  };
+
+  async function handleClickXml() {
+    console.log("xml.click")
+    try {
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadXmlFile/' + state.num);
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+  };
+
+  async function handleClickJson() {
+    console.log("json.click")
+    try {
+      console.log("csv.click232323")
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadJsonFile/' + state.num);
+      console.log("csv.tesssssssssssssst")
     } catch (error) {
       console.log("ERROR" + error)
     }
@@ -57,13 +79,13 @@ export const ExportSite = () => {
       <div className='mp-2 font-blackcolumns-2 dark:text-gray-300' id='object'>
       </div>
       <div className='my-10'>
-      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      <button onClick={handleClickXml} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
       focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
       dark:focus:ring-blue-800">Export XML</button>
-      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      <button onClick={handleClickJson} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
       focus:ring-blue-300 font-medium rounded-lg mx-4 text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
       dark:focus:ring-blue-800">Export JSON</button>
-      <button onClick={handleClick} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+      <button onClick={handleClickCsv} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
       focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
       dark:focus:ring-blue-800">Export CSV</button>
       </div>
