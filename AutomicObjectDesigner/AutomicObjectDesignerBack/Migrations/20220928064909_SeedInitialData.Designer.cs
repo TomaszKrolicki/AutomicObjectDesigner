@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220926214927_Initial")]
-    partial class Initial
+    [Migration("20220928064909_SeedInitialData")]
+    partial class SeedInitialData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -169,6 +169,9 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(16)

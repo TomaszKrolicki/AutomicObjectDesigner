@@ -22,9 +22,10 @@ namespace AutomicObjectDesignerBack.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserModel>> Register(UserRegister request)
+        public async Task<ActionResult<UserModel>> Register([FromBody] UserRegister request)
         {
-            if (_AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).First() != null)
+            Console.WriteLine(request);
+            if (_AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).FirstOrDefault() != null)
             {
                 return BadRequest("User exist");
             }
@@ -43,9 +44,9 @@ namespace AutomicObjectDesignerBack.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserLogin request)
+        public async Task<ActionResult<string>> Login([FromBody] UserLogin request)
         {
-            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).First();
+            var user = _AuthorizationRepository.FindByCondition(x => x.UserName == request.UserName).FirstOrDefault();
             if (user == null)
             {
                 return BadRequest("User not found");
@@ -56,7 +57,12 @@ namespace AutomicObjectDesignerBack.Controllers
             }
 
             string token = CreateToken(user);
-            return Ok(token);
+            user.Token = token;
+
+            _AuthorizationRepository.Update(user);
+            await _AuthorizationRepository.Save();
+
+            return Ok(user);
         }
 
         private string CreateToken(UserModel user)

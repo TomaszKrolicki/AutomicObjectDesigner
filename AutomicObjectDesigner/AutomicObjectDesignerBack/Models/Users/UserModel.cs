@@ -33,6 +33,7 @@ public class UserModel
     public byte[] PasswordSalt { get; set; }
     public bool HasEmailConfirmed { get; set; }
     public bool IsAdministrator { get; set; }
+    public string Token { get; set; }
 
 }
 
