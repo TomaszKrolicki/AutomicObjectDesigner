@@ -168,6 +168,9 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");

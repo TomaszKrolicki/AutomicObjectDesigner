@@ -5,7 +5,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomicObjectDesignerBack.Migrations
 {
+<<<<<<<< HEAD:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220927084337_Initial0.cs
     public partial class Initial0 : Migration
+========
+    public partial class SeedInitialData : Migration
+>>>>>>>> AuthControllerUpdated:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220928064909_SeedInitialData.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,7 +151,8 @@ namespace AutomicObjectDesignerBack.Migrations
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false)
+                    IsAdministrator = table.Column<bool>(type: "bit", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -189,8 +194,8 @@ namespace AutomicObjectDesignerBack.Migrations
 
             migrationBuilder.InsertData(
                 table: "UserModel",
-                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "IsAdministrator", "LastName", "PasswordHash", "PasswordSalt", "UserName" },
-                values: new object[] { 100, "admin@gmail.com", "Admin", true, true, "Admin", null, null, "Admin" });
+                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "IsAdministrator", "LastName", "PasswordHash", "PasswordSalt", "Token", "UserName" },
+                values: new object[] { 100, "admin@gmail.com", "Admin", true, true, "Admin", null, null, null, "Admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
