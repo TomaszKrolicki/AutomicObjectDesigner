@@ -230,7 +230,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep5/{id}
+        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep6/{id}
         [HttpGet("GetWindowsGeneralStep6/{id:int}", Name = "GetWindowsGeneralStep6")]
         public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep6(int id)
         {
