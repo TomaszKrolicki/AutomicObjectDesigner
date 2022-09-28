@@ -5,11 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-<<<<<<<< HEAD:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220927084337_Initial0.cs
-    public partial class Initial0 : Migration
-========
     public partial class SeedInitialData : Migration
->>>>>>>> AuthControllerUpdated:AutomicObjectDesigner/AutomicObjectDesignerBack/Migrations/20220928064909_SeedInitialData.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -167,7 +163,7 @@ namespace AutomicObjectDesignerBack.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WinServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WinLogin = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoutineJob = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoutineJob = table.Column<bool>(type: "bit", nullable: false),
                     ProcessName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NameSuffix = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ObjectName = table.Column<string>(type: "nvarchar(max)", nullable: true),

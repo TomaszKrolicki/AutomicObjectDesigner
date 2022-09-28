@@ -43,12 +43,7 @@ export const Register = () => {
           })
             data = await RegisterResponse.json();
             setPost(data);
-            if (data != null) {
-                const id = data.id;
-                Navigate("/Login", { state: id });
-            } else {
-                console.log("Id = null");
-            }
+            Navigate("/");
         } catch (error) {
             console.log("ERROR" + error)
         }
