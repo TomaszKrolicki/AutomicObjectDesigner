@@ -56,7 +56,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         {
             var winObject = new WindowsGeneral() { Id = id };
 
-
             if (winObject == null)
             {
                 return NotFound();
@@ -179,7 +178,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         //POST https://localhost:7017/api/WindowsGeneral/step5
         [HttpPost("step5", Name = "CreateWindowsGeneral_Step5")]
-
         public async Task<ActionResult<List<WindowsGeneral>>> CreateWindowsGeneralStep5([FromBody] WindowsGeneralStep5Dto WindowsGeneralStep5Dto)
         {
 
@@ -202,12 +200,30 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             windowsObject.InternalAccount = WindowsGeneralStep5Dto.InternalAccount;
             windowsObject.Title = WindowsGeneralStep5Dto.Title;
 
-
-
             _windowsGeneralRepository.Update(windowsObject);
             await _windowsGeneralRepository.Save();
 
             return CreatedAtRoute("CreateWindowsGeneral_Step5", new { id = windowsObject.Id }, windowsObject);
+        }
+
+        //POST https://localhost:7017/api/WindowsGeneral/step6
+        //Swagger https://localhost:7017/swagger
+        [HttpPost("step6", Name = "CreateWindowsGeneral_Step6")]
+        public async Task<ActionResult<List<WindowsGeneral>>> CreateWindowsGeneralStep6(
+            [FromBody] WindowsGeneralStep6Dto[] windowsGeneralStep6Dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var windowsObject = _windowsGeneralRepository.FindByCondition(x => x.Id == windowsGeneralStep6Dto[0].Id).FirstOrDefault();
+            windowsObject.VariableKey1 = windowsGeneralStep6Dto[0].VariableKey;
+            windowsObject.VariableValue1 = windowsGeneralStep6Dto[0].VariableValue;
+
+            _windowsGeneralRepository.Update(windowsObject);
+            await _windowsGeneralRepository.Save();
+
+            return Ok(windowsObject);
         }
 
         // Function returns required Data ready for modification after step 1 was filled.
@@ -270,7 +286,17 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 Login = windowsGen.Login,
                 WinLogin = windowsGen.WinLogin,
                 WinServer = windowsGen.WinServer,
-                NameSuffix = windowsGen.NameSuffix
+                NameSuffix = windowsGen.NameSuffix,
+                VariableKey1 = windowsGen.VariableKey1,
+                VariableKey2 = windowsGen.VariableKey2,
+                VariableKey3 = windowsGen.VariableKey3,
+                VariableKey4 = windowsGen.VariableKey4,
+                VariableKey5 = windowsGen.VariableKey5,
+                VariableValue1 = windowsGen.VariableValue1,
+                VariableValue2 = windowsGen.VariableValue2,
+                VariableValue3 = windowsGen.VariableValue3,
+                VariableValue4 = windowsGen.VariableValue4,
+                VariableValue5 = windowsGen.VariableValue5
             };
 
             return Ok(win);

@@ -11,7 +11,7 @@ export const WindowsGeneralStep5 = () => {
    const { state } = useLocation();
 
    console.log("Id: "+  state);
-   const jobType = "WindowsGeneral/WindowsGeneralStep5/";
+   
    const [formData, setFormData] = React.useState(
     {
       Id : state,
@@ -48,7 +48,7 @@ export const WindowsGeneralStep5 = () => {
         // setPost(data);
         if (data != null) {
           const id = data.id;
-          Navigate("/WindowsGeneral/6", { state: {num: id, type: jobType} });
+          Navigate("/WindowsGeneral/6", { state: id} );
         } else {
           console.log("Id = null");
         }

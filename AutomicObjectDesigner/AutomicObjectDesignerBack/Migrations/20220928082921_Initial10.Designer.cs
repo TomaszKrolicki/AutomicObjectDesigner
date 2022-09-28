@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220927093424_Initial")]
-    partial class Initial
+    [Migration("20220928082921_Initial10")]
+    partial class Initial10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -424,6 +424,36 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue5")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WinLogin")

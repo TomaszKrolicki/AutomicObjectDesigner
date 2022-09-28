@@ -424,6 +424,36 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VariableKey1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue5")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("WinLogin")
                         .HasColumnType("nvarchar(max)");
 

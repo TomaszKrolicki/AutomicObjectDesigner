@@ -55,7 +55,7 @@ export const WindowsGeneralStep1 = () => {
           console.log("Id = null");
         }
       } catch (error) {
-        console.log("ERROR" + error)
+        console.log("ERROR " + error)
       }
     }
 

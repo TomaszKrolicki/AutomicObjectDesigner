@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { data } from 'autoprefixer';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const WindowsGeneralStep6 = () => {
   const cssStyleInput = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -7,14 +8,17 @@ export const WindowsGeneralStep6 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
-   const cssStyleButton = `className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+  const cssStyleButton = `className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
    focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
     dark:focus:ring-blue-800 my-4 mr-2`;
+    const { state } = useLocation();
 
+  const jobType = "WindowsGeneral/WindowsGeneralStep6/";
   const [inputFields, setInputFields] = useState(
-    [{
-      VariableKey : '',
-      VariableValue : ''}
+    [
+      {Id: state,
+      VariableKey: '',
+      VariableValue: ''}
     ])
 
   const addFields = () => {
@@ -24,31 +28,50 @@ export const WindowsGeneralStep6 = () => {
 
 
   const handleFormChange = (index, event) => {
-    console.log(event);
+    console.log("Step 6 input fields: ");
     console.log(inputFields);
+    console.log("Json stringify below: ")
+    console.log(JSON.stringify(inputFields))
     let data = [...inputFields];
     data[index][event.target.name] = event.target.value;
     setInputFields(data);
-  }
-
-
-  const submit = (e) => {
-    e.preventDefault();
-    console.log(inputFields)
   }
 
   const removeFields = (index) => {
     let data = [...inputFields];
     data.splice(index, 1)
     setInputFields(data)
-}
+  }
+
+  let Navigate = useNavigate();
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    console.log("Json stringify that is being send below: ")
+    console.log(JSON.stringify(inputFields))
+    try {
+      const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step6', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inputFields)
+      })
+      data.prop = await WindowsGeneralResponse.json();
+      if (data.prop != null) {
+        Navigate("/ExportSite", { state: { num: state, type: jobType } });
+      } else {
+        console.log("Id = null");
+      }
+    } catch (error) {
+      console.log("ERROR: " + error);
+    }
+  }
 
   return (
     <div className='md:px-4 py-2.5 container w-800 text-gray-900 dark:text-gray-300 my-3"'>
       <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 my-3">
         Add form for Variable key and Variable Value(optional)
       </p>
-      <div id="container"/>
+      <div id="container" />
       <form>
         {inputFields.map((input, index) => {
           return (
@@ -59,6 +82,7 @@ export const WindowsGeneralStep6 = () => {
                 value={input.VariableKey}
                 onChange={event => handleFormChange(index, event)}
                 className={cssStyleInput}
+                required
               /><br></br>
               <input
                 name='VariableValue'
@@ -66,6 +90,7 @@ export const WindowsGeneralStep6 = () => {
                 value={input.VariableValue}
                 onChange={event => handleFormChange(index, event)}
                 className={cssStyleInput}
+                required
               />
               <button className={cssStyleButton} onClick={() => removeFields(index)}>Remove fields</button>
             </div>
@@ -75,7 +100,7 @@ export const WindowsGeneralStep6 = () => {
       <button className={cssStyleButton} type='button' onClick={addFields}>
         Add fields
       </button><br></br>
-      <button className={cssStyleButton} onClick={submit}>Submit</button>
+      <button className={cssStyleButton} onClick={handleSubmit}>Submit</button>
     </div>
   )
 }

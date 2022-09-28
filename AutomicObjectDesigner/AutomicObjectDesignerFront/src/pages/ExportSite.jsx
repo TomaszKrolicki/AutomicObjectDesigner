@@ -1,6 +1,5 @@
 import React from 'react';
-import { data } from 'autoprefixer';
-import { useLocation, useParams, useNavigate, BrowserRouter as Router, } from 'react-router-dom';
+import { useLocation, BrowserRouter as Router, } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
@@ -17,11 +16,13 @@ export const ExportSite = () => {
 
   const url = 'https://localhost:7017/api/' + state.type + state.num;
   console.log("Fetching url: " + url)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await fetch(url);
         const dat = await result.json();
+        console.log(dat);
         if (dat != null) {
           console.log(dat);
           document.getElementById("object").innerText = JSON.stringify(dat);
@@ -30,7 +31,7 @@ export const ExportSite = () => {
         }
       } catch (error) {
         console.error(error)
-      };
+      }
     }
     fetchData();
   }, []);
@@ -44,7 +45,7 @@ export const ExportSite = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
-  };
+  }
 
 
 
