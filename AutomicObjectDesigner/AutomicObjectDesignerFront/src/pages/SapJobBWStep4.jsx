@@ -13,15 +13,15 @@ export const SapJobBWStep4 = () => {
   const { state } = useLocation();
 
   console.log("Id: " + state);
-  const jobType = "SapJobBwChain/GetSapJobBwChainStep5/";
+  const jobType = "SapJobBwChain/Download";
   const [formData, setFormData] = React.useState(
     {
       Id: state,
-      Title: "",
-      Archive1: "",
-      Archive2: "",
+      Title: "456",
+      Archive1: "dfgdftg",
+      Archive2: "dfgdfgdfg",
       Folder: "/IMPORT/E1E/user ID",
-      InternalAccount: "",
+      InternalAccount: "uuuuuuuuuu",
     }
   )
 

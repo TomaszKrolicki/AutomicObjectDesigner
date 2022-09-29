@@ -14,7 +14,7 @@ export const SapJobSimpleStep4 = () => {
 
    const { state } = useLocation();
 
-   const jobType = "SapJobSimple/GetSapSimpleStep5/";
+   const jobType = "SapSimple/DownloadSapSimple";
 
    const [formData, setFormData] = React.useState(
     {

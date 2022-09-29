@@ -13,7 +13,7 @@ export const WindowsGeneralStep6 = () => {
     dark:focus:ring-blue-800 my-4 mr-2`;
     const { state } = useLocation();
 
-  const jobType = "WindowsGeneral/GetWindowsGeneralStep7/";
+  const jobType = "WindowsGeneral/DownloadWindowsGeneral";
   const [inputFields, setInputFields] = useState(
     [
       {Id: state,

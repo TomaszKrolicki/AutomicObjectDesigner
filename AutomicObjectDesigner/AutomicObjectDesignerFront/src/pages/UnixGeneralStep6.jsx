@@ -14,7 +14,7 @@ export const UnixGeneralStep6 = () => {
     dark:focus:ring-blue-800 my-4 mr-2`;
     const { state } = useLocation();
 
-    const jobType = "UnixGeneral/GetUnixGeneralStep7/";
+    const jobType = "UnixGeneral/DownloadUnixGeneral";
     const [inputFields, setInputFields] = useState(
         [
           {Id: state,
@@ -42,7 +42,7 @@ export const UnixGeneralStep6 = () => {
   }
 
   let Navigate = useNavigate();
-  
+
   async function handleSubmit(event) {
     event.preventDefault()
     console.log("Json stringify that is being send below: ")
