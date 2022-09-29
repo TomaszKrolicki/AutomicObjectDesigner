@@ -41,4 +41,12 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string? Folder { get; set; }
         public int? Id { get; set; }
     }
+
+    public class WindowsGeneralStep6Dto
+    {
+        public int? Id { get; set; }
+        public string? VariableKey { get; set; }
+        public string? VariableValue { get; set; }
+
+    }
 }

@@ -31,16 +31,16 @@ namespace AutomicObjectDesignerBack.Models.Objects
 
         ////step 6 optional
         ////up to 5 set's of variables
-        //public string? VariableKey1 { get; set; }
-        //public string? VariableValue1 { get; set; }
-        //public string? VariableKey2 { get; set; }
-        //public string? VariableValue2 { get; set; }
-        //public string? VariableKey3 { get; set; }
-        //public string? VariableValue3 { get; set; }
-        //public string? VariableKey4 { get; set; }
-        //public string? VariableValue4 { get; set; }
-        //public string? VariableKey5 { get; set; }
-        //public string? VariableValue5 { get; set; }
+        public string? VariableKey1 { get; set; }
+        public string? VariableValue1 { get; set; }
+        public string? VariableKey2 { get; set; }
+        public string? VariableValue2 { get; set; }
+        public string? VariableKey3 { get; set; }
+        public string? VariableValue3 { get; set; }
+        public string? VariableKey4 { get; set; }
+        public string? VariableValue4 { get; set; }
+        public string? VariableKey5 { get; set; }
+        public string? VariableValue5 { get; set; }
 
         //outcome
         //Fixed predefined fields:

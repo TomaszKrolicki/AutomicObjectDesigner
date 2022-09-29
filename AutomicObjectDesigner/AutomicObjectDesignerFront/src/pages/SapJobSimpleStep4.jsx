@@ -1,4 +1,6 @@
 import React from 'react';
+import { data } from 'autoprefixer';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -10,8 +12,13 @@ export const SapJobSimpleStep4 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
+   const { state } = useLocation();
+
+   const jobType = "SapSimple/DownloadSapSimple";
+
    const [formData, setFormData] = React.useState(
     {
+      Id: state,
       Title: "",
       Archive1: "",
       Archive2: "",
@@ -31,19 +38,30 @@ export const SapJobSimpleStep4 = () => {
       })
     }
 
+    const [post, setPost] = React.useState(null);
+
+    let Navigate = useNavigate();
     async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/SapSimple/create', {
+      event.preventDefault()
+      try {
+        const SapJobRespone = await fetch('https://localhost:7017/api/SapSimple/step4', {
           method: 'post',
-          headers: {'Content-Type':'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
+        })
+        data = await SapJobRespone.json();
+        setPost(data);
+        if (data != null) {
+          const id = data.id;
+          Navigate("/ExportSite", { state : {num: id, type: jobType} });
+        } else {
+          console.log("Id = null");
         }
-        }
+      } catch (error) {
+        console.log("ERROR" + error)
+      }
+      
+    }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>

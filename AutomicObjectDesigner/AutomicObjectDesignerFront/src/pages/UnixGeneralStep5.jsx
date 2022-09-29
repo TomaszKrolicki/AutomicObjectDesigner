@@ -2,12 +2,12 @@ import React from 'react';
 import { data } from 'autoprefixer';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-
-export const WindowsGeneralStep5 = () => {
+export const UnixGeneralStep5 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
+
    const { state } = useLocation();
    
    const [formData, setFormData] = React.useState(
@@ -31,22 +31,22 @@ export const WindowsGeneralStep5 = () => {
           }
       })
     }
-
+    
     let Navigate = useNavigate();
 
     async function handleSubmit(event) {
       event.preventDefault()
       try {
-        const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step5', {
+        const UnixGeneralResponse = await fetch('https://localhost:7017/api/UnixGeneral/step5', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
-        data = await WindowsGeneralResponse.json();
-        // setPost(data);
+        data = await UnixGeneralResponse.json();
         if (data != null) {
           const id = data.id;
-          Navigate("/WindowsGeneral/6", { state: id} );
+          console.log(id);
+          Navigate("/UnixGeneral/6", { state: id} );
         } else {
           console.log("Id = null");
         }

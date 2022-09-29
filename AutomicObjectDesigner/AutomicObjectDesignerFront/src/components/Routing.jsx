@@ -14,6 +14,8 @@ import { UnixGeneralStep1 } from '../pages/UnixGeneralStep1';
 import { UnixGeneralStep2 } from '../pages/UnixGeneralStep2';
 import { UnixGeneralStep3 } from '../pages/UnixGeneralStep3';
 import { UnixGeneralStep4 } from '../pages/UnixGeneralStep4';
+import { UnixGeneralStep5 } from '../pages/UnixGeneralStep5';
+import { UnixGeneralStep6 } from '../pages/UnixGeneralStep6';
 
 import { WindowsGeneralStep1 } from '../pages/WindowsGeneralStep1';
 import { WindowsGeneralStep2 } from '../pages/WindowsGeneralStep2';
@@ -72,6 +74,8 @@ const Routing = () => {
         <Route path='/unixGeneral/2' element={<UnixGeneralStep2 />} />
         <Route path='/unixGeneral/3' element={<UnixGeneralStep3 />} />
         <Route path='/unixGeneral/4' element={<UnixGeneralStep4 />} />
+        <Route path='/unixGeneral/5' element={<UnixGeneralStep5 />} />
+        <Route path='/unixGeneral/6' element={<UnixGeneralStep6 />} />
 
         <Route path='/filetransferone' element={<FileTransferOne />} />
         <Route path='/filetransfermany' element={<FileTransferMany />} />

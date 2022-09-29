@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class SeedInitialData : Migration
+    public partial class Initial1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -120,6 +120,16 @@ namespace AutomicObjectDesignerBack.Migrations
                     Archive2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InternalAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Folder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: true),
@@ -174,6 +184,16 @@ namespace AutomicObjectDesignerBack.Migrations
                     Archive2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InternalAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Folder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableKey5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VariableValue5 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Queue = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OwnerId = table.Column<int>(type: "int", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: true),

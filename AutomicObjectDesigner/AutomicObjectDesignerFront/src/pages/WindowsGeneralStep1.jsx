@@ -10,8 +10,8 @@ export const WindowsGeneralStep1 = () => {
    //TODO: Check if it works. Should be fine.
    const [formData, setFormData] = React.useState(
     {
-        WindowsServer: "Option1", 
-        WindowsLogin: "Option1", 
+        WinServer: "Option1", 
+        WinLogin: "Option1", 
         RoutineJob: false,
         ProcessName: "asddddd",
         NameSuffix: "asddddd"
@@ -55,7 +55,7 @@ export const WindowsGeneralStep1 = () => {
           console.log("Id = null");
         }
       } catch (error) {
-        console.log("ERROR" + error)
+        console.log("ERROR " + error)
       }
     }
 

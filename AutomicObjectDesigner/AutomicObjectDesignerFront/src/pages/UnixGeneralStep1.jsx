@@ -1,8 +1,11 @@
+import React from 'react';
 import { data } from 'autoprefixer';
-import React from 'react'
-import { Form, NavLink } from 'react-bootstrap';
-import { Navigate, useNavigate } from 'react-router-dom';
-//TODO ALL
+import { Form, Nav } from 'react-bootstrap';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 export const UnixGeneralStep1 = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
@@ -12,13 +15,13 @@ export const UnixGeneralStep1 = () => {
 
    const [formData, setFormData] = React.useState(
     {
-        UnixServer: "Option2", 
+        UnixServer: "Option1", 
         UnixLogin: "Option2",
-        SapSid: "Option2",
-        SapClient: "Option2",
+        SapSid: "Option3",
+        SapClient: "Option4",
         RoutineJob: false,
-        ProcessName: "",
-        NameSuffix: "",
+        ProcessName: "TESTttt",
+        NameSuffix: "TESTttt",
     }
     )
 
@@ -34,26 +37,26 @@ export const UnixGeneralStep1 = () => {
     }
 
     let Navigate = useNavigate();
-  async function handleSubmit(event) {
-    event.preventDefault()
-    
-    try {
-      // console.log(formData)
-      await fetch('https://localhost:7017/api/UnixGeneral/1', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      }).then((response) => {return response.json() }).then((data) => console.log(data)).catch((error) => { console.log("!ERROR! " + error) })
-    } catch (error) {
-      console.log("ERROR" + error)
+    async function handleSubmit(event) {
+      event.preventDefault()
+      try {
+        const UnixGeneralResponse = await fetch('https://localhost:7017/api/UnixGeneral/step1', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+        data.prop = await UnixGeneralResponse.json();
+        if (data.prop != null) {
+          const id = data.prop.id;
+          console.log(id);
+          Navigate("/UnixGeneral/2", { state: id });
+        } else {
+          console.log("Id = null");
+        }
+      } catch (error) {
+        console.log("ERROR " + error)
+      }
     }
-    const id = 38;
-    Navigate("/UnixGeneral/2", { state: id});
-    //window.location.href = '/SAPJobBW/2/';
-    //window.location.href =`/SAPJobBW/2/${id}`;
-    //TODO need a solution for passing id to the next page
-    // <Link to= state={/SAPJobBW/2/}></Link>
-  }
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>

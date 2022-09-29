@@ -20,7 +20,6 @@ export const WindowsGeneralStep4 = () => {
     )
 
     function handleChange(event) {
-      // console.log(event)
       const {name, value, type, checked} = event.target
       setFormData(prevFormData => {
           return {

@@ -54,7 +54,7 @@ export const WindowsGeneralStep2 = () => {
     })
   }
 
-  // const [post, setPost] = React.useState(null);
+  
 
   let Navigate = useNavigate();
   async function handleSubmit(event) {

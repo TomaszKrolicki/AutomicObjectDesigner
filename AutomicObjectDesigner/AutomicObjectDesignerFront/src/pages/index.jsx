@@ -17,6 +17,8 @@ export { UnixGeneralStep1 as UnixGeneralStep1 } from './UnixGeneralStep1';
 export { UnixGeneralStep2 as UnixGeneralStep2 } from './UnixGeneralStep2';
 export { UnixGeneralStep3 as UnixGeneralStep3 } from './UnixGeneralStep3';
 export { UnixGeneralStep4 as UnixGeneralStep4 } from './UnixGeneralStep4';
+export { UnixGeneralStep5 as UnixGeneralStep5 } from './UnixGeneralStep5';
+export { UnixGeneralStep6 as UnixGeneralStep6 } from './UnixGeneralStep6';
 
 export { FileTransferOne as FileTransferOne } from './FileTransferOne';
 export { FileTransferMany as FileTransferMany } from './FileTransferMany';

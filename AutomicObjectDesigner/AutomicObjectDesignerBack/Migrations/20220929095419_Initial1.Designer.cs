@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220928081827_SeedInitialData")]
-    partial class SeedInitialData
+    [Migration("20220929095419_Initial1")]
+    partial class Initial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -359,6 +359,36 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<string>("UnixServer")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VariableKey1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue5")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("UnixGeneral");
@@ -427,6 +457,36 @@ namespace AutomicObjectDesignerBack.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableKey5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VariableValue5")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WinLogin")

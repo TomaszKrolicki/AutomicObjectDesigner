@@ -2,31 +2,29 @@ import React, { useState } from 'react';
 import { data } from 'autoprefixer';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export const WindowsGeneralStep6 = () => {
+
+export const UnixGeneralStep6 = () => {
   const cssStyleInput = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
 
-  const cssStyleButton = `className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+    const cssStyleButton = `className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
    focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
     dark:focus:ring-blue-800 my-4 mr-2`;
     const { state } = useLocation();
 
-  const jobType = "WindowsGeneral/DownloadWindowsGeneral";
-  const [inputFields, setInputFields] = useState(
-    [
-      {Id: state,
-      VariableKey: '',
-      VariableValue: ''}
-    ])
-
-  const addFields = () => {
+    const jobType = "UnixGeneral/DownloadUnixGeneral";
+    const [inputFields, setInputFields] = useState(
+        [
+          {Id: state,
+          VariableKey: '',
+          VariableValue: ''}
+        ])
+    const addFields = () => {
     let newField = { VariableKey: '', VariableValue: '' }
     setInputFields([...inputFields, newField])
   }
-
-
   const handleFormChange = (index, event) => {
     console.log("Step 6 input fields: ");
     console.log(inputFields);
@@ -50,12 +48,12 @@ export const WindowsGeneralStep6 = () => {
     console.log("Json stringify that is being send below: ")
     console.log(JSON.stringify(inputFields))
     try {
-      const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step6', {
+      const UnixGeneralResponse = await fetch('https://localhost:7017/api/UnixGeneral/step6', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(inputFields)
       })
-      data.prop = await WindowsGeneralResponse.json();
+      data.prop = await UnixGeneralResponse.json();
       if (data.prop != null) {
         Navigate("/ExportSite", { state: { num: state, type: jobType } });
       } else {

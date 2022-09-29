@@ -2,6 +2,10 @@ import React from 'react';
 import { Form, NavLink } from 'react-bootstrap';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { data } from 'autoprefixer';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 
 export const SapJobSimpleStep1 = () => {
@@ -12,22 +16,15 @@ export const SapJobSimpleStep1 = () => {
 //TODO: NEED TO UPDATE ENUMS
    const [formData, setFormData] = React.useState(
     {
-        SapSid: "", 
-        SapClient: "", 
-        SapReport: "", 
-        SapVariant: "", 
+        SapSid: "Option1", 
+        SapClient: "Option2", 
+        SapReport: "tewst", 
+        SapVariant: "test!!!!!", 
         RoutineJob: false,
-        ProcessName: "",
-        SapJobName: "",
+        ProcessName: "yyytest",
+        SapJobName: "testyyy",
         DeleteSapJob: false,
-        Folder: null,
-        Active: null,
-        MaxParallelTasks: null,
-        Process: null,
-        PreProcess: null,
-        PostProcess: null,
-        Queue: null,
-        Agent: null
+
     }
     )
 
@@ -42,20 +39,27 @@ export const SapJobSimpleStep1 = () => {
       })
     }
 
-    async function handleSubmit(event) {
-        event.preventDefault()
-        try {
-          console.log(formData)
-        await fetch('https://localhost:7017/api/SapSimple/create', {
-          method: 'post',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(formData)
-      }).then ((response) => {console.log(response)}).catch ((error)=>{console.log(error)})
-        } catch (error) {
-          console.log(error)
-        }
-        window.location.href = '/SapJobSimple/2';
-        }
+  let Navigate = useNavigate();
+  async function handleSubmit(event) {
+    event.preventDefault()
+    try {
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapSimple/step1', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      data.prop = await SapJobResponse.json();
+      // setPost(data);
+      if (data.prop != null) {
+        const id = data.prop.id;
+        Navigate("/SAPJobSimple/2", { state: id });
+      } else {
+        console.log("Id = null");
+      }
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+  }
 
     
       
