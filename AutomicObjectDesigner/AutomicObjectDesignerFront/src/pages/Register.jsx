@@ -43,7 +43,7 @@ export const Register = () => {
           })
             data = await RegisterResponse.json();
             setPost(data);
-            Navigate("/");
+            Navigate("/Login");
         } catch (error) {
             console.log("ERROR" + error)
         }

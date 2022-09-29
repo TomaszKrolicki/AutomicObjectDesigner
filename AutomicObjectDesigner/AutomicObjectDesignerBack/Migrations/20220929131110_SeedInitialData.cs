@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class Initial1 : Migration
+    public partial class SeedInitialData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
