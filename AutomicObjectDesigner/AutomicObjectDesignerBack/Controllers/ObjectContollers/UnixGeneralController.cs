@@ -207,41 +207,70 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return CreatedAtRoute("CreateUnixGeneral_Step5", new { id = unixObject.Id }, unixObject);
         }
 
+        //POST https://localhost:7017/api/UnixGeneral/step6
+        [HttpPost("step6", Name = "CreateUnixGeneral_Step6")]
+        public async Task<ActionResult<List<UnixGeneral>>> CreateUnixGeneralStep6(
+            [FromBody] UnixGeneralStep6Dto[] unixGeneralStep6Dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var unixObject = _unixGeneralRepository.FindByCondition(x => x.Id == unixGeneralStep6Dto[0].Id).FirstOrDefault();
+            unixObject.VariableKey1 = unixGeneralStep6Dto[0].VariableKey;
+            unixObject.VariableValue1 = unixGeneralStep6Dto[0].VariableValue;
+
+            _unixGeneralRepository.Update(unixObject);
+            await _unixGeneralRepository.Save();
+
+            return Ok(unixObject);
+        }
+
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep6/{id}
-        [HttpGet("GetUnixGeneralStep6/{id:int}", Name = "GetUnixGeneralStep6")]
-        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep6(int id)
+        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep7/{id}
+        [HttpGet("GetUnixGeneralStep7/{id:int}", Name = "GetUnixGeneralStep7")]
+        public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep7(int id)
         {
             _logger.LogInformation($"GetUnixGeneral called with parameter id = {id}");
 
-            var unixGeneral = _unixGeneralRepository.FindByCondition((h => h.Id == id));
+            var unixGeneral = _unixGeneralRepository.FindByCondition((h => h.Id == id)).FirstOrDefault();
 
             UnixGeneral unix = new UnixGeneral
             {
                 Id = id,
-                UnixServer = unixGeneral.FirstOrDefault().UnixServer,
-                UnixLogin = unixGeneral.FirstOrDefault().UnixLogin,
-                ObjectName = unixGeneral.FirstOrDefault().ObjectName,
-                OwnerId = unixGeneral.FirstOrDefault().OwnerId,
-                Active = unixGeneral.FirstOrDefault().Active,
-                NameSuffix = unixGeneral.FirstOrDefault().NameSuffix,
-                MaxParallelTasks = unixGeneral.FirstOrDefault().MaxParallelTasks,
-                Process = unixGeneral.FirstOrDefault().Process,
-                PreProcess = unixGeneral.FirstOrDefault().PreProcess,
-                PostProcess = unixGeneral.FirstOrDefault().PostProcess,
-                SapClient = unixGeneral.FirstOrDefault().SapClient,
-                SapSid = unixGeneral.FirstOrDefault().SapSid,
-                RoutineJob = unixGeneral.FirstOrDefault().RoutineJob,
-                ProcessName = unixGeneral.FirstOrDefault().ProcessName,
-                Documentation = unixGeneral.FirstOrDefault().Documentation,
-                Title = unixGeneral.FirstOrDefault().Title,
-                Archive1 = unixGeneral.FirstOrDefault().Archive1,
-                Archive2 = unixGeneral.FirstOrDefault().Archive2,
-                InternalAccount = unixGeneral.FirstOrDefault().InternalAccount,
-                Folder = unixGeneral.FirstOrDefault().Folder,
-                Queue = unixGeneral.FirstOrDefault().Queue,
-                Agent = unixGeneral.FirstOrDefault().Agent,
-                Login = unixGeneral.FirstOrDefault().Login
+                UnixServer = unixGeneral.UnixServer,
+                UnixLogin = unixGeneral.UnixLogin,
+                ObjectName = unixGeneral.ObjectName,
+                OwnerId = unixGeneral.OwnerId,
+                Active = unixGeneral.Active,
+                NameSuffix = unixGeneral.NameSuffix,
+                MaxParallelTasks = unixGeneral.MaxParallelTasks,
+                Process = unixGeneral.Process,
+                PreProcess = unixGeneral.PreProcess,
+                PostProcess = unixGeneral.PostProcess,
+                SapClient = unixGeneral.SapClient,
+                SapSid = unixGeneral.SapSid,
+                RoutineJob = unixGeneral.RoutineJob,
+                ProcessName = unixGeneral.ProcessName,
+                Documentation = unixGeneral.Documentation,
+                Title = unixGeneral.Title,
+                Archive1 = unixGeneral.Archive1,
+                Archive2 = unixGeneral.Archive2,
+                InternalAccount = unixGeneral.InternalAccount,
+                Folder = unixGeneral.Folder,
+                Queue = unixGeneral.Queue,
+                Agent = unixGeneral.Agent,
+                Login = unixGeneral.Login,
+                VariableKey1 = unixGeneral.VariableKey1,
+                VariableKey2 = unixGeneral.VariableKey2,
+                VariableKey3 = unixGeneral.VariableKey3,
+                VariableKey4 = unixGeneral.VariableKey4,
+                VariableKey5 = unixGeneral.VariableKey5,
+                VariableValue1 = unixGeneral.VariableValue1,
+                VariableValue2 = unixGeneral.VariableValue2,
+                VariableValue3 = unixGeneral.VariableValue3,
+                VariableValue4 = unixGeneral.VariableValue4,
+                VariableValue5 = unixGeneral.VariableValue5
 
             };
 
