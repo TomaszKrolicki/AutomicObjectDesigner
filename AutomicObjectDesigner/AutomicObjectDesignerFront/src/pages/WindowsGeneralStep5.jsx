@@ -9,8 +9,6 @@ export const WindowsGeneralStep5 = () => {
    dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
    dark:focus:border-blue-500`;
    const { state } = useLocation();
-
-   console.log("Id: "+  state);
    
    const [formData, setFormData] = React.useState(
     {

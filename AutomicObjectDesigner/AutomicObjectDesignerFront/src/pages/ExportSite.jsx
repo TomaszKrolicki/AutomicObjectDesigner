@@ -1,6 +1,7 @@
 import React from 'react';
-import { useLocation, BrowserRouter as Router, } from 'react-router-dom';
+import { useLocation, useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
+import { data } from 'autoprefixer';
 
 
 export const ExportSite = () => {
@@ -47,7 +48,7 @@ export const ExportSite = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
-  };
+  }
 
   async function handleClickXml() {
     console.log("xml.click")
@@ -56,7 +57,7 @@ export const ExportSite = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
-  };
+  }
 
   async function handleClickJson() {
     console.log("json.click")
@@ -68,6 +69,14 @@ export const ExportSite = () => {
       console.log("ERROR" + error)
     }
   }
+
+  // let Navigate = useNavigate();
+
+  // if (data.prop != null) {
+  //   Navigate("/ExportSite", { state: { num: state } });
+  // } else {
+  //   console.log("Id = null");
+  // }
 
 
 
