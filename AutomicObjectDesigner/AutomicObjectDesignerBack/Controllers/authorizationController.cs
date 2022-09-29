@@ -58,20 +58,13 @@ namespace AutomicObjectDesignerBack.Controllers
 
             string token = CreateToken(user);
             user.Token = token;
-
-            //UserLogin userDto = new UserLogin();
-            //userDto.IsAdministrator = user.IsAdministrator;
-            //userDto.UserName = user.UserName;
-            //userDto.FirstName = user.FirstName;
-            //userDto.LastName = user.LastName;
-            //userDto.HasEmailConfirmed = user.HasEmailConfirmed;
-            //userDto.Email = user.Email;
-            //userDto.Token = token;
+            UserLogin userlogin = new UserLogin();
+            userlogin.Token = token;
 
             _AuthorizationRepository.Update(user);
             await _AuthorizationRepository.Save();
 
-            return Ok(user);
+            return Accepted(userlogin);
         }
 
         private string CreateToken(UserModel user)
