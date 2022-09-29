@@ -12,13 +12,13 @@ export const UnixGeneralStep1 = () => {
 
    const [formData, setFormData] = React.useState(
     {
-        UnixServer: "Option2", 
+        UnixServer: "Option1", 
         UnixLogin: "Option2",
-        SapSid: "Option2",
-        SapClient: "Option2",
+        SapSid: "Option3",
+        SapClient: "Option4",
         RoutineJob: false,
-        ProcessName: "",
-        NameSuffix: "",
+        ProcessName: "TESTttt",
+        NameSuffix: "TESTttt",
     }
     )
 
