@@ -300,7 +300,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/UnixGeneral/DownloadCsvFile/{id}
-        [HttpGet("DownloadUnixGeneralCsvFile/{id:int}", Name = "DownloadUnixGeneralCsvFile")]
+        [HttpGet("DownloadUnixGeneralCsvFile/{id:int}", Name = "DownloadUnixGeneralCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -372,7 +372,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/UnixGeneral/DownloadJsonFile/{id}
-        [HttpGet("DownloadUnixGeneralJsonFile/{id:int}", Name = "DownloadUnixGeneralJsonFile")]
+        [HttpGet("DownloadUnixGeneralJsonFile/{id:int}", Name = "DownloadUnixGeneralJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

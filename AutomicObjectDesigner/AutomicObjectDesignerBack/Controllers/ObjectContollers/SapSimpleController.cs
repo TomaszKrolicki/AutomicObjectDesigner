@@ -241,7 +241,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapSimple/DownloadCsvFile/{id}
-        [HttpGet("DownloadSapSimpleCsvFile/{id:int}", Name = "DownloadSapSimpleCsvFile")]
+        [HttpGet("DownloadSapSimpleCsvFile/{id:int}", Name = "DownloadSapSimpleCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -314,7 +314,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapSimple/DownloadJsonFile/{id}
-        [HttpGet("DownloadSapSimpleJsonFile/{id:int}", Name = "DownloadSapSimpleJsonFile")]
+        [HttpGet("DownloadSapSimpleJsonFile/{id:int}", Name = "DownloadSapSimpleJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

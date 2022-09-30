@@ -165,7 +165,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapJobBwChain/DownloadCsvFile/{id}
-        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile")]
+        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -239,7 +239,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapJobBwChain/DownloadJsonFile/{id}
-        [HttpGet("DownloadJsonFile/{id:int}", Name = "DownloadJsonFile")]
+        [HttpGet("DownloadJsonFile/{id:int}", Name = "DownloadJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)
