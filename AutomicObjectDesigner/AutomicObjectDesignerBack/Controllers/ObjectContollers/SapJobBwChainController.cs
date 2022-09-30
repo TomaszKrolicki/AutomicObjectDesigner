@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -19,6 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class SapJobBwChainController : ControllerBase
     {
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;

@@ -21,7 +21,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
                 UserName = "Admin",
                 Email = "admin@gmail.com",
                 HasEmailConfirmed = true,
-                IsAdministrator = true
+                Role = "Admin"
             }
         );
     }

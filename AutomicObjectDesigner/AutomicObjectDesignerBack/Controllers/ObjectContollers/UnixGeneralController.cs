@@ -9,12 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     // https://localhost:7017/api/UnixGeneral
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]") ]
+    [Authorize(Roles = "Admin")]
     public class UnixGeneralController : ControllerBase
     {
         private readonly IUnixGeneralRepository _unixGeneralRepository;

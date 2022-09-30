@@ -50,7 +50,7 @@ export const Login = () => {
           }).then(res => {
             return res.json()
           })
-          .then(data => /*console.log(data.token)*/ localStorage.setItem("token", data.token))
+          .then(data => localStorage.setItem("token", data.token))
           Navigate("/");
         } catch (error) {
           console.log("ERROR" + error)

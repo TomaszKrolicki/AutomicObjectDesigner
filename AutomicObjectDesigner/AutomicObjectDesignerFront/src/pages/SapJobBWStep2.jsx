@@ -27,7 +27,9 @@ export const SapJobBWStep2 = () => {
     const fetchData = async () => {
       try {
         const result = await fetch(
-          'https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep2/' + state,
+          'https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep2/' + state, {
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+          }
         );
         const dat = await result.json();
         if (dat != null) {
@@ -66,7 +68,7 @@ export const SapJobBWStep2 = () => {
     try {
       const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step2', {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
       data = await SapJobResponse.json();

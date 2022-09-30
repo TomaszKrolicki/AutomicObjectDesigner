@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
 using AutomicObjectDesigner.Models.Objects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     // https://localhost:7017/api/WindowsGeneral
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class WindowsGeneralController : ControllerBase
     {
         private readonly IWindowsGeneralRepository _windowsGeneralRepository;

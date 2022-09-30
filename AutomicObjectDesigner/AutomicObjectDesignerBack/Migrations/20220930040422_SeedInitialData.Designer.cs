@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220929131110_SeedInitialData")]
+    [Migration("20220930040422_SeedInitialData")]
     partial class SeedInitialData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,9 +157,6 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("HasEmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsAdministrator")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
@@ -169,6 +166,9 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
@@ -188,8 +188,8 @@ namespace AutomicObjectDesignerBack.Migrations
                             Email = "admin@gmail.com",
                             FirstName = "Admin",
                             HasEmailConfirmed = true,
-                            IsAdministrator = true,
                             LastName = "Admin",
+                            Role = "Admin",
                             UserName = "Admin"
                         });
                 });

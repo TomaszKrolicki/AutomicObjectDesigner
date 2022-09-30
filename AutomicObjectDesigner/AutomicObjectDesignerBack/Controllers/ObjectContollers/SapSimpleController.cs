@@ -12,12 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     // https://localhost:7017/api/SapSimple
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class SapSimpleController : ControllerBase
     {
         private readonly ISapSimpleRepository _sapSimpleRepository;

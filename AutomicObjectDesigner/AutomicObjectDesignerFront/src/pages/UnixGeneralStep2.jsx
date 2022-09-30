@@ -27,7 +27,9 @@ export const UnixGeneralStep2 = () => {
       const fetchData = async () => {
         try {
           const result = await fetch(
-            'https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep2/' + state,
+            'https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep2/' + state,{
+              headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+            }
           );
           const dat = await result.json();
           if (dat != null) {
@@ -61,7 +63,7 @@ export const UnixGeneralStep2 = () => {
       try {
         const UnixGeneralResponse = await fetch('https://localhost:7017/api/UnixGeneral/step2', {
           method: 'post',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
         data = await UnixGeneralResponse.json();
