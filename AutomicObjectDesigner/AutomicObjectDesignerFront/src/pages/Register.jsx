@@ -19,15 +19,6 @@ export const Register = () => {
         }
       )
 
-      function getJWTTokenFromLocalStorage(){
-        token = localStorage.getItem('key')
-        if (token = null){
-          return "User"
-        }
-        else return token
-      }
-     /* , { 'Authorization': 'Bearer ' + getJWTTokenFromLocalStorage()} */
-
       function handleChange(event) {
         console.log(event)
         const { name, value, type, checked } = event.target
@@ -52,7 +43,7 @@ export const Register = () => {
           })
             data = await RegisterResponse.json();
             setPost(data);
-            Navigate("/Login", { 'Authorization': 'Bearer ' + getJWTTokenFromLocalStorage()});
+            Navigate("/Login");
         } catch (error) {
             console.log("ERROR" + error)
         }
