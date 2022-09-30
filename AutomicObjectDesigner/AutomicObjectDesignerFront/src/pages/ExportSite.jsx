@@ -45,21 +45,21 @@ export const ExportSite = () => {
     try {
       console.log("csv.click2")
       const SapJobResponse = await fetch(url + 'CsvFile/' + state.num);
-      console.log(SapJobResponse)
+      console.log(SapJobb)
       console.log(url)
     } catch (error) {
       console.log("ERROR" + error)
     }
   }
 
-  // async function handleClickXml() {
-  //   console.log("xml.click")
-  //   try {
-  //     const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadXmlFile/' + state.num);
-  //   } catch (error) {
-  //     console.log("ERROR" + error)
-  //   }
-  // }
+  async function handleClickXml() {
+    console.log("xml.click")
+    try {
+      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadXmlFile/' + state.num);
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+  }
 
   async function handleClickJson() {
     console.log("json.click")

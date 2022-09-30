@@ -494,11 +494,11 @@ export const links = [
             link: 'SapJobSimple/1',
         icon: <SiSap />,
       },
-      // {
-      //     name: 'SAPJobMassen',
-      //     link: 'SAPJobMassen/1',
-      //   icon: <SiSap />,
-      // },
+      {
+          name: 'SAPJobMassen',
+          link: 'SAPJobMassen/1',
+        icon: <SiSap />,
+      },
       {
           name: 'SAPJobBW',
           link: 'SAPJobBW/1',
