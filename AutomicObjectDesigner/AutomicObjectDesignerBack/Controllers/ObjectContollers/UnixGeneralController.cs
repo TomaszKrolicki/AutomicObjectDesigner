@@ -9,12 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     // https://localhost:7017/api/UnixGeneral
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]") ]
+    [Authorize(Roles = "Admin")]
     public class UnixGeneralController : ControllerBase
     {
         private readonly IUnixGeneralRepository _unixGeneralRepository;
@@ -298,7 +300,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/UnixGeneral/DownloadCsvFile/{id}
-        [HttpGet("DownloadUnixGeneralCsvFile/{id:int}", Name = "DownloadUnixGeneralCsvFile")]
+        [HttpGet("DownloadUnixGeneralCsvFile/{id:int}", Name = "DownloadUnixGeneralCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -370,7 +372,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/UnixGeneral/DownloadJsonFile/{id}
-        [HttpGet("DownloadUnixGeneralJsonFile/{id:int}", Name = "DownloadUnixGeneralJsonFile")]
+        [HttpGet("DownloadUnixGeneralJsonFile/{id:int}", Name = "DownloadUnixGeneralJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

@@ -155,9 +155,6 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("HasEmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsAdministrator")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
@@ -168,7 +165,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("Token")
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
@@ -186,8 +183,8 @@ namespace AutomicObjectDesignerBack.Migrations
                             Email = "admin@gmail.com",
                             FirstName = "Admin",
                             HasEmailConfirmed = true,
-                            IsAdministrator = true,
                             LastName = "Admin",
+                            Role = "Admin",
                             UserName = "Admin"
                         });
                 });

@@ -37,6 +37,7 @@ namespace AutomicObjectDesignerBack.Controllers
             user.Email = request.Email;
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
+            user.Role = "User";
 
             _AuthorizationRepository.Create(user);
             await _AuthorizationRepository.Save();
@@ -57,22 +58,22 @@ namespace AutomicObjectDesignerBack.Controllers
             }
 
             string token = CreateToken(user);
-            user.Token = token;
+            UserLogin userlogin = new UserLogin();
+            userlogin.Token = token;
 
-            _AuthorizationRepository.Update(user);
-            await _AuthorizationRepository.Save();
-
-            return Ok(user);
+            return Accepted(userlogin);
         }
 
         private string CreateToken(UserModel user)
         {
             List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.UserName)
+            new Claim(ClaimTypes.Name, user.UserName),
+            new Claim(ClaimTypes.Role, user.Role),
+            new Claim(ClaimTypes.Email, user.Email)
         };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("Jwt:Key").Value));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

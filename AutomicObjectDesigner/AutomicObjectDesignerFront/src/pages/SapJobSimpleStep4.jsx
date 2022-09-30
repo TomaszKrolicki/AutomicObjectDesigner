@@ -46,7 +46,7 @@ export const SapJobSimpleStep4 = () => {
       try {
         const SapJobRespone = await fetch('https://localhost:7017/api/SapSimple/step4', {
           method: 'post',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
         data = await SapJobRespone.json();

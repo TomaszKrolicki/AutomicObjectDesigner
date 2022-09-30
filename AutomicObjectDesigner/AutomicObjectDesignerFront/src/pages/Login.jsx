@@ -2,6 +2,7 @@ import { data } from 'autoprefixer';
 import React from 'react'
 import { Form, NavLink } from 'react-bootstrap';
 import { Navigate, useNavigate } from 'react-router-dom';
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export const Login = () => {
     const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -38,8 +39,18 @@ export const Login = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
           })
-          data = await LoginResponse.json();
+          data = LoginResponse.json();
           setPost(data);
+          fetch('https://localhost:7017/api/Authorization/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          }).then(res => {
+            return res.json()
+          })
+          .then(data => localStorage.setItem("token", data.token))
           Navigate("/");
         } catch (error) {
           console.log("ERROR" + error)

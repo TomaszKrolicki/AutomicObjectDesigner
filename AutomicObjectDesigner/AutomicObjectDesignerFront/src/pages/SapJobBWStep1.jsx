@@ -23,6 +23,7 @@ export const SapJobBWStep1 = () => {
     }
   )
 
+
   function handleChange(event) {
     console.log(event)
     const { name, value, type, checked } = event.target
@@ -38,11 +39,12 @@ export const SapJobBWStep1 = () => {
 
   let Navigate = useNavigate();
   async function handleSubmit(event) {
+    console.log(localStorage.getItem("token"))
     event.preventDefault()
     try {
       const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step1', {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
       data.prop = await SapJobResponse.json();

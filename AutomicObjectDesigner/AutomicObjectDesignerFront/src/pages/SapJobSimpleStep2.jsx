@@ -29,7 +29,9 @@ export const SapJobSimpleStep2 = () => {
       const fetchData = async () =>{
         try {
           const result = await fetch(
-            'https://localhost:7017/api/SapSimple/GetSapSimpleStep2/' + state, );
+            'https://localhost:7017/api/SapSimple/GetSapSimpleStep2/' + state, {
+              headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+            });
             const dat = await result.json()
             if (dat != null) {
               setFormData(prev => ({
@@ -69,7 +71,7 @@ export const SapJobSimpleStep2 = () => {
       try {
         const SapJobRespone = await fetch('https://localhost:7017/api/SapSimple/step2', {
           method: 'post',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
         data = await SapJobRespone.json();

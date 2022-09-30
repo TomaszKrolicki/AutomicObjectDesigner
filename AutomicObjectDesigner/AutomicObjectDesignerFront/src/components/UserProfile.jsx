@@ -1,13 +1,30 @@
 import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
+import { Navigate, redirect, useNavigate } from 'react-router-dom';
 
 import { Button } from '.';
 import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
+function isLoggedIn(){
+  if (localStorage.getItem("token") != null){
+    return <button type="button" 
+    onClick={localStorage.removeItem("token")}
+    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+    >
+      Logout
+    </button>}
+  else { return <button type="button" 
+    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+    >
+      Login
+    </button>}
+}
+
 const UserProfile = () => {
   const { currentColor } = useStateContext();
+
   
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -61,16 +78,10 @@ const UserProfile = () => {
           </div>
         ))} */}
       </div>
-      <div className="mt-5">
-        <Button
-          color="black"
-          bgColor="white"
-          text="Logout"
-          borderRadius="10px"
-          width="full"
-        />
+        <div className="mt-5">
+          {isLoggedIn()}
+        </div>
       </div>
-    </div>
 
   );
 };

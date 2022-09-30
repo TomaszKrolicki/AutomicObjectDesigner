@@ -18,7 +18,7 @@ export const Register = () => {
           Password: "",
         }
       )
-      
+
       function handleChange(event) {
         console.log(event)
         const { name, value, type, checked } = event.target
@@ -43,7 +43,7 @@ export const Register = () => {
           })
             data = await RegisterResponse.json();
             setPost(data);
-            Navigate("/");
+            Navigate("/Login");
         } catch (error) {
             console.log("ERROR" + error)
         }

@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
 using AutomicObjectDesigner.Models.Objects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
     // https://localhost:7017/api/WindowsGeneral
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class WindowsGeneralController : ControllerBase
     {
         private readonly IWindowsGeneralRepository _windowsGeneralRepository;
@@ -301,7 +303,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/DownloadCsvFile/{id}
-        [HttpGet("DownloadWindowsGeneralCsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile")]
+        [HttpGet("DownloadWindowsGeneralCsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -369,7 +371,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/DownloadJsonFile/{id}
-        [HttpGet("DownloadWindowsGeneralJsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile")]
+        [HttpGet("DownloadWindowsGeneralJsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

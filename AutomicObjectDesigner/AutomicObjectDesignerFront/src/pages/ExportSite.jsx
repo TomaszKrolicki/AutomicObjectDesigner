@@ -20,7 +20,9 @@ export const ExportSite = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(url);
+        const result = await fetch(url, {
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+        });
         const dat = await result.json();
         console.log(dat);
         if (dat != null) {
@@ -44,8 +46,10 @@ export const ExportSite = () => {
     console.log("csv.click")
     try {
       console.log("csv.click2")
-      const SapJobResponse = await fetch(url + 'CsvFile/' + state.num);
-      console.log(SapJobb)
+      const SapJobResponse = await fetch(url + 'CsvFile/' + state.num, {
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+      });
+      console.log(SapJobResponse)
       console.log(url)
     } catch (error) {
       console.log("ERROR" + error)
@@ -65,7 +69,9 @@ export const ExportSite = () => {
     console.log("json.click")
     try {
       console.log("csv.click232323")
-      const SapJobResponse = await fetch(url + 'JsonFile/' + state.num);
+      const SapJobResponse = await fetch(url + 'JsonFile/' + state.num, {
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+      });
       console.log(SapJobResponse)
       console.log("csv.tesssssssssssssst")
     } catch (error) {

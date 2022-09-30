@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 {
@@ -19,6 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class SapJobBwChainController : ControllerBase
     {
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
@@ -163,7 +165,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapJobBwChain/DownloadCsvFile/{id}
-        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile")]
+        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -237,7 +239,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/SapJobBwChain/DownloadJsonFile/{id}
-        [HttpGet("DownloadJsonFile/{id:int}", Name = "DownloadJsonFile")]
+        [HttpGet("DownloadJsonFile/{id:int}", Name = "DownloadJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

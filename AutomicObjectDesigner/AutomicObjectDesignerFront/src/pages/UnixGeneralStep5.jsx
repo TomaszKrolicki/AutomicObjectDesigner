@@ -39,7 +39,7 @@ export const UnixGeneralStep5 = () => {
       try {
         const UnixGeneralResponse = await fetch('https://localhost:7017/api/UnixGeneral/step5', {
           method: 'post',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         })
         data = await UnixGeneralResponse.json();

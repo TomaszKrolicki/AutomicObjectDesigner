@@ -52,7 +52,7 @@ export const WindowsGeneralStep6 = () => {
     try {
       const WindowsGeneralResponse = await fetch('https://localhost:7017/api/WindowsGeneral/step6', {
         method: 'post',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
         body: JSON.stringify(inputFields)
       })
       data.prop = await WindowsGeneralResponse.json();
