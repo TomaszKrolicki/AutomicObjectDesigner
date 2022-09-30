@@ -157,8 +157,7 @@ namespace AutomicObjectDesignerBack.Migrations
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     HasEmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -210,8 +209,8 @@ namespace AutomicObjectDesignerBack.Migrations
 
             migrationBuilder.InsertData(
                 table: "UserModel",
-                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "LastName", "PasswordHash", "PasswordSalt", "Role", "Token", "UserName" },
-                values: new object[] { 100, "admin@gmail.com", "Admin", true, "Admin", null, null, "Admin", null, "Admin" });
+                columns: new[] { "Id", "Email", "FirstName", "HasEmailConfirmed", "LastName", "PasswordHash", "PasswordSalt", "Role", "UserName" },
+                values: new object[] { 100, "admin@gmail.com", "Admin", true, "Admin", null, null, "Admin", "Admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
