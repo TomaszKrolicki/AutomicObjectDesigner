@@ -451,6 +451,12 @@ namespace AutomicObjectDesignerBack.Migrations
                     b.Property<bool>("RoutineJob")
                         .HasColumnType("bit");
 
+                    b.Property<string>("SapClient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapSid")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 

@@ -12,7 +12,7 @@ export const ExportSite = () => {
 
   const { state } = useLocation();
   console.log(state.type);
-
+  let Navigate = useNavigate();
 
   const url = 'https://localhost:7017/api/' + state.type;
   console.log("Fetching url: " + url)
@@ -42,45 +42,38 @@ export const ExportSite = () => {
 
   // let Navigate = useNavigate();
   async function handleClickCsv() {
-    
-    console.log("csv.click")
     try {
-      console.log("csv.click2")
       const SapJobResponse = await fetch(url + 'CsvFile/' + state.num, {
         headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
       });
-      console.log(SapJobResponse)
-      console.log(url)
     } catch (error) {
       console.log("ERROR" + error)
     }
+    Navigate(url+"CsvFile/"+ state.num)
   }
 
   async function handleClickXml() {
-    console.log("xml.click")
     try {
-      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/DownloadXmlFile/' + state.num);
+      Navigate(url+"DownloadXmlFile/"+ state.num);
     } catch (error) {
       console.log("ERROR" + error)
     }
+    Navigate(url+"XmlFile/"+ state.num)
   }
 
   async function handleClickJson() {
-    console.log("json.click")
-    try {
-      console.log("csv.click232323")
-      const SapJobResponse = await fetch(url + 'JsonFile/' + state.num, {
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
-      });
-      console.log(SapJobResponse)
-      console.log("csv.tesssssssssssssst")
-    } catch (error) {
-      console.log("ERROR" + error)
-    }
+    // try {
+    //   const SapJobResponse = await fetch(url + 'JsonFile/' + state.num, {
+    //     headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+    //   })
+    // } catch (error) {
+    //   console.log("ERROR" + error)
+    // }
+    Navigate(url+"JsonFile/"+ state.num);
   }
 
 
-  // let Navigate = useNavigate();
+  
 
   // if (data.prop != null) {
   //   Navigate("/ExportSite", { state: { num: state, } });

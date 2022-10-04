@@ -87,6 +87,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
                 RoutineJob = WindowsGeneralStep1Dto.RoutineJob,
                 ProcessName = WindowsGeneralStep1Dto.ProcessName,
                 NameSuffix = WindowsGeneralStep1Dto.NameSuffix,
+                SapClient = WindowsGeneralStep1Dto.SapClient,
+                SapSid = WindowsGeneralStep1Dto.SapSid,
                 ObjectName = $"<>.<>#<{WindowsGeneralStep1Dto.RoutineJob}>" +
                              $"#<{WindowsGeneralStep1Dto.ProcessName}>#WIN_<{WindowsGeneralStep1Dto.NameSuffix}>.JOBS"
 
@@ -265,6 +267,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             WindowsGeneral win = new WindowsGeneral
             {
                 Id = id,
+                SapSid = windowsGen.SapSid,
+                SapClient = windowsGen.SapClient,
                 ObjectName = windowsGen.ObjectName,
                 OwnerId = windowsGen.OwnerId,
                 Active = windowsGen.Active,
@@ -302,8 +306,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/DownloadCsvFile/{id}
-        [HttpGet("DownloadWindowsGeneralCsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile"), AllowAnonymous]
+        //Get https://localhost:7017/api/WindowsGeneral/CsvFile/{id}
+        [HttpGet("CsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -320,7 +324,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
             string[] columnNames = new string[]
             {
-                "Id", "WinServer", "WinLogin", "ObjectName", "OwnerId", "Active", "NameSuffix", "MaxParallelTasks",
+                "Id","SapSid", "SapClient", "WinServer", "WinLogin", "ObjectName", "OwnerId", "Active", "NameSuffix", "MaxParallelTasks",
                 "Process", "PreProcess", "PostProcess", "RoutineJob", "ProcessName", "Documentation", "Title",
                 "Archive1", "Archive2", "InternalAccount",
                 "Folder", "Queue", "Agent", "Login"
@@ -338,6 +342,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             foreach (var win in wins)
             {
                 csv += '"' + win.Id.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.SapSid.ToString().Replace(",", ";") + "\",";
+                csv += '"' + win.SapClient.ToString().Replace(",", ";") + "\",";
                 csv += '"' + win.WinServer.Replace(",", ";") + "\",";
                 csv += '"' + win.WinLogin.Replace(",", ";") + "\",";
                 csv += '"' + win.ObjectName.Replace(",", ";") + "\",";
@@ -370,8 +376,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/DownloadJsonFile/{id}
-        [HttpGet("DownloadWindowsGeneralJsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile"), AllowAnonymous]
+        //Get https://localhost:7017/api/WindowsGeneral/JsonFile/{id}
+        [HttpGet("JsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)
@@ -388,6 +394,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             WindowsGeneral winJson = new WindowsGeneral
             {
                 Id = id,
+                SapClient = windowsGeneral.SapClient,
+                SapSid = windowsGeneral.SapSid,
                 WinServer = windowsGeneral.WinServer,
                 WinLogin = windowsGeneral.WinLogin,
                 ObjectName = windowsGeneral.ObjectName,

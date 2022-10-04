@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AutomicObjectDesignerBack.Migrations
 {
-    public partial class SeedInitialData : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -170,6 +170,8 @@ namespace AutomicObjectDesignerBack.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SapSid = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SapClient = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WinServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     WinLogin = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoutineJob = table.Column<bool>(type: "bit", nullable: false),

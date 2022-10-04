@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomicObjectDesignerBack.Migrations
 {
     [DbContext(typeof(AppDatabaseContext))]
-    [Migration("20220930054339_SeedInitialData")]
-    partial class SeedInitialData
+    [Migration("20221004124055_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -452,6 +452,12 @@ namespace AutomicObjectDesignerBack.Migrations
 
                     b.Property<bool>("RoutineJob")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SapClient")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SapSid")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

@@ -6,6 +6,8 @@ namespace AutomicObjectDesignerBack.Models.Objects
     {
         //Entry sequence:
         // step 1 and 2
+        public string SapSid { get; set; }
+        public string SapClient { get; set; }
         public string WinServer { get; set; }
         public string WinLogin { get; set; }
         public bool RoutineJob { get; set; }

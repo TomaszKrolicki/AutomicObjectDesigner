@@ -11,15 +11,15 @@ export const SapJobBWStep1 = () => {
 
   const [formData, setFormData] = React.useState(
     {
-      SapSid: "Option1",
-      SapClient: "Option1",
-      Kette: "test123",
+      SapSid: "AFS",
+      SapClient: "445",
+      Kette: "",
       RoutineJob: false,
-      ProcessName: "test123",
-      SapJobName: "test123",
+      ProcessName: "",
+      SapJobName: "",
       DeleteSapJob: false,
-      SapReport: "test123",
-      SapVariant: "test123"
+      SapReport: "",
+      SapVariant: ""
     }
   )
 
@@ -65,17 +65,17 @@ export const SapJobBWStep1 = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
         <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
-          <option value={"Option1"}>Option1</option>
-          <option value={"Option2"}>Option2</option>
-          <option value={"Option3"}>Option3</option>
-          <option value={"Option4"}>Option4</option>
+          <option value={"Option1"}>AFS</option>
+          <option value={"Option2"}>BDG</option>
+          <option value={"Option3"}>CFG</option>
+          <option value={"Option4"}>UTP</option>
         </select>
         <label htmlFor="SapClient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">Select SAP Client</label>
         <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
-          <option value={"Option1"}>Option1</option>
-          <option value={"Option2"}>Option2</option>
-          <option value={"Option3"}>Option3</option>
-          <option value={"Option4"}>Option4</option>
+          <option value={"Option1"}>445</option>
+          <option value={"Option2"}>878</option>
+          <option value={"Option3"}>913</option>
+          <option value={"Option4"}>989</option>
         </select>
         <label htmlFor="Kette" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Kette</label>
         <textarea id="Kette" onChange={handleChange} value={formData.Kette} name='Kette' rows="3" className={cssStyle} placeholder="SAP Report..." required minLength="1"></textarea>

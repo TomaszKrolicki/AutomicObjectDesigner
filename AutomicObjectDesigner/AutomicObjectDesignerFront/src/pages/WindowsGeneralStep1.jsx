@@ -11,7 +11,9 @@ export const WindowsGeneralStep1 = () => {
    const [formData, setFormData] = React.useState(
     {
         WinServer: "Option1", 
-        WinLogin: "Option1", 
+        WinLogin: "Option1",
+        SapSid: "AFS",
+        SapClient: "445",
         RoutineJob: false,
         ProcessName: "asddddd",
         NameSuffix: "asddddd"
@@ -75,6 +77,20 @@ export const WindowsGeneralStep1 = () => {
           <option value={"Option2"}>Option2</option>
           <option value={"Option3"}>Option3</option>
           <option value={"Option4"}>Option4</option>
+        </select>
+        <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
+        <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
+          <option value={"Option1"}>AFS</option>
+          <option value={"Option2"}>BDG</option>
+          <option value={"Option3"}>CFG</option>
+          <option value={"Option4"}>UTP</option>
+        </select>
+        <label htmlFor="SapClient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">Select SAP Client</label>
+        <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
+          <option value={"Option1"}>445</option>
+          <option value={"Option2"}>878</option>
+          <option value={"Option3"}>913</option>
+          <option value={"Option4"}>989</option>
         </select>
         <div className="flex items-center mb-4">
           <input id="RoutineJob" onChange={handleChange} value={formData.routine_job} name='RoutineJob' type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />

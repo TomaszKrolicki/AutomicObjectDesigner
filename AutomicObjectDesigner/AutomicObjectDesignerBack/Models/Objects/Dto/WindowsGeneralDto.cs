@@ -12,6 +12,8 @@ namespace AutomicObjectDesignerBack.Models.Objects
         public string? ProcessName { get; set; }
         public string? NameSuffix { get; set; }
         public string? ObjectName { get; set; }
+        public string SapSid { get; set; }
+        public string SapClient { get; set; }
     }
 
     public class WindowsGeneralStep2Dto

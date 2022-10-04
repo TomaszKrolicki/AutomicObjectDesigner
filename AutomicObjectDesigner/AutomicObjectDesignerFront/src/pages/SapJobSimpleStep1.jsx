@@ -16,13 +16,13 @@ export const SapJobSimpleStep1 = () => {
 //TODO: NEED TO UPDATE ENUMS
    const [formData, setFormData] = React.useState(
     {
-        SapSid: "Option1", 
-        SapClient: "Option2", 
-        SapReport: "tewst", 
-        SapVariant: "test!!!!!", 
+      SapSid: "AFS",
+      SapClient: "445",
+        SapReport: "", 
+        SapVariant: "", 
         RoutineJob: false,
-        ProcessName: "yyytest",
-        SapJobName: "testyyy",
+        ProcessName: "",
+        SapJobName: "",
         DeleteSapJob: false,
 
     }
@@ -68,18 +68,18 @@ export const SapJobSimpleStep1 = () => {
     <div className='md:px-4 py-2.5 container w-800'>
       <form onSubmit={handleSubmit}>
         <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
-              <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
-          <option value={"Option1"}>Option1</option>
-          <option value={"Option2"}>Option2</option>
-          <option value={"Option3"}>Option3</option>
-          <option value={"Option4"}>Option4</option>
+        <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
+          <option value={"Option1"}>AFS</option>
+          <option value={"Option2"}>BDG</option>
+          <option value={"Option3"}>CFG</option>
+          <option value={"Option4"}>UTP</option>
         </select>
         <label htmlFor="SapClient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">Select SAP Client</label>
-              <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
-              <option value={"Option1"}>Option1</option>
-          <option value={"Option2"}>Option2</option>
-          <option value={"Option3"}>Option3</option>
-          <option value={"Option4"}>Option4</option>
+        <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
+          <option value={"Option1"}>445</option>
+          <option value={"Option2"}>878</option>
+          <option value={"Option3"}>913</option>
+          <option value={"Option4"}>989</option>
         </select>
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
               <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>
