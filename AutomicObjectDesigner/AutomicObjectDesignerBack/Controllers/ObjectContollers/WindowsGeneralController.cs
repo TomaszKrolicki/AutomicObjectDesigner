@@ -13,7 +13,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     // https://localhost:7017/api/WindowsGeneral
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class WindowsGeneralController : ControllerBase
     {
         private readonly IWindowsGeneralRepository _windowsGeneralRepository;
@@ -250,8 +250,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/GetWindowsGeneralStep7/{id}
-        [HttpGet("GetWindowsGeneralStep7/{id:int}", Name = "GetWindowsGeneralStep7")]
+        //Get https://localhost:7017/api/WindowsGeneral/ExportSite/{id}
+        [HttpGet("ExportSite/{id:int}", Name = "GetWindowsGeneralStep7")]
         public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep7(int id)
         {
             _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");

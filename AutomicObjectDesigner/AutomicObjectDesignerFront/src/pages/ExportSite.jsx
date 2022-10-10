@@ -15,12 +15,13 @@ export const ExportSite = () => {
   let Navigate = useNavigate();
 
   const url = 'https://localhost:7017/api/' + state.type;
+  const getUrl = url + 'exportSite' + state.num;
   console.log("Fetching url: " + url)
-
+  console.log("Get url: " +getUrl);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(url, {
+        const result = await fetch(getUrl, {
           headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
         });
         const dat = await result.json();
