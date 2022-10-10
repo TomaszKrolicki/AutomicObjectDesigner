@@ -11,9 +11,8 @@ export const SapJobBWStep4 = () => {
    dark:focus:border-blue-500`;
 
   const { state } = useLocation();
-
   console.log("Id: " + state);
-  const jobType = "SapJobBwChain/";
+  const jobType = "SapJobBwChain/DownloadSapJobBwChain";
   const [formData, setFormData] = React.useState(
     {
       Id: state,
