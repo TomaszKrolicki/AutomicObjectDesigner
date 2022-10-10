@@ -20,7 +20,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class SapJobBwChainController : ControllerBase
     {
         private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
@@ -164,8 +164,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/DownloadCsvFile/{id}
-        [HttpGet("DownloadCsvFile/{id:int}", Name = "DownloadCsvFile"), AllowAnonymous]
+        //Get https://localhost:7017/api/SapJobBwChain/DownloadSapJobBwChainCsvFile/{id}
+        [HttpGet("DownloadSapJobBwChainCsvFile/{id:int}", Name = "DownloadSapJobBwChainCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -238,8 +238,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/DownloadJsonFile/{id}
-        [HttpGet("DownloadJsonFile/{id:int}", Name = "DownloadJsonFile"), AllowAnonymous]
+        //Get https://localhost:7017/api/SapJobBwChain/DownloadSapJobBwChainJsonFile/{id}
+        [HttpGet("DownloadSapJobBwChainJsonFile/{id:int}", Name = "DownloadSapJobBwChainJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)

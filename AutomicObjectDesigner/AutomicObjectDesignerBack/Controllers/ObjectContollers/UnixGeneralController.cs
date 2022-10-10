@@ -16,7 +16,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     // https://localhost:7017/api/UnixGeneral
     [ApiController]
     [Route("api/[controller]") ]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class UnixGeneralController : ControllerBase
     {
         private readonly IUnixGeneralRepository _unixGeneralRepository;

@@ -15,8 +15,9 @@ export const UnixGeneralStep1 = () => {
 
   const [formData, setFormData] = React.useState(
     {
-      SapSid: "AFS",
-      SapClient: "445",
+
+      UnixServer: "AFS",
+      UnixLogin: "445",
       SapSid: "Option3",
       SapClient: "Option4",
       RoutineJob: false,
