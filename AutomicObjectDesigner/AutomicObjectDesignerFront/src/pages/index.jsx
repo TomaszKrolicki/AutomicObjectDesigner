@@ -1,3 +1,5 @@
+import { fromJSON } from 'postcss';
+
 export { AutomicObjectDesigner as AutomicObjectDesigner } from './AutomicObjectDesigner';
 export { SapJobMassen as SapJobMassen } from './SapJobMassen';
 
@@ -35,3 +37,5 @@ export { Register as Register} from './Register';
 export { Login as Login} from './Login';
 
 export { ExportSite as ExportSite} from './ExportSite';
+
+export { Profile as Profile} from './Profile';
