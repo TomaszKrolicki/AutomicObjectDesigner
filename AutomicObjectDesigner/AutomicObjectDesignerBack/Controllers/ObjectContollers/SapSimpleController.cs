@@ -19,7 +19,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
     // https://localhost:7017/api/SapSimple
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class SapSimpleController : ControllerBase
     {
         private readonly ISapSimpleRepository _sapSimpleRepository;
