@@ -178,8 +178,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapSimple/GetSimpleStep5/{id}
-        [HttpGet("GetSapSimpleStep5/{id:int}", Name = "GetSapSimpleStep5")]
+        //Get https://localhost:7017/api/SapSimple/ExportSite/{id}
+        [HttpGet("DownloadSapSimpleExportSite/{id:int}", Name = "GetSapSimpleStep5")]
         public async Task<ActionResult<SapSimple>> GetSapSimpleStep5(int id)
         {
             _logger.LogInformation($"GetSapSimple called with parameter id = {id}");

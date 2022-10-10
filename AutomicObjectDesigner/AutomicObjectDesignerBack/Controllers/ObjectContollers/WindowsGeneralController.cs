@@ -251,7 +251,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/ExportSite/{id}
-        [HttpGet("ExportSite/{id:int}", Name = "GetWindowsGeneralStep7")]
+        [HttpGet("DownloadWindowsGeneralExportSite/{id:int}", Name = "GetWindowsGeneralStep7")]
         public async Task<ActionResult<WindowsGeneral>> GetWindowsGeneralStep7(int id)
         {
             _logger.LogInformation($"GetWindowsGeneral called with parameter id = {id}");

@@ -229,8 +229,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/UnixGeneral/GetUnixGeneralStep7/{id}
-        [HttpGet("GetUnixGeneralStep7/{id:int}", Name = "GetUnixGeneralStep7")]
+        //Get https://localhost:7017/api/UnixGeneral/ExportSite/{id}
+        [HttpGet("DownloadUnixGeneralExportSite/{id:int}", Name = "GetUnixGeneralStep7")]
         public async Task<ActionResult<UnixGeneral>> GetUnixGeneralStep7(int id)
         {
             _logger.LogInformation($"GetUnixGeneral called with parameter id = {id}");

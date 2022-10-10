@@ -123,8 +123,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/GetSapJobBwChainStep5/{id}
-        [HttpGet("GetSapJobBwChainStep5/{id:int}", Name = "GetSapJobBwChainStep5")]
+        //Get https://localhost:7017/api/SapJobBwChain/ExportSite/{id}
+        [HttpGet("DownloadSapJobBwChainExportSite/{id:int}", Name = "GetSapJobBwChainStep5")]
         public async Task<ActionResult<SapJobBwChain>> GetSapJobBwChainStep5(int id)
         {
             _logger.LogInformation($"GetSapSobBwChain called with parameter id = {id}");
@@ -238,7 +238,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/SapJobBwChain/DownloadSapJobBwChainJsonFile/{id}
+        //Get https://localhost:7017/api/SapJobBwChain/JsonFile/{id}
         [HttpGet("DownloadSapJobBwChainJsonFile/{id:int}", Name = "DownloadSapJobBwChainJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {

@@ -15,9 +15,9 @@ export const ExportSite = () => {
   let Navigate = useNavigate();
 
   const url = 'https://localhost:7017/api/' + state.type;
-  const getUrl = url + 'exportSite' + state.num;
-  console.log("Fetching url: " + url)
-  console.log("Get url: " +getUrl);
+  const getUrl = url + 'ExportSite/' + state.num;
+  // console.log("Fetching url: " + url)
+  // console.log("Get url: " +getUrl);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,9 +25,9 @@ export const ExportSite = () => {
           headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
         });
         const dat = await result.json();
-        console.log(dat);
+        // console.log(dat);
         if (dat != null) {
-          console.log(dat);
+          // console.log(dat);
           document.getElementById("object").innerText = JSON.stringify(dat);
         } else {
           console.warn("Data couldn't be fetched");
@@ -52,9 +52,7 @@ export const ExportSite = () => {
     }
     const adres = url+"CsvFile/"+ state.num;
     console.log(adres)
-    //Navigate("https://localhost:7017/api/WindowsGeneral/CsvFile/6")
     window.open(adres, '_blank', 'noopener,noreferrer');
-    // window.open("https://localhost:7017/api/WindowsGeneral/CsvFile/11", '_blank', 'noopener,noreferrer');
   }
 
   async function handleClickXml() {
@@ -76,20 +74,10 @@ export const ExportSite = () => {
       console.log("ERROR" + error)
     }
     window.open(url+"JsonFile/"+ state.num, '_blank', 'noopener,noreferrer');
-    // const adres = url+"JsonFile/"+ state.num;
-    // console.log(adres)
-    // Navigate(url+"JsonFile/"+ state.num);
-    // Navigate(adres);
+
   }
 
 
-  
-
-  // if (data.prop != null) {
-  //   Navigate("/ExportSite", { state: { num: state, } });
-  // } else {
-  //   console.log("Id = null");
-  // }
 
 
 
