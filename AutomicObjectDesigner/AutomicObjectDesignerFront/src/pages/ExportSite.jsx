@@ -50,7 +50,11 @@ export const ExportSite = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
-    Navigate(url+"CsvFile/"+ state.num)
+    const adres = url+"CsvFile/"+ state.num;
+    console.log(adres)
+    //Navigate("https://localhost:7017/api/WindowsGeneral/CsvFile/6")
+    window.open(adres, '_blank', 'noopener,noreferrer');
+    // window.open("https://localhost:7017/api/WindowsGeneral/CsvFile/11", '_blank', 'noopener,noreferrer');
   }
 
   async function handleClickXml() {
@@ -59,18 +63,23 @@ export const ExportSite = () => {
     } catch (error) {
       console.log("ERROR" + error)
     }
+    
     Navigate(url+"XmlFile/"+ state.num)
   }
 
   async function handleClickJson() {
-    // try {
-    //   const SapJobResponse = await fetch(url + 'JsonFile/' + state.num, {
-    //     headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
-    //   })
-    // } catch (error) {
-    //   console.log("ERROR" + error)
-    // }
-    Navigate(url+"JsonFile/"+ state.num);
+    try {
+      const SapJobResponse = await fetch(url + 'JsonFile/' + state.num, {
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+      })
+    } catch (error) {
+      console.log("ERROR" + error)
+    }
+    window.open(url+"JsonFile/"+ state.num, '_blank', 'noopener,noreferrer');
+    // const adres = url+"JsonFile/"+ state.num;
+    // console.log(adres)
+    // Navigate(url+"JsonFile/"+ state.num);
+    // Navigate(adres);
   }
 
 
@@ -95,7 +104,7 @@ export const ExportSite = () => {
       {/* <button onClick={handleClickXml} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
       focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
       dark:focus:ring-blue-800">Export XML</button> */}
-      <a href='https://localhost:7017/api/WindowsGeneral/DownloadJsonFile/' download>Click to download json</a>
+      {/* <a href='https://localhost:7017/api/WindowsGeneral/DownloadJsonFile/' download>Click to download json</a> */}
       <button onClick={handleClickJson} type="button" className="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
       focus:ring-blue-300 font-medium rounded-lg mx-4 text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700
       dark:focus:ring-blue-800">Export JSON</button>

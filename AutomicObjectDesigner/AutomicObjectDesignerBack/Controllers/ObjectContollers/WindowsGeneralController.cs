@@ -306,8 +306,8 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
         // Function returns required Data ready for modification after all steps were finished.
-        //Get https://localhost:7017/api/WindowsGeneral/CsvFile/{id}
-        [HttpGet("CsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile"), AllowAnonymous]
+        //Get https://localhost:7017/api/WindowsGeneral/DownloadWindowsGeneralCsvFile/{id}
+        [HttpGet("DownloadWindowsGeneralCsvFile/{id:int}", Name = "DownloadWindowsGeneralCsvFile"), AllowAnonymous]
         public IActionResult DownloadCsvFile(int id)
         {
             if (!ModelState.IsValid)
@@ -377,7 +377,7 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         // Function returns required Data ready for modification after all steps were finished.
         //Get https://localhost:7017/api/WindowsGeneral/JsonFile/{id}
-        [HttpGet("JsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile"), AllowAnonymous]
+        [HttpGet("DownloadWindowsGeneralJsonFile/{id:int}", Name = "DownloadWindowsGeneralJsonFile"), AllowAnonymous]
         public IActionResult DownloadJsonFile(int id)
         {
             if (!ModelState.IsValid)
