@@ -8,19 +8,39 @@ import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
 function isLoggedIn(){
+  let Navigate = useNavigate();
   if (localStorage.getItem("token") != null){
     return <button type="button" 
-    onClick={localStorage.removeItem("token")}
+    onClick={(e)=>{
+      localStorage.removeItem("token")
+      Navigate("/Register");
+    }}
     style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
     >
       Logout
     </button>}
-  else { return <button type="button" 
+  else { return <button type="button"     
+  onClick={(e)=>{
+    Navigate("/Login");
+  }}
     style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
     >
       Login
-    </button>}
+    </button>
+    }
 }
+function register(){
+  let Navigate = useNavigate();
+  if (localStorage.getItem("token") == null){
+    return <button type="button" 
+    onClick={(e)=>{
+      Navigate("/Register");
+    }}
+    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+    >
+      Register
+    </button>}
+  }
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
@@ -78,8 +98,11 @@ const UserProfile = () => {
           </div>
         ))} */}
       </div>
-        <div className="mt-5">
+        <div>
           {isLoggedIn()}
+        </div>
+        <div>
+          {register()}
         </div>
       </div>
 
