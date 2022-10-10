@@ -37,6 +37,7 @@ import { ExportSite } from '../pages/ExportSite';
 import { NotFound } from '../pages/NotFound';
 
 import React from 'react';
+import { Profile } from '../pages';
 
 const Routing = () => {
   return (
@@ -45,6 +46,7 @@ const Routing = () => {
         {/* Dashboard */}
         <Route path='/' element={<AutomicObjectDesigner />} />
         <Route path='/automicobjectdesigner' element={<AutomicObjectDesigner />} />
+        <Route path = '/profile' element={<Profile/>}/>
         {/* Pages */}
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
