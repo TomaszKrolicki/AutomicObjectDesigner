@@ -29,6 +29,9 @@ import { SapJobSimpleStep2 } from '../pages/SapJobSimpleStep2';
 import { SapJobSimpleStep3 } from '../pages/SapJobSimpleStep3';
 import { SapJobSimpleStep4 } from '../pages/SapJobSimpleStep4';
 
+import { ImportFile } from '../pages/ImportFile';
+
+
 import { Register } from '../pages/Register';
 import { Login } from '../pages/Login'
 
@@ -81,6 +84,9 @@ const Routing = () => {
 
         <Route path='/filetransferone' element={<FileTransferOne />} />
         <Route path='/filetransfermany' element={<FileTransferMany />} />
+
+        <Route path='/importfile' element={<ImportFile />} />
+
         {/* Apps */}
         <Route path='/worksimple' element="Workflow" />
         <Route path='/worksynch' element="Workflow" />
