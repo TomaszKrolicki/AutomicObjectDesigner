@@ -41,6 +41,7 @@
     <Folder Include="Controllers\Functions\" />
     <Folder Include="Logs\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Models\List\" />
   </ItemGroup>
 
 </Project>
