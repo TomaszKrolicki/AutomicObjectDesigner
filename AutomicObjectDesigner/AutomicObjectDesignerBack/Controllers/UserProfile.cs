@@ -3,6 +3,8 @@ using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.List;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Repository;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,22 +33,21 @@ namespace AutomicObjectDesignerBack.Controllers
         }
         // GET  https://localhost:7017/api/UserProfile
         [HttpGet]
-        public async Task<ActionResult<List<ListObjects>>> GetFiles()
+        public ActionResult<ListObjects> GetFiles(int userId)
         {
-            _logger.LogInformation("UserProfile called...");
+            _logger.LogInformation($"UserProfile called with User ID: {userId}...");
 
-            var windowsGeneral = _windowsGeneralRepository.GetAll();
-            var unixGeneral = _unixGeneralRepository.GetAll();
-            var sapSimple = _sapSimpleRepository.GetAll();
-            var sapJobBwChain = _sapJobBwChainRepository.GetAll();
+            var win = _windowsGeneralRepository.FindByCondition((h => h.Id == userId)).ToList();
 
-            var x = new ListObjects();
-            // x.SapJobBwChains = sapJobBwChain;
-            // x.Add(unixGeneral);
-            // x.Add(sapSimple);
-            // x.Add(sapJobBwChain);
+            var windowsGeneral = _windowsGeneralRepository.GetAll().ToList();
+            var sapJobBwChain = _sapJobBwChainRepository.GetAll().ToList();
+            var unixGeneral = _unixGeneralRepository.GetAll().ToList();
+            var sapSimple = _sapSimpleRepository.GetAll().ToList();
 
-            return Ok(x);
+
+            var listObjects = new ListObjects(windowsGeneral, sapJobBwChain, unixGeneral, sapSimple);
+
+            return Ok(listObjects);
         }
     }
 }

@@ -38,6 +38,7 @@ import { NotFound } from '../pages/NotFound';
 
 import React from 'react';
 import { Profile } from '../pages';
+import { Files } from '../pages';
 
 const Routing = () => {
   return (
@@ -47,11 +48,12 @@ const Routing = () => {
         <Route path='/' element={<AutomicObjectDesigner />} />
         <Route path='/automicobjectdesigner' element={<AutomicObjectDesigner />} />
         <Route path = '/profile' element={<Profile/>}/>
+        <Route path = '/files' element={<Files/>}/>
         {/* Pages */}
         <Route path='/Register' element={<Register />} />
         <Route path='/Login' element={<Login />} />
 
-        <Route path='/sapjobsimple/1' element={<SapJobSimpleStep1 />} />
+        <Route path='/sapjobsimple/1/' element={<SapJobSimpleStep1 />} />
         <Route path='/sapjobsimple/2/' element={<SapJobSimpleStep2 />} />
         <Route path='/sapjobsimple/3/' element={<SapJobSimpleStep3 />} />
         <Route path='/sapjobsimple/4/' element={<SapJobSimpleStep4 />} />
