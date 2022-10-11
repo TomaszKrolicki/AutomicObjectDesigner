@@ -1,51 +1,69 @@
 import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
-import { Navigate, redirect, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { Button } from '.';
 import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
-function isLoggedIn(){
+
+function isLoggedIn() {
   let Navigate = useNavigate();
-  if (localStorage.getItem("token") != null){
-    return <button type="button" 
-    onClick={(e)=>{
-      localStorage.removeItem("token")
-      Navigate("/Register");
-    }}
-    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+  if (localStorage.getItem("token") != null) {
+    return <button type="button"
+      onClick={(e) => {
+        localStorage.removeItem("token")
+        Navigate("/Register");
+      }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
     >
       Logout
-    </button>}
-  else { return <button type="button"     
-  onClick={(e)=>{
-    Navigate("/Login");
-  }}
-    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+    </button>
+  }
+  else {
+    return <button type="button"
+      onClick={(e) => {
+        Navigate("/Login");
+      }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
     >
       Login
     </button>
-    }
+  }
 }
-function register(){
+function register() {
   let Navigate = useNavigate();
-  if (localStorage.getItem("token") == null){
-    return <button type="button" 
-    onClick={(e)=>{
-      Navigate("/Register");
-    }}
-    style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+  if (localStorage.getItem("token") == null) {
+    return <button type="button"
+      onClick={(e) => {
+        Navigate("/Register");
+      }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
     >
       Register
-    </button>}
+    </button>
   }
+}
+
+function goToProfile(){
+  let Navigate = useNavigate();
+  if (localStorage.getItem("token") == null) {
+    return <button type="button"
+      onClick={(e) => {
+        Navigate("/Profile");
+      }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+    >
+      Profile
+    </button>
+  }
+}
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
 
-  
+
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
@@ -71,16 +89,17 @@ const UserProfile = () => {
         </div>
       </div>
       <div>
-        <div className='flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]'>
-          <button type='button'
-              style={{ color: "black", backgroundColor: "white" }}
-              className=" text-xl font-medium rounded-lg p-3 hover:bg-light-gray">
+        {goToProfile()}
+        {/* <div className='flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]'>
+          <button onClick={goToProfile}
+            style={{ color: "black", backgroundColor: "white" }}
+            className=" text-xl font-medium rounded-lg p-3 hover:bg-light-gray">
             Profile
-          </button >
+          </button>
           <div className="font-semibold dark:text-gray-200">
             View your user data
           </div>
-        </div>
+        </div> */}
         {/* {userProfileData.map((item, index) => (
           <div key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button
@@ -98,13 +117,13 @@ const UserProfile = () => {
           </div>
         ))} */}
       </div>
-        <div>
-          {isLoggedIn()}
-        </div>
-        <div>
-          {register()}
-        </div>
+      <div>
+        {isLoggedIn()}
       </div>
+      <div>
+        {register()}
+      </div>
+    </div>
 
   );
 };

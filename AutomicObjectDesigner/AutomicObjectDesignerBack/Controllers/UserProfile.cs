@@ -1,5 +1,6 @@
 ﻿using AutomicObjectDesignerBack.Controllers.ObjectContollers;
 using AutomicObjectDesignerBack.Data;
+using AutomicObjectDesignerBack.Models.List;
 using AutomicObjectDesignerBack.Models.Objects;
 using AutomicObjectDesignerBack.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ namespace AutomicObjectDesignerBack.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Roles = "User,Admin")]
+    // [Authorize(Roles = "User,Admin")]
     public class UserProfileController : ControllerBase
     {
         private readonly ILogger<UserProfileController> _logger;
@@ -30,7 +31,7 @@ namespace AutomicObjectDesignerBack.Controllers
         }
         // GET  https://localhost:7017/api/UserProfile
         [HttpGet]
-        public async Task<ActionResult<List<Object>>> GetFiles()
+        public async Task<ActionResult<List<ListObjects>>> GetFiles()
         {
             _logger.LogInformation("UserProfile called...");
 
@@ -39,15 +40,13 @@ namespace AutomicObjectDesignerBack.Controllers
             var sapSimple = _sapSimpleRepository.GetAll();
             var sapJobBwChain = _sapJobBwChainRepository.GetAll();
 
-            var x = new List<object>();
-            x.Add(windowsGeneral);
-            x.Add(unixGeneral);
-            x.Add(sapSimple);
-            x.Add(sapJobBwChain);
+            var x = new ListObjects();
+            // x.SapJobBwChains = sapJobBwChain;
+            // x.Add(unixGeneral);
+            // x.Add(sapSimple);
+            // x.Add(sapJobBwChain);
 
             return Ok(x);
         }
     }
 }
-
-
