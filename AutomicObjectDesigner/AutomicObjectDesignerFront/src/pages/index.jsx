@@ -43,3 +43,5 @@ export { Login as Login} from './Login';
 export { ExportSite as ExportSite} from './ExportSite';
 
 export { Profile as Profile} from './Profile';
+
+export { Files as Files} from './Files';
