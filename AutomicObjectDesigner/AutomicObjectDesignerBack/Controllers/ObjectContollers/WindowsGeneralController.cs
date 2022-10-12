@@ -5,6 +5,8 @@ using AutomicObjectDesignerBack.Repository.Implementations;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text;
+using System.Threading.Tasks;
+using System.IO;
 using AutomicObjectDesigner.Models.Objects;
 using Microsoft.AspNetCore.Authorization;
 
@@ -426,27 +428,51 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return File(bytes, "application/json", "win.json");
 
         }
-
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<List<WindowsGeneralDto>>> UpdateWindowsGeneral([FromBody] WindowsGeneral updateWindowsGeneral)
+        //// Function returns required Data ready for modification after all steps were finished.
+        ////Get https://localhost:7017/api/WindowsGeneral/ImportJsonFile/
+        //[HttpPost("ImportJsonFile", Name = "ImportWindowsGeneralJsonFile"), AllowAnonymous]
+        //public IActionResult ImportJsonFile()
         //{
-
         //    if (!ModelState.IsValid)
         //    {
         //        return BadRequest(ModelState);
-        //    }
-        //    //TODO:
-        //    var windowsGeneral = await _context.WindowsGeneral.FindAsync(updateWindowsGeneral);
+        //    };
 
-        //    if (windowsGeneral == null)
+
+        //    WindowsGeneral winJson = new WindowsGeneral
         //    {
-        //        return NotFound();
-        //    }
+        //        Id = id,
+        //        SapClient = windowsGeneral.SapClient,
+        //        SapSid = windowsGeneral.SapSid,
+        //        WinServer = windowsGeneral.WinServer,
+        //        WinLogin = windowsGeneral.WinLogin,
+        //        ObjectName = windowsGeneral.ObjectName,
+        //        OwnerId = windowsGeneral.OwnerId,
+        //        Active = windowsGeneral.Active,
+        //        NameSuffix = windowsGeneral.NameSuffix,
+        //        MaxParallelTasks = windowsGeneral.MaxParallelTasks,
+        //        Process = windowsGeneral.Process,
+        //        PreProcess = windowsGeneral.PreProcess,
+        //        PostProcess = windowsGeneral.PostProcess,
+        //        RoutineJob = windowsGeneral.RoutineJob,
+        //        ProcessName = windowsGeneral.ProcessName,
+        //        Documentation = windowsGeneral.Documentation,
+        //        Title = windowsGeneral.Title,
+        //        Archive1 = windowsGeneral.Archive1,
+        //        Archive2 = windowsGeneral.Archive2,
+        //        InternalAccount = windowsGeneral.InternalAccount,
+        //        Folder = windowsGeneral.Folder,
+        //        Queue = windowsGeneral.Queue,
+        //        Agent = windowsGeneral.Agent,
+        //        Login = windowsGeneral.Login
+        //    };
 
+        //    string fileName = "win.json";
+        //    string jsonString = JsonSerializer.Serialize(windowsGeneral, new JsonSerializerOptions { WriteIndented = true });
 
-        //    await _context.SaveChangesAsync();
+        //    byte[] bytes = Encoding.ASCII.GetBytes(jsonString);
+        //    return File(bytes, "application/json", "win.json");
 
-        //    return NoContent();
         //}
 
 
