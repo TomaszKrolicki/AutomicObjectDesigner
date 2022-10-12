@@ -1,4 +1,5 @@
-﻿using AutomicObjectDesignerBack.Controllers.ObjectContollers;
+﻿using AutomicObjectDesigner.Models.Objects;
+using AutomicObjectDesignerBack.Controllers.ObjectContollers;
 using AutomicObjectDesignerBack.Data;
 using AutomicObjectDesignerBack.Models.List;
 using AutomicObjectDesignerBack.Models.Objects;
@@ -31,23 +32,58 @@ namespace AutomicObjectDesignerBack.Controllers
             _sapJobBwChainRepository = sapJobBwChainRepository;
             _logger = logger;
         }
-        // GET  https://localhost:7017/api/UserProfile
-        [HttpGet]
-        public ActionResult<ListObjects> GetFiles(int userId)
+        //TODO: need to finish it
+        // GET  https://localhost:7017/api/UserProfile/{id}
+        // swagger https://localhost:7017/swagger
+        [HttpGet("{userId:int}")]
+        public async Task <ActionResult<ListObjects>> GetFiles(int userId)
         {
             _logger.LogInformation($"UserProfile called with User ID: {userId}...");
-
-            var win = _windowsGeneralRepository.FindByCondition((h => h.Id == userId)).ToList();
-
-            var windowsGeneral = _windowsGeneralRepository.GetAll().ToList();
+        var win = _windowsGeneralRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+        
+            var windowsGeneral =  _windowsGeneralRepository.GetAll().ToList();
             var sapJobBwChain = _sapJobBwChainRepository.GetAll().ToList();
             var unixGeneral = _unixGeneralRepository.GetAll().ToList();
             var sapSimple = _sapSimpleRepository.GetAll().ToList();
 
-
             var listObjects = new ListObjects(windowsGeneral, sapJobBwChain, unixGeneral, sapSimple);
-
+        
             return Ok(listObjects);
+        }
+
+        [HttpGet("sapJobBwChain/{userId:int}")]
+        public async Task<ActionResult<List<SapJobBwChain>>> GetSapJobBwChainProfile(int userId)
+        {
+            _logger.LogInformation("GetSapJobBwChainProfile called...");
+            var sapJobsBwChains = _sapJobBwChainRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+
+            return Ok(sapJobsBwChains);
+        }
+
+        [HttpGet("windowsGeneral/{userId:int}")]
+        public async Task<ActionResult<List<WindowsGeneral>>> GetWindowsRepositoryProfile(int userId)
+        {
+            _logger.LogInformation("GetWindowsRepositoryProfile called...");
+            var windowsGeneral = _windowsGeneralRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+
+            return Ok(windowsGeneral);
+        }
+        [HttpGet("sapSimple/{userId:int}")]
+        public async Task<ActionResult<List<SapSimple>>> GetSapSimpleProfile(int userId)
+        {
+            _logger.LogInformation("GetSapSimpleProfile called...");
+            var sapSimple = _sapSimpleRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+
+            return Ok(sapSimple);
+        }
+
+        [HttpGet("unixGeneral/{userId:int}")]
+        public async Task<ActionResult<List<SapSimple>>> GetUnixGeneralProfile(int userId)
+        {
+            _logger.LogInformation("GetUnixGeneralProfile called...");
+            var unixGeneral = _unixGeneralRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+
+            return Ok(unixGeneral);
         }
     }
 }
