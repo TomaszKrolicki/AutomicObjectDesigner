@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react';
+
 
 export const ImportFile = () => {
   const cssStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
@@ -25,15 +26,17 @@ export const ImportFile = () => {
 
   return (
     <div className='md:px-4 py-2.5 container w-800'>
-      
-        <label htmlFor="Job" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Job for import</label>
-        <select onChange={handleChange} value={formData.Job} name='Job' className={cssStyle}>
-          <option value={"Option1"}>SapSimple</option>
-          <option value={"Option2"}>SapJobBw</option>
-          <option value={"Option3"}>UnixGeneral</option>
-          <option value={"Option4"}>WindowsGeneral</option>
-        </select>
-        
+
+      <label htmlFor="Job" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Job for import</label>
+      <select onChange={handleChange} value={formData.Job} name='Job' className={cssStyle}>
+        <option value={"Option1"}>SapSimple</option>
+        <option value={"Option2"}>SapJobBw</option>
+        <option value={"Option3"}>UnixGeneral</option>
+        <option value={"Option4"}>WindowsGeneral</option>
+      </select>
     </div>
+
+
+    
   )
 }
