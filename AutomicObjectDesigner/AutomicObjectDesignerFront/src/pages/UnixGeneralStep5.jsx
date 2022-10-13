@@ -13,10 +13,10 @@ export const UnixGeneralStep5 = () => {
    const [formData, setFormData] = React.useState(
     {
       Id : state,
-      Title: "asd",
-      Archive1: "asd",
-      Archive2: "asd",
-      InternalAccount: "asd",
+      Title: "",
+      Archive1: "",
+      Archive2: "",
+      InternalAccount: "",
       Folder: "/IMPORT/E1E/user ID"
     }
     )

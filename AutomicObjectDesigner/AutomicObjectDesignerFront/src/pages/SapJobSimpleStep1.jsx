@@ -67,19 +67,19 @@ export const SapJobSimpleStep1 = () => {
   return (
     <div className='md:px-4 py-2.5 container w-800'>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
+      <label htmlFor="SapSid" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select SAP SID</label>
         <select onChange={handleChange} value={formData.SapSid} id="SapSid" name='SapSid' className={cssStyle}>
-          <option value={"Option1"}>AFS</option>
-          <option value={"Option2"}>BDG</option>
-          <option value={"Option3"}>CFG</option>
-          <option value={"Option4"}>UTP</option>
+          <option value={"AFS"}>AFS</option>
+          <option value={"BDG"}>BDG</option>
+          <option value={"CFG"}>CFG</option>
+          <option value={"UTP"}>UTP</option>
         </select>
         <label htmlFor="SapClient" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">Select SAP Client</label>
         <select onChange={handleChange} value={formData.SapClient} id="SapClient" name='SapClient' className={cssStyle}>
-          <option value={"Option1"}>445</option>
-          <option value={"Option2"}>878</option>
-          <option value={"Option3"}>913</option>
-          <option value={"Option4"}>989</option>
+          <option value={"445"}>445</option>
+          <option value={"878"}>878</option>
+          <option value={"913"}>913</option>
+          <option value={"989"}>989</option>
         </select>
         <label htmlFor="SapReport" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400 my-3">SAP Report</label>
               <textarea id="SapReport" onChange={handleChange} value={formData.SapReport} name='SapReport' rows="4" className={cssStyle} placeholder="SAP Report..."></textarea>

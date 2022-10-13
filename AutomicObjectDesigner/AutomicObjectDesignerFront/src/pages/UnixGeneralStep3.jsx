@@ -14,7 +14,7 @@ export const UnixGeneralStep3 = () => {
    const [formData, setFormData] = React.useState(
     {
       Id : state,
-      Process: "UnixTestProcess"
+      Process: ""
     }
     )
 
