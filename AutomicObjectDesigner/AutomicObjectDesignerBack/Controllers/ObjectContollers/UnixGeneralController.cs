@@ -423,43 +423,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
         }
 
 
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<List<UnixGeneralDto>>> UpdateUnixGeneral([FromBody] UnixGeneral updateUnixGeneral)
-        //{
-
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    //TODO:
-        //    var unixGeneral = await _context.UnixGeneral.FindAsync(updateUnixGeneral);
-
-        //    if (unixGeneral == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    unixGeneral.SapReport = updateUnixGeneral.SapReport;
-        //    unixGeneral.UnixLogin = updateUnixGeneral.UnixLogin;
-        //    unixGeneral.UnixServer = updateUnixGeneral.UnixServer;
-        //    unixGeneral.Agent = updateUnixGeneral.Agent;
-        //    unixGeneral.Active = updateUnixGeneral.Active;
-        //    unixGeneral.Folder = updateUnixGeneral.Folder;
-        //    unixGeneral.Login = updateUnixGeneral.Login;
-        //    unixGeneral.Queue = updateUnixGeneral.Queue;
-        //    unixGeneral.MaxParallelTasks = updateUnixGeneral.MaxParallelTasks;
-        //    unixGeneral.OwnerId = updateUnixGeneral.OwnerId;
-        //    unixGeneral.Process = updateUnixGeneral.Process;
-        //    unixGeneral.ProcessName = updateUnixGeneral.ProcessName;
-        //    unixGeneral.PreProcess = updateUnixGeneral.PreProcess;
-        //    unixGeneral.PostProcess = updateUnixGeneral.PostProcess;
-
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
-
     }
 
 }

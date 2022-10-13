@@ -30,6 +30,7 @@ import { SapJobSimpleStep3 } from '../pages/SapJobSimpleStep3';
 import { SapJobSimpleStep4 } from '../pages/SapJobSimpleStep4';
 
 import { ImportFile } from '../pages/ImportFile';
+import { ImportJson } from '../pages/ImportJson';
 
 
 import { Register } from '../pages/Register';
@@ -88,6 +89,7 @@ const Routing = () => {
         <Route path='/filetransfermany' element={<FileTransferMany />} />
 
         <Route path='/importfile' element={<ImportFile />} />
+        <Route path='/importjson' element={<ImportJson />} />
 
         {/* Apps */}
         <Route path='/worksimple' element="Workflow" />

@@ -365,43 +365,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
 
         }
 
-        ////Put https://localhost:7017/api/SapSimple/{id}
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<List<SapSimple>>> UpdateSapSimple([FromBody] SapSimple SapSimple)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    var sapSimple = await _sapSimpleRepository.FindByCondition((x => x.Id == SapSimple.Id));
-
-        //    if (sapSimple == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    sapSimple.SapReport = updateSapSimpleDto.SapReport;
-        //    sapSimple.SapJobName = updateSapSimpleDto.SapJobName;
-        //    sapSimple.SapVariant = updateSapSimpleDto.SapVariant;
-        //    sapSimple.Agent = updateSapSimpleDto.Agent;
-        //    sapSimple.Active = updateSapSimpleDto.Active;
-        //    sapSimple.DeleteSapJob = updateSapSimpleDto.DeleteSapJob;
-        //    sapSimple.Folder = updateSapSimpleDto.Folder;
-        //    sapSimple.Login = updateSapSimpleDto.Login;
-        //    sapSimple.Queue = updateSapSimpleDto.Queue;
-        //    sapSimple.MaxParallelTasks = updateSapSimpleDto.MaxParallelTasks;
-        //    sapSimple.OwnerId = updateSapSimpleDto.OwnerId;
-        //    sapSimple.Process = updateSapSimpleDto.Process;
-        //    sapSimple.ProcessName = updateSapSimpleDto.ProcessName;
-        //    sapSimple.PreProcess = updateSapSimpleDto.PreProcess;
-        //    sapSimple.PostProcess = updateSapSimpleDto.PostProcess;
-
-
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-
 
         // DELETE https://localhost:7017/api/SapSimple/{id}
         [HttpDelete("{id:int}", Name = "DeleteSapSimple")]

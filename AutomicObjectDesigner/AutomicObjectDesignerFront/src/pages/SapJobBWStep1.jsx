@@ -42,19 +42,11 @@ export const SapJobBWStep1 = () => {
     console.log(localStorage.getItem("token"))
     event.preventDefault()
     try {
-      const SapJobResponse = await fetch('https://localhost:7017/api/SapJobBwChain/step1', {
+      const ImportFileResponse = await fetch('https://localhost:7017/api/ImportFile', {
         method: 'post',
         headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       })
-      data.prop = await SapJobResponse.json();
-      // setPost(data);
-      if (data.prop != null) {
-        const id = data.prop.id;
-        Navigate("/SAPJobBW/2", { state: id });
-      } else {
-        console.log("Id = null");
-      }
     } catch (error) {
       console.log("ERROR" + error)
     }

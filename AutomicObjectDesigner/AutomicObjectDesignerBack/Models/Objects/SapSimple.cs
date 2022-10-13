@@ -45,23 +45,6 @@ public class SapSimple : Job
     public string? Agent1 { get; set; }
     public string? Login1 { get; set; }
 
-    //// Multiline fields:
-    //public string? VariableKey { get; set; }
-    //public string? VariableValue { get; set; }
-
-    //public string? Docu { get; set; }
-
-    ////other fields
-
-    //public string Name1 { get; set; }
-    //public string Title { get; set; }
-
-    //public string JobName1 { get; set; }
-    //public bool NeverDeleteJob { get; set; }
-    //public string? ArchiveKey1 { get; set; }
-    //public string? ArchiveKey2 { get; set; }
-    //public string? InternalAccount { get; set; }
-    ////<folder>
 
 
 }

@@ -428,52 +428,6 @@ namespace AutomicObjectDesignerBack.Controllers.ObjectContollers
             return File(bytes, "application/json", "win.json");
 
         }
-        //// Function returns required Data ready for modification after all steps were finished.
-        ////Get https://localhost:7017/api/WindowsGeneral/ImportJsonFile/
-        //[HttpPost("ImportJsonFile", Name = "ImportWindowsGeneralJsonFile"), AllowAnonymous]
-        //public IActionResult ImportJsonFile()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    };
-
-
-        //    WindowsGeneral winJson = new WindowsGeneral
-        //    {
-        //        Id = id,
-        //        SapClient = windowsGeneral.SapClient,
-        //        SapSid = windowsGeneral.SapSid,
-        //        WinServer = windowsGeneral.WinServer,
-        //        WinLogin = windowsGeneral.WinLogin,
-        //        ObjectName = windowsGeneral.ObjectName,
-        //        OwnerId = windowsGeneral.OwnerId,
-        //        Active = windowsGeneral.Active,
-        //        NameSuffix = windowsGeneral.NameSuffix,
-        //        MaxParallelTasks = windowsGeneral.MaxParallelTasks,
-        //        Process = windowsGeneral.Process,
-        //        PreProcess = windowsGeneral.PreProcess,
-        //        PostProcess = windowsGeneral.PostProcess,
-        //        RoutineJob = windowsGeneral.RoutineJob,
-        //        ProcessName = windowsGeneral.ProcessName,
-        //        Documentation = windowsGeneral.Documentation,
-        //        Title = windowsGeneral.Title,
-        //        Archive1 = windowsGeneral.Archive1,
-        //        Archive2 = windowsGeneral.Archive2,
-        //        InternalAccount = windowsGeneral.InternalAccount,
-        //        Folder = windowsGeneral.Folder,
-        //        Queue = windowsGeneral.Queue,
-        //        Agent = windowsGeneral.Agent,
-        //        Login = windowsGeneral.Login
-        //    };
-
-        //    string fileName = "win.json";
-        //    string jsonString = JsonSerializer.Serialize(windowsGeneral, new JsonSerializerOptions { WriteIndented = true });
-
-        //    byte[] bytes = Encoding.ASCII.GetBytes(jsonString);
-        //    return File(bytes, "application/json", "win.json");
-
-        //}
 
 
     }

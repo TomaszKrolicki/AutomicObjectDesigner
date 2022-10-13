@@ -41,6 +41,8 @@
     <Folder Include="Controllers\Functions\" />
     <Folder Include="Logs\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroots\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
