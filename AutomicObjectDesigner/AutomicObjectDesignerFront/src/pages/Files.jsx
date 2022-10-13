@@ -11,24 +11,24 @@ export const Files = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchId = async () => {
-      try{
-        const getId = await fetch("https://localhost:7017/api/Authorization/userId", {
-          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
-        });
-        if (getId != null){
-          setId(getId);
-          console.log("Get Id: ")
-          console.log(getId)
-        }
-      } catch(error){
-        console.log(error);
-      }
-    }
+    // const fetchId = async () => {
+    //   try{
+    //     const getId = await fetch("https://localhost:7017/api/Authorization/userId", {
+    //       headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+    //     });
+    //     if (getId != null){
+    //       setId(getId);
+    //       console.log("Get Id: ")
+    //       console.log(getId.json())
+    //     }
+    //   } catch(error){
+    //     console.log(error);
+    //   }
+    // }
     const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await fetch("https://localhost:7017/api/UserProfile/", {
+        const result = await fetch("https://localhost:7017/api/UserProfile/0", {
           headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
         });
         const dataFetched = await result.json();
@@ -45,7 +45,7 @@ export const Files = () => {
       }
       setLoading(false);
     }
-    fetchId();
+    // fetchId();
     fetchData();
   }, []);
 

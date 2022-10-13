@@ -66,7 +66,7 @@ namespace AutomicObjectDesignerBack.Controllers
         }
         // https://localhost:7017/api/Authorization/id
         // https://localhost:7017/swagger
-        [HttpGet("userId")]
+        [HttpGet("userId"), Authorize]
         public ActionResult<object> GetMe()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)

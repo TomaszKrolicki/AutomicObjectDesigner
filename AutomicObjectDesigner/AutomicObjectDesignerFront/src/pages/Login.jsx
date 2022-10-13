@@ -63,7 +63,7 @@ export const Login = () => {
           <label htmlFor="UserName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Username</label>
           <input type="text" onChange={handleChange} value={formData.UserName} name='UserName' minLength="1" maxLength="20" id="UserName" className={cssStyle} required />
           <label htmlFor="Password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
-          <input type="text" onChange={handleChange} value={formData.Password} name='Password' minLength="1" maxLength="20" id="Password" className={cssStyle} required />
+          <input type="password" onChange={handleChange} value={formData.Password} name='Password' minLength="1" maxLength="20" id="Password" className={cssStyle} required />
             <p></p>
             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
           </form>
