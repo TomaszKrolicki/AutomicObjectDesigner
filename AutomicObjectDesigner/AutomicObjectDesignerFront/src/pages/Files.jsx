@@ -7,13 +7,28 @@ export const Files = () => {
   const buttonStyle="text-white static bg-blue-700 my-1 mx-5 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 
   const [files, setFile] = useState([]);
+  const [id, setId] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const fetchId = async () => {
+      try{
+        const getId = await fetch("https://localhost:7017/api/Authorization/userId", {
+          headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+        });
+        if (getId != null){
+          setId(getId);
+          console.log("Get Id: ")
+          console.log(getId)
+        }
+      } catch(error){
+        console.log(error);
+      }
+    }
     const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await fetch("https://localhost:7017/api/UserProfile/0", {
+        const result = await fetch("https://localhost:7017/api/UserProfile/", {
           headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
         });
         const dataFetched = await result.json();
@@ -30,6 +45,7 @@ export const Files = () => {
       }
       setLoading(false);
     }
+    fetchId();
     fetchData();
   }, []);
 

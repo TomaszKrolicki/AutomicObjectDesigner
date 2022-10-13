@@ -8,6 +8,8 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using AutomicObjectDesignerBack.Controllers;
 
 namespace AutomicObjectDesignerBack.Controllers
 {
@@ -38,8 +40,9 @@ namespace AutomicObjectDesignerBack.Controllers
         [HttpGet("{userId:int}")]
         public async Task <ActionResult<ListObjects>> GetFiles(int userId)
         {
+            
             _logger.LogInformation($"UserProfile called with User ID: {userId}...");
-        var win = _windowsGeneralRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
+            var win = _windowsGeneralRepository.FindByCondition((h => h.OwnerId == userId)).ToList();
         
             var windowsGeneral =  _windowsGeneralRepository.GetAll().ToList();
             var sapJobBwChain = _sapJobBwChainRepository.GetAll().ToList();
