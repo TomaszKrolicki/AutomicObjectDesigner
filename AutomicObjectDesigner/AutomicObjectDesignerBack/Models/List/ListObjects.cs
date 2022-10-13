@@ -1,14 +1,19 @@
 ﻿using AutomicObjectDesigner.Models.Objects;
 using AutomicObjectDesignerBack.Models.Objects;
+using AutomicObjectDesignerBack.Repository;
 
 namespace AutomicObjectDesignerBack.Models.List;
 
 public class ListObjects
 {
-    private List<WindowsGeneral>? WindowsGenerals { get; set; }
-    private List<SapJobBwChain>? SapJobBwChains { get; set; }
-    private List<UnixGeneral>? UnixGenerals { get; set; }
-    private List<SapSimple>? SapSimples { get; set; }
+    private readonly IWindowsGeneralRepository _windowsGeneralRepository;
+    private readonly IUnixGeneralRepository _unixGeneralRepository;
+    private readonly ISapSimpleRepository _sapSimpleRepository;
+    private readonly ISapJobBwChainRepository _sapJobBwChainRepository;
+    public List<WindowsGeneral>? WindowsGenerals { get; set; }
+    public List<SapJobBwChain>? SapJobBwChains { get; set; }
+    public List<UnixGeneral>? UnixGenerals { get; set; }
+    public List<SapSimple>? SapSimples { get; set; }
 
     public ListObjects(List<WindowsGeneral> windowsGenerals, List<SapJobBwChain> sapJobBwChains, List<UnixGeneral> unixGenerals, List<SapSimple> sapSimples)
     {

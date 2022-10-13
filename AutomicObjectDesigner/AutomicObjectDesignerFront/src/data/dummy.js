@@ -16,6 +16,7 @@ import { SiLinux }from 'react-icons/si';
 import { RiFileTransferLine }from 'react-icons/ri';
 import { SiWindows }from 'react-icons/si';
 import { IoLogoDesignernews } from 'react-icons/io';
+import { BiImport } from 'react-icons/bi';
 import avatar from './avatar.jpg';
 import avatar2 from './avatar2.jpg';
 import avatar3 from './avatar3.png';
@@ -28,6 +29,7 @@ import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
+import { icons } from 'react-icons';
 
 export const gridOrderImage = (props) => (
   <div>
@@ -543,12 +545,12 @@ export const links = [
     ],
   },
   {
-    title: 'ImportStie',
+    title: 'Import',
     links: [
       {
           name: 'ImportFile',
           link: 'ImportFile',
-        icon: <RiFileTransferLine />,
+        icon: <BiImport />,
       },
       
     ],

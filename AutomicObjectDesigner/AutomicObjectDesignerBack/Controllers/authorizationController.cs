@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AutomicObjectDesignerBack.Controllers
 {
@@ -63,6 +64,15 @@ namespace AutomicObjectDesignerBack.Controllers
 
             return Accepted(userlogin);
         }
+        // https://localhost:7017/api/Authorization/id
+        // https://localhost:7017/swagger
+        [HttpGet("userId"), Authorize]
+        public ActionResult<object> GetMe()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+               .FirstOrDefault();
+            return Ok(userId);
+        }
 
         private string CreateToken(UserModel user)
         {
@@ -70,7 +80,8 @@ namespace AutomicObjectDesignerBack.Controllers
         {
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim(ClaimTypes.Email, user.Email)
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration.GetSection("AppSettings:Token").Value));
