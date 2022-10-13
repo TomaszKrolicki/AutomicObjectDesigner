@@ -15,7 +15,7 @@ export const WindowsGeneralStep4 = () => {
    const [formData, setFormData] = React.useState(
     {
         Id: state,
-        Documentation: "asd"
+        Documentation: ""
     }
     )
 
@@ -59,7 +59,7 @@ export const WindowsGeneralStep4 = () => {
         <label htmlFor="Documentation" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Documentation</label>
         <input type="text" onChange={handleChange} value={formData.Documentation}  name='Documentation' id="Documentation" className={cssStyle} required />
         <p></p>
-        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        <button type="submit" className="text-white my-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-right dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
       </form>
     </div>
   )

@@ -17,10 +17,10 @@ export const SapJobBWStep4 = () => {
     {
       Id: state,
       Title: "456",
-      Archive1: "dfgdftg",
-      Archive2: "dfgdfgdfg",
+      Archive1: "",
+      Archive2: "",
       Folder: "/IMPORT/E1E/user ID",
-      InternalAccount: "uuuuuuuuuu",
+      InternalAccount: "",
     }
   )
 

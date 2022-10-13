@@ -38,6 +38,8 @@ import { Login } from '../pages/Login'
 
 import { ExportSite } from '../pages/ExportSite';
 
+import { BugReport } from '../pages/BugReport';
+
 import { NotFound } from '../pages/NotFound';
 
 import React from 'react';
@@ -90,6 +92,8 @@ const Routing = () => {
 
         <Route path='/importfile' element={<ImportFile />} />
         <Route path='/importjson' element={<ImportJson />} />
+
+        <Route path='/bugReport' element={<BugReport />} />
 
         {/* Apps */}
         <Route path='/worksimple' element="Workflow" />
