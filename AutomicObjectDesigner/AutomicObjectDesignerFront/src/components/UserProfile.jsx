@@ -7,6 +7,26 @@ import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
+// const [formData] = React.useState(
+//   {
+//     userName: "",
+//     userRole: "",
+//     userEmail: "",
+//   }
+// )
+
+async function getUserData(event) {
+  event.preventDefault()
+  try {
+      await fetch('https://localhost:7017/api/Authorization/userInfo', {
+      method: 'post',
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem("token"), 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+  } catch (error) {
+    console.log("ERROR" + error)
+  }
+}
 
 function isLoggedIn() {
   let Navigate = useNavigate();
@@ -16,7 +36,7 @@ function isLoggedIn() {
         localStorage.removeItem("token")
         Navigate("/Register");
       }}
-      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%", marginTop: "10px" }}
     >
       Logout
     </button>
@@ -26,7 +46,7 @@ function isLoggedIn() {
       onClick={(e) => {
         Navigate("/Login");
       }}
-      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%", marginTop: "10px"}}
     >
       Login
     </button>
@@ -39,7 +59,7 @@ function register() {
       onClick={(e) => {
         Navigate("/Register");
       }}
-      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%", marginTop: "10px" }}
     >
       Register
     </button>
@@ -48,15 +68,36 @@ function register() {
 
 function goToProfile(){
   let Navigate = useNavigate();
-  if (localStorage.getItem("token") == null) {
+  if (localStorage.getItem("token") != null) {
     return <button type="button"
       onClick={(e) => {
         Navigate("/Profile");
       }}
-      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%" }}
+      style={{ backgroundColor: "White", color: "black", borderRadius: "10px", width: "100%", marginTop: "10px" }}
     >
       Profile
     </button>
+  }
+}
+
+function userData(){
+  if (localStorage.getItem("token") != null){
+    return <div>
+    <p className="font-semibold text-xl dark:text-gray-200"> Tadeusz Tadkowski </p>
+    <p className="text-gray-500 text-sm dark:text-gray-400">  Admin   </p>
+    <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@automicobjectdesigner.com </p>
+    </div>
+  }
+}
+function userPicture(){
+  if (localStorage.getItem("token") != null){
+    return <div>
+              <img
+          className="rounded-full h-24 w-24"
+          src={avatar}
+          alt="user-profile"
+        />
+    </div>
   }
 }
 
@@ -77,15 +118,9 @@ const UserProfile = () => {
         />
       </div>
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
-        <img
-          className="rounded-full h-24 w-24"
-          src={avatar}
-          alt="user-profile"
-        />
+        {userPicture()}
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200"> FirstName LastName </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@automicobjectdesigner.com </p>
+          {userData()}
         </div>
       </div>
       <div className='my-2'>

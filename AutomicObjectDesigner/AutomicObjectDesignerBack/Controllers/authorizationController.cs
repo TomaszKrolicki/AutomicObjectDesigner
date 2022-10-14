@@ -74,6 +74,17 @@ namespace AutomicObjectDesignerBack.Controllers
             return Ok(userId);
         }
 
+        // https://localhost:7017/api/Authorization/userInfo
+        // https://localhost:7017/swagger
+        [HttpGet("userInfo"), Authorize]
+        public ActionResult<object> GetUserInfo()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.Name).FirstOrDefault();
+            var userRole = User.FindFirstValue(ClaimTypes.Role).FirstOrDefault();
+            var userEmail = User.FindFirstValue(ClaimTypes.Email).FirstOrDefault();
+            return Ok(new { userName, userRole, userEmail });
+        }
+
         private string CreateToken(UserModel user)
         {
             List<Claim> claims = new List<Claim>
